@@ -60,7 +60,7 @@ const products = [
   {
     name: 'Devil Horns',
     type: 'hat',
-    category: 'Halloween',
+    category: 'halloween',
     price: 10.0,
     quantity: 10,
     description: 'Evil but cute horns for your duck!',
@@ -69,7 +69,6 @@ const products = [
   {
     name: 'Beret',
     type: 'hat',
-    category: '',
     price: 19.99,
     quantity: 10,
     description: 'A fancy hat for your duck friend!',
@@ -78,7 +77,6 @@ const products = [
   {
     name: 'Default Duck',
     type: 'duck',
-    category: '',
     price: 100.0,
     quantity: 200,
     description: 'Basic duck.',
@@ -105,7 +103,6 @@ const products = [
   {
     name: 'Chef Hat',
     type: 'hat',
-    category: '',
     price: 9.99,
     quantity: 20,
     description: 'For your gourmet chef duck.',
@@ -123,7 +120,7 @@ const products = [
   {
     name: 'Business Suit',
     type: 'outfit',
-    category: 'business',
+    category: 'business/casual',
     price: 40.0,
     quantity: 5,
     description: 'Wall street investor edition!',
