@@ -11,8 +11,9 @@ const Product = db.define('product', {
   },
   type: {
     type: Sequelize.STRING,
+    defaultValue: 'misc',
     validate: {
-      isIn: [['duck', 'accessory', 'preset', 'outfit']],
+      isIn: [['duck', 'accessory', 'preset', 'outfit', 'misc']],
     }
   },
   category: {
