@@ -3,6 +3,15 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  username: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    defaultValue: 'https://image.shutterstock.com/image-vector/duck-vector-icon-260nw-670089019.jpg'
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
