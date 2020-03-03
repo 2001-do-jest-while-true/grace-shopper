@@ -6,7 +6,7 @@ const Product = db.define('product', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      isEmpty: false
+      notEmpty: true
     }
   },
   size: {
@@ -18,9 +18,9 @@ const Product = db.define('product', {
   },
   material: {
     type: Sequelize.STRING,
-    allowNull: true,
+    defaultValue: '',
     validate: {
-      isIn: [['yellow', 'purple', 'red', 'blue', 'gold', 'silver']]
+      isIn: [['yellow', 'purple', 'red', 'blue', 'gold', 'silver', '']]
     }
   },
   type: {
@@ -48,7 +48,7 @@ const Product = db.define('product', {
     }
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.DOUBLE,
     validate: {
       min: 0
     }
