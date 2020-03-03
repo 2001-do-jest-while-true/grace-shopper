@@ -20,9 +20,13 @@ form div {
   display: inline-block;
 }
 
-.single-product-pane {
+.single-product-main {
   display: flex;
   flex-direction: column;
+}
+
+.single-product-pane {
+  display: flex;
 }
 
 .warning {
