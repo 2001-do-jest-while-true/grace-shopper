@@ -4,7 +4,7 @@ import {fetchSingleProduct} from '../store'
 
 class SingleProduct extends React.Component {
   componentDidMount() {
-    this.props.getProduct(this.props.match.params.productId)
+    this.props.fetchSingleProduct(this.props.match.params.productId)
   }
 
   render() {
@@ -35,7 +35,9 @@ class SingleProduct extends React.Component {
               </button>
             </div>
           </div>
-          <div className="single-product-description" />
+          <div className="single-product-description">
+            {product.description}
+          </div>
         </div>
       )
     } else {
@@ -49,7 +51,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchProduct: id => dispatch(fetchSingleProduct(id))
+  fetchSingleProduct: id => dispatch(fetchSingleProduct(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
