@@ -1,15 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/product'
-import SingleProduct from './singleProduct'
+import {Link} from 'react-router-dom'
 
 class AllProducts extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      products: []
-    }
-  }
   componentDidMount() {
     this.props.fetchAllProducts()
   }
@@ -17,10 +11,12 @@ class AllProducts extends React.Component {
   render() {
     return (
       <div>
-        {this.props.products ? (
+        {this.props.products.length ? (
           this.props.products.map(product => (
             <div key={product.id}>
-              <SingleProduct />{' '}
+              <Link to={`/products/${product.id}`}>{product.name}</Link>
+
+              <p>{product.price}</p>
             </div>
           ))
         ) : (
@@ -32,7 +28,7 @@ class AllProducts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.products
+  products: state.product.products
 })
 
 const mapDispatchToProps = dispatch => ({

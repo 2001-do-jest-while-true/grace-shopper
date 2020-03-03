@@ -4,11 +4,727 @@ const db = require('../server/db')
 const {User, Product, Order} = require('../server/db/models')
 
 //USERS DUMMY DATA
+const users = [
+  {
+    username: 'mather0',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/velitmolestiasut.bmp?size=50x50&set=set1',
+    email: 'kelliot0@shareasale.com',
+    password: 'TqlOCD7nOIae'
+  },
+  {
+    username: 'cmacdiarmond1',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/eumdeseruntminima.jpg?size=50x50&set=set1',
+    email: 'cmuggleston1@tiny.cc',
+    password: 'iTqbWQWoEla'
+  },
+  {
+    username: 'bdjurisic2',
+    imageUrl: 'https://robohash.org/eanobisaut.jpg?size=50x50&set=set1',
+    email: 'tturfes2@yahoo.com',
+    password: 'ZgSTggZXpm7C'
+  },
+  {
+    username: 'dissatt3',
+    isAdmin: false,
+    email: 'agarrals3@1688.com',
+    password: 'YARsxs'
+  },
+  {
+    username: 'lhumphrys4',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/accusantiumrepudiandaecorrupti.jpg?size=50x50&set=set1',
+    email: 'kbrotheridge4@msn.com',
+    password: 'KoROdKXmA'
+  },
+  {
+    username: 'lbachura5',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/etillumplaceat.jpg?size=50x50&set=set1',
+    email: 'mserle5@berkeley.edu',
+    password: 'fXI2ucYipndz'
+  },
+  {
+    username: 'bshortell6',
+    imageUrl:
+      'https://robohash.org/dictaquibusdamquaerat.jpg?size=50x50&set=set1',
+    email: 'mmatijevic6@pagesperso-orange.fr',
+    password: 'JRYcOmOqLDR'
+  },
+  {
+    username: 'mpauler7',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/quiadebitisvoluptatem.png?size=50x50&set=set1',
+    email: 'bdenne7@phpbb.com',
+    password: 'i1iCDw2wAtnK'
+  },
+  {
+    username: 'scorck8',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/quaeabrepellat.bmp?size=50x50&set=set1',
+    email: 'abollard8@blinklist.com',
+    password: '9Gcgr2Kb'
+  },
+  {
+    username: 'pmoston9',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/dignissimosenimaut.bmp?size=50x50&set=set1',
+    email: 'hallright9@mapquest.com',
+    password: 'bT4qKtudiJTG'
+  },
+  {
+    username: 'kpavkovica',
+    imageUrl:
+      'https://robohash.org/doloremomnisexpedita.bmp?size=50x50&set=set1',
+    email: 'npreblea@google.com.br',
+    password: 'QdseQwunkT1'
+  },
+  {
+    username: 'mmacfaellb',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/debitisremblanditiis.jpg?size=50x50&set=set1',
+    email: 'fflanaghanb@ucoz.com',
+    password: 'uHdu8JHLN'
+  },
+  {
+    username: 'bgoslingc',
+    imageUrl:
+      'https://robohash.org/facereplaceatdoloribus.jpg?size=50x50&set=set1',
+    email: 'tcallwayc@topsy.com',
+    password: 'cXms96PLfdT6'
+  },
+  {
+    username: 'gbornd',
+    isAdmin: false,
+    email: 'thamed@ycombinator.com',
+    password: '0rEs09'
+  },
+  {
+    username: 'kjaulmee',
+    isAdmin: false,
+    email: 'lgoodalee@dailymotion.com',
+    password: 'gsxODZzlJ4K'
+  },
+  {
+    username: 'fprawlef',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/sequiquisiste.jpg?size=50x50&set=set1',
+    email: 'cbalsillief@phpbb.com',
+    password: 'xuON5J'
+  },
+  {
+    username: 'kcheccuccig',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/occaecatiinciduntquisquam.bmp?size=50x50&set=set1',
+    email: 'mprielg@eepurl.com',
+    password: 'lmCWieg'
+  },
+  {
+    username: 'bklinckh',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/praesentiummolestiaeexercitationem.bmp?size=50x50&set=set1',
+    email: 'acasettah@hibu.com',
+    password: 'DLLPZKKcUhgZ'
+  },
+  {
+    username: 'jmingayi',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/perspiciatisquiminus.jpg?size=50x50&set=set1',
+    email: 'dlaurentinoi@xrea.com',
+    password: 'mCYu2EhZ'
+  },
+  {
+    username: 'dzmitrovichj',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/quiavelitqui.png?size=50x50&set=set1',
+    email: 'sorrobinj@vinaora.com',
+    password: 'I2QfTQ'
+  },
+  {
+    username: 'hwalchk',
+    imageUrl: 'https://robohash.org/velitnamin.bmp?size=50x50&set=set1',
+    email: 'gmccrannk@constantcontact.com',
+    password: 'VMdEheAKqTSC'
+  },
+  {
+    username: 'tdorracottl',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/estvoluptasquam.bmp?size=50x50&set=set1',
+    email: 'dhelml@opera.com',
+    password: 'OXBnm2'
+  },
+  {
+    username: 'tlabernm',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/possimusutqui.png?size=50x50&set=set1',
+    email: 'ccosleym@a8.net',
+    password: 'AlhIA3'
+  },
+  {
+    username: 'thaithn',
+    imageUrl: 'https://robohash.org/corporisquiaenim.bmp?size=50x50&set=set1',
+    email: 'vmuston@merriam-webster.com',
+    password: 'lThq5VEYd6'
+  },
+  {
+    username: 'lseageo',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/doloresseet.jpg?size=50x50&set=set1',
+    email: 'csommervilleo@google.nl',
+    password: '9QsxEfYV'
+  },
+  {
+    username: 'idunsp',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/voluptasliberoeos.png?size=50x50&set=set1',
+    email: 'mpascoep@mtv.com',
+    password: '1cFYghY8AUab'
+  },
+  {
+    username: 'cmussottiq',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/velitplaceatfacere.jpg?size=50x50&set=set1',
+    email: 'mhughillq@phoca.cz',
+    password: 'Dvpc5VzkI'
+  },
+  {
+    username: 'emityashinr',
+    email: 'cbunstoner@jiathis.com',
+    password: 'e0n0eIE'
+  },
+  {
+    username: 'lhaberchams',
+    isAdmin: false,
+    email: 'hrymmers@comcast.net',
+    password: '5va0983d'
+  },
+  {
+    username: 'cblackbornet',
+    imageUrl:
+      'https://robohash.org/necessitatibuslaborevoluptate.png?size=50x50&set=set1',
+    email: 'hcoatht@google.cn',
+    password: 'EmOMw00jNv'
+  },
+  {
+    username: 'jcardeu',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/inciduntperspiciatisvitae.jpg?size=50x50&set=set1',
+    email: 'jbertholinu@mayoclinic.com',
+    password: 'Ao4hPQCyy'
+  },
+  {
+    username: 'bvassbenderv',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/accusantiumexpeditalaboriosam.jpg?size=50x50&set=set1',
+    email: 'snelliganv@ucoz.com',
+    password: 'wweqJi'
+  },
+  {
+    username: 'akumarw',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/evenieteligendiarchitecto.png?size=50x50&set=set1',
+    email: 'hfarrenw@arizona.edu',
+    password: 'W5Jy61'
+  },
+  {
+    username: 'chabdenx',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/ineanon.bmp?size=50x50&set=set1',
+    email: 'emckeefryx@examiner.com',
+    password: 'SrkixaY'
+  },
+  {
+    username: 'dbonneyy',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/voluptatesarchitectodolor.bmp?size=50x50&set=set1',
+    email: 'koramy@dion.ne.jp',
+    password: 'sN2k51UV'
+  },
+  {
+    username: 'nsweetlandz',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/aliasomnisratione.jpg?size=50x50&set=set1',
+    email: 'abarghz@alexa.com',
+    password: 'AzYSWGSkL'
+  },
+  {
+    username: 'kdarington10',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/istebeataepariatur.png?size=50x50&set=set1',
+    email: 'rfort10@theatlantic.com',
+    password: 'IsFckBeECjCi'
+  },
+  {
+    username: 'tcoatsworth11',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/sitdoloremquedolore.jpg?size=50x50&set=set1',
+    email: 'cmacskeaghan11@intel.com',
+    password: 'J6hDkaG'
+  },
+  {
+    username: 'klaying12',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/quiasuntquaerat.png?size=50x50&set=set1',
+    email: 'eblazek12@jiathis.com',
+    password: '2KzcD2kWu3u'
+  },
+  {
+    username: 'btemlett13',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/accusamusetlaudantium.bmp?size=50x50&set=set1',
+    email: 'graiker13@bing.com',
+    password: 'ns1Q0SS'
+  },
+  {
+    username: 'istiller14',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/teneturipsamdebitis.bmp?size=50x50&set=set1',
+    email: 'mmarmion14@scientificamerican.com',
+    password: 'QxfKQ40LkR'
+  },
+  {
+    username: 'lbinley15',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/easitvoluptatibus.png?size=50x50&set=set1',
+    email: 'htwycross15@sfgate.com',
+    password: 'J0SMpbrpR'
+  },
+  {
+    username: 'mclutton16',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/distinctioquisomnis.bmp?size=50x50&set=set1',
+    email: 'jmarkussen16@buzzfeed.com',
+    password: 'O2KnX8G'
+  },
+  {
+    username: 'pmullane17',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/etpossimusab.png?size=50x50&set=set1',
+    email: 'sfarnorth17@digg.com',
+    password: 'j9jRr0v9E4K'
+  },
+  {
+    username: 'cgreenlees18',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/etsuscipitvoluptatem.bmp?size=50x50&set=set1',
+    email: 'mtallowin18@mayoclinic.com',
+    password: 'iD0T45u'
+  },
+  {
+    username: 'cnorsister19',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/occaecatiaccusantiumenim.png?size=50x50&set=set1',
+    email: 'nmole19@people.com.cn',
+    password: 'I2vshBB'
+  },
+  {
+    username: 'sdebenedictis1a',
+    imageUrl:
+      'https://robohash.org/officiavoluptasadipisci.jpg?size=50x50&set=set1',
+    email: 'msmithers1a@sourceforge.net',
+    password: '0mvpCIQw'
+  },
+  {
+    username: 'mbreeton1b',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/nemofacilisdebitis.bmp?size=50x50&set=set1',
+    email: 'fgullam1b@statcounter.com',
+    password: 'rigC7t'
+  },
+  {
+    username: 'icottey1c',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/quoautemquasi.bmp?size=50x50&set=set1',
+    email: 'rsymington1c@chron.com',
+    password: 'Xl0DRU'
+  },
+  {
+    username: 'evenney1d',
+    imageUrl: 'https://robohash.org/suntdoloresa.png?size=50x50&set=set1',
+    email: 'zpetrasso1d@artisteer.com',
+    password: 'pL4QCs1kq'
+  },
+  {
+    username: 'mingledew1e',
+    isAdmin: true,
+    email: 'sdeighton1e@github.com',
+    password: 'xV1sOzqh6Zo'
+  },
+  {
+    username: 'jkos1f',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/sedprovidenttemporibus.jpg?size=50x50&set=set1',
+    email: 'hcornil1f@reverbnation.com',
+    password: 'N3RNcqUFA'
+  },
+  {
+    username: 'aciccarello1g',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/quaesuntsed.png?size=50x50&set=set1',
+    email: 'stester1g@pen.io',
+    password: 'hIQBoVCT'
+  },
+  {
+    username: 'ztowlson1h',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/repudiandaevoluptatemdolorum.jpg?size=50x50&set=set1',
+    email: 'vslowgrave1h@unesco.org',
+    password: '0sk06nJH8VQv'
+  },
+  {
+    username: 'bwallington1i',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/suntperferendissint.bmp?size=50x50&set=set1',
+    email: 'pboatswain1i@com.com',
+    password: 'zWOaufYC'
+  },
+  {
+    username: 'dyukhnin1j',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/iustomolestiasblanditiis.jpg?size=50x50&set=set1',
+    email: 'plovemore1j@bandcamp.com',
+    password: 'NZ8TMNPPDVHr'
+  },
+  {
+    username: 'rbabinski1k',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/atsintperspiciatis.jpg?size=50x50&set=set1',
+    email: 'mpolland1k@pcworld.com',
+    password: 'vRTESfS5EN'
+  },
+  {
+    username: 'jmirfin1l',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/evenietrerumlaboriosam.png?size=50x50&set=set1',
+    email: 'vhagwood1l@usatoday.com',
+    password: 'I1TfcE5y'
+  },
+  {
+    username: 'edufer1m',
+    isAdmin: false,
+    email: 'acarbert1m@bandcamp.com',
+    password: 'g3XEWDMZjn'
+  },
+  {
+    username: 'rsummerlad1n',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/dictadelectusqui.bmp?size=50x50&set=set1',
+    email: 'dbertram1n@woothemes.com',
+    password: 'hy2JSvZ1a3'
+  },
+  {
+    username: 'achaffe1o',
+    imageUrl: 'https://robohash.org/suntcorruptilibero.bmp?size=50x50&set=set1',
+    email: 'natthow1o@ask.com',
+    password: '0LDkeWd'
+  },
+  {
+    username: 'egawthrope1p',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/facereipsamesse.png?size=50x50&set=set1',
+    email: 'mbeagles1p@usda.gov',
+    password: '1cmDBNtYR'
+  },
+  {
+    username: 'kbabst1q',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/architectonumquamcorporis.png?size=50x50&set=set1',
+    email: 'npaunton1q@redcross.org',
+    password: 'Up0do7q'
+  },
+  {
+    username: 'qgavin1r',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/omnisvelitvoluptatem.jpg?size=50x50&set=set1',
+    email: 'tandrzejak1r@yandex.ru',
+    password: 'loQcbjTl'
+  },
+  {
+    username: 'jburchett1s',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/eteased.bmp?size=50x50&set=set1',
+    email: 'zrebert1s@mtv.com',
+    password: 'uS2urCre'
+  },
+  {
+    username: 'dclewlowe1t',
+    isAdmin: false,
+    email: 'bciepluch1t@geocities.com',
+    password: 'u255aQB8oPt'
+  },
+  {
+    username: 'ggutteridge1u',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/nesciuntautveniam.png?size=50x50&set=set1',
+    email: 'ldiclaudio1u@wikipedia.org',
+    password: 'xFOauC'
+  },
+  {
+    username: 'jwhapham1v',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/optioaliquidtempora.png?size=50x50&set=set1',
+    email: 'vdibiagio1v@mozilla.com',
+    password: 'OXOzWT8Q5tM2'
+  },
+  {
+    username: 'eelks1w',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/ipsumnobisconsequuntur.png?size=50x50&set=set1',
+    email: 'ctomkins1w@ycombinator.com',
+    password: 'Sg9c5kKj'
+  },
+  {
+    username: 'wmarcone1x',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/odionobisexplicabo.jpg?size=50x50&set=set1',
+    email: 'scaddie1x@soup.io',
+    password: 'mFMG0W68Z'
+  },
+  {
+    username: 'amarmion1y',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/quidemidrerum.png?size=50x50&set=set1',
+    email: 'lfutcher1y@imageshack.us',
+    password: 'INHMxeL1ulrA'
+  },
+  {
+    username: 'ttebbut1z',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/dolorematquelaudantium.jpg?size=50x50&set=set1',
+    email: 'mdelacoste1z@msn.com',
+    password: 'rR0NJ38Q3'
+  },
+  {
+    username: 'lbrixey20',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/voluptatemexplicabocorrupti.png?size=50x50&set=set1',
+    email: 'fbingell20@cdbaby.com',
+    password: '0Z7qBZ8b2Gu'
+  },
+  {
+    username: 'bpelfer21',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/sedinnisi.png?size=50x50&set=set1',
+    email: 'amccusker21@qq.com',
+    password: 'tx3t1NCS'
+  },
+  {
+    username: 'omuriel22',
+    isAdmin: true,
+    email: 'rgorman22@mac.com',
+    password: '5bXqZdKx3lx'
+  },
+  {
+    username: 'acorss23',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/temporaillumvel.bmp?size=50x50&set=set1',
+    email: 'cdobrowolny23@redcross.org',
+    password: 'WISpTPIZR0T'
+  },
+  {
+    username: 'ndemcik24',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/essequaeratquo.bmp?size=50x50&set=set1',
+    email: 'gfillgate24@mysql.com',
+    password: 'HGBTBNHzzSl'
+  },
+  {
+    username: 'cgorwood25',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/repudiandaeminimaquae.bmp?size=50x50&set=set1',
+    email: 'mruggier25@globo.com',
+    password: 'qZudQQB659'
+  },
+  {
+    username: 'tsante26',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/etvelvoluptas.bmp?size=50x50&set=set1',
+    email: 'wnother26@webmd.com',
+    password: 'yw0dyaUbE'
+  },
+  {
+    username: 'mpaule27',
+    isAdmin: false,
+    email: 'jfont27@linkedin.com',
+    password: 'c6EzuYkAEgQr'
+  },
+  {
+    username: 'pobradane28',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/magnamquodveritatis.jpg?size=50x50&set=set1',
+    email: 'ctynnan28@nih.gov',
+    password: '9g3Mnu0Sk7'
+  },
+  {
+    username: 'mchadburn29',
+    isAdmin: true,
+    email: 'lfrowd29@paypal.com',
+    password: 'iMA1JK'
+  },
+  {
+    username: 'delphick2a',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/esteosamet.bmp?size=50x50&set=set1',
+    email: 'odanovich2a@spiegel.de',
+    password: 'DMVGvNJPs'
+  },
+  {
+    username: 'sbushnell2b',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/consequunturestrem.jpg?size=50x50&set=set1',
+    email: 'ckeyson2b@dmoz.org',
+    password: 'R7gzOMv'
+  },
+  {
+    username: 'bcatlow2c',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/quiaplaceatquis.png?size=50x50&set=set1',
+    email: 'mbukac2c@state.tx.us',
+    password: 'FRdaNkio8kif'
+  },
+  {
+    username: 'sshakle2d',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/autemerrorofficiis.bmp?size=50x50&set=set1',
+    email: 'smillar2d@biglobe.ne.jp',
+    password: '4C6C2s'
+  },
+  {
+    username: 'jdegliantoni2e',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/voluptatemiustoprovident.png?size=50x50&set=set1',
+    email: 'visaacs2e@mozilla.com',
+    password: 'JZoU0o1Ari'
+  },
+  {
+    username: 'kmanston2f',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/doloresetconsequatur.png?size=50x50&set=set1',
+    email: 'mextil2f@scientificamerican.com',
+    password: 'ydgfPJ'
+  },
+  {
+    username: 'erapinett2g',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/adipisciquidolor.bmp?size=50x50&set=set1',
+    email: 'utythe2g@cbsnews.com',
+    password: 'VTRIsNx2ebh'
+  },
+  {
+    username: 'ekempshall2h',
+    isAdmin: true,
+    imageUrl:
+      'https://robohash.org/facilisnecessitatibussed.png?size=50x50&set=set1',
+    email: 'kweatherhogg2h@engadget.com',
+    password: 'Ei8wC9G4a'
+  },
+  {
+    username: 'espyer2i',
+    isAdmin: false,
+    email: 'elhommee2i@constantcontact.com',
+    password: 'CvxsVbB9VjA'
+  },
+  {
+    username: 'sunderhill2j',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/fugasitnon.png?size=50x50&set=set1',
+    email: 'cbuxam2j@columbia.edu',
+    password: '74674IFH'
+  },
+  {
+    username: 'fbenthall2k',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/estfugiatducimus.png?size=50x50&set=set1',
+    email: 'bweavill2k@bloglines.com',
+    password: 'j6FgJNWH1'
+  },
+  {
+    username: 'takred2l',
+    isAdmin: false,
+    imageUrl:
+      'https://robohash.org/autlaboreconsequatur.jpg?size=50x50&set=set1',
+    email: 'aivkovic2l@reference.com',
+    password: 'UtWyuPUpyLNQ'
+  },
+  {
+    username: 'bellerker2m',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/eumvoluptatemquis.jpg?size=50x50&set=set1',
+    email: 'rbouldstridge2m@toplist.cz',
+    password: '0Dqrej0OI'
+  },
+  {
+    username: 'esheaber2n',
+    isAdmin: false,
+    imageUrl: 'https://robohash.org/quisquamrationevel.jpg?size=50x50&set=set1',
+    email: 'kromeril2n@hao123.com',
+    password: 'Ahl5KcvyTu'
+  },
+  {
+    username: 'skirkbright2o',
+    isAdmin: true,
+    email: 'dbechley2o@hhs.gov',
+    password: 'sfgNoyfajhnT'
+  },
+  {
+    username: 'boldis2p',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/adinventoreaut.bmp?size=50x50&set=set1',
+    email: 'hrushsorth2p@theglobeandmail.com',
+    password: 'WorW59mSWHfI'
+  },
+  {
+    username: 'mduding2q',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/doloremsedenim.bmp?size=50x50&set=set1',
+    email: 'blawie2q@purevolume.com',
+    password: 'kUwEX9ltf9'
+  },
+  {
+    username: 'gwestcar2r',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/adoptiovoluptates.jpg?size=50x50&set=set1',
+    email: 'yegan2r@github.io',
+    password: 'WudtYezVod'
+  }
+]
 
 //PRODUCTS DUMMY DATA
 const products = [
   {
-    name: 'Maïly',
+    name: 'Maily',
     size: 'large',
     type: 'outfit',
     category: 'medieval',
@@ -17,15 +733,15 @@ const products = [
     description: 'Function-based systemic function'
   },
   {
-    name: 'Uò',
+    name: 'Uo',
     size: 'large',
     material: 'yellow',
     type: 'accessory',
     category: 'xmas',
     price: 2122.46,
     quantity: 499254,
-    description: 'User-centric dedicated algorithm',
-    imageUrl: 'https://robohash.org/quidembeataeomnis.png?size=50x50&set=set1'
+    description: 'User-centric dedicated algorithm'
+    //imageUrl: 'https://robohash.org/quidembeataeomnis.png?size=50x50&set=set1'
   },
   {
     name: 'Kallisté',
@@ -1267,10 +1983,11 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
-  ])
+  await Promise.all(
+    users.map(user => {
+      return User.create(user)
+    })
+  )
 
   await Promise.all(
     products.map(product => {

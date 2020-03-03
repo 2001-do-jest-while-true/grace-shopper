@@ -11,8 +11,7 @@ const GET_ALL_USERS = 'GET_ALL_USERS'
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
-const adminInitialState = {
+const defaultUser = {
   users: []
 }
 
@@ -41,7 +40,7 @@ export const me = () => async dispatch => {
 export const fetchAllUsers = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/users')
-    dispatch(fetchAllUsers(data))
+    dispatch(getAllUsers(data))
   } catch (error) {
     console.error(error)
   }
@@ -78,6 +77,8 @@ export const logout = () => async dispatch => {
  */
 export default function(state = defaultUser, action) {
   switch (action.type) {
+    case GET_ALL_USERS:
+      return {...state, users: action.users}
     case GET_USER:
       return action.user
     case REMOVE_USER:

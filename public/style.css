@@ -19,3 +19,21 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.single-product-pane {
+  display: flex;
+  flex-direction: column;
+}
+
+.warning {
+  color: red;
+}
+
+.single-product-img,
+.single-product-info {
+  width: 40%;
+}
+
+.single-product-cart-div {
+  width: 20%;
+}
