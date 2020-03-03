@@ -4,7 +4,7 @@ import {fetchSingleProduct} from '../store'
 
 class SingleProduct extends React.Component {
   componentDidMount() {
-    this.props.getProduct(this.props.id)
+    this.props.getProduct(this.props.match.params.productId)
   }
 
   render() {
