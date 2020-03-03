@@ -1979,6 +1979,159 @@ const orders = [
   }
 ]
 
+//ORDER_PRODUCTS DUMMY DATA
+const orderProduct = [{
+  productId: 46,
+  orderId: 26
+}, {
+  productId: 17,
+  orderId: 42
+}, {
+  “productId”: 4,
+  “orderId”: 32
+}, {
+  “productId”: 12,
+  “orderId”: 25
+}, {
+  “productId”: 21,
+  “orderId”: 14
+}, {
+  “productId”: 68,
+  “orderId”: 29
+}, {
+  “productId”: 61,
+  “orderId”: 37
+}, {
+  “productId”: 12,
+  “orderId”: 30
+}, {
+  “productId”: 69,
+  “orderId”: 6
+}, {
+  “productId”: 76,
+  “orderId”: 49
+}, {
+  “productId”: 88,
+  “orderId”: 33
+}, {
+  “productId”: 12,
+  “orderId”: 4
+}, {
+  “productId”: 47,
+  “orderId”: 7
+}, {
+  “productId”: 61,
+  “orderId”: 20
+}, {
+  “productId”: 88,
+  “orderId”: 3
+}, {
+  “productId”: 95,
+  “orderId”: 17
+}, {
+  “productId”: 92,
+  “orderId”: 13
+}, {
+  “productId”: 56,
+  “orderId”: 31
+}, {
+  “productId”: 11,
+  “orderId”: 8
+}, {
+  “productId”: 98,
+  “orderId”: 43
+}, {
+  “productId”: 36,
+  “orderId”: 24
+}, {
+  “productId”: 1,
+  “orderId”: 23
+}, {
+  “productId”: 44,
+  “orderId”: 12
+}, {
+  “productId”: 32,
+  “orderId”: 26
+}, {
+  “productId”: 68,
+  “orderId”: 13
+}, {
+  “productId”: 83,
+  “orderId”: 32
+}, {
+  “productId”: 10,
+  “orderId”: 3
+}, {
+  “productId”: 46,
+  “orderId”: 34
+}, {
+  “productId”: 91,
+  “orderId”: 29
+}, {
+  “productId”: 87,
+  “orderId”: 30
+}, {
+  “productId”: 15,
+  “orderId”: 39
+}, {
+  “productId”: 20,
+  “orderId”: 7
+}, {
+  “productId”: 18,
+  “orderId”: 41
+}, {
+  “productId”: 56,
+  “orderId”: 30
+}, {
+  “productId”: 4,
+  “orderId”: 47
+}, {
+  “productId”: 99,
+  “orderId”: 24
+}, {
+  “productId”: 13,
+  “orderId”: 3
+}, {
+  “productId”: 47,
+  “orderId”: 2
+}, {
+  “productId”: 29,
+  “orderId”: 24
+}, {
+  “productId”: 40,
+  “orderId”: 34
+}, {
+  “productId”: 83,
+  “orderId”: 4
+}, {
+  “productId”: 77,
+  “orderId”: 20
+}, {
+  “productId”: 72,
+  “orderId”: 28
+}, {
+  “productId”: 75,
+  “orderId”: 46
+}, {
+  “productId”: 80,
+  “orderId”: 18
+}, {
+  “productId”: 20,
+  “orderId”: 15
+}, {
+  “productId”: 60,
+  “orderId”: 45
+}, {
+  “productId”: 47,
+  “orderId”: 38
+}, {
+  “productId”: 12,
+  “orderId”: 46
+}, {
+  “productId”: 15,
+  “orderId”: 22
+}]
+
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
@@ -2000,6 +2153,25 @@ async function seed() {
       return Order.create(order)
     })
   )
+
+  await Promise.all(
+    orderProduct.map(orderProd => {
+      return OrderProduct.create(orderProd)
+    })
+  )
+
+  // const newProduct = await Product.create({
+  //   name: 'Devil Horns',
+  //   type: 'accessory',
+  //   category: 'halloween',
+  //   price: 10.0,
+  //   quantity: 10,
+  //   description: 'Evil but cute horns for your duck!',
+  //   imageUrl: 'devil.png'
+  // })
+  // const newOrder = await Order.create();
+
+  // await newProduct.addOrder(newOrder);
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
