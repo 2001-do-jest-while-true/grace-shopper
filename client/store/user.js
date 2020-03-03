@@ -4,22 +4,27 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
+const GET_LOGGED_IN = 'GET_LOGGED_IN'
 const GET_USER = 'GET_USER'
-const REMOVE_USER = 'REMOVE_USER'
 const GET_ALL_USERS = 'GET_ALL_USERS'
+const LOG_OUT = 'LOG_OUT'
 
 /**
  * INITIAL STATE
  */
-const defaultUser = {
-  users: []
+
+const initialState = {
+  loggedIn: {},
+  users: [],
+  singleUser: {}
 }
 
 /**
  * ACTION CREATORS
  */
+const getLoggedIn = user => ({type: GET_LOGGED_IN, user})
+const logOutUser = () => ({type: LOG_OUT})
 const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
 const getAllUsers = users => ({
   type: GET_ALL_USERS,
   users
@@ -31,7 +36,7 @@ const getAllUsers = users => ({
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data || defaultUser))
+    dispatch(getLoggedIn(res.data || {}))
   } catch (err) {
     console.error(err)
   }
@@ -46,16 +51,25 @@ export const fetchAllUsers = () => async dispatch => {
   }
 }
 
+export const fetchSingleUser = userId => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/users/${userId}`)
+    dispatch(getUser(data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export const auth = (email, password, method) => async dispatch => {
   let res
   try {
     res = await axios.post(`/auth/${method}`, {email, password})
   } catch (authError) {
-    return dispatch(getUser({error: authError}))
+    return dispatch(getLoggedIn({error: authError}))
   }
 
   try {
-    dispatch(getUser(res.data))
+    dispatch(getLoggedIn(res.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
@@ -65,7 +79,7 @@ export const auth = (email, password, method) => async dispatch => {
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
-    dispatch(removeUser())
+    dispatch(logOutUser())
     history.push('/login')
   } catch (err) {
     console.error(err)
@@ -75,14 +89,16 @@ export const logout = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_USERS:
       return {...state, users: action.users}
+    case GET_LOGGED_IN:
+      return {...state, loggedIn: action.user}
     case GET_USER:
-      return action.user
-    case REMOVE_USER:
-      return defaultUser
+      return {...state, singleUser: action.user}
+    case LOG_OUT:
+      return {...state, loggedIn: {}}
     default:
       return state
   }

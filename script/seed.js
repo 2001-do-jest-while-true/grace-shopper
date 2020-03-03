@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Product, Order} = require('../server/db/models')
+const {User, Product, Order, OrderProduct} = require('../server/db/models')
 
 //USERS DUMMY DATA
 const users = [
@@ -1979,6 +1979,51 @@ const orders = [
   }
 ]
 
+//ORDER_PRODUCTS DUMMY DATA
+
+const orderProduct = [
+  {
+    productId: 46,
+    orderId: 26
+  },
+  {
+    productId: 17,
+    orderId: 42
+  },
+  {
+    productId: 4,
+    orderId: 32
+  },
+  {
+    productId: 12,
+    orderId: 25
+  },
+  {
+    productId: 21,
+    orderId: 14
+  },
+  {
+    productId: 12,
+    orderId: 14
+  },
+  {
+    productId: 17,
+    orderId: 14
+  },
+  {
+    productId: 17,
+    orderId: 12
+  },
+  {
+    productId: 17,
+    orderId: 10
+  },
+  {
+    productId: 17,
+    orderId: 8
+  }
+]
+
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
@@ -2000,6 +2045,25 @@ async function seed() {
       return Order.create(order)
     })
   )
+
+  await Promise.all(
+    orderProduct.map(orderProd => {
+      return OrderProduct.create(orderProd)
+    })
+  )
+
+  // const newProduct = await Product.create({
+  //   name: 'Devil Horns',
+  //   type: 'accessory',
+  //   category: 'halloween',
+  //   price: 10.0,
+  //   quantity: 10,
+  //   description: 'Evil but cute horns for your duck!',
+  //   imageUrl: 'devil.png'
+  // })
+  // const newOrder = await Order.create();
+
+  // await newProduct.addOrder(newOrder);
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
