@@ -6,11 +6,13 @@ import history from '../history'
  */
 const GET_LOGGED_IN = 'GET_LOGGED_IN'
 const GET_USER = 'GET_USER'
+const GET_ALL_USERS = 'GET_ALL_USERS'
 const LOG_OUT = 'LOG_OUT'
 
 /**
  * INITIAL STATE
  */
+
 const initialState = {
   loggedIn: {},
   users: [],
@@ -23,6 +25,10 @@ const initialState = {
 const getLoggedIn = user => ({type: GET_LOGGED_IN, user})
 const logOutUser = () => ({type: LOG_OUT})
 const getUser = user => ({type: GET_USER, user})
+const getAllUsers = users => ({
+  type: GET_ALL_USERS,
+  users
+})
 
 /**
  * THUNK CREATORS
@@ -33,6 +39,15 @@ export const me = () => async dispatch => {
     dispatch(getLoggedIn(res.data || {}))
   } catch (err) {
     console.error(err)
+  }
+}
+
+export const fetchAllUsers = () => async dispatch => {
+  try {
+    const {data} = await axios.get('/api/users')
+    dispatch(getAllUsers(data))
+  } catch (error) {
+    console.error(error)
   }
 }
 
@@ -76,6 +91,8 @@ export const logout = () => async dispatch => {
  */
 export default function(state = initialState, action) {
   switch (action.type) {
+    case GET_ALL_USERS:
+      return {...state, users: action.users}
     case GET_LOGGED_IN:
       return {...state, loggedIn: action.user}
     case GET_USER:
