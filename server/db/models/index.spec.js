@@ -1,5 +1,3 @@
-//FORMAT THE DATES FORMATED FIELDS BELOW
-
 const {expect} = require('chai')
 const {db} = require('./index')
 const seed = require('../../../script/seed')
@@ -16,12 +14,12 @@ describe('Model Associations', () => {
         email: 'user@email.com',
         password: '1234'
       })
-      const janOrder = await Order.create({date: '01.12.2020'})
-      const febOrder = await Order.create({date: '02.02.2020'})
+      const janOrder = await Order.create({date: '2020-03-01'})
+      const febOrder = await Order.create({date: '2020-02-02'})
 
       await user1.addOrders([janOrder, febOrder])
-      const userOrders = await user1.getRobots().map(order => order.date())
-      expect(userOrders).to.deep.equal(['DATES FORMATED'])
+      const userOrders = await user1.getRobots().map(order => order.date)
+      expect(userOrders).to.deep.equal(['2020-03-01', '2020-02-02'])
     })
 
     it('an order will belong to a user', async () => {
@@ -30,25 +28,25 @@ describe('Model Associations', () => {
         email: 'user123@email.com',
         password: '1005'
       })
-      const newOrder = await Order.create({date: '01.01.2020'})
+      const newOrder = await Order.create({date: '2020-01-01'})
       await newOrder.addUser(userWithOrder)
       const newOrderUser = await newOrder.getUser().username
       expect(newOrderUser).to.deep.equal('helloUser')
     })
     it('a product may belong to many orders', async () => {
       const productWithManyOrders = await Product.create({name: 'PurpleDuck'})
-      const order1 = await Order.create({date: '12.01.2005'})
-      const order2 = await Order.create({date: '01.03.2007'})
+      const order1 = await Order.create({date: '2005-12-01'})
+      const order2 = await Order.create({date: '2007-01-03'})
       await productWithManyOrders.addOrders([order1, order2])
       const popularProduct = await productWithManyOrders
         .getOrders()
         .map(order => order.date)
-      expect(popularProduct).to.deep.equal('DATES FORMATED')
+      expect(popularProduct).to.deep.equal(['2005-12-01', '2007-01-03'])
     })
     it('an order may belong to/has many products', async () => {
       const productA = await Product.create({name: 'A'})
       const productB = await Product.create({name: 'B'})
-      const orderWithManyProducts = await Order.create({date: '04.23.2009'})
+      const orderWithManyProducts = await Order.create({date: '2009-04-23'})
       await orderWithManyProducts.addProducts([productA, productB])
       const largeOrder = await orderWithManyProducts
         .getProducts()
