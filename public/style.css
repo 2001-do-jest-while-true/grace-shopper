@@ -41,3 +41,12 @@ form div {
 .single-product-cart-div {
   width: 20%;
 }
+
+.single-user-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.single-user-pane {
+  display: flex;
+}
