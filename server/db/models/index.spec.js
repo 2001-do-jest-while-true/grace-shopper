@@ -1,14 +1,23 @@
 const {expect} = require('chai')
-const {db} = require('./index')
+const db = require('../db')
 const seed = require('../../../script/seed')
-const {User, Product, Order} = require('./indez')
+const {User, Product, Order} = require('./index')
 
 describe('Model Associations', () => {
   before(() => db.sync({force: true}))
   afterEach(() => db.sync({force: true}))
 
+  before(() => User.sync({force: true}))
+  afterEach(() => User.sync({force: true}))
+
+  before(() => Product.sync({force: true}))
+  afterEach(() => Product.sync({force: true}))
+
+  before(() => Order.sync({force: true}))
+  afterEach(() => Order.sync({force: true}))
+
   describe('Sequelize Models', () => {
-    it('user may have many orders and the dates for the orders are formatted appropriately', async () => {
+    it('user may have many orders', async () => {
       const user1 = await User.create({
         username: 'myUser',
         email: 'user@email.com',
@@ -17,8 +26,8 @@ describe('Model Associations', () => {
       const janOrder = await Order.create({date: '2020-03-01'})
       const febOrder = await Order.create({date: '2020-02-02'})
 
-      await user1.addOrders([janOrder, febOrder])
-      const userOrders = await user1.getRobots().map(order => order.date)
+      await user1.setOrders([janOrder, febOrder])
+      const userOrders = await user1.getOrders().map(order => order.date)
       expect(userOrders).to.deep.equal(['2020-03-01', '2020-02-02'])
     })
 
@@ -29,9 +38,10 @@ describe('Model Associations', () => {
         password: '1005'
       })
       const newOrder = await Order.create({date: '2020-01-01'})
-      await newOrder.addUser(userWithOrder)
-      const newOrderUser = await newOrder.getUser().username
-      expect(newOrderUser).to.deep.equal('helloUser')
+      await newOrder.setUser(userWithOrder)
+      const newOrderUser = await newOrder.getUser()
+      //console.log(newOrderUser.dataValues.username)
+      expect(newOrderUser.dataValues.username).to.deep.equal('helloUser')
     })
     it('a product may belong to many orders', async () => {
       const productWithManyOrders = await Product.create({name: 'PurpleDuck'})
