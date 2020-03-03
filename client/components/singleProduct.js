@@ -35,7 +35,9 @@ class SingleProduct extends React.Component {
               </button>
             </div>
           </div>
-          <div className="single-product-description" />
+          <div className="single-product-description">
+            {product.description}
+          </div>
         </div>
       )
     } else {

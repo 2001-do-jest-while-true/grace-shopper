@@ -11,11 +11,12 @@ const db = require('../db')
  */
 
 User.hasMany(Order, {foreignKey: 'userId'})
+Order.belongsTo(User)
 
-const Order_Product = db.define('order_product')
+const OrderProduct = db.define('order_product')
 
-Product.belongsToMany(Order, {through: Order_Product})
-Order.belongsToMany(Product, {through: Order_Product})
+Product.belongsToMany(Order, {through: OrderProduct})
+Order.belongsToMany(Product, {through: OrderProduct})
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -26,5 +27,5 @@ module.exports = {
   User,
   Product,
   Order,
-  Order_Product
+  OrderProduct
 }
