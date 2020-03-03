@@ -8,10 +8,17 @@ const User = db.define('user', {
     allowNull: false,
     unique: true
   },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: 'https://image.shutterstock.com/image-vector/duck-vector-icon-260nw-670089019.jpg'
+    defaultValue:
+      'https://image.shutterstock.com/image-vector/duck-vector-icon-260nw-670089019.jpg'
   },
+  shippingAddress: Sequelize.ARRAY(Sequelize.TEXT),
+  billingAddress: Sequelize.TEXT,
   email: {
     type: Sequelize.STRING,
     unique: true,
@@ -34,6 +41,9 @@ const User = db.define('user', {
     }
   },
   googleId: {
+    type: Sequelize.STRING
+  },
+  facebookId: {
     type: Sequelize.STRING
   }
 })
