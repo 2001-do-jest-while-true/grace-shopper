@@ -50,3 +50,59 @@ form div {
 .single-user-pane {
   display: flex;
 }
+
+#header {
+  display: flex;
+  flex-direction: column;
+}
+
+#header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#header-buttons {
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#header-buttons > button {
+  width: 40%;
+}
+
+#header-buttons > button {
+  height: 30px;
+}
+
+#header-buttons img {
+  height: 50px;
+}
+
+#navbar {
+  display: flex;
+  background-color: black;
+  justify-content: space-around;
+  height: 50px;
+  align-items: center;
+}
+
+#navbar a {
+  color: white;
+}
+
+#login-div {
+  border: 1px solid black;
+  background-color: white;
+  z-index: 50;
+  position: absolute;
+  align-self: center;
+}
+
+.close-form {
+  background-color: red;
+  z-index: 99;
+  position: absolute;
+}

@@ -23,8 +23,6 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={allProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
         <Route exact path="/users" component={allUsers} />
@@ -35,8 +33,9 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route path="/">
+          <div>Welcome to the Landing Page!</div>
+        </Route>
       </Switch>
     )
   }
