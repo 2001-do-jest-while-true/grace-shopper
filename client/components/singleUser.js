@@ -8,6 +8,7 @@ class SingleUser extends React.Component {
   }
 
   render() {
+    console.log(this.props.singleUser)
     if (this.props.singleUser) {
       const user = this.props.singleUser
       let shippingCounter = 0

@@ -2,7 +2,18 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+const adminsOnly = (req, res, next) => {
+  console.log('IN ADMINS ONLY')
+  console.log('Req.user admin=', req.user.isAdmin)
+  if (!req.user.isAdmin) {
+    const notAllowedError = new Error('This is illegal!')
+    notAllowedError.status = 401
+    return next(notAllowedError)
+  }
+  next()
+}
+
+router.get('/', adminsOnly, async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
@@ -16,7 +27,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:userId', async (req, res, next) => {
+router.get('/:userId', adminsOnly, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId, {
       attributes: [
