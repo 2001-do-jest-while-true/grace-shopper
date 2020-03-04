@@ -4,6 +4,11 @@ const seed = require('../../../script/seed')
 const {User, Product, Order} = require('./index')
 
 describe('Model Associations', () => {
+  // before(() => async {
+  //   await db.sync({ force: true })
+  //   await User.sync({ force: true })
+  //   ...
+  // })
   before(() => db.sync({force: true}))
   afterEach(() => db.sync({force: true}))
 
@@ -40,7 +45,8 @@ describe('Model Associations', () => {
       const newOrder = await Order.create({date: '2020-01-01'})
       await newOrder.setUser(userWithOrder)
       const newOrderUser = await newOrder.getUser()
-      //console.log(newOrderUser.dataValues.username)
+      console.log(newOrderUser.username)
+      // newOrderUser.username
       expect(newOrderUser.dataValues.username).to.deep.equal('helloUser')
     })
     it('a product may belong to many orders', async () => {

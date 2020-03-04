@@ -14,7 +14,10 @@ router.get('/', async (req, res, next) => {
 router.get('/:productId', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.productId)
-
+    // if you have any 404s or other manually created status codes to pass them into next and let your error handling middleware take care of that instead of breaking out early.
+    // const err = new Error('not found');
+    // err.status = 404;
+    // next(err)
     if (!product) res.sendStatus(404)
     else res.json(product)
   } catch (error) {

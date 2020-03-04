@@ -10,10 +10,10 @@ const db = require('../db')
  *    BlogPost.belongsTo(User)
  */
 
-User.hasMany(Order, {foreignKey: 'userId'})
+User.hasMany(Order, {foreignKey: 'userId'}) // not necessary to add the foreignKey here because it is automatic
 Order.belongsTo(User)
 
-const OrderProduct = db.define('order_product')
+const OrderProduct = db.define('order_product') // put this in its own file & add respective information in here
 
 Product.belongsToMany(Order, {through: OrderProduct})
 Order.belongsToMany(Product, {through: OrderProduct})

@@ -2,6 +2,8 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
 
+// protect your routes.
+// from people who are guests, logged in and maybe not admin
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
@@ -26,6 +28,7 @@ router.get('/:userId', async (req, res, next) => {
         'shippingAddress',
         'billingAddress',
         'email',
+        // not something ever handled by the user themselves, handled by passport
         'googleId',
         'facebookId'
       ]

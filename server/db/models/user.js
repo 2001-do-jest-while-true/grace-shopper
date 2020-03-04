@@ -14,11 +14,13 @@ const User = db.define('user', {
   },
   imageUrl: {
     type: Sequelize.STRING,
+    // validation for url
     defaultValue:
       'https://image.shutterstock.com/image-vector/duck-vector-icon-260nw-670089019.jpg'
   },
+  // suggest making Shipping Address its own table and have it belong to user
   shippingAddress: Sequelize.ARRAY(Sequelize.TEXT),
-  billingAddress: Sequelize.TEXT,
+  billingAddress: Sequelize.TEXT, // the 3rd party libraries stripe or venmo or paypal will take care of this for you
   email: {
     type: Sequelize.STRING,
     unique: true,

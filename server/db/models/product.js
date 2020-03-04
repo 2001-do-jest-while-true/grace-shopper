@@ -10,12 +10,14 @@ const Product = db.define('product', {
     }
   },
   size: {
+    // would recommend storing any string values that you have as defaults across your models for both size and material to keep it inside of variables so they don't get mistyped anywhere and you can then use it over and over again
     type: Sequelize.STRING,
     defaultValue: 'medium',
     validate: {
       isIn: [['small', 'medium', 'large', 'x-large']]
     }
   },
+  // consideration of all fields being relevant for a single product -> not just having material belonging to duck and not other types
   material: {
     type: Sequelize.STRING,
     defaultValue: '',
@@ -48,6 +50,10 @@ const Product = db.define('product', {
     }
   },
   price: {
+    // deal with this in pennies -> integer
+    // choose to format in the frontend / 100
+    // getter method here and divide by 100 before you return
+    // where does the math happen and it must happen in cents in order to be accurate
     type: Sequelize.DOUBLE,
     validate: {
       min: 0
@@ -61,9 +67,11 @@ const Product = db.define('product', {
   },
   description: {
     type: Sequelize.TEXT
+    // default value
   },
   imageUrl: {
     type: Sequelize.STRING,
+    // validating HERE with an isUrl
     defaultValue:
       'https://i.pinimg.com/236x/e5/fa/c0/e5fac036f69d94482006d9f02b90d14c.jpg'
   }
