@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store'
+//ADDED IN STOCK --TOTALLY OPTIONAL
 
 class SingleProduct extends React.Component {
   componentDidMount() {
@@ -18,6 +19,9 @@ class SingleProduct extends React.Component {
               <h2>{product.name}</h2>
               <p>Price: {product.price}</p>
               <p>
+                {product.quantity > 6 && (
+                  <span className="in-stock">In stock</span>
+                )}
                 {product.quantity < 6 &&
                   product.quantity && (
                     <span className="warning">Low on stock. Buy soon!</span>
