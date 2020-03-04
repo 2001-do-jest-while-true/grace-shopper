@@ -8,6 +8,7 @@ const GET_LOGGED_IN = 'GET_LOGGED_IN'
 const GET_USER = 'GET_USER'
 const GET_ALL_USERS = 'GET_ALL_USERS'
 const LOG_OUT = 'LOG_OUT'
+const ADD_USER = 'ADD_USER'
 
 /**
  * INITIAL STATE
@@ -16,7 +17,8 @@ const LOG_OUT = 'LOG_OUT'
 const initialState = {
   loggedIn: {},
   users: [],
-  singleUser: {}
+  singleUser: {},
+  user: []
 }
 
 /**
@@ -29,7 +31,10 @@ const getAllUsers = users => ({
   type: GET_ALL_USERS,
   users
 })
-
+const addUser = user => ({
+  type: ADD_USER,
+  user
+})
 /**
  * THUNK CREATORS
  */
@@ -99,6 +104,8 @@ export default function(state = initialState, action) {
       return {...state, singleUser: action.user}
     case LOG_OUT:
       return {...state, loggedIn: {}}
+    case ADD_USER:
+      return {...state, user: action.user}
     default:
       return state
   }

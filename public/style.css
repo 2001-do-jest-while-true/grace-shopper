@@ -50,3 +50,21 @@ form div {
 .single-user-pane {
   display: flex;
 }
+
+.signup-form {
+  position: relative;
+  overflow: hidden;
+  width: 700px;
+  height: 500px;
+  margin: 80px auto 0;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px;
+}
+
+.signup-label {
+}
+
+.signup-input {
+}
+
+.signup-submit {
+}
