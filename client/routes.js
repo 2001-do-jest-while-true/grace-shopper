@@ -4,7 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
-import allProducts from './components/allProducts'
+import AllProducts from './components/allProducts'
 import SingleProduct from './components/singleProduct'
 import allUsers from './components/allUsers'
 import SingleUser from './components/singleUser'
@@ -23,7 +23,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/products" component={allProducts} />
+        <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
         <Route exact path="/users" component={allUsers} />
         <Route path="/users/:userId" component={SingleUser} />
@@ -34,7 +34,7 @@ class Routes extends Component {
           </Switch>
         )}
         <Route path="/">
-          <div>Welcome to the Landing Page!</div>
+          <AllProducts />
         </Route>
       </Switch>
     )
