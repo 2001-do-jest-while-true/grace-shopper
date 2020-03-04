@@ -1,6 +1,4 @@
 import axios from 'axios'
-import Sequelize from 'sequelize'
-import Order from '../../../server/db/models'
 
 const initialState = {
   products: [],
@@ -59,15 +57,11 @@ export const addToCartThunk = (productId, userId) => async dispatch => {
     const activeOrder = user.orders.filter(order => order.status === 'active')
     if (activeOrder.length) {
       activeOrder.addProduct(product)
-      dispatch(activeOrder)
+      dispatch(addToCart(activeOrder))
     } else {
-      const newOrder = Order.create({
-        date: Sequelize.NOW(),
-        status: 'active',
-        userId: userId
-      })
+      const newOrder = await axios.post('/api/orders')
       newOrder.addProduct(product)
-      dispatch(newOrder)
+      dispatch(addToCart(newOrder))
     }
   } catch (err) {
     console.error(err)
