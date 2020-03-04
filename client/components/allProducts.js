@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/product'
-import {Link} from 'react-router-dom'
-
+import Loader from 'react-loader-spinner'
+//import {Link} from 'react-router-dom'
+import ProductBox from './ProductBox'
 //ADD FILTERS HERE FOR FILTERING ACCORDING TO FILTER TYPE
 
 class AllProducts extends React.Component {
@@ -11,18 +12,18 @@ class AllProducts extends React.Component {
   }
 
   render() {
+    if (this.props.loading)
+      return <Loader type="ThreeDots" color="Cyan" heigth={80} width={80} />
     return (
       <div>
         {this.props.products.length ? (
           this.props.products.map(product => (
             <div key={product.id}>
-              <Link to={`/products/${product.id}`}>{product.name}</Link>
-
-              <p>{product.price}</p>
+              <ProductBox product={product} />
             </div>
           ))
         ) : (
-          <p>empty products</p>
+          <p> No products yet...</p>
         )}
       </div>
     )
@@ -30,7 +31,8 @@ class AllProducts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.product.products
+  products: state.product.products,
+  loading: state.product.loading
 })
 
 const mapDispatchToProps = dispatch => ({
