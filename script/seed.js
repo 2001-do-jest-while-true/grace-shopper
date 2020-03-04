@@ -2096,25 +2096,6 @@ async function seed() {
     })
   )
 
-  await Promise.all(
-    orderProduct.map(orderProd => {
-      return OrderProduct.create(orderProd)
-    })
-  )
-
-  // const newProduct = await Product.create({
-  //   name: 'Devil Horns',
-  //   type: 'accessory',
-  //   category: 'halloween',
-  //   price: 10.0,
-  //   quantity: 10,
-  //   description: 'Evil but cute horns for your duck!',
-  //   imageUrl: 'devil.png'
-  // })
-  // const newOrder = await Order.create();
-
-  // await newProduct.addOrder(newOrder);
-
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
   console.log(`seeded ${orders.length} orders`)
