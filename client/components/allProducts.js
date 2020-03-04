@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/product'
 import {Link} from 'react-router-dom'
 
+//ADD FILTERS HERE FOR FILTERING ACCORDING TO FILTER TYPE
+
 class AllProducts extends React.Component {
   componentDidMount() {
     this.props.fetchAllProducts()
