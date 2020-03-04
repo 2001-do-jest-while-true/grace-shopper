@@ -25,6 +25,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
+        {/* highly consider putting these inside of AT LEAST the isLoggedIn case down below */}
         <Route exact path="/users" component={allUsers} />
         <Route path="/users/:userId" component={SingleUser} />
         {isLoggedIn && (
@@ -56,6 +57,8 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+      // load products in here
+      // you never need to make another call to the DB for your single product and all products page -> become stateless components
     }
   }
 }

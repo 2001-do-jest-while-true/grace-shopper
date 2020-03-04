@@ -14,6 +14,7 @@ const LOG_OUT = 'LOG_OUT'
  */
 
 const initialState = {
+  // split this up as well please :)
   loggedIn: {},
   users: [],
   singleUser: {}

@@ -42,6 +42,9 @@ export const fetchSingleProduct = productId => async dispatch => {
   }
 }
 
+// would prefer 2 different reducers OR just handle everything inside of all products
+// you are allowed to have 1 action constant across 2 reducers, or more than 2
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_PRODUCTS:
