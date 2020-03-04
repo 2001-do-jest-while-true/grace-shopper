@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Product, Order} = require('../server/db/models')
+const {User, Product, Order, OrderProduct} = require('../server/db/models')
 
 //USERS DUMMY DATA
 const users = [
@@ -2180,6 +2180,26 @@ const orderProduct = [
   {
     productId: 15,
     orderId: 22
+  },
+  {
+    productId: 12,
+    orderId: 14
+  },
+  {
+    productId: 17,
+    orderId: 14
+  },
+  {
+    productId: 17,
+    orderId: 12
+  },
+  {
+    productId: 17,
+    orderId: 10
+  },
+  {
+    productId: 17,
+    orderId: 8
   }
 ]
 
