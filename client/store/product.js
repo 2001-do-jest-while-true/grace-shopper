@@ -5,8 +5,12 @@ const initialState = {
   singleProduct: {}
 }
 
+// ACTION CONSTANTS
+
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
+
+// ACTION CREATORS
 
 const getAllProducts = products => ({
   type: GET_ALL_PRODUCTS,
@@ -17,6 +21,8 @@ const getSingleProduct = product => ({
   type: GET_SINGLE_PRODUCT,
   product
 })
+
+// THUNK CREATORS
 
 export const fetchAllProducts = () => async dispatch => {
   try {
