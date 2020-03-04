@@ -1778,208 +1778,259 @@ const products = [
 //ORDERS DUMMY DATA
 const orders = [
   {
-    userId: 95,
-    date: '2019-12-14'
+    userId: 1,
+    date: '2019-05-13',
+    status: 'inactive'
   },
   {
-    userId: 21,
-    date: '2012-02-09'
+    userId: 2,
+    date: '2019-10-06',
+    status: 'active'
   },
   {
-    userId: 63,
-    date: '2015-07-15'
+    userId: 3,
+    date: '2019-07-23',
+    status: 'active'
   },
   {
-    userId: 18,
-    date: '2014-07-07'
+    userId: 4,
+    date: '2020-02-20',
+    status: 'inactive'
   },
   {
-    userId: 38,
-    date: '2016-06-26'
+    userId: 5,
+    date: '2019-08-11',
+    status: 'inactive'
   },
   {
-    userId: 10,
-    date: '2018-04-24'
+    userId: 6,
+    date: '2019-05-24',
+    status: 'active'
   },
   {
-    userId: 22,
-    date: '2010-02-17'
-  },
-  {
-    userId: 76,
-    date: '2010-02-11'
-  },
-  {
-    userId: 63,
-    date: '2019-09-12'
-  },
-  {
-    userId: 68,
-    date: '2007-04-04'
-  },
-  {
-    userId: 20,
-    date: '2012-03-17'
-  },
-  {
-    userId: 25,
-    date: '2008-12-30'
-  },
-  {
-    userId: 30,
-    date: '2014-08-04'
-  },
-  {
-    userId: 83,
-    date: '2007-06-01'
-  },
-  {
-    userId: 76,
-    date: '2008-05-28'
-  },
-  {
-    userId: 10,
-    date: '2009-01-03'
-  },
-  {
-    userId: 88,
-    date: '2008-09-16'
+    userId: 7,
+    date: '2019-06-28',
+    status: 'active'
   },
   {
     userId: 8,
-    date: '2007-09-04'
+    date: '2019-03-29',
+    status: 'active'
   },
   {
-    userId: 53,
-    date: '2013-08-26'
+    userId: 9,
+    date: '2020-01-28',
+    status: 'inactive'
   },
   {
-    userId: 64,
-    date: '2009-02-12'
+    userId: 10,
+    date: '2019-11-13',
+    status: 'inactive'
   },
   {
-    userId: 90,
-    date: '2019-06-23'
+    userId: 11,
+    date: '2019-12-27',
+    status: 'inactive'
   },
   {
-    userId: 59,
-    date: '2013-04-11'
+    userId: 12,
+    date: '2019-12-04',
+    status: 'active'
   },
   {
-    userId: 76,
-    date: '2008-10-06'
-  },
-  {
-    userId: 41,
-    date: '2012-12-20'
-  },
-  {
-    userId: 90,
-    date: '2014-05-04'
-  },
-  {
-    userId: 44,
-    date: '2017-12-28'
-  },
-  {
-    userId: 59,
-    date: '2019-06-09'
-  },
-  {
-    userId: 95,
-    date: '2008-10-07'
-  },
-  {
-    userId: 18,
-    date: '2010-03-30'
-  },
-  {
-    userId: 32,
-    date: '2017-11-20'
-  },
-  {
-    userId: 40,
-    date: '2019-04-16'
-  },
-  {
-    userId: 42,
-    date: '2008-01-12'
+    userId: 13,
+    date: '2020-01-26',
+    status: 'inactive'
   },
   {
     userId: 14,
-    date: '2013-05-06'
+    date: '2019-10-03',
+    status: 'inactive'
   },
   {
-    userId: 38,
-    date: '2012-11-09'
+    userId: 15,
+    date: '2019-07-12',
+    status: 'inactive'
+  },
+  {
+    userId: 16,
+    date: '2019-08-29',
+    status: 'active'
+  },
+  {
+    userId: 17,
+    date: '2019-09-14',
+    status: 'active'
+  },
+  {
+    userId: 18,
+    date: '2019-06-03',
+    status: 'inactive'
+  },
+  {
+    userId: 19,
+    date: '2020-01-01',
+    status: 'active'
+  },
+  {
+    userId: 20,
+    date: '2020-01-21',
+    status: 'inactive'
+  },
+  {
+    userId: 21,
+    date: '2019-07-14',
+    status: 'active'
+  },
+  {
+    userId: 22,
+    date: '2019-06-11',
+    status: 'active'
+  },
+  {
+    userId: 23,
+    date: '2019-04-05',
+    status: 'inactive'
+  },
+  {
+    userId: 24,
+    date: '2019-07-06',
+    status: 'inactive'
+  },
+  {
+    userId: 25,
+    date: '2019-05-05',
+    status: 'inactive'
+  },
+  {
+    userId: 26,
+    date: '2020-02-17',
+    status: 'inactive'
+  },
+  {
+    userId: 27,
+    date: '2019-06-23',
+    status: 'inactive'
+  },
+  {
+    userId: 28,
+    date: '2019-05-23',
+    status: 'inactive'
+  },
+  {
+    userId: 29,
+    date: '2019-04-25',
+    status: 'active'
+  },
+  {
+    userId: 30,
+    date: '2019-12-08',
+    status: 'inactive'
+  },
+  {
+    userId: 31,
+    date: '2019-03-19',
+    status: 'active'
   },
   {
     userId: 32,
-    date: '2015-11-06'
+    date: '2019-05-26',
+    status: 'inactive'
   },
   {
-    userId: 66,
-    date: '2014-01-30'
+    userId: 33,
+    date: '2019-10-03',
+    status: 'active'
   },
   {
-    userId: 50,
-    date: '2014-12-02'
+    userId: 34,
+    date: '2019-09-30',
+    status: 'inactive'
   },
   {
-    userId: 97,
-    date: '2019-08-03'
+    userId: 35,
+    date: '2019-11-10',
+    status: 'active'
+  },
+  {
+    userId: 36,
+    date: '2019-05-13',
+    status: 'inactive'
+  },
+  {
+    userId: 37,
+    date: '2019-10-04',
+    status: 'inactive'
   },
   {
     userId: 38,
-    date: '2009-08-29'
+    date: '2019-06-19',
+    status: 'inactive'
   },
   {
-    userId: 51,
-    date: '2016-05-04'
+    userId: 39,
+    date: '2019-11-27',
+    status: 'active'
   },
   {
-    userId: 87,
-    date: '2017-04-02'
+    userId: 40,
+    date: '2019-06-15',
+    status: 'inactive'
   },
   {
-    userId: 47,
-    date: '2008-06-23'
+    userId: 41,
+    date: '2019-10-19',
+    status: 'active'
   },
   {
-    userId: 72,
-    date: '2018-08-01'
+    userId: 42,
+    date: '2020-01-09',
+    status: 'inactive'
   },
   {
-    userId: 29,
-    date: '2014-03-30'
-  },
-  {
-    userId: 89,
-    date: '2015-03-11'
-  },
-  {
-    userId: 29,
-    date: '2013-07-11'
-  },
-  {
-    userId: 84,
-    date: '2013-04-22'
-  },
-  {
-    userId: 78,
-    date: '2016-07-26'
-  },
-  {
-    userId: 53,
-    date: '2019-02-12'
+    userId: 43,
+    date: '2020-01-09',
+    status: 'active'
   },
   {
     userId: 44,
-    date: '2019-11-30'
+    date: '2019-11-08',
+    status: 'inactive'
+  },
+  {
+    userId: 45,
+    date: '2019-07-06',
+    status: 'active'
+  },
+  {
+    userId: 46,
+    date: '2019-05-21',
+    status: 'inactive'
+  },
+  {
+    userId: 47,
+    date: '2019-11-27',
+    status: 'inactive'
+  },
+  {
+    userId: 48,
+    date: '2019-10-02',
+    status: 'inactive'
+  },
+  {
+    userId: 49,
+    date: '2019-11-18',
+    status: 'active'
+  },
+  {
+    userId: 50,
+    date: '2019-05-20',
+    status: 'inactive'
   }
 ]
 
 //ORDER_PRODUCTS DUMMY DATA
+
 const orderProduct = [
   {
     productId: 46,
