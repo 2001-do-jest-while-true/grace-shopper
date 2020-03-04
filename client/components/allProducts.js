@@ -11,10 +11,17 @@ class AllProducts extends React.Component {
   }
 
   render() {
+    let products = this.props.products
+    const location = this.props.location
+    if (location) {
+      const type = location.search.split('=')[1]
+      products = products.filter(product => product.type === type)
+    }
+
     return (
       <div>
         {this.props.products.length ? (
-          this.props.products.map(product => (
+          products.map(product => (
             <div key={product.id}>
               <Link to={`/products/${product.id}`}>{product.name}</Link>
 
