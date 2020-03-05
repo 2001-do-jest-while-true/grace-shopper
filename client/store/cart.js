@@ -1,23 +1,33 @@
 import axios from 'axios'
 
-const initialState = []
+const initialState = {
+  orderId: 0,
+  cart: {}
+}
 
 // ACTION CONSTANTS
+const INITIALIZE_CART = 'INITIALIZE_CART'
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const DELETE_CART = 'DELETE_CART'
 
 // ACTION CREATORS
-const getCart = products => ({
+
+const initializeCart = orderId => ({
+  type: INITIALIZE_CART,
+  orderId
+})
+
+const getCart = productsWithQuantity => ({
   type: GET_CART,
-  products
+  productsWithQuantity
 })
 
 //I AM RETURNING PRODUCTS; SHOULD I ONLY RETURN THE PRODUCT ADDED???
-const addToCart = product => ({
+const addToCart = productWithQuantity => ({
   type: ADD_TO_CART,
-  product
+  productWithQuantity
 })
 
 const deleteFromCart = product => ({
@@ -30,9 +40,20 @@ const deleteCart = () => ({
 })
 
 // THUNK CREATORS
-export const fetchCart = () => async dispatch => {
+export const initializeCartThunk = () => async dispatch => {
   try {
-    const {data} = await axios.get(`/api/cart`)
+    const {data} = await axios.get('/api/cart')
+    dispatch(initializeCart(data))
+  } catch (err) {
+    console.error(err)
+    console.error(err.stack)
+  }
+}
+
+export const fetchCart = orderId => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/cart/${orderId}`)
+    console.log(data)
     dispatch(getCart(data))
   } catch (error) {
     console.error(error)
@@ -41,16 +62,16 @@ export const fetchCart = () => async dispatch => {
 
 export const addToCartThunk = (
   productId,
-  orderId,
-  quantity
+  quantity,
+  orderId
 ) => async dispatch => {
   try {
-    const cart = await axios.put('/api/cart', {
+    const newProduct = await axios.put('/api/cart', {
       productId: productId,
-      orderId: orderId,
-      quantity: quantity
+      quantity: quantity,
+      orderId: orderId
     })
-    dispatch(addToCart(cart))
+    dispatch(addToCart(newProduct))
   } catch (err) {
     console.error(err)
     console.error(err.stack)
@@ -59,11 +80,21 @@ export const addToCartThunk = (
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case INITIALIZE_CART:
+      return {...state, orderId: action.orderId}
     case GET_CART:
-      return action.products
-    case ADD_TO_CART: {
-      return [...state, action.product]
-    }
+      let newCart = {}
+      console.log(action.productsWithQuantity)
+      action.productsWithQuantity.forEach(item => {
+        newCart[item.productId] = item.quantity
+      })
+      return {...state, cart: newCart}
+    case ADD_TO_CART:
+      let updatedCart = {...state.cart}
+      const productId = action.productWithQuantity.productId
+      const quantity = action.productWithQuantity.quantity
+      updatedCart[productId] = quantity
+      return {...state, cart: updatedCart}
     default: {
       return state
     }

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchCart, addToCartThunk} from '../store'
+import {addToCartThunk} from '../store'
 //addToCartThunk
 class ProductBox extends React.Component {
   componentDidMount() {
@@ -37,7 +37,11 @@ class ProductBox extends React.Component {
                 <option value={4}>4</option>
                 <option value={5}>5</option>
               </select>
-              <button id="add-to-cart" type="button">
+              <button
+                id="add-to-cart"
+                type="button"
+                onClick={() => this.props.addToCartThunk(id)}
+              >
                 Add to cart
               </button>
             </div>
@@ -54,8 +58,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  fetchCart: () => dispatch(fetchCart())
-  //addToCart: (id, userId) => dispatch(addToCartThunk(id, userId))
+  fetchCart: orderId => dispatch(fetchCart(orderId)),
+  addToCartThunk: (id, quantity) => dispatch(addToCartThunk(id, quantity))
 })
 
 export default connect(mapState, mapDispatch)(ProductBox)
