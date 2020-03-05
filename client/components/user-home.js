@@ -7,15 +7,13 @@ import AllProducts from './allProducts'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  const {username} = props
   return (
     <div>
       <div>
-        <h3>Welcome, {email}</h3>
+        <h3>Welcome, {username}!</h3>
       </div>
-      <div>
-        <AllProducts />
-      </div>
+      <AllProducts />
     </div>
   )
 }
@@ -25,7 +23,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.loggedIn.email
+    username: state.user.loggedIn.username
   }
 }
 
@@ -35,5 +33,5 @@ export default connect(mapState)(UserHome)
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string
+  username: PropTypes.string
 }
