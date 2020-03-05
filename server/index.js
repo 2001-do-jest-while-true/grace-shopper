@@ -63,6 +63,13 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
+  // admin check middleware
+  // app.use((req,res,next) => {
+  //   console.log('Who is this?')
+  //   console.log(req.user)
+  //   next()
+  // })
+
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
