@@ -53,7 +53,7 @@ class AllProducts extends React.Component {
                 <div key={product.id}>
                   <Link to={`/products/${product.id}`}>{product.name}</Link>
 
-                  <p>{product.price}</p>
+                  <p>price:{product.price / 100}</p>
                 </div>
               )
             }

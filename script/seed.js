@@ -1,7 +1,13 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Product, Order, OrderProduct} = require('../server/db/models')
+const {
+  User,
+  Product,
+  Order,
+  OrderProduct,
+  ShippingAddress
+} = require('../server/db/models')
 
 //USERS DUMMY DATA
 const users = [
@@ -721,1057 +727,1953 @@ const users = [
   }
 ]
 
+//SHIPPING ADDRESS DUMMY DATA
+const shippingAddresses = [
+  {
+    fullName: "Cobb O'Caine",
+    address1: '118 Macpherson Point',
+    address2: '22 Grayhawk Avenue',
+    city: 'Billings',
+    state: 'MT',
+    zip: 9523,
+    phoneNumber: '406-665-3329'
+  },
+  {
+    fullName: 'Ellissa Frondt',
+    address1: '04442 Elmside Crossing',
+    address2: '67223 Eastlawn Alley',
+    city: 'Albuquerque',
+    state: 'NM',
+    zip: 6910,
+    phoneNumber: '505-649-9489'
+  },
+  {
+    fullName: 'Adelle Scrivener',
+    address1: '5821 Ludington Crossing',
+    address2: '325 Saint Paul Lane',
+    city: 'Shawnee Mission',
+    state: 'KS',
+    zip: 1360,
+    phoneNumber: '816-212-9496'
+  },
+  {
+    fullName: 'Trumaine Scrowston',
+    address1: '752 Briar Crest Plaza',
+    address2: '0 Manley Circle',
+    city: 'Philadelphia',
+    state: 'PA',
+    zip: 2441,
+    phoneNumber: '610-921-2481'
+  },
+  {
+    fullName: 'Nevsa Dumingo',
+    address1: '465 Muir Court',
+    address2: '07 Scoville Lane',
+    city: 'Houston',
+    state: 'TX',
+    zip: 7722,
+    phoneNumber: '713-406-9292'
+  },
+  {
+    fullName: 'Luella Lyfe',
+    address1: '65049 Old Shore Alley',
+    address2: '883 Mcguire Lane',
+    city: 'San Jose',
+    state: 'CA',
+    zip: 7205,
+    phoneNumber: '408-414-7216'
+  },
+  {
+    fullName: 'Franky Josum',
+    address1: '8204 Pawling Hill',
+    address2: '9 Charing Cross Circle',
+    city: 'Dallas',
+    state: 'TX',
+    zip: 8929,
+    phoneNumber: '214-458-5446'
+  },
+  {
+    fullName: 'Gerianna Jagielski',
+    address1: '73171 Bellgrove Junction',
+    address2: '38077 Oak Valley Way',
+    city: 'Pittsburgh',
+    state: 'PA',
+    zip: 2012,
+    phoneNumber: '412-663-5024'
+  },
+  {
+    fullName: 'Lauren Grzegorzewski',
+    address1: '50452 Fieldstone Drive',
+    address2: '36312 Donald Court',
+    city: 'Tulsa',
+    state: 'OK',
+    zip: 7106,
+    phoneNumber: '918-341-5872'
+  },
+  {
+    fullName: 'Theo Stent',
+    address1: '7 Waubesa Center',
+    address2: '68826 School Terrace',
+    city: 'Inglewood',
+    state: 'CA',
+    zip: 7577,
+    phoneNumber: '310-572-1697'
+  },
+  {
+    fullName: 'Kayley Devine',
+    address1: '549 3rd Way',
+    address2: '1314 Parkside Road',
+    city: 'Montgomery',
+    state: 'AL',
+    zip: 4860,
+    phoneNumber: '334-790-5674'
+  },
+  {
+    fullName: 'Zuzana Bulcock',
+    address1: '22948 Oriole Place',
+    address2: '017 Autumn Leaf Drive',
+    city: 'Buffalo',
+    state: 'NY',
+    zip: 5419,
+    phoneNumber: '716-121-2004'
+  },
+  {
+    fullName: 'Dominga Diano',
+    address1: '678 American Ash Place',
+    address2: '94 Clarendon Point',
+    city: 'Omaha',
+    state: 'NE',
+    zip: 1241,
+    phoneNumber: '402-121-2933'
+  },
+  {
+    fullName: 'Daffie Coy',
+    address1: '26558 Stephen Parkway',
+    address2: '42 Ronald Regan Alley',
+    city: 'Fort Myers',
+    state: 'FL',
+    zip: 8083,
+    phoneNumber: '239-713-0337'
+  },
+  {
+    fullName: 'Tobiah Bennallck',
+    address1: '04433 Declaration Point',
+    address2: '742 Mesta Hill',
+    city: 'Panama City',
+    state: 'FL',
+    zip: 8027,
+    phoneNumber: '850-504-7017'
+  },
+  {
+    fullName: 'Modestine Bowmen',
+    address1: '74 Brickson Park Plaza',
+    address2: '98 Pierstorff Terrace',
+    city: 'Las Vegas',
+    state: 'NV',
+    zip: 5799,
+    phoneNumber: '702-390-1613'
+  },
+  {
+    fullName: 'Tish Wisham',
+    address1: '5 Bunker Hill Point',
+    address2: '3296 La Follette Trail',
+    city: 'Huntsville',
+    state: 'AL',
+    zip: 8343,
+    phoneNumber: '256-842-8238'
+  },
+  {
+    fullName: 'Godfry Jendricke',
+    address1: '40 Thierer Avenue',
+    address2: '68398 Del Sol Avenue',
+    city: 'Clearwater',
+    state: 'FL',
+    zip: 3771,
+    phoneNumber: '813-933-6502'
+  },
+  {
+    fullName: 'Tyne Dubbin',
+    address1: '644 Melby Drive',
+    address2: '85 Glendale Place',
+    city: 'Birmingham',
+    state: 'AL',
+    zip: 4555,
+    phoneNumber: '205-306-2298'
+  },
+  {
+    fullName: 'Bord McEvilly',
+    address1: '717 Springs Hill',
+    address2: '3934 Lakeland Lane',
+    city: 'San Diego',
+    state: 'CA',
+    zip: 9309,
+    phoneNumber: '760-579-4163'
+  },
+  {
+    fullName: 'Evy Conneely',
+    address1: '87422 Mcguire Trail',
+    address2: '6479 Sycamore Crossing',
+    city: 'Los Angeles',
+    state: 'CA',
+    zip: 5754,
+    phoneNumber: '213-906-4502'
+  },
+  {
+    fullName: 'Tedd Hakey',
+    address1: '9887 Evergreen Avenue',
+    address2: '574 Rieder Hill',
+    city: 'Portland',
+    state: 'OR',
+    zip: 9187,
+    phoneNumber: '971-917-0027'
+  },
+  {
+    fullName: 'Ethe Eastgate',
+    address1: '7 Manufacturers Avenue',
+    address2: '782 International Center',
+    city: 'Shawnee Mission',
+    state: 'KS',
+    zip: 9195,
+    phoneNumber: '913-592-9504'
+  },
+  {
+    fullName: 'Noby Childers',
+    address1: '372 Marquette Avenue',
+    address2: '3 Vahlen Plaza',
+    city: 'Fort Worth',
+    state: 'TX',
+    zip: 5492,
+    phoneNumber: '817-956-3453'
+  },
+  {
+    fullName: 'Isidore Shoebrook',
+    address1: '83 Lunder Drive',
+    city: 'Shreveport',
+    state: 'LA',
+    zip: 1214,
+    phoneNumber: '318-673-2857'
+  },
+  {
+    fullName: 'Antonius Banfill',
+    address1: '6 Colorado Street',
+    address2: '37 Dovetail Center',
+    city: 'Fresno',
+    state: 'CA',
+    zip: 3557,
+    phoneNumber: '559-772-5393'
+  },
+  {
+    fullName: 'Denny Boxe',
+    address1: '192 Crowley Lane',
+    address2: '53 Fordem Avenue',
+    city: 'Portland',
+    state: 'OR',
+    zip: 1059,
+    phoneNumber: '503-412-0906'
+  },
+  {
+    fullName: 'Katerine Swayne',
+    address1: '83 Melvin Court',
+    address2: '948 Johnson Crossing',
+    city: 'Columbus',
+    state: 'OH',
+    zip: 7640,
+    phoneNumber: '614-287-4657'
+  },
+  {
+    fullName: 'Cob Mauvin',
+    address1: '34 Hintze Trail',
+    city: 'Springfield',
+    state: 'MA',
+    zip: 2339,
+    phoneNumber: '413-591-9112'
+  },
+  {
+    fullName: 'Jacqui Selby',
+    address1: '788 Schmedeman Trail',
+    address2: '914 Laurel Drive',
+    city: 'Lansing',
+    state: 'MI',
+    zip: 1616,
+    phoneNumber: '517-290-7759'
+  },
+  {
+    fullName: 'Mada Naden',
+    address1: '0 Eliot Lane',
+    address2: '86892 Springs Alley',
+    city: 'Saint Paul',
+    state: 'MN',
+    zip: 1936,
+    phoneNumber: '651-199-1462'
+  },
+  {
+    fullName: 'North Nussen',
+    address1: '37 Eastwood Crossing',
+    address2: '4 Oak Way',
+    city: 'Washington',
+    state: 'DC',
+    zip: 7673,
+    phoneNumber: '202-542-9642'
+  },
+  {
+    fullName: 'Ana Gerty',
+    address1: '529 Coolidge Terrace',
+    address2: '7 Hanover Way',
+    city: 'Portland',
+    state: 'OR',
+    zip: 8527,
+    phoneNumber: '503-765-6547'
+  },
+  {
+    fullName: 'Gay Jakucewicz',
+    address1: '53892 Emmet Road',
+    address2: '67 Prairieview Lane',
+    city: 'Fort Smith',
+    state: 'AR',
+    zip: 6825,
+    phoneNumber: '479-622-0393'
+  },
+  {
+    fullName: 'Brett McCaskill',
+    address1: '10 Oakridge Junction',
+    address2: '32651 Kingsford Park',
+    city: 'Milwaukee',
+    state: 'WI',
+    zip: 4898,
+    phoneNumber: '414-690-3891'
+  },
+  {
+    fullName: 'Engelbert Brotherhood',
+    address1: '50 Harbort Terrace',
+    city: 'Roanoke',
+    state: 'VA',
+    zip: 3837,
+    phoneNumber: '540-523-7830'
+  },
+  {
+    fullName: 'Chane Puttock',
+    address1: '19 Sommers Lane',
+    address2: '052 Del Mar Hill',
+    city: 'Kansas City',
+    state: 'KS',
+    zip: 8254,
+    phoneNumber: '816-514-4703'
+  },
+  {
+    fullName: 'Andonis Chapple',
+    address1: '35522 Nova Junction',
+    address2: '9 Menomonie Hill',
+    city: 'Nashville',
+    state: 'TN',
+    zip: 3774,
+    phoneNumber: '615-408-9360'
+  },
+  {
+    fullName: 'Lanny Bly',
+    address1: '37181 Schiller Hill',
+    address2: '76 Daystar Plaza',
+    city: 'Macon',
+    state: 'GA',
+    zip: 8143,
+    phoneNumber: '478-470-5604'
+  },
+  {
+    fullName: 'Jayne Wilde',
+    address1: '1134 Stuart Junction',
+    address2: '504 Southridge Court',
+    city: 'Pasadena',
+    state: 'CA',
+    zip: 7116,
+    phoneNumber: '626-280-4184'
+  },
+  {
+    fullName: 'Otha Antonignetti',
+    address1: '9 Holmberg Pass',
+    city: 'Kansas City',
+    state: 'MO',
+    zip: 1929,
+    phoneNumber: '816-894-5043'
+  },
+  {
+    fullName: 'Lucais Lenoir',
+    address1: '5 Hoepker Drive',
+    address2: '3689 Victoria Lane',
+    city: 'Charleston',
+    state: 'WV',
+    zip: 5645,
+    phoneNumber: '304-158-6641'
+  },
+  {
+    fullName: 'Marsiella Woloschinski',
+    address1: '3 Kim Alley',
+    address2: '036 Talisman Drive',
+    city: 'Lancaster',
+    state: 'PA',
+    zip: 1195,
+    phoneNumber: '717-376-2293'
+  },
+  {
+    fullName: 'Anastassia Chapellow',
+    address1: '7 Carberry Alley',
+    address2: '425 Mendota Pass',
+    city: 'Des Moines',
+    state: 'IA',
+    zip: 9611,
+    phoneNumber: '515-556-0482'
+  },
+  {
+    fullName: 'Breena Gahan',
+    address1: '5 Nelson Court',
+    address2: '4395 Park Meadow Junction',
+    city: 'Akron',
+    state: 'OH',
+    zip: 4129,
+    phoneNumber: '330-647-8723'
+  },
+  {
+    fullName: 'Kayle Cauderlie',
+    address1: '2 Fairfield Place',
+    address2: '221 Portage Parkway',
+    city: 'Indianapolis',
+    state: 'IN',
+    zip: 3375,
+    phoneNumber: '317-821-6986'
+  },
+  {
+    fullName: 'Yvon Martino',
+    address1: '81097 Pleasure Lane',
+    address2: '3488 Bellgrove Terrace',
+    city: 'Portsmouth',
+    state: 'NH',
+    zip: 2780,
+    phoneNumber: '603-247-5186'
+  },
+  {
+    fullName: 'Artur Brocks',
+    address1: '4559 Springs Road',
+    address2: '20 Warrior Court',
+    city: 'Charleston',
+    state: 'SC',
+    zip: 9297,
+    phoneNumber: '843-759-8231'
+  },
+  {
+    fullName: 'Letitia Shambroke',
+    address1: '0358 Cambridge Parkway',
+    address2: '76672 American Ash Center',
+    city: 'Bowie',
+    state: 'MD',
+    zip: 9006,
+    phoneNumber: '240-241-0662'
+  },
+  {
+    fullName: 'Sigrid Alcalde',
+    address1: '34 Hovde Hill',
+    address2: '1191 Canary Place',
+    city: 'Chicago',
+    state: 'IL',
+    zip: 9962,
+    phoneNumber: '312-560-6761'
+  },
+  {
+    fullName: 'Vannie Stapylton',
+    address1: '207 Veith Street',
+    address2: '7 Maple Wood Hill',
+    city: 'Hollywood',
+    state: 'FL',
+    zip: 9150,
+    phoneNumber: '305-385-8359'
+  },
+  {
+    fullName: 'Evered Luxton',
+    address1: '1980 Redwing Plaza',
+    address2: '02486 Independence Avenue',
+    city: 'Columbus',
+    state: 'OH',
+    zip: 8863,
+    phoneNumber: '614-509-8031'
+  },
+  {
+    fullName: 'Briney Luckhurst',
+    address1: '8 Trailsway Avenue',
+    address2: '1933 La Follette Road',
+    city: 'Annapolis',
+    state: 'MD',
+    zip: 8497,
+    phoneNumber: '443-577-6371'
+  },
+  {
+    fullName: 'Clementius Treslove',
+    address1: '938 Kings Street',
+    city: 'Winston Salem',
+    state: 'NC',
+    zip: 9079,
+    phoneNumber: '336-723-3665'
+  },
+  {
+    fullName: 'Melonie Stirton',
+    address1: '614 Michigan Junction',
+    address2: '5 Elgar Road',
+    city: 'New Haven',
+    state: 'CT',
+    zip: 5638,
+    phoneNumber: '203-141-5618'
+  },
+  {
+    fullName: 'Gaylor Insley',
+    address1: '7502 Comanche Crossing',
+    address2: '6584 Surrey Center',
+    city: 'Springfield',
+    state: 'IL',
+    zip: 4877,
+    phoneNumber: '217-539-5025'
+  },
+  {
+    fullName: 'Graig Cuttles',
+    address1: '93 Eastlawn Hill',
+    address2: '928 Brickson Park Way',
+    city: 'Houston',
+    state: 'TX',
+    zip: 7308,
+    phoneNumber: '713-873-6760'
+  },
+  {
+    fullName: 'Heddie Minney',
+    address1: '85 Maple Wood Plaza',
+    address2: '7 Badeau Plaza',
+    city: 'Lexington',
+    state: 'KY',
+    zip: 4906,
+    phoneNumber: '859-380-6192'
+  },
+  {
+    fullName: 'Jolene Skellington',
+    address1: '642 Melvin Point',
+    address2: '777 Cody Hill',
+    city: 'Roanoke',
+    state: 'VA',
+    zip: 7291,
+    phoneNumber: '540-465-7426'
+  },
+  {
+    fullName: 'Kevan Keave',
+    address1: '8993 Talisman Place',
+    address2: '2 Calypso Parkway',
+    city: 'Worcester',
+    state: 'MA',
+    zip: 8120,
+    phoneNumber: '508-879-8188'
+  },
+  {
+    fullName: 'Brand Bohan',
+    address1: '1 Troy Hill',
+    address2: '8 Ridgeview Street',
+    city: 'Saint Augustine',
+    state: 'FL',
+    zip: 7792,
+    phoneNumber: '904-814-9500'
+  },
+  {
+    fullName: 'Rhianon Quixley',
+    address1: '57647 Johnson Circle',
+    address2: '57864 Swallow Center',
+    city: 'Houston',
+    state: 'TX',
+    zip: 4039,
+    phoneNumber: '713-658-9203'
+  },
+  {
+    fullName: 'Ebba Tiler',
+    address1: '57032 Mockingbird Trail',
+    address2: '252 Transport Road',
+    city: 'Jersey City',
+    state: 'NJ',
+    zip: 2468,
+    phoneNumber: '551-617-6719'
+  },
+  {
+    fullName: 'Margalit McKeveney',
+    address1: '32 Division Parkway',
+    address2: '7 Westridge Street',
+    city: 'Tampa',
+    state: 'FL',
+    zip: 7838,
+    phoneNumber: '813-989-3098'
+  },
+  {
+    fullName: 'Bettina Kern',
+    address1: '7 Petterle Plaza',
+    address2: '6 Kingsford Drive',
+    city: 'Louisville',
+    state: 'KY',
+    zip: 5735,
+    phoneNumber: '502-192-9066'
+  },
+  {
+    fullName: 'Radcliffe Kilborn',
+    address1: '5 Basil Point',
+    address2: '69 Welch Pass',
+    city: 'San Diego',
+    state: 'CA',
+    zip: 3058,
+    phoneNumber: '858-635-9191'
+  },
+  {
+    fullName: 'Sharl Schermick',
+    address1: '1 Hoepker Drive',
+    address2: '9 Clyde Gallagher Hill',
+    city: 'Santa Monica',
+    state: 'CA',
+    zip: 5009,
+    phoneNumber: '310-858-1857'
+  },
+  {
+    fullName: 'Berne Olyunin',
+    address1: '7 Corscot Road',
+    address2: '23 Manley Point',
+    city: 'Silver Spring',
+    state: 'MD',
+    zip: 4567,
+    phoneNumber: '240-805-1674'
+  },
+  {
+    fullName: 'Trude Mapledoram',
+    address1: '98647 Fair Oaks Road',
+    address2: '8520 Loomis Place',
+    city: 'North Las Vegas',
+    state: 'NV',
+    zip: 2550,
+    phoneNumber: '702-349-1132'
+  },
+  {
+    fullName: 'Brose Stripling',
+    address1: '46350 Pennsylvania Street',
+    address2: '16 Express Place',
+    city: 'Flushing',
+    state: 'NY',
+    zip: 4472,
+    phoneNumber: '347-809-7153'
+  },
+  {
+    fullName: 'Marlo Emby',
+    address1: '00543 Lakewood Terrace',
+    address2: '5 Sommers Circle',
+    city: 'Tuscaloosa',
+    state: 'AL',
+    zip: 1161,
+    phoneNumber: '205-457-9451'
+  },
+  {
+    fullName: "Kellie O'Rourke",
+    address1: '7402 Eastlawn Trail',
+    address2: '60658 Ludington Terrace',
+    city: 'Fresno',
+    state: 'CA',
+    zip: 3934,
+    phoneNumber: '559-298-2352'
+  },
+  {
+    fullName: 'Nixie Zanicchi',
+    address1: '9 Center Center',
+    address2: '35570 Corry Plaza',
+    city: 'Chicago',
+    state: 'IL',
+    zip: 7387,
+    phoneNumber: '312-948-0460'
+  },
+  {
+    fullName: 'Winna Sinnock',
+    address1: '1721 Loftsgordon Point',
+    address2: '1 Prairie Rose Park',
+    city: 'Philadelphia',
+    state: 'PA',
+    zip: 9477,
+    phoneNumber: '215-797-0615'
+  },
+  {
+    fullName: 'Katie Judge',
+    address1: '841 Del Mar Terrace',
+    address2: '3 Golf Course Junction',
+    city: 'New York City',
+    state: 'NY',
+    zip: 4350,
+    phoneNumber: '212-735-7269'
+  },
+  {
+    fullName: 'Arden Pottes',
+    address1: '8 Oxford Point',
+    address2: '8 Mcbride Parkway',
+    city: 'Saint Louis',
+    state: 'MO',
+    zip: 2180,
+    phoneNumber: '314-729-9708'
+  },
+  {
+    fullName: 'Lawton Duncanson',
+    address1: '1 Ruskin Court',
+    address2: '47 Crownhardt Crossing',
+    city: 'Fort Worth',
+    state: 'TX',
+    zip: 8551,
+    phoneNumber: '682-115-3495'
+  },
+  {
+    fullName: 'Tab Kiledal',
+    address1: '93902 Golf Course Park',
+    address2: '2707 Debs Junction',
+    city: 'Cleveland',
+    state: 'OH',
+    zip: 8017,
+    phoneNumber: '216-954-6683'
+  },
+  {
+    fullName: 'Mommy Brougham',
+    address1: '4098 International Pass',
+    address2: '5793 Colorado Alley',
+    city: 'Athens',
+    state: 'GA',
+    zip: 8737,
+    phoneNumber: '706-352-6041'
+  },
+  {
+    fullName: 'Vallie Saice',
+    address1: '8834 Oriole Street',
+    address2: '877 Luster Trail',
+    city: 'Topeka',
+    state: 'KS',
+    zip: 5596,
+    phoneNumber: '785-687-5491'
+  },
+  {
+    fullName: "Odie O'Dowd",
+    address1: '9 Atwood Street',
+    address2: '32 Amoth Way',
+    city: 'Saint Joseph',
+    state: 'MO',
+    zip: 1910,
+    phoneNumber: '816-332-7747'
+  },
+  {
+    fullName: 'Carling Upcott',
+    address1: '829 Village Point',
+    address2: '9114 Forest Center',
+    city: 'Greeley',
+    state: 'CO',
+    zip: 3581,
+    phoneNumber: '970-925-6882'
+  },
+  {
+    fullName: 'Mela Swettenham',
+    address1: '012 Moose Avenue',
+    address2: '2 Bunting Point',
+    city: 'San Bernardino',
+    state: 'CA',
+    zip: 1041,
+    phoneNumber: '760-731-7177'
+  },
+  {
+    fullName: 'Orel Fligg',
+    address1: '17 Steensland Alley',
+    city: 'North Little Rock',
+    state: 'AR',
+    zip: 9552,
+    phoneNumber: '501-322-5589'
+  },
+  {
+    fullName: 'Cindelyn Bachellier',
+    address1: '8 Grim Avenue',
+    address2: '2552 Main Terrace',
+    city: 'Falls Church',
+    state: 'VA',
+    zip: 9925,
+    phoneNumber: '571-728-0337'
+  },
+  {
+    fullName: 'Nat Muskett',
+    address1: '30 Messerschmidt Point',
+    city: 'Sacramento',
+    state: 'CA',
+    zip: 6381,
+    phoneNumber: '916-659-1800'
+  },
+  {
+    fullName: 'Tymothy Larmet',
+    address1: '3919 Fordem Trail',
+    address2: '2294 Canary Park',
+    city: 'Glendale',
+    state: 'CA',
+    zip: 2221,
+    phoneNumber: '323-224-3160'
+  },
+  {
+    fullName: 'Roslyn Hovard',
+    address1: '0 Merchant Plaza',
+    address2: '05698 Brentwood Terrace',
+    city: 'Charlotte',
+    state: 'NC',
+    zip: 7799,
+    phoneNumber: '704-167-1165'
+  },
+  {
+    fullName: 'Hervey Rowler',
+    address1: '97 Moulton Pass',
+    address2: '7126 Sycamore Point',
+    city: 'Pueblo',
+    state: 'CO',
+    zip: 4492,
+    phoneNumber: '719-828-8630'
+  },
+  {
+    fullName: 'Jacobo Joselevitch',
+    address1: '360 Mandrake Lane',
+    address2: '9 American Drive',
+    city: 'Burbank',
+    state: 'CA',
+    zip: 7129,
+    phoneNumber: '818-589-7052'
+  },
+  {
+    fullName: 'Lind Follos',
+    address1: '03778 Pine View Plaza',
+    address2: '6164 Haas Terrace',
+    city: 'Washington',
+    state: 'DC',
+    zip: 6581,
+    phoneNumber: '202-740-2846'
+  },
+  {
+    fullName: 'Halette Doelle',
+    address1: '50184 Bowman Junction',
+    city: 'Albuquerque',
+    state: 'NM',
+    zip: 7564,
+    phoneNumber: '505-890-6823'
+  },
+  {
+    fullName: 'Ryann Daniell',
+    address1: '97 Summer Ridge Hill',
+    address2: '628 Shelley Alley',
+    city: 'San Antonio',
+    state: 'TX',
+    zip: 7206,
+    phoneNumber: '210-849-2971'
+  },
+  {
+    fullName: 'Andrew Mortell',
+    address1: '1 Fieldstone Hill',
+    address2: '71 Shasta Pass',
+    city: 'Meridian',
+    state: 'MS',
+    zip: 7179,
+    phoneNumber: '601-724-5180'
+  },
+  {
+    fullName: 'Elena Mordacai',
+    address1: '371 Cardinal Lane',
+    address2: '545 Nancy Point',
+    city: 'Wilmington',
+    state: 'DE',
+    zip: 2097,
+    phoneNumber: '302-610-8491'
+  },
+  {
+    fullName: 'Gayler Croall',
+    address1: '6324 Sutteridge Parkway',
+    address2: '07 Atwood Crossing',
+    city: 'Colorado Springs',
+    state: 'CO',
+    zip: 6173,
+    phoneNumber: '719-249-6475'
+  },
+  {
+    fullName: 'Marylou Blackstone',
+    address1: '43657 Fair Oaks Way',
+    address2: '0815 Rockefeller Plaza',
+    city: 'Los Angeles',
+    state: 'CA',
+    zip: 1870,
+    phoneNumber: '213-492-2872'
+  },
+  {
+    fullName: 'Edita Durgan',
+    address1: '6435 Upham Hill',
+    address2: '9 Waywood Way',
+    city: 'San Antonio',
+    state: 'TX',
+    zip: 6248,
+    phoneNumber: '210-679-3483'
+  },
+  {
+    fullName: 'Heall De Gowe',
+    address1: '58 Haas Crossing',
+    address2: '57 Butternut Lane',
+    city: 'Scottsdale',
+    state: 'AZ',
+    zip: 5783,
+    phoneNumber: '480-455-9776'
+  },
+  {
+    fullName: 'Ike Kendall',
+    address1: '93624 Schiller Way',
+    address2: '195 Miller Crossing',
+    city: 'Santa Monica',
+    state: 'CA',
+    zip: 8702,
+    phoneNumber: '310-107-4768'
+  }
+]
 //PRODUCTS DUMMY DATA
 const products = [
   {
-    name: 'Maily',
-    size: 'large',
-    type: 'outfit',
-    category: 'medieval',
-    price: 443879.33,
-    quantity: 434628,
-    description: 'Function-based systemic function'
-  },
-  {
-    name: 'Uo',
-    size: 'large',
-    material: 'yellow',
-    type: 'accessory',
-    category: 'xmas',
-    price: 2122.46,
-    quantity: 499254,
-    description: 'User-centric dedicated algorithm'
-    //imageUrl: 'https://robohash.org/quidembeataeomnis.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Kallisté',
-    size: 'small',
-    material: 'silver',
-    type: 'misc',
-    category: 'xmas',
-    price: 156268.61,
-    quantity: 83047,
-    description: 'Extended modular ability',
-    imageUrl: 'https://robohash.org/facereevenietquis.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Gaëlle',
-    size: 'small',
-    material: 'blue',
-    type: 'outfit',
-    category: 'misc',
-    price: 836363.81,
-    quantity: 308120,
-    description: 'Networked high-level parallelism',
-    imageUrl: 'https://robohash.org/sapienteundeest.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Yóu',
-    size: 'large',
-    material: 'yellow',
-    type: 'misc',
-    category: 'medieval',
-    price: 918442.67,
-    quantity: 470774,
-    description: 'Centralized interactive encryption',
-    imageUrl: 'https://robohash.org/etdolordoloremque.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Mà',
-    size: 'large',
-    material: 'purple',
-    type: 'preset',
-    category: 'misc',
-    price: 242375.09,
-    quantity: 121625,
-    description: 'Phased mobile matrix',
-    imageUrl: 'https://robohash.org/consecteturearumea.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Séréna',
+    name: 'ligula suspendisse ornare',
     size: 'medium',
-    type: 'duck',
-    category: 'business/casual',
-    price: 470094.09,
-    quantity: 512316,
-    description: 'Object-based fresh-thinking circuit',
-    imageUrl: 'https://robohash.org/doloresnonin.png?size=50x50&set=set1'
+    type: 'yellow-duck',
+    category: 'xmas',
+    price: 100,
+    quantity: 3,
+    description:
+      'ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
   },
   {
-    name: 'Laïla',
-    size: 'large',
-    material: 'yellow',
-    type: 'outfit',
-    category: 'business/casual',
-    price: 998485.75,
-    quantity: 98423,
-    description: 'Intuitive hybrid capacity',
-    imageUrl:
-      'https://robohash.org/consequuntursequiexercitationem.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Anaëlle',
-    size: 'medium',
-    material: 'red',
-    type: 'misc',
-    category: 'business/casual',
-    price: 203468.94,
-    quantity: 842956,
-    description: 'Reverse-engineered content-based time-frame',
-    imageUrl: 'https://robohash.org/explicaboeaut.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Faîtes',
+    name: 'justo eu massa donec dapibus',
     size: 'x-large',
-    type: 'misc',
-    category: 'medieval',
-    price: 777200.0,
-    quantity: 755436,
-    description: 'Right-sized well-modulated local area network'
+    category: 'gamer',
+    price: 100,
+    quantity: 69,
+    description:
+      'maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
   },
   {
-    name: 'Mélodie',
-    size: 'x-large',
-    type: 'outfit',
-    category: 'business/casual',
-    price: 451719.82,
-    quantity: 474619,
-    description: 'Universal systemic extranet',
-    imageUrl: 'https://robohash.org/etoditvoluptatum.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Lucrèce',
+    name: 'a feugiat et',
     size: 'small',
-    type: 'duck',
-    category: 'xmas',
-    price: 303491.4,
-    quantity: 154577,
-    description: 'Re-engineered discrete installation',
-    imageUrl: 'https://robohash.org/estdoloresvelit.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Léonie',
-    size: 'medium',
-    type: 'preset',
     category: 'halloween',
-    price: 887102.49,
-    quantity: 414135,
-    description: 'Pre-emptive intermediate neural-net',
-    imageUrl: 'https://robohash.org/quonesciuntnon.bmp?size=50x50&set=set1'
+    price: 100,
+    quantity: 8,
+    description:
+      'quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
   },
   {
-    name: 'Eléa',
-    size: 'medium',
-    type: 'outfit',
-    category: 'business/casual',
-    price: 986653.37,
-    quantity: 799749,
-    description: 'Down-sized systemic info-mediaries'
-  },
-  {
-    name: 'Loïc',
-    size: 'medium',
+    name: 'habitasse platea dictumst morbi',
+    size: 'small',
     type: 'preset',
     category: 'summer',
-    price: 622033.13,
-    quantity: 773945,
-    description: 'Streamlined motivating strategy'
+    price: 100,
+    quantity: 81,
+    description:
+      'tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum',
+    imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
   },
   {
-    name: 'Vérane',
-    size: 'medium',
-    type: 'duck',
+    name: 'et ultrices posuere cubilia curae',
+    size: 'x-large',
+    type: 'red-duck',
+    price: 100,
+    quantity: 33,
+    description:
+      'nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+  },
+  {
+    name: 'pede malesuada in',
+    size: 'large',
+    type: 'blue-duck',
+    category: 'gamer',
+    price: 100,
+    quantity: 27,
+    description:
+      'bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
+  },
+  {
+    name: 'vel nulla eget eros elementum',
+    size: 'x-large',
+    type: 'gold-duck',
     category: 'summer',
-    price: 80459.95,
-    quantity: 109218,
-    description: 'User-friendly discrete toolset',
-    imageUrl: 'https://robohash.org/estsuscipitnon.bmp?size=50x50&set=set1'
+    price: 100,
+    quantity: 18,
+    description:
+      'eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
   },
   {
-    name: 'Véronique',
-    size: 'small',
+    name: 'sit amet lobortis sapien',
+    size: 'large',
+    type: 'gold-duck',
+    category: 'business/casual',
+    price: 100,
+    quantity: 98,
+    description:
+      'nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in',
+    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+  },
+  {
+    name: 'mattis odio donec vitae',
+    size: 'large',
     type: 'misc',
-    category: 'medieval',
-    price: 369022.56,
-    quantity: 548903,
-    description: 'Re-engineered zero tolerance utilisation',
-    imageUrl:
-      'https://robohash.org/voluptassedvoluptates.jpg?size=50x50&set=set1'
+    category: 'summer',
+    price: 100,
+    quantity: 30,
+    description:
+      'at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi',
+    imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
   },
   {
-    name: 'Méthode',
+    name: 'faucibus cursus urna ut tellus',
+    size: 'large',
+    type: 'purple-duck',
+    category: 'xmas',
+    price: 100,
+    quantity: 78,
+    description:
+      'orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
+  },
+  {
+    name: 'magna vulputate luctus',
+    size: 'small',
+    price: 100,
+    quantity: 6,
+    description:
+      'eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+  },
+  {
+    name: 'sed interdum venenatis turpis',
+    size: 'small',
+    type: 'accessory',
+    category: 'misc',
+    price: 100,
+    quantity: 63,
+    description:
+      'odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+  },
+  {
+    name: 'id consequat in consequat ut',
     size: 'medium',
+    type: 'blue-duck',
+    category: 'business/casual',
+    price: 100,
+    quantity: 18,
+    description:
+      'pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+  },
+  {
+    name: 'non quam nec dui',
+    type: 'gold-duck',
+    category: 'business/casual',
+    price: 100,
+    quantity: 57,
+    description:
+      'nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+  },
+  {
+    name: 'integer pede justo lacinia eget',
+    type: 'silver-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 64,
+    description:
+      'faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
+  },
+  {
+    name: 'ac lobortis vel',
+    category: 'summer',
+    price: 100,
+    quantity: 86,
+    description:
+      'nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
+  },
+  {
+    name: 'neque aenean auctor gravida sem',
+    size: 'large',
+    price: 100,
+    quantity: 30,
+    description:
+      'donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+  },
+  {
+    name: 'orci luctus et ultrices posuere',
+    size: 'large',
+    type: 'silver-duck',
+    category: 'halloween',
+    price: 100,
+    quantity: 57,
+    description:
+      'vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+  },
+  {
+    name: 'donec posuere metus',
     type: 'accessory',
     category: 'gamer',
-    price: 778405.65,
-    quantity: 587291,
-    description: 'Programmable content-based open system'
+    price: 100,
+    quantity: 25,
+    description:
+      'nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum',
+    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
   },
   {
-    name: 'Léonie',
-    size: 'large',
+    name: 'vulputate vitae nisl aenean lectus',
+    size: 'x-large',
     type: 'misc',
     category: 'xmas',
-    price: 547486.93,
-    quantity: 895898,
-    description: 'Digitized next generation data-warehouse'
+    price: 100,
+    quantity: 2,
+    description:
+      'pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus',
+    imageUrl: 'http://dummyimage.com/250x250.png/5fa2dd/ffffff'
   },
   {
-    name: 'Naéva',
-    size: 'x-large',
-    material: 'purple',
-    type: 'outfit',
-    category: 'gamer',
-    price: 593158.18,
-    quantity: 872328,
-    description: 'Digitized composite emulation',
-    imageUrl:
-      'https://robohash.org/voluptasvelaspernatur.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Réjane',
-    size: 'x-large',
-    material: 'blue',
-    type: 'preset',
-    category: 'misc',
-    price: 559899.41,
-    quantity: 280794,
-    description: 'Re-engineered mobile attitude',
-    imageUrl: 'https://robohash.org/utdeserunttempore.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Méthode',
-    size: 'large',
-    material: 'blue',
-    type: 'misc',
-    category: 'halloween',
-    price: 236010.24,
-    quantity: 831715,
-    description: 'Devolved national infrastructure',
-    imageUrl: 'https://robohash.org/optioetdolores.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Märta',
-    size: 'medium',
-    material: 'red',
-    type: 'duck',
-    category: 'gamer',
-    price: 163491.93,
-    quantity: 488735,
-    description: 'Grass-roots 4th generation access'
-  },
-  {
-    name: 'Laïla',
-    size: 'large',
-    type: 'accessory',
-    category: 'business/casual',
-    price: 462139.47,
-    quantity: 829113,
-    description: 'De-engineered grid-enabled task-force',
-    imageUrl: 'https://robohash.org/etvoluptatemvel.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Naéva',
-    size: 'large',
-    type: 'duck',
-    category: 'misc',
-    price: 249058.62,
-    quantity: 609816,
-    description: 'Upgradable asymmetric alliance',
-    imageUrl: 'https://robohash.org/remeumeos.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Chloé',
-    size: 'large',
-    material: 'purple',
-    type: 'outfit',
-    category: 'summer',
-    price: 643223.41,
-    quantity: 147391,
-    description: 'Open-architected contextually-based project',
-    imageUrl: 'https://robohash.org/noneadeleniti.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Zoé',
-    size: 'large',
-    type: 'preset',
-    category: 'halloween',
-    price: 444416.08,
-    quantity: 400551,
-    description: 'Progressive directional database',
-    imageUrl: 'https://robohash.org/utliberosapiente.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Vénus',
-    size: 'medium',
-    type: 'accessory',
-    category: 'misc',
-    price: 51113.96,
-    quantity: 75686,
-    description: 'Right-sized value-added throughput',
-    imageUrl: 'https://robohash.org/molestiaehicet.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Bénédicte',
-    size: 'medium',
-    material: 'yellow',
-    type: 'preset',
-    category: 'gamer',
-    price: 911938.15,
-    quantity: 242861,
-    description: 'Mandatory coherent project'
-  },
-  {
-    name: 'Solène',
-    size: 'large',
-    type: 'outfit',
+    name: 'accumsan tortor quis turpis',
+    size: 'small',
+    type: 'blue-duck',
     category: 'medieval',
-    price: 901475.31,
-    quantity: 563747,
-    description: 'Organized background protocol',
-    imageUrl: 'https://robohash.org/autdignissimosmagni.bmp?size=50x50&set=set1'
+    price: 100,
+    quantity: 56,
+    description:
+      'iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
   },
   {
-    name: 'Torbjörn',
+    name: 'sagittis dui vel',
+    size: 'medium',
+    type: 'silver-duck',
+    category: 'halloween',
+    price: 100,
+    quantity: 30,
+    description:
+      'leo odio condimentum id luctus nec molestie sed justo pellentesque',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+  },
+  {
+    name: 'mi sit amet',
     size: 'x-large',
-    material: 'yellow',
     type: 'misc',
-    category: 'medieval',
-    price: 961376.82,
-    quantity: 429221,
-    description: 'Polarised global emulation',
-    imageUrl: 'https://robohash.org/enimnostrumet.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Pål',
-    size: 'small',
-    material: 'silver',
-    type: 'accessory',
-    category: 'summer',
-    price: 315921.44,
-    quantity: 70578,
-    description: 'Assimilated grid-enabled info-mediaries',
-    imageUrl:
-      'https://robohash.org/utconsecteturvoluptate.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Gisèle',
-    size: 'x-large',
-    type: 'duck',
     category: 'business/casual',
-    price: 280290.0,
-    quantity: 262399,
-    description: 'Versatile 4th generation ability',
-    imageUrl:
-      'https://robohash.org/voluptatemsapienterepellendus.bmp?size=50x50&set=set1'
+    price: 100,
+    quantity: 47,
+    description:
+      'dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
   },
   {
-    name: 'Clémence',
+    name: 'ultrices posuere cubilia curae duis',
+    size: 'medium',
+    price: 100,
+    quantity: 90,
+    description:
+      'volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus',
+    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+  },
+  {
+    name: 'ipsum dolor sit amet',
+    type: 'preset',
+    price: 100,
+    quantity: 68,
+    description:
+      'curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel',
+    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+  },
+  {
+    name: 'eu est congue',
     size: 'large',
-    material: 'yellow',
-    type: 'misc',
+    type: 'gold-duck',
     category: 'xmas',
-    price: 721681.77,
-    quantity: 728375,
-    description: 'Virtual analyzing time-frame'
+    price: 100,
+    quantity: 85,
+    description:
+      'libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
   },
   {
-    name: 'Maëlys',
+    name: 'amet nunc viverra',
+    size: 'small',
+    type: 'red-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 20,
+    description:
+      'felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+  },
+  {
+    name: 'neque sapien placerat',
     size: 'small',
     type: 'outfit',
     category: 'summer',
-    price: 829480.98,
-    quantity: 333986,
-    description: 'Adaptive optimal projection',
-    imageUrl: 'https://robohash.org/sitnequevoluptatum.png?size=50x50&set=set1'
+    price: 100,
+    quantity: 17,
+    description:
+      'integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
   },
   {
-    name: 'Noëlla',
-    size: 'x-large',
-    material: 'gold',
-    type: 'accessory',
-    category: 'business/casual',
-    price: 187336.67,
-    quantity: 868546,
-    description: 'Customer-focused fresh-thinking infrastructure'
-  },
-  {
-    name: 'Maïlys',
+    name: 'egestas metus aenean fermentum',
     size: 'medium',
-    type: 'duck',
-    category: 'summer',
-    price: 248335.09,
-    quantity: 744782,
-    description: 'Customer-focused bottom-line utilisation'
-  },
-  {
-    name: 'Maïlis',
-    size: 'x-large',
-    material: 'yellow',
-    type: 'accessory',
-    category: 'business/casual',
-    price: 368841.77,
-    quantity: 290476,
-    description: 'Automated grid-enabled budgetary management',
-    imageUrl: 'https://robohash.org/rationedelenitiaut.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Yáo',
-    size: 'x-large',
-    type: 'duck',
-    category: 'misc',
-    price: 612868.21,
-    quantity: 814864,
-    description: 'Visionary mission-critical moratorium'
-  },
-  {
-    name: 'Cléa',
-    size: 'small',
-    material: 'yellow',
-    type: 'duck',
+    type: 'yellow-duck',
     category: 'gamer',
-    price: 73354.58,
-    quantity: 604860,
-    description: 'Focused maximized standardization',
-    imageUrl: 'https://robohash.org/modienimquia.jpg?size=50x50&set=set1'
+    price: 100,
+    quantity: 23,
+    description:
+      'rutrum ac lobortis vel dapibus at diam nam tristique tortor eu',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
   },
   {
-    name: 'Hélèna',
-    size: 'large',
-    type: 'outfit',
-    category: 'xmas',
-    price: 322591.98,
-    quantity: 406727,
-    description: 'Open-source responsive frame'
-  },
-  {
-    name: 'Méng',
-    size: 'large',
-    type: 'misc',
-    category: 'halloween',
-    price: 23825.78,
-    quantity: 110912,
-    description: 'Centralized bottom-line encoding',
-    imageUrl: 'https://robohash.org/deseruntsintdebitis.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Publicité',
-    size: 'medium',
-    material: 'blue',
-    type: 'misc',
-    category: 'summer',
-    price: 903072.22,
-    quantity: 916270,
-    description: 'Multi-layered cohesive standardization',
-    imageUrl: 'https://robohash.org/sitdoloresed.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Maïwenn',
-    size: 'large',
-    material: 'yellow',
-    type: 'outfit',
-    category: 'xmas',
-    price: 116308.4,
-    quantity: 364228,
-    description: 'Self-enabling demand-driven functionalities',
-    imageUrl:
-      'https://robohash.org/praesentiumullamofficiis.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Cléa',
-    size: 'small',
-    material: 'purple',
-    type: 'outfit',
-    category: 'gamer',
-    price: 548695.44,
-    quantity: 342327,
-    description: 'Re-engineered bandwidth-monitored software',
-    imageUrl: 'https://robohash.org/deseruntetdebitis.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Pò',
-    size: 'medium',
-    material: 'red',
-    type: 'duck',
-    category: 'summer',
-    price: 82687.47,
-    quantity: 504052,
-    description: 'Up-sized 5th generation archive',
-    imageUrl: 'https://robohash.org/fugaestsapiente.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Crééz',
-    size: 'small',
-    material: 'red',
-    type: 'duck',
-    category: 'halloween',
-    price: 398464.28,
-    quantity: 82608,
-    description: 'Monitored uniform migration',
-    imageUrl: 'https://robohash.org/voluptatemullameos.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Mén',
-    size: 'small',
-    type: 'misc',
-    category: 'misc',
-    price: 839629.82,
-    quantity: 390076,
-    description: 'Fully-configurable multi-tasking model',
-    imageUrl:
-      'https://robohash.org/iuresimiliquenesciunt.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Cinéma',
-    size: 'small',
-    type: 'accessory',
-    category: 'gamer',
-    price: 922412.91,
-    quantity: 96112,
-    description: 'Devolved attitude-oriented structure',
-    imageUrl:
-      'https://robohash.org/etrepudiandaeratione.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Eloïse',
+    name: 'risus praesent lectus',
     size: 'x-large',
-    type: 'outfit',
-    category: 'misc',
-    price: 280167.22,
-    quantity: 733727,
-    description: 'Optimized uniform matrices',
-    imageUrl: 'https://robohash.org/etquiaet.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Aloïs',
-    size: 'medium',
-    type: 'misc',
-    category: 'misc',
-    price: 393374.54,
-    quantity: 675199,
-    description: 'Distributed client-driven alliance',
-    imageUrl: 'https://robohash.org/nemoadet.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Cinéma',
-    size: 'small',
-    type: 'misc',
-    category: 'summer',
-    price: 421958.55,
-    quantity: 28861,
-    description: 'Optional encompassing capacity',
-    imageUrl: 'https://robohash.org/doloribuseosdolorem.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Publicité',
-    size: 'large',
-    material: 'purple',
-    type: 'misc',
-    category: 'misc',
-    price: 393389.85,
-    quantity: 206103,
-    description: 'Down-sized foreground policy',
-    imageUrl:
-      'https://robohash.org/laboreperspiciatisrem.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Yóu',
-    size: 'small',
-    material: 'yellow',
-    type: 'accessory',
-    category: 'gamer',
-    price: 501149.22,
-    quantity: 230871,
-    description: 'Digitized empowering software'
-  },
-  {
-    name: 'Maïwenn',
-    size: 'medium',
-    type: 'duck',
-    category: 'misc',
-    price: 324373.85,
-    quantity: 337293,
-    description: 'Face to face background benchmark',
-    imageUrl: 'https://robohash.org/aquisest.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Angélique',
-    size: 'medium',
-    type: 'duck',
-    category: 'summer',
-    price: 913180.5,
-    quantity: 888937,
-    description: 'Synergized 24 hour groupware'
-  },
-  {
-    name: 'Adèle',
-    size: 'large',
-    type: 'outfit',
-    category: 'medieval',
-    price: 312385.35,
-    quantity: 387260,
-    description: 'Ameliorated 6th generation neural-net',
-    imageUrl:
-      'https://robohash.org/officiisquisconsequuntur.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Desirée',
-    size: 'medium',
-    type: 'duck',
-    category: 'medieval',
-    price: 880040.56,
-    quantity: 948748,
-    description: 'Profit-focused didactic monitoring',
-    imageUrl:
-      'https://robohash.org/impeditvoluptatemexcepturi.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Lèi',
-    size: 'small',
-    type: 'outfit',
-    category: 'business/casual',
-    price: 113156.26,
-    quantity: 41423,
-    description: 'Reactive stable application',
-    imageUrl:
-      'https://robohash.org/perferendisnostrumcommodi.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Marlène',
-    size: 'large',
-    material: 'silver',
-    type: 'outfit',
-    category: 'summer',
-    price: 603994.61,
-    quantity: 123597,
-    description: 'Vision-oriented radical open architecture',
-    imageUrl:
-      'https://robohash.org/maximeperspiciatisdolorem.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Dà',
-    size: 'small',
-    material: 'blue',
-    type: 'preset',
-    category: 'xmas',
-    price: 83097.3,
-    quantity: 841930,
-    description: 'Intuitive bi-directional service-desk',
-    imageUrl:
-      'https://robohash.org/nullavoluptatemofficiis.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Célestine',
-    size: 'small',
-    type: 'outfit',
-    category: 'summer',
-    price: 882710.97,
-    quantity: 321583,
-    description: 'Inverse zero tolerance array',
-    imageUrl: 'https://robohash.org/deseruntetomnis.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Fèi',
-    size: 'medium',
-    type: 'outfit',
-    category: 'medieval',
-    price: 347867.5,
-    quantity: 340392,
-    description: 'Universal responsive software',
-    imageUrl: 'https://robohash.org/aliasilloblanditiis.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Eugénie',
-    size: 'x-large',
-    type: 'accessory',
-    category: 'summer',
-    price: 923628.4,
-    quantity: 408209,
-    description: 'Sharable real-time structure',
-    imageUrl: 'https://robohash.org/corporisomnislibero.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Lyséa',
-    size: 'large',
-    type: 'outfit',
-    category: 'halloween',
-    price: 354524.46,
-    quantity: 711481,
-    description: 'Reverse-engineered 5th generation success',
-    imageUrl:
-      'https://robohash.org/eaquevoluptatemvoluptatem.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Médiamass',
-    size: 'large',
-    material: 'red',
-    type: 'accessory',
-    category: 'misc',
-    price: 649795.73,
-    quantity: 595024,
-    description: 'Team-oriented foreground paradigm',
-    imageUrl:
-      'https://robohash.org/temporeconsecteturlaboriosam.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Daphnée',
-    size: 'small',
-    material: 'silver',
-    type: 'preset',
-    category: 'halloween',
-    price: 397108.67,
-    quantity: 424006,
-    description: 'Seamless empowering leverage',
-    imageUrl: 'https://robohash.org/adaliquamnisi.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Nuó',
-    size: 'large',
-    type: 'preset',
-    category: 'medieval',
-    price: 138780.44,
-    quantity: 608462,
-    description: 'Vision-oriented actuating attitude',
-    imageUrl: 'https://robohash.org/suntsedminima.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Pò',
-    size: 'small',
-    type: 'accessory',
-    category: 'business/casual',
-    price: 762070.0,
-    quantity: 664401,
-    description: 'Networked interactive functionalities',
-    imageUrl: 'https://robohash.org/etvelitdoloribus.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Marie-josée',
-    size: 'large',
-    material: 'blue',
-    type: 'preset',
-    category: 'xmas',
-    price: 699142.55,
-    quantity: 22671,
-    description: 'Enterprise-wide regional system engine',
-    imageUrl: 'https://robohash.org/magnianimivoluptate.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Marie-hélène',
-    size: 'medium',
-    type: 'preset',
-    category: 'xmas',
-    price: 20212.28,
-    quantity: 744092,
-    description: 'Seamless well-modulated project',
-    imageUrl: 'https://robohash.org/commodisedratione.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Lauréna',
-    size: 'x-large',
-    material: 'gold',
-    type: 'accessory',
-    category: 'xmas',
-    price: 291865.74,
-    quantity: 691920,
-    description: 'Exclusive local definition',
-    imageUrl:
-      'https://robohash.org/occaecatireprehenderitsed.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Josée',
-    size: 'x-large',
-    type: 'duck',
-    category: 'halloween',
-    price: 743099.29,
-    quantity: 314353,
-    description: 'Switchable analyzing encoding'
-  },
-  {
-    name: 'Bérengère',
-    size: 'x-large',
-    material: 'yellow',
-    type: 'misc',
-    category: 'xmas',
-    price: 595022.33,
-    quantity: 877438,
-    description: 'Focused mission-critical encryption',
-    imageUrl: 'https://robohash.org/dolorquiaaut.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Örjan',
-    size: 'x-large',
-    material: 'gold',
-    type: 'preset',
-    category: 'xmas',
-    price: 396428.57,
-    quantity: 631477,
-    description: 'Customer-focused bottom-line local area network',
-    imageUrl:
-      'https://robohash.org/placeatdebitispossimus.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Fèi',
-    size: 'small',
-    type: 'outfit',
-    category: 'business/casual',
-    price: 745121.65,
-    quantity: 582872,
-    description: 'Progressive systematic superstructure',
-    imageUrl:
-      'https://robohash.org/consequunturnemoaliquid.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Danièle',
-    size: 'medium',
-    material: 'blue',
-    type: 'preset',
-    category: 'misc',
-    price: 51798.06,
-    quantity: 997372,
-    description: 'Phased fault-tolerant budgetary management',
-    imageUrl:
-      'https://robohash.org/quasirepudiandaeexercitationem.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Eléonore',
-    size: 'large',
-    type: 'outfit',
-    category: 'halloween',
-    price: 20884.92,
-    quantity: 248747,
-    description: 'Adaptive 3rd generation capacity',
-    imageUrl:
-      'https://robohash.org/voluptatemeiusexercitationem.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Crééz',
-    size: 'medium',
-    type: 'outfit',
-    category: 'summer',
-    price: 589732.42,
-    quantity: 44472,
-    description: 'Adaptive zero defect open architecture'
-  },
-  {
-    name: 'Médiamass',
-    size: 'medium',
-    material: 'red',
-    type: 'outfit',
-    category: 'gamer',
-    price: 356367.84,
-    quantity: 487537,
-    description: 'Self-enabling heuristic frame',
-    imageUrl: 'https://robohash.org/quositquos.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Hélène',
-    size: 'medium',
-    type: 'misc',
-    category: 'halloween',
-    price: 179905.02,
-    quantity: 808934,
-    description: 'Optional multimedia data-warehouse',
-    imageUrl: 'https://robohash.org/inenimfacilis.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Illustrée',
-    size: 'medium',
-    material: 'red',
-    type: 'misc',
-    category: 'halloween',
-    price: 837383.29,
-    quantity: 546917,
-    description: 'Decentralized real-time Graphic Interface',
-    imageUrl:
-      'https://robohash.org/mollitiaquianesciunt.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Maïlys',
-    size: 'x-large',
-    type: 'misc',
-    category: 'gamer',
-    price: 31595.83,
-    quantity: 464415,
-    description: 'Open-architected incremental function',
-    imageUrl: 'https://robohash.org/nullaevenietquia.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Tán',
-    size: 'small',
-    type: 'outfit',
-    category: 'gamer',
-    price: 610567.16,
-    quantity: 326447,
-    description: 'Mandatory 6th generation success',
-    imageUrl: 'https://robohash.org/saepeundeodio.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Méthode',
-    size: 'small',
-    type: 'preset',
-    category: 'misc',
-    price: 414662.84,
-    quantity: 371030,
-    description: 'Multi-channelled reciprocal hub',
-    imageUrl:
-      'https://robohash.org/consequaturadipiscivoluptas.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Adélie',
-    size: 'small',
-    material: 'blue',
     type: 'accessory',
     category: 'medieval',
-    price: 910876.36,
-    quantity: 419748,
-    description: 'Secured next generation internet solution',
-    imageUrl: 'https://robohash.org/facilissunttempora.jpg?size=50x50&set=set1'
+    price: 100,
+    quantity: 62,
+    description:
+      'faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
   },
   {
-    name: 'Nuó',
-    size: 'large',
-    type: 'duck',
-    category: 'halloween',
-    price: 954082.53,
-    quantity: 410653,
-    description: 'Innovative zero tolerance adapter',
-    imageUrl: 'https://robohash.org/reiciendisestdicta.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Léa',
-    size: 'large',
-    type: 'misc',
-    category: 'business/casual',
-    price: 229305.81,
-    quantity: 46113,
-    description: 'Reverse-engineered coherent function',
-    imageUrl: 'https://robohash.org/optioquiatenetur.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Gaïa',
+    name: 'turpis donec posuere',
     size: 'medium',
-    material: 'red',
-    type: 'accessory',
-    category: 'medieval',
-    price: 204217.18,
-    quantity: 664640,
-    description: 'Triple-buffered explicit benchmark',
-    imageUrl:
-      'https://robohash.org/eaaccusantiumcorporis.jpg?size=50x50&set=set1'
+    type: 'purple-duck',
+    category: 'business/casual',
+    price: 100,
+    quantity: 4,
+    description:
+      'blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis',
+    imageUrl: 'http://dummyimage.com/250x250.png/5fa2dd/ffffff'
   },
   {
-    name: 'Adélie',
+    name: 'tincidunt eu felis fusce posuere',
     size: 'small',
-    material: 'silver',
-    type: 'misc',
-    category: 'xmas',
-    price: 756862.64,
-    quantity: 681228,
-    description: 'Intuitive fault-tolerant extranet',
-    imageUrl: 'https://robohash.org/inciduntcumeum.jpg?size=50x50&set=set1'
+    type: 'preset',
+    price: 100,
+    quantity: 85,
+    description:
+      'hac habitasse platea dictumst maecenas ut massa quis augue luctus',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
   },
   {
-    name: 'Gaïa',
+    name: 'erat tortor sollicitudin mi sit',
     size: 'small',
     type: 'outfit',
-    category: 'gamer',
-    price: 716197.0,
-    quantity: 577688,
-    description: 'Decentralized radical approach',
-    imageUrl: 'https://robohash.org/dolorempariaturnisi.bmp?size=50x50&set=set1'
-  },
-  {
-    name: 'Anaé',
-    size: 'large',
-    material: 'gold',
-    type: 'accessory',
     category: 'misc',
-    price: 444657.54,
-    quantity: 8357,
-    description: 'Function-based heuristic functionalities',
-    imageUrl:
-      'https://robohash.org/quidemtemporibusquia.png?size=50x50&set=set1'
+    price: 100,
+    quantity: 25,
+    description:
+      'amet cursus id turpis integer aliquet massa id lobortis convallis tortor',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
   },
   {
-    name: 'Agnès',
-    size: 'large',
-    material: 'purple',
+    name: 'justo eu massa donec',
+    size: 'x-large',
     type: 'misc',
-    category: 'business/casual',
-    price: 181567.29,
-    quantity: 5265,
-    description: 'Mandatory object-oriented core',
-    imageUrl: 'https://robohash.org/assumendavelut.jpg?size=50x50&set=set1'
+    category: 'summer',
+    price: 100,
+    quantity: 16,
+    description:
+      'volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in',
+    imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
   },
   {
-    name: 'Maëlys',
+    name: 'curae duis faucibus accumsan odio',
+    type: 'silver-duck',
+    category: 'halloween',
+    price: 100,
+    quantity: 55,
+    description:
+      'nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+  },
+  {
+    name: 'eu orci mauris',
     size: 'medium',
+    type: 'silver-duck',
+    category: 'business/casual',
+    price: 100,
+    quantity: 6,
+    description:
+      'at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+  },
+  {
+    name: 'semper porta volutpat',
+    size: 'large',
+    type: 'gold-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 98,
+    description:
+      'cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+  },
+  {
+    name: 'pellentesque ultrices phasellus id sapien',
+    size: 'large',
+    type: 'gold-duck',
+    category: 'xmas',
+    price: 100,
+    quantity: 22,
+    description:
+      'in porttitor pede justo eu massa donec dapibus duis at velit eu est',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+  },
+  {
+    name: 'sed accumsan felis',
+    size: 'large',
+    category: 'gamer',
+    price: 100,
+    quantity: 36,
+    description:
+      'fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+  },
+  {
+    name: 'quis tortor id nulla',
+    size: 'small',
+    type: 'outfit',
+    category: 'business/casual',
+    price: 100,
+    quantity: 37,
+    description:
+      'ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+  },
+  {
+    name: 'vivamus vestibulum sagittis sapien',
+    size: 'small',
+    type: 'purple-duck',
+    category: 'gamer',
+    price: 100,
+    quantity: 82,
+    description:
+      'est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+  },
+  {
+    name: 'quam a odio in',
+    size: 'medium',
+    category: 'misc',
+    price: 100,
+    quantity: 9,
+    description:
+      'sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
+  },
+  {
+    name: 'tortor sollicitudin mi',
+    type: 'preset',
+    category: 'halloween',
+    price: 100,
+    quantity: 65,
+    description:
+      'odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+  },
+  {
+    name: 'convallis eget eleifend',
+    size: 'x-large',
+    type: 'red-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 12,
+    description:
+      'lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
+  },
+  {
+    name: 'sed sagittis nam',
+    size: 'medium',
+    type: 'gold-duck',
+    category: 'business/casual',
+    price: 100,
+    quantity: 87,
+    description: 'amet sem fusce consequat nulla nisl nunc nisl duis bibendum',
+    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+  },
+  {
+    name: 'nec molestie sed justo pellentesque',
+    size: 'large',
+    type: 'yellow-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 17,
+    description:
+      'lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce',
+    imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
+  },
+  {
+    name: 'est donec odio justo',
+    size: 'small',
+    category: 'gamer',
+    price: 100,
+    quantity: 77,
+    description:
+      'et ultrices posuere cubilia curae nulla dapibus dolor vel est',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+  },
+  {
+    name: 'aliquam erat volutpat',
+    type: 'yellow-duck',
+    category: 'xmas',
+    price: 100,
+    quantity: 87,
+    description:
+      'accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
+  },
+  {
+    name: 'lectus in quam fringilla rhoncus',
+    size: 'small',
+    type: 'yellow-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 63,
+    description:
+      'varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+  },
+  {
+    name: 'ligula vehicula consequat morbi',
+    size: 'medium',
+    type: 'accessory',
+    category: 'halloween',
+    price: 100,
+    quantity: 82,
+    description:
+      'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+  },
+  {
+    name: 'sit amet consectetuer adipiscing elit',
+    size: 'large',
+    type: 'red-duck',
+    category: 'medieval',
+    price: 100,
+    quantity: 76,
+    description:
+      'faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio',
+    imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
+  },
+  {
+    name: 'sit amet nulla quisque',
+    size: 'x-large',
+    category: 'medieval',
+    price: 100,
+    quantity: 7,
+    description:
+      'bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis',
+    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+  },
+  {
+    name: 'mauris enim leo rhoncus',
+    size: 'large',
+    type: 'purple-duck',
+    category: 'xmas',
+    price: 100,
+    quantity: 91,
+    description:
+      'a pede posuere nonummy integer non velit donec diam neque vestibulum eget vulputate',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+  },
+  {
+    name: 'nullam porttitor lacus',
+    size: 'x-large',
+    type: 'yellow-duck',
+    price: 100,
+    quantity: 36,
+    description:
+      'vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
+  },
+  {
+    name: 'hac habitasse platea dictumst',
+    size: 'large',
+    type: 'silver-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 75,
+    description:
+      'suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce',
+    imageUrl: 'http://dummyimage.com/250x250.png/5fa2dd/ffffff'
+  },
+  {
+    name: 'vestibulum quam sapien',
+    size: 'small',
+    type: 'yellow-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 8,
+    description: 'morbi odio odio elementum eu interdum eu tincidunt in leo',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
+  },
+  {
+    name: 'posuere cubilia curae',
+    size: 'large',
+    type: 'misc',
+    category: 'summer',
+    price: 100,
+    quantity: 28,
+    description:
+      'sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est',
+    imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
+  },
+  {
+    name: 'erat eros viverra eget congue',
+    size: 'small',
+    type: 'misc',
+    category: 'misc',
+    price: 100,
+    quantity: 52,
+    description:
+      'tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+  },
+  {
+    name: 'justo aliquam quis turpis eget',
+    size: 'x-large',
+    type: 'purple-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 50,
+    description:
+      'turpis a pede posuere nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
+  },
+  {
+    name: 'et ultrices posuere cubilia curae',
+    size: 'small',
+    category: 'gamer',
+    price: 100,
+    quantity: 77,
+    description:
+      'mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
+  },
+  {
+    name: 'pellentesque ultrices phasellus id',
+    size: 'small',
+    type: 'misc',
+    price: 100,
+    description:
+      'penatibus et magnis dis parturient montes nascetur ridiculus mus etiam',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+  },
+  {
+    name: 'amet cursus id',
+    size: 'large',
+    category: 'medieval',
+    price: 100,
+    description:
+      'nec nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla',
+    imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
+  },
+  {
+    name: 'adipiscing elit proin',
+    size: 'small',
+    type: 'yellow-duck',
+    category: 'medieval',
+    price: 100,
+    description:
+      'id mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus at',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+  },
+  {
+    name: 'nunc rhoncus dui vel sem',
+    size: 'small',
+    type: 'outfit',
+    category: 'misc',
+    price: 100,
+    quantity: 8,
+    description:
+      'egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
+  },
+  {
+    name: 'at diam nam',
+    size: 'x-large',
+    type: 'gold-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 69,
+    description:
+      'curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
+  },
+  {
+    name: 'amet justo morbi',
+    size: 'medium',
+    type: 'gold-duck',
+    price: 100,
+    quantity: 46,
+    description:
+      'amet justo morbi ut odio cras mi pede malesuada in imperdiet et commodo',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+  },
+  {
+    name: 'luctus cum sociis natoque penatibus',
+    size: 'medium',
+    type: 'purple-duck',
+    category: 'medieval',
+    price: 100,
+    quantity: 82,
+    description:
+      'egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque',
+    imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
+  },
+  {
+    name: 'condimentum curabitur in libero',
+    size: 'medium',
+    type: 'blue-duck',
+    price: 100,
+    quantity: 54,
+    description:
+      'suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+  },
+  {
+    name: 'id nulla ultrices aliquet maecenas',
+    size: 'x-large',
+    type: 'purple-duck',
+    category: 'gamer',
+    price: 100,
+    quantity: 71,
+    description:
+      'lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo',
+    imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
+  },
+  {
+    name: 'mollis molestie lorem quisque',
+    size: 'small',
+    type: 'outfit',
+    category: 'misc',
+    price: 100,
+    quantity: 100,
+    description:
+      'viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra',
+    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+  },
+  {
+    name: 'ipsum primis in faucibus orci',
+    size: 'medium',
+    type: 'gold-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 15,
+    description:
+      'curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+  },
+  {
+    name: 'rutrum nulla tellus in sagittis',
+    size: 'large',
+    type: 'red-duck',
+    category: 'medieval',
+    price: 100,
+    quantity: 56,
+    description: 'arcu sed augue aliquam erat volutpat in congue etiam justo',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
+  },
+  {
+    name: 'montes nascetur ridiculus mus etiam',
+    size: 'medium',
+    type: 'blue-duck',
+    category: 'gamer',
+    price: 100,
+    quantity: 89,
+    description:
+      'iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+  },
+  {
+    name: 'sit amet consectetuer adipiscing',
+    size: 'small',
+    type: 'misc',
+    price: 100,
+    quantity: 88,
+    description:
+      'molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+  },
+  {
+    name: 'id pretium iaculis diam',
+    size: 'large',
+    type: 'blue-duck',
+    price: 100,
+    quantity: 8,
+    description:
+      'quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam',
+    imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
+  },
+  {
+    name: 'nulla integer pede',
+    size: 'large',
     type: 'preset',
     category: 'xmas',
-    price: 206607.39,
-    quantity: 180881,
-    description: 'Profound mobile leverage',
-    imageUrl: 'https://robohash.org/idcommodianimi.jpg?size=50x50&set=set1'
+    price: 100,
+    quantity: 78,
+    description:
+      'magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
   },
   {
-    name: 'Torbjörn',
+    name: 'non mi integer ac',
+    size: 'medium',
+    type: 'misc',
+    price: 100,
+    quantity: 98,
+    description:
+      'eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+  },
+  {
+    name: 'nam ultrices libero',
+    size: 'medium',
+    type: 'purple-duck',
+    price: 100,
+    quantity: 25,
+    description:
+      'donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+  },
+  {
+    name: 'leo odio porttitor',
+    size: 'x-large',
+    category: 'xmas',
+    price: 100,
+    quantity: 38,
+    description:
+      'congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+  },
+  {
+    name: 'donec ut dolor morbi',
+    size: 'small',
+    type: 'misc',
+    category: 'halloween',
+    price: 100,
+    quantity: 0,
+    description:
+      'cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+  },
+  {
+    name: 'rutrum nulla nunc purus',
+    size: 'small',
+    type: 'red-duck',
+    category: 'medieval',
+    price: 100,
+    quantity: 90,
+    description:
+      'iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+  },
+  {
+    name: 'penatibus et magnis dis parturient',
+    size: 'large',
+    category: 'misc',
+    price: 100,
+    quantity: 96,
+    description:
+      'id luctus nec molestie sed justo pellentesque viverra pede ac diam cras',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
+  },
+  {
+    name: 'turpis integer aliquet massa id',
     size: 'large',
     type: 'accessory',
-    category: 'halloween',
-    price: 720272.53,
-    quantity: 323246,
-    description: 'Optimized cohesive complexity',
-    imageUrl: 'https://robohash.org/autindolorem.jpg?size=50x50&set=set1'
+    price: 100,
+    quantity: 73,
+    description:
+      'consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
   },
   {
-    name: 'Pénélope',
-    size: 'medium',
-    material: 'red',
-    type: 'preset',
-    category: 'halloween',
-    price: 249935.39,
-    quantity: 43055,
-    description: 'De-engineered global hierarchy',
-    imageUrl: 'https://robohash.org/eiusexcepturienim.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Cloé',
-    size: 'x-large',
-    type: 'duck',
-    category: 'business/casual',
-    price: 535261.82,
-    quantity: 50610,
-    description: 'Cross-platform national middleware',
-    imageUrl: 'https://robohash.org/quisvoluptatemest.jpg?size=50x50&set=set1'
-  },
-  {
-    name: 'Zhì',
-    size: 'x-large',
-    type: 'misc',
-    category: 'medieval',
-    price: 66846.93,
-    quantity: 67178,
-    description: 'Ameliorated motivating success',
-    imageUrl: 'https://robohash.org/maioresatquequia.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Séverine',
-    size: 'x-large',
-    type: 'preset',
-    category: 'business/casual',
-    price: 86096.37,
-    quantity: 642005,
-    description: 'Grass-roots 24/7 open system',
-    imageUrl: 'https://robohash.org/quidemsaepeporro.png?size=50x50&set=set1'
-  },
-  {
-    name: 'Danièle',
-    size: 'x-large',
+    name: 'odio consequat varius',
+    size: 'small',
     type: 'preset',
     category: 'gamer',
-    price: 549866.53,
-    quantity: 358404,
-    description: 'Synchronised composite function'
+    price: 100,
+    quantity: 87,
+    description:
+      'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+  },
+  {
+    name: 'sollicitudin mi sit',
+    type: 'outfit',
+    price: 100,
+    quantity: 67,
+    description:
+      'lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at',
+    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+  },
+  {
+    name: 'nulla ut erat id mauris',
+    size: 'large',
+    type: 'purple-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 47,
+    description:
+      'curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi',
+    imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
+  },
+  {
+    name: 'eleifend quam a odio',
+    size: 'large',
+    type: 'silver-duck',
+    category: 'medieval',
+    price: 100,
+    quantity: 43,
+    description:
+      'ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+  },
+  {
+    name: 'ante ipsum primis in faucibus',
+    size: 'large',
+    category: 'xmas',
+    price: 100,
+    quantity: 55,
+    description:
+      'in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+  },
+  {
+    name: 'ornare consequat lectus in',
+    size: 'x-large',
+    type: 'blue-duck',
+    category: 'misc',
+    price: 100,
+    quantity: 2,
+    description:
+      'vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam',
+    imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
+  },
+  {
+    name: 'odio donec vitae nisi',
+    size: 'large',
+    type: 'preset',
+    category: 'halloween',
+    price: 100,
+    quantity: 49,
+    description:
+      'vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+  },
+  {
+    name: 'congue diam id',
+    size: 'x-large',
+    type: 'red-duck',
+    category: 'gamer',
+    price: 100,
+    quantity: 59,
+    description:
+      'orci eget orci vehicula condimentum curabitur in libero ut massa volutpat',
+    imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
+  },
+  {
+    name: 'donec posuere metus vitae ipsum',
+    size: 'medium',
+    type: 'blue-duck',
+    category: 'business/casual',
+    price: 100,
+    quantity: 59,
+    description:
+      'condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+  },
+  {
+    name: 'nam tristique tortor eu',
+    size: 'small',
+    type: 'yellow-duck',
+    category: 'medieval',
+    price: 100,
+    quantity: 68,
+    description:
+      'et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
+  },
+  {
+    name: 'vestibulum quam sapien',
+    size: 'small',
+    type: 'blue-duck',
+    category: 'summer',
+    price: 100,
+    quantity: 68,
+    description:
+      'aliquet maecenas leo odio condimentum id luctus nec molestie sed justo',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+  },
+  {
+    name: 'ornare imperdiet sapien',
+    size: 'x-large',
+    type: 'silver-duck',
+    category: 'medieval',
+    price: 100,
+    quantity: 6,
+    description:
+      'pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
+  },
+  {
+    name: 'id massa id nisl venenatis',
+    size: 'small',
+    type: 'silver-duck',
+    category: 'halloween',
+    price: 100,
+    quantity: 26,
+    description:
+      'ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+  },
+  {
+    name: 'donec ut dolor morbi vel',
+    category: 'halloween',
+    price: 100,
+    quantity: 39,
+    description:
+      'eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo',
+    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+  },
+  {
+    name: 'aliquam convallis nunc proin',
+    size: 'small',
+    category: 'misc',
+    price: 100,
+    quantity: 57,
+    description:
+      'elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante',
+    imageUrl: 'http://dummyimage.com/250x250.png/5fa2dd/ffffff'
+  },
+  {
+    name: 'felis fusce posuere felis',
+    size: 'medium',
+    type: 'misc',
+    category: 'gamer',
+    price: 100,
+    quantity: 15,
+    description:
+      'felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut',
+    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+  },
+  {
+    name: 'amet justo morbi',
+    size: 'small',
+    type: 'silver-duck',
+    category: 'medieval',
+    price: 100,
+    quantity: 43,
+    description:
+      'amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac enim in tempor',
+    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
   }
 ]
 
@@ -2030,7 +2932,6 @@ const orders = [
 ]
 
 //ORDER_PRODUCTS DUMMY DATA
-
 const orderProduct = [
   {
     productId: 46,
@@ -2263,7 +3164,11 @@ async function seed() {
       return User.create(user)
     })
   )
-
+  await Promise.all(
+    shippingAddresses.map(address => {
+      return ShippingAddress.create(address)
+    })
+  )
   await Promise.all(
     products.map(product => {
       return Product.create(product)
@@ -2275,6 +3180,17 @@ async function seed() {
       return Order.create(order)
     })
   )
+  await OrderProduct.create(orderProduct[0])
+  await OrderProduct.create(orderProduct[1])
+  await OrderProduct.create(orderProduct[3])
+
+  const newUser = await User.create({
+    username: 'kayo',
+    isAdmin: true,
+    imageUrl: 'https://robohash.org/velitmolestiasut.bmp?size=50x50&set=set1',
+    email: 'kayo@gmail.com',
+    password: 'kayo'
+  })
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
