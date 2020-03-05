@@ -60,10 +60,10 @@ export const fetchSingleUser = userId => async dispatch => {
   }
 }
 
-export const auth = (email, password, method) => async dispatch => {
+export const auth = (userparam, password, method) => async dispatch => {
   let res
   try {
-    res = await axios.post(`/auth/${method}`, {email, password})
+    res = await axios.post(`/auth/${method}`, {userparam, password})
   } catch (authError) {
     return dispatch(getLoggedIn({error: authError}))
   }
