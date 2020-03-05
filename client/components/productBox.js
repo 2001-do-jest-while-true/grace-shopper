@@ -1,11 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {me, addToCartThunk} from '../store'
-
+import {fetchCart} from '../store'
+//addToCartThunk
 class ProductBox extends React.Component {
   componentDidMount() {
-    this.props.fetchLoggedUser()
+    this.props.fetchCart()
   }
 
   render() {
@@ -37,13 +37,8 @@ class ProductBox extends React.Component {
                 <option value={4}>4</option>
                 <option value={5}>5</option>
               </select>
-              <button
-                id="add-to-cart"
-                type="button"
-                onClick={() => this.props.addToCart(id, this.props.userId)}
-              >
-                {' '}
-                Add to cart{' '}
+              <button id="add-to-cart" type="button">
+                Add to cart
               </button>
             </div>
           </div>
@@ -53,13 +48,14 @@ class ProductBox extends React.Component {
   }
 }
 
+//onClick={() => this.props.addToCart(id, this.props.userId)}
 const mapState = state => ({
-  userId: state.user.loggedIn.id
+  cart: state.cart
 })
 
 const mapDispatch = dispatch => ({
-  fetchLoggedUser: () => dispatch(me()),
-  addToCart: (id, userId) => dispatch(addToCartThunk(id, userId))
+  fetchCart: () => dispatch(fetchCart())
+  //addToCart: (id, userId) => dispatch(addToCartThunk(id, userId))
 })
 
 export default connect(mapState, mapDispatch)(ProductBox)

@@ -1,15 +1,36 @@
 import React from 'react'
 
-import {Navbar} from './components'
+import {Header} from './components'
 import Routes from './routes'
 
-const App = () => {
-  return (
-    <div>
-      <Navbar />
-      <Routes />
-    </div>
-  )
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      login: false
+    }
+
+    this.loginClickHandler = this.loginClickHandler.bind(this)
+  }
+
+  loginClickHandler() {
+    const loginStatus = this.state.login
+    this.setState({
+      login: !loginStatus
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <Header
+          login={this.state.login}
+          loginClickHandler={this.loginClickHandler}
+        />
+        <Routes />
+      </div>
+    )
+  }
 }
 
 export default App

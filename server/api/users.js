@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {User, Order} = require('../db/models')
+
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -28,8 +29,7 @@ router.get('/:userId', async (req, res, next) => {
         'billingAddress',
         'email',
         'googleId',
-        'facebookId',
-        'orders'
+        'facebookId'
       ]
     })
     if (!user) res.sendStatus(404)

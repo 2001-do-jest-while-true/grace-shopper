@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts} from '../store/product'
+import {fetchAllProducts} from '../store'
 import Loader from 'react-loader-spinner'
 //import {Link} from 'react-router-dom'
 import ProductBox from './ProductBox'
@@ -12,14 +12,18 @@ class AllProducts extends React.Component {
   }
 
   render() {
-    if (this.props.loading)
-      return <Loader type="ThreeDots" color="Cyan" heigth={80} width={80} />
+    let products = this.props.products
+    const location = this.props.location
+    if (location) {
+      const type = location.search.split('=')[1]
+      products = products.filter(product => product.type === type)
+    }
     return (
       <div>
         {this.props.products.length ? (
-          this.props.products.map(product => (
+          products.map(product => (
             <div key={product.id}>
-              <ProductBox product={product} />
+              <ProductBox product={product} />}
             </div>
           ))
         ) : (
@@ -31,8 +35,7 @@ class AllProducts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.product.products,
-  loading: state.product.loading
+  products: state.allProducts
 })
 
 const mapDispatchToProps = dispatch => ({
