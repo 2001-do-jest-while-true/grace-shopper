@@ -3,8 +3,6 @@ const {User} = require('../db/models')
 module.exports = router
 
 const adminsOnly = (req, res, next) => {
-  console.log('IN ADMINS ONLY')
-  console.log('Req.user admin=', req.user.isAdmin)
   if (!req.user.isAdmin) {
     const notAllowedError = new Error('This is illegal!')
     notAllowedError.status = 401
@@ -36,9 +34,7 @@ router.get('/:userId', adminsOnly, async (req, res, next) => {
         'imageUrl',
         'shippingAddress',
         'billingAddress',
-        'email',
-        'googleId',
-        'facebookId'
+        'email'
       ]
     })
     if (!user) res.sendStatus(404)

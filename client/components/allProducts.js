@@ -13,6 +13,7 @@ class AllProducts extends React.Component {
   render() {
     let products = this.props.products
     const location = this.props.location
+    console.log('this is the location in All products', location)
     if (location) {
       const type = location.search.split('=')[1]
       products = products.filter(product => product.type === type)
