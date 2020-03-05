@@ -51,7 +51,7 @@ class SingleProduct extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  singleProduct: state.product.singleProduct
+  singleProduct: state.product
 })
 
 const mapDispatchToProps = dispatch => ({
