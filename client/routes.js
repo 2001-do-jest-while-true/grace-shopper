@@ -8,6 +8,7 @@ import AllProducts from './components/allProducts'
 import SingleProduct from './components/singleProduct'
 import allUsers from './components/allUsers'
 import SingleUser from './components/singleUser'
+import AdminUser from './components/adminUser'
 import UserSignup from './components/UserSignup'
 
 /**
@@ -19,20 +20,23 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
-
+    console.log('This is the Routes component', this.props)
+    const {isLoggedIn, isAdmin} = this.props
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/signup" component={UserSignup} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
-        <Route exact path="/users" component={allUsers} />
-        <Route path="/users/:userId" component={SingleUser} />
-        <Route exact path="/signup" component={UserSignup} />
+        {/* <Route exact path="/users" component={allUsers} />
+        <Route path="/users/:userId" component={SingleUser} /> */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            {/* <Route path="/home" component={UserHome} /> */}
+            <Route path="/home">{isAdmin ? <AdminUser /> : <UserHome />}</Route>
+            <Route exact path="/users" component={allUsers} />
+            <Route path="/users/:userId" component={SingleUser} />
           </Switch>
         )}
         <Route path="/">
@@ -50,7 +54,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.loggedIn.id
+    isLoggedIn: !!state.user.loggedIn.id,
+    isAdmin: state.user.loggedIn.isAdmin
   }
 }
 

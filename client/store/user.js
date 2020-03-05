@@ -35,9 +35,7 @@ const addUser = user => ({type: ADD_USER, user})
 
 export const addUserThunk = user => async dispatch => {
   try {
-    console.log('HERE IS MY NEW USER IN THUNK', user)
     const {data} = await axios.post('/api/users/signup', user)
-    console.log('HERE IS THE DATA IN THUNK', data)
     dispatch(addUser(data))
   } catch (error) {
     console.error(error)
@@ -71,10 +69,10 @@ export const fetchSingleUser = userId => async dispatch => {
   }
 }
 
-export const auth = (email, password, method) => async dispatch => {
+export const auth = (userparam, password, method) => async dispatch => {
   let res
   try {
-    res = await axios.post(`/auth/${method}`, {email, password})
+    res = await axios.post(`/auth/${method}`, {userparam, password})
   } catch (authError) {
     return dispatch(getLoggedIn({error: authError}))
   }

@@ -16,10 +16,13 @@ class UserSignup extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    const validEmail = this.validateEmail(e.target.email.value)
     const validImageUrl = this.validateImageUrl(e.target.imageUrl.value)
-    if (validEmail && validImageUrl) {
-      // e.preventDefault()
+    const validEmail = this.validateEmail(e.target.email.value)
+
+    if (validImageUrl === false && e.target.imageUrl.value !== '') {
+      // eslint-disable-next-line no-alert
+      alert('Please upload only in jpeg, png, jpg, gif')
+    } else if (validEmail === true) {
       const newUser = {
         username: e.target.username.value,
         imageUrl: e.target.imageUrl.value,
@@ -28,11 +31,12 @@ class UserSignup extends React.Component {
         email: e.target.email.value,
         password: e.target.password.value
       }
-      console.log('THIS IS NEW USER', newUser)
       this.props.addUserThunk(newUser)
     } else {
+      // eslint-disable-next-line no-alert
       alert('User not added') //remove/change this later
     }
+    // alert('Please upload in png,jpeg,jpg, or gif only')
   }
 
   validateEmail(email) {
