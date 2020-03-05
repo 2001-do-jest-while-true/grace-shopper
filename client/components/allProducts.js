@@ -2,12 +2,36 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/product'
 import {Link} from 'react-router-dom'
+import Filters from './filters'
 
 //ADD FILTERS HERE FOR FILTERING ACCORDING TO FILTER TYPE
 
 class AllProducts extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      filters: [
+        'business/casual',
+        'halloween',
+        'medieval',
+        'gamer',
+        'summer',
+        'xmas',
+        'misc'
+      ]
+    }
+
+    this.setFilters = this.setFilters.bind(this)
+  }
+
   componentDidMount() {
     this.props.fetchAllProducts()
+  }
+
+  setFilters(array) {
+    this.setState({
+      filters: [...array]
+    })
   }
 
   render() {
@@ -20,14 +44,19 @@ class AllProducts extends React.Component {
 
     return (
       <div>
+        <Filters filters={this.state.filters} setFilters={this.setFilters} />
         {this.props.products.length ? (
-          products.map(product => (
-            <div key={product.id}>
-              <Link to={`/products/${product.id}`}>{product.name}</Link>
+          products.map(product => {
+            if (this.state.filters.includes(product.category)) {
+              return (
+                <div key={product.id}>
+                  <Link to={`/products/${product.id}`}>{product.name}</Link>
 
-              <p>{product.price}</p>
-            </div>
-          ))
+                  <p>{product.price}</p>
+                </div>
+              )
+            }
+          })
         ) : (
           <p>empty products</p>
         )}
