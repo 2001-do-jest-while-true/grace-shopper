@@ -9,7 +9,9 @@ import SingleProduct from './components/singleProduct'
 import allUsers from './components/allUsers'
 import Cart from './components/cart'
 import SingleUser from './components/singleUser'
-import {initializeCartThunk} from './store/cart'
+import {initializeCartThunk, fetchCart} from './store/cart'
+
+let cartFlag = false
 //IMPORT CART COMPONENT HERE
 
 /**
@@ -18,11 +20,19 @@ import {initializeCartThunk} from './store/cart'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
-    this.props.initializeCartThunk()
   }
 
   render() {
     const {isLoggedIn} = this.props
+
+    if (this.props.loggedIn.id > 0 && !this.props.orderId) {
+      this.props.initializeCartThunk(this.props.loggedIn.id)
+    }
+
+    if (this.props.orderId && !cartFlag) {
+      this.props.fetchCart(this.props.orderId)
+      cartFlag = true
+    }
 
     return (
       <Switch>
@@ -53,13 +63,16 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.loggedIn.id,
-    cart: state.cart.cart
+    cart: state.cart.cart,
+    loggedIn: state.user.loggedIn,
+    orderId: state.cart.orderId
   }
 }
 
 const mapDispatch = dispatch => ({
   loadInitialData: () => dispatch(me()),
-  initializeCartThunk: () => dispatch(initializeCartThunk())
+  initializeCartThunk: userId => dispatch(initializeCartThunk(userId)),
+  fetchCart: orderId => dispatch(fetchCart(orderId))
 })
 
 // The `withRouter` wrapper makes sure that updates are not blocked

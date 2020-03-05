@@ -25,9 +25,10 @@ const getCart = productsWithQuantity => ({
 })
 
 //I AM RETURNING PRODUCTS; SHOULD I ONLY RETURN THE PRODUCT ADDED???
-const addToCart = productWithQuantity => ({
+export const addToCart = (productId, quantity) => ({
   type: ADD_TO_CART,
-  productWithQuantity
+  productId,
+  quantity
 })
 
 const deleteFromCart = product => ({
@@ -40,9 +41,9 @@ const deleteCart = () => ({
 })
 
 // THUNK CREATORS
-export const initializeCartThunk = () => async dispatch => {
+export const initializeCartThunk = userId => async dispatch => {
   try {
-    const {data} = await axios.get('/api/cart')
+    const {data} = await axios.get(`/api/cart?id=${userId}`)
     dispatch(initializeCart(data))
   } catch (err) {
     console.error(err)
@@ -60,23 +61,23 @@ export const fetchCart = orderId => async dispatch => {
   }
 }
 
-export const addToCartThunk = (
-  productId,
-  quantity,
-  orderId
-) => async dispatch => {
-  try {
-    const newProduct = await axios.put('/api/cart', {
-      productId: productId,
-      quantity: quantity,
-      orderId: orderId
-    })
-    dispatch(addToCart(newProduct))
-  } catch (err) {
-    console.error(err)
-    console.error(err.stack)
-  }
-}
+// export const addToCartThunk = (
+//   productId,
+//   quantity,
+//   orderId
+// ) => async dispatch => {
+//   try {
+//     const newProduct = await axios.put('/api/cart', {
+//       productId: productId,
+//       quantity: quantity,
+//       orderId: orderId
+//     })
+//     dispatch(addToCart(newProduct))
+//   } catch (err) {
+//     console.error(err)
+//     console.error(err.stack)
+//   }
+// }
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -84,16 +85,18 @@ export default function(state = initialState, action) {
       return {...state, orderId: action.orderId}
     case GET_CART:
       let newCart = {}
-      console.log(action.productsWithQuantity)
       action.productsWithQuantity.forEach(item => {
         newCart[item.productId] = item.quantity
       })
       return {...state, cart: newCart}
     case ADD_TO_CART:
       let updatedCart = {...state.cart}
-      const productId = action.productWithQuantity.productId
-      const quantity = action.productWithQuantity.quantity
-      updatedCart[productId] = quantity
+      if (updatedCart[action.productId]) {
+        updatedCart[action.productId] =
+          updatedCart[action.productId] + action.quantity
+      } else {
+        updatedCart[action.productId] = action.quantity
+      }
       return {...state, cart: updatedCart}
     default: {
       return state

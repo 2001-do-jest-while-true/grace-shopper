@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store'
 import Loader from 'react-loader-spinner'
 //import {Link} from 'react-router-dom'
-import ProductBox from './ProductBox'
+import ProductBox from './productBox'
 //ADD FILTERS HERE FOR FILTERING ACCORDING TO FILTER TYPE
 
 class AllProducts extends React.Component {
@@ -18,6 +18,7 @@ class AllProducts extends React.Component {
       const type = location.search.split('=')[1]
       products = products.filter(product => product.type === type)
     }
+
     return (
       <div>
         {this.props.products.length ? (
@@ -35,7 +36,9 @@ class AllProducts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.allProducts
+  products: state.allProducts,
+  orderId: state.cart.orderId,
+  cart: state.cart.cart
 })
 
 const mapDispatchToProps = dispatch => ({

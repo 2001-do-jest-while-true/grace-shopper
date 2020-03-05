@@ -1,11 +1,22 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {addToCartThunk} from '../store'
+import {addToCart} from '../store'
 //addToCartThunk
 class ProductBox extends React.Component {
-  componentDidMount() {
-    this.props.fetchCart()
+  constructor() {
+    super()
+    this.state = {
+      orderQuantity: 1
+    }
+
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange() {
+    this.setState({
+      orderQuantity: event.target.value
+    })
   }
 
   render() {
@@ -30,7 +41,12 @@ class ProductBox extends React.Component {
             </div>
             <div id="select-qty-add-to-cart">
               <label htmlFor="qty">Qty: </label>
-              <select name="quantity" id="select-item-quantity">
+              <select
+                value={this.state.orderQuantity}
+                name="quantity"
+                id="select-item-quantity"
+                onChange={this.handleChange}
+              >
                 <option value={1}>1</option>
                 <option value={2}>2</option>
                 <option value={3}>3</option>
@@ -40,7 +56,9 @@ class ProductBox extends React.Component {
               <button
                 id="add-to-cart"
                 type="button"
-                onClick={() => this.props.addToCartThunk(id)}
+                onClick={() =>
+                  this.props.addToCart(id, Number(this.state.orderQuantity))
+                }
               >
                 Add to cart
               </button>
@@ -58,8 +76,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  fetchCart: orderId => dispatch(fetchCart(orderId)),
-  addToCartThunk: (id, quantity) => dispatch(addToCartThunk(id, quantity))
+  addToCart: (id, quantity) => dispatch(addToCart(id, quantity))
 })
 
 export default connect(mapState, mapDispatch)(ProductBox)

@@ -5,36 +5,32 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const userId = req.user.id
-    const user = await User.findOne({
-      where: {
-        id: userId
-      },
-      include: [
-        {
-          model: Order
-        }
-      ]
-    })
+    let userId
+    let user
 
-    const active = user.orders.filter(
+    if (req.query.id) {
+      userId = req.query.id
+      user = await User.findOne({
+        where: {
+          id: userId
+        },
+        include: [Order]
+      })
+    }
+
+    const active = user.orders.find(
       order => order.dataValues.status === 'active'
     )
-    if (active.id) {
-      const {rows} = await OrderProduct.findAndCountAll({
-        where: {
-          orderId: active.id
-        },
-        attributes: ['productId', 'quantity']
-      })
-      res.json({orderId: active.id, cart: rows})
+
+    if (active) {
+      res.json(active.dataValues.id)
     } else {
       const created = await Order.create({
         date: Date.now(),
         status: 'active',
         userId: userId
       })
-      res.status(200).json({orderId: created.id, cart: []})
+      res.status(200).json(created.id)
     }
   } catch (err) {
     next(err)
@@ -74,11 +70,18 @@ router.get('/:orderId', async (req, res, next) => {
     const products = await OrderProduct.findAll({
       where: {
         orderId: req.params.orderId
-      }
-      //attributes: ['productId', 'quantity']
+      },
+      attributes: ['productId', 'quantity']
     })
     res.json(products)
   } catch (err) {
     next(err)
   }
 })
+
+// const {rows} = await OrderProduct.findAndCountAll({
+//   where: {
+//     orderId: active.dataValues.id
+//   },
+//   attributes: ['productId', 'quantity']
+// })
