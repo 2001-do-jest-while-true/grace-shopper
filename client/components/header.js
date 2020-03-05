@@ -23,7 +23,7 @@ const Header = props => {
               Log In
             </button>
           )}
-          <button type="button">Sign Up</button>
+          <Link to="/signup">Sign up</Link>
           <img src="cart.svg" />
         </div>
       </div>
