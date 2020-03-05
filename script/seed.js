@@ -3192,6 +3192,12 @@ async function seed() {
     password: 'kayo'
   })
 
+  await Promise.all(
+    orderProduct.map(item => {
+      return OrderProduct.create(item)
+    })
+  )
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
   console.log(`seeded ${orders.length} orders`)

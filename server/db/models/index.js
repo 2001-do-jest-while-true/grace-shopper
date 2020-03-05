@@ -4,6 +4,7 @@ const Order = require('./order')
 const OrderProduct = require('./orderProduct')
 const ShippingAddress = require('./shippingAddress')
 const db = require('../db')
+const Sequelize = require('sequelize')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
