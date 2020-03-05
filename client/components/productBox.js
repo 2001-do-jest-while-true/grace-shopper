@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchCart} from '../store'
+import {fetchCart, addToCartThunk} from '../store'
 //addToCartThunk
 class ProductBox extends React.Component {
   componentDidMount() {

@@ -5,7 +5,7 @@ const initialState = []
 // ACTION CONSTANTS
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
-const DELETE_FROM_ITEM = 'DELETE_FROM_CART'
+const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const DELETE_CART = 'DELETE_CART'
 
 // ACTION CREATORS
@@ -14,6 +14,7 @@ const getCart = products => ({
   products
 })
 
+//I AM RETURNING PRODUCTS; SHOULD I ONLY RETURN THE PRODUCT ADDED???
 const addToCart = product => ({
   type: ADD_TO_CART,
   product
@@ -38,26 +39,23 @@ export const fetchCart = () => async dispatch => {
   }
 }
 
-// export const addToCartThunk = (productId, orderId) => async dispatch => {
-//   try {
-//     const product = await axios.get(`/api/products/${productId}`)
-//     const user = await axios.get(`/api/users/${userId}`)
-//     const orders = user.data.orders
-//     const activeOrderArr = orders.filter(order => order.status === 'active')
-//     const activeOrder = activeOrderArr[0]
-//     if (activeOrder.id) {
-//       activeOrder.addProduct(product.data)
-//       dispatch(addToCart(activeOrder))
-//     } else {
-//       const newOrder = await axios.post('/api/orders')
-//       newOrder.addProduct(product.data)
-//       dispatch(addToCart(newOrder))
-//     }
-//   } catch (err) {
-//     console.error(err)
-//     console.error(err.stack)
-//   }
-// }
+export const addToCartThunk = (
+  productId,
+  orderId,
+  quantity
+) => async dispatch => {
+  try {
+    const cart = await axios.put('/api/cart', {
+      productId: productId,
+      orderId: orderId,
+      quantity: quantity
+    })
+    dispatch(addToCart(cart))
+  } catch (err) {
+    console.error(err)
+    console.error(err.stack)
+  }
+}
 
 export default function(state = initialState, action) {
   switch (action.type) {

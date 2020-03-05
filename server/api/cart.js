@@ -17,12 +17,12 @@ router.get('/', async (req, res, next) => {
       order => order.dataValues.status === 'active'
     )
     if (active.id) {
-      const products = await OrderProduct.findAll({
+      const {count, rows} = await OrderProduct.findAndCountAll({
         where: {
           orderId: active.id
         }
       })
-      res.json(products)
+      res.json(rows)
     } else {
       const created = await Order.create({
         date: Date.now(),
@@ -38,20 +38,24 @@ router.get('/', async (req, res, next) => {
 
 router.put('/', async (req, res, next) => {
   try {
-    const userId = req.user.id
-    const user = await User.findOne({
+    const productId = req.body.productId
+    const orderId = req.body.orderId
+    const quantity = req.body.quantity
+
+    const [cart, created] = await OrderProduct.findOrCreate({
       where: {
-        id: userId
+        productId,
+        orderId
       },
-      include: [Order]
+      defaults: {quantity: 1}
     })
-    const active = user.orders.filter(
-      order => order.dataValues.status === 'active'
-    )
-    if (active.id) {
-      await active.addProduct(req.body)
-      res.json(active.getProducts())
-    }
+
+    if (!created) cart.increment('quantity', {by: quantity})
+
+    const {count, rows} = await OrderProduct.findAndCountAll({
+      where: orderId
+    })
+    res.json(rows)
   } catch (err) {
     next(err)
   }
