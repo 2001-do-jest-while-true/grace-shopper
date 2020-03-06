@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchAllUsers} from '../store/user'
+import {fetchAllUsers} from '../store/admin'
 
 class AllUsers extends React.Component {
   componentDidMount() {
