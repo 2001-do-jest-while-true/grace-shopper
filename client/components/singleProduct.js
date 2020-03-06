@@ -17,7 +17,7 @@ class SingleProduct extends React.Component {
             <img src={product.imageUrl} />
             <div className="single-product-info">
               <h2>{product.name}</h2>
-              <p>Price: {product.price}</p>
+              <p>Price: {product.price / 100}</p>
               <p>
                 {product.quantity > 6 && (
                   <span className="in-stock">In stock</span>
@@ -51,7 +51,7 @@ class SingleProduct extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  singleProduct: state.product.singleProduct
+  singleProduct: state.product
 })
 
 const mapDispatchToProps = dispatch => ({

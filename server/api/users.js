@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Order} = require('../db/models')
+
 module.exports = router
 
 const adminsOnly = (req, res, next) => {
@@ -28,6 +29,7 @@ router.get('/', adminsOnly, async (req, res, next) => {
 router.get('/:userId', adminsOnly, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId, {
+      include: [{model: Order}],
       attributes: [
         'username',
         'isAdmin',

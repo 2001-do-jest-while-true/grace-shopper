@@ -24,7 +24,9 @@ const Header = props => {
             </button>
           )}
           <Link to="/signup">Sign up</Link>
-          <img src="cart.svg" />
+          <Link to="/cart">
+            <img src="cart.svg" />
+          </Link>
         </div>
       </div>
       <div id="header-bottom">

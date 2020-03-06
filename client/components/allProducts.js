@@ -1,9 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts} from '../store/product'
-import {Link} from 'react-router-dom'
+import {fetchAllProducts} from '../store'
+import Loader from 'react-loader-spinner'
+//import {Link} from 'react-router-dom'
+import ProductBox from './productBox'
 import Filters from './filters'
-
 //ADD FILTERS HERE FOR FILTERING ACCORDING TO FILTER TYPE
 
 class AllProducts extends React.Component {
@@ -37,7 +38,6 @@ class AllProducts extends React.Component {
   render() {
     let products = this.props.products
     const location = this.props.location
-    console.log('this is the location in All products', location)
     if (location) {
       const type = location.search.split('=')[1]
       products = products.filter(product => product.type === type)
@@ -51,9 +51,7 @@ class AllProducts extends React.Component {
             if (this.state.filters.includes(product.category)) {
               return (
                 <div key={product.id}>
-                  <Link to={`/products/${product.id}`}>{product.name}</Link>
-
-                  <p>{product.price}</p>
+                  <ProductBox product={product} />
                 </div>
               )
             }
@@ -67,11 +65,9 @@ class AllProducts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.product.products
+  products: state.allProducts,
+  orderId: state.cart.orderId,
+  cart: state.cart.cart
 })
 
-const mapDispatchToProps = dispatch => ({
-  fetchAllProducts: () => dispatch(fetchAllProducts())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
+export default connect(mapStateToProps)(AllProducts)
