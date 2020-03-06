@@ -2,6 +2,16 @@ const express = require('express')
 const router = express.Router()
 const {Product} = require('../db/models')
 
+//MIDDLEWARE FOR ADMIN-ACCESS-CONTROL
+const adminsOnly = (req, res, next) => {
+  if (!req.user.isAdmin) {
+    const err = new Error('Not authorized!!!')
+    err.status(401)
+    next(err)
+  }
+  next()
+}
+
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll()
@@ -11,7 +21,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', adminsOnly, async (req, res, next) => {
   try {
     const product = req.body
     const newProduct = await Product.create(product)
@@ -36,20 +46,24 @@ router.get('/:productId', async (req, res, next) => {
   }
 })
 
-// router.put('/:productId', async(req, res, next) => {
-//   try{
+router.put('/:productId', adminsOnly, async (req, res, next) => {
+  try {
+    const product = await Product.findByPk(req.params.productId)
+    const editedOrder = await product.update(req.body)
+    res.json(editedOrder)
+  } catch (error) {
+    next(error)
+  }
+})
 
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-
-// router.delete('/:productId', async(req, res, next) => {
-//   try{
-
-//   } catch (error) {
-//     next(error)
-//   }
-// })
+router.delete('/:productId', async (req, res, next) => {
+  try {
+    const productToDelete = await Product.findByPk(req.params.productId)
+    productToDelete.destroy()
+    res.redirect('/home')
+  } catch (error) {
+    next(error)
+  }
+})
 
 module.exports = router

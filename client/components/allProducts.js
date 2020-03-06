@@ -18,7 +18,8 @@ class AllProducts extends React.Component {
         'summer',
         'xmas',
         'misc'
-      ]
+      ],
+      identifier: 0
     }
 
     this.setFilters = this.setFilters.bind(this)
@@ -47,7 +48,7 @@ class AllProducts extends React.Component {
         <Filters filters={this.state.filters} setFilters={this.setFilters} />
         {this.props.products.length ? (
           products.map(product => (
-            <div key={product.id}>
+            <div>
               <ProductBox product={product} />}
             </div>
           ))

@@ -8,7 +8,7 @@ class AdminUser extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayAllProducts: false,
+      displayAllProducts: true,
       displayAllUsers: false
     }
     this.handleAllProdClick = this.handleAllProdClick.bind(this)

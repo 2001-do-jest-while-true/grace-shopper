@@ -10,6 +10,7 @@ import allUsers from './components/allUsers'
 import Cart from './components/cart'
 import SingleUser from './components/singleUser'
 import AddProduct from './components/addProduct'
+import EditProduct from './components/editProduct'
 import {initializeCartThunk, fetchCart} from './store/cart'
 
 let cartFlag = false
@@ -52,6 +53,10 @@ class Routes extends Component {
             <Route path="/users/:userId" component={SingleUser} />
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/add-product" component={AddProduct} />
+            <Route
+              path="/products/:productId/edit-product"
+              component={EditProduct}
+            />
           </Switch>
         )}
         <Route path="/">
