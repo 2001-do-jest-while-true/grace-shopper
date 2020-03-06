@@ -124,4 +124,21 @@ form div {
   display: flex;
   justify-content: center;
   align-items: center;
+
+#filter-container {
+  border: 1px solid black;
+  background-color: white;
+  padding: 10px;
+  z-index: 40;
+  position: fixed;
+}
+
+#category-filters {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-check {
+  display: flex;
+
 }

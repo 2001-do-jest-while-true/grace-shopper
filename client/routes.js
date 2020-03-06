@@ -13,6 +13,7 @@ import {initializeCartThunk, fetchCart} from './store/cart'
 
 let cartFlag = false
 //IMPORT CART COMPONENT HERE
+import AdminUser from './components/adminUser'
 
 /**
  * COMPONENT
@@ -24,7 +25,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    const {isLoggedIn, isAdmin} = this.props
 
     if (this.props.loggedIn.id > 0 && !this.props.orderId) {
       this.props.initializeCartThunk(this.props.loggedIn.id)
@@ -41,11 +42,17 @@ class Routes extends Component {
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
         <Route exact path="/cart" component={Cart} />
+        {/* <Route exact path="/users" component={allUsers} />
+        <Route path="/users/:userId" component={SingleUser} /> */}
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            {/* <Route path="/home" component={UserHome} /> */}
+            <Route path="/home">{isAdmin ? <AdminUser /> : <UserHome />}</Route>
             <Route exact path="/users" component={allUsers} />
+            <Route path="/users/:userId" component={SingleUser} />
+            <Route exact path="/cart" component={Cart} />
           </Switch>
         )}
         <Route path="/">
@@ -66,7 +73,8 @@ const mapState = state => {
     isLoggedIn: !!state.user.loggedIn.id,
     cart: state.cart.cart,
     loggedIn: state.user.loggedIn,
-    orderId: state.cart.orderId
+    orderId: state.cart.orderId,
+    isAdmin: state.user.loggedIn.isAdmin
   }
 }
 

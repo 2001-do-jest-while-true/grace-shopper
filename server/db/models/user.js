@@ -17,12 +17,14 @@ const User = db.define('user', {
     defaultValue:
       'https://image.shutterstock.com/image-vector/duck-vector-icon-260nw-670089019.jpg'
   },
-  shippingAddress: Sequelize.ARRAY(Sequelize.TEXT),
   billingAddress: Sequelize.TEXT,
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validation: {
+      isEmail: true
+    }
   },
   password: {
     type: Sequelize.STRING,

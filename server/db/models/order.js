@@ -9,14 +9,10 @@ const Order = db.define('order', {
   status: {
     type: Sequelize.STRING,
     validate: {
-      isIn: [['active', 'inactive']]
+      isIn: [['active', 'inactive', 'processing', 'fulfilled']]
     }
   }
-  // get(){
-  //   const dateOptions = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
-  //   const formatedDate = this.getDataValue('date').toLocaleString(undefined, dateOptions);
-  //   return formatedDate;
-  // }
+  //getter method - may not be needed if handled on front end
 })
 
 module.exports = Order
