@@ -7,10 +7,6 @@ import ProductBox from './productBox'
 //ADD FILTERS HERE FOR FILTERING ACCORDING TO FILTER TYPE
 
 class AllProducts extends React.Component {
-  componentDidMount() {
-    this.props.fetchAllProducts()
-  }
-
   render() {
     let products = this.props.products
     const location = this.props.location
@@ -41,8 +37,4 @@ const mapStateToProps = state => ({
   cart: state.cart.cart
 })
 
-const mapDispatchToProps = dispatch => ({
-  fetchAllProducts: () => dispatch(fetchAllProducts())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
+export default connect(mapStateToProps)(AllProducts)

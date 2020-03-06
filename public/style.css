@@ -106,3 +106,22 @@ form div {
   z-index: 99;
   position: absolute;
 }
+
+.cart-item {
+  display: flex;
+  border: 1px solid black;
+  background-color: lightgray;
+  height: 250px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cart-item div {
+  width: 30%;
+}
+
+.cart-img-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

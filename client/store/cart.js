@@ -31,9 +31,9 @@ export const addToCart = (productId, quantity) => ({
   quantity
 })
 
-const deleteFromCart = product => ({
+export const deleteFromCart = productId => ({
   type: DELETE_FROM_CART,
-  product
+  productId
 })
 
 const deleteCart = () => ({
@@ -98,6 +98,18 @@ export default function(state = initialState, action) {
         updatedCart[action.productId] = action.quantity
       }
       return {...state, cart: updatedCart}
+    case DELETE_FROM_CART: {
+      const updCart = {}
+      const productEntries = Object.entries(state.cart)
+      productEntries
+        .filter(item => +item[0] !== action.productId)
+        .forEach(item => {
+          const prodId = item[0]
+          const quantity = item[1]
+          updCart[prodId] = quantity
+        })
+      return {...state, cart: updCart}
+    }
     default: {
       return state
     }

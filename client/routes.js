@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
-import {me} from './store'
+import {me, fetchAllProducts} from './store'
 import AllProducts from './components/allProducts'
 import SingleProduct from './components/singleProduct'
 import allUsers from './components/allUsers'
@@ -20,6 +20,7 @@ let cartFlag = false
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    this.props.fetchAllProducts()
   }
 
   render() {
@@ -39,12 +40,12 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
+        <Route exact path="/cart" component={Cart} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route exact path="/users" component={allUsers} />
-            <Route exact path="/cart" component={Cart} />
           </Switch>
         )}
         <Route path="/">
@@ -72,7 +73,8 @@ const mapState = state => {
 const mapDispatch = dispatch => ({
   loadInitialData: () => dispatch(me()),
   initializeCartThunk: userId => dispatch(initializeCartThunk(userId)),
-  fetchCart: orderId => dispatch(fetchCart(orderId))
+  fetchCart: orderId => dispatch(fetchCart(orderId)),
+  fetchAllProducts: () => dispatch(fetchAllProducts())
 })
 
 // The `withRouter` wrapper makes sure that updates are not blocked
