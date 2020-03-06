@@ -25,10 +25,6 @@ class AllProducts extends React.Component {
     this.setFilters = this.setFilters.bind(this)
   }
 
-  componentDidMount() {
-    this.props.fetchAllProducts()
-  }
-
   setFilters(array) {
     this.setState({
       filters: [...array]
