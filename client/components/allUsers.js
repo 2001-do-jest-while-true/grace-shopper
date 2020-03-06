@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchAllUsers} from '../store/admin'
+import {fetchAllUsers} from '../store'
 
 class AllUsers extends React.Component {
   componentDidMount() {
@@ -26,7 +26,7 @@ class AllUsers extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  users: state.user.users
+  users: state.admin.users
 })
 const mapDispatchToProps = dispatch => ({
   fetchAllUsers: () => dispatch(fetchAllUsers())

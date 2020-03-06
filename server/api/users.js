@@ -27,9 +27,7 @@ router.get('/:userId', async (req, res, next) => {
         'imageUrl',
         'shippingAddress',
         'billingAddress',
-        'email',
-        'googleId',
-        'facebookId'
+        'email'
       ]
     })
     if (!user) res.sendStatus(404)

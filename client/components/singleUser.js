@@ -47,7 +47,7 @@ class SingleUser extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  singleUser: state.user.singleUser
+  user: state.admin.user
 })
 
 const mapDispatchToProps = dispatch => ({
