@@ -5,9 +5,10 @@ import history from '../history'
  * ACTION TYPES
  */
 const GET_LOGGED_IN = 'GET_LOGGED_IN'
+const LOG_OUT = 'LOG_OUT'
+
 const GET_USER = 'GET_USER'
 const GET_ALL_USERS = 'GET_ALL_USERS'
-const LOG_OUT = 'LOG_OUT'
 
 /**
  * INITIAL STATE
@@ -60,10 +61,10 @@ export const fetchSingleUser = userId => async dispatch => {
   }
 }
 
-export const auth = (userparam, password, method) => async dispatch => {
+export const auth = (email, password, method) => async dispatch => {
   let res
   try {
-    res = await axios.post(`/auth/${method}`, {userparam, password})
+    res = await axios.post(`/auth/${method}`, {email, password})
   } catch (authError) {
     return dispatch(getLoggedIn({error: authError}))
   }

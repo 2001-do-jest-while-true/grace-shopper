@@ -15,7 +15,6 @@ let cartFlag = false
 //IMPORT CART COMPONENT HERE
 import AdminUser from './components/adminUser'
 
-
 /**
  * COMPONENT
  */
@@ -25,7 +24,6 @@ class Routes extends Component {
   }
 
   render() {
-
     const {isLoggedIn, isAdmin} = this.props
 
     if (this.props.loggedIn.id > 0 && !this.props.orderId) {
@@ -36,7 +34,6 @@ class Routes extends Component {
       this.props.fetchCart(this.props.orderId)
       cartFlag = true
     }
-    console.log('This is the Routes component', this.props)
 
     return (
       <Switch>
@@ -75,7 +72,6 @@ const mapState = state => {
     loggedIn: state.user.loggedIn,
     orderId: state.cart.orderId,
     isAdmin: state.user.loggedIn.isAdmin
-
   }
 }
 
