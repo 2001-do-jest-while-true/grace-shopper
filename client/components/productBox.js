@@ -30,7 +30,7 @@ class ProductBox extends React.Component {
               <h2>{name}</h2>
             </Link>
             <div id="inventory-box">
-              <p>{price}</p>
+              <p>Price: {price / 100}</p>
               {quantity === 0 && (
                 <span className="warning">Out of stock, check back soon!</span>
               )}
