@@ -11,6 +11,7 @@ const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const DELETE_CART = 'DELETE_CART'
+const CHANGE_CART_QUANTITY = 'CHANGE_CART_QUANTITY'
 
 // ACTION CREATORS
 
@@ -34,6 +35,12 @@ export const addToCart = (productId, quantity) => ({
 export const deleteFromCart = productId => ({
   type: DELETE_FROM_CART,
   productId
+})
+
+export const changeCartQuantity = (productId, quantity) => ({
+  type: CHANGE_CART_QUANTITY,
+  productId,
+  quantity
 })
 
 const deleteCart = () => ({
@@ -109,6 +116,11 @@ export default function(state = initialState, action) {
           updCart[prodId] = quantity
         })
       return {...state, cart: updCart}
+    }
+    case CHANGE_CART_QUANTITY: {
+      const cartCopy = state.cart
+      cartCopy[action.productId] = action.quantity
+      return {...state, cart: cartCopy}
     }
     default: {
       return state

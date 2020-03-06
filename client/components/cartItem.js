@@ -1,8 +1,40 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {deleteFromCart} from '../store'
+import {deleteFromCart, changeCartQuantity} from '../store'
 
 class CartItem extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      cartQuantity: 0
+    }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleQuantitySubmit = this.handleQuantitySubmit.bind(this)
+  }
+
+  componentDidMount() {
+    this.setState({
+      cartQuantity: this.props.cart[this.props.product.id]
+    })
+  }
+
+  handleChange() {
+    this.setState({
+      cartQuantity: event.target.value
+    })
+  }
+
+  handleQuantitySubmit() {
+    if (!+this.state.cartQuantity)
+      this.props.deleteFromCart(this.props.product.id)
+    else
+      this.props.changeCartQuantity(
+        this.props.product.id,
+        +this.state.cartQuantity
+      )
+  }
+
   render() {
     const product = this.props.product
     return (
@@ -20,7 +52,16 @@ class CartItem extends React.Component {
         </div>
         <div className="cart-col2">
           <label htmlFor="quantity">Quantity: </label>
-          <input type="number" name="quantity" min={0} />
+          <input
+            type="number"
+            name="quantity"
+            min={0}
+            value={this.state.cartQuantity}
+            onChange={this.handleChange}
+          />
+          <button type="button" onClick={this.handleQuantitySubmit}>
+            Update Quantity
+          </button>
 
           <button
             type="button"
@@ -40,7 +81,9 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  deleteFromCart: productId => dispatch(deleteFromCart(productId))
+  deleteFromCart: productId => dispatch(deleteFromCart(productId)),
+  changeCartQuantity: (productId, quantity) =>
+    dispatch(changeCartQuantity(productId, quantity))
 })
 
 export default connect(mapState, mapDispatch)(CartItem)
