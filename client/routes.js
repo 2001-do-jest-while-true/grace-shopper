@@ -14,6 +14,7 @@ import {initializeCartThunk, fetchCart} from './store/cart'
 let cartFlag = false
 //IMPORT CART COMPONENT HERE
 import AdminUser from './components/adminUser'
+import UserSignup from './components/UserSignup'
 
 /**
  * COMPONENT
@@ -39,6 +40,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/signup" component={UserSignup} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
         <Route exact path="/cart" component={Cart} />
