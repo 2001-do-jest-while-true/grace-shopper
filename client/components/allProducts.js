@@ -4,6 +4,7 @@ import {fetchAllProducts} from '../store'
 import Loader from 'react-loader-spinner'
 //import {Link} from 'react-router-dom'
 import ProductBox from './productBox'
+import Filters from './filters'
 //ADD FILTERS HERE FOR FILTERING ACCORDING TO FILTER TYPE
 
 class AllProducts extends React.Component {
@@ -37,7 +38,6 @@ class AllProducts extends React.Component {
   render() {
     let products = this.props.products
     const location = this.props.location
-    console.log('this is the location in All products', location)
     if (location) {
       const type = location.search.split('=')[1]
       products = products.filter(product => product.type === type)
@@ -47,13 +47,17 @@ class AllProducts extends React.Component {
       <div>
         <Filters filters={this.state.filters} setFilters={this.setFilters} />
         {this.props.products.length ? (
-          products.map(product => (
-            <div key={product.id}>
-              <ProductBox product={product} />}
-            </div>
-          ))
+          products.map(product => {
+            if (this.state.filters.includes(product.category)) {
+              return (
+                <div key={product.id}>
+                  <ProductBox product={product} />
+                </div>
+              )
+            }
+          })
         ) : (
-          <p> No products yet...</p>
+          <p>empty products</p>
         )}
       </div>
     )
