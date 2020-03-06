@@ -11,6 +11,21 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const product = req.body
+    const newProduct = await Product.create(product)
+    if (newProduct) res.json(newProduct)
+    else {
+      const err = new Error('Error creating product')
+      err.status(500)
+      next(err)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get('/:productId', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.productId)
@@ -20,5 +35,21 @@ router.get('/:productId', async (req, res, next) => {
     next(error)
   }
 })
+
+// router.put('/:productId', async(req, res, next) => {
+//   try{
+
+//   } catch (error) {
+//     next(error)
+//   }
+// })
+
+// router.delete('/:productId', async(req, res, next) => {
+//   try{
+
+//   } catch (error) {
+//     next(error)
+//   }
+// })
 
 module.exports = router

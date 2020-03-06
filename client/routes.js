@@ -9,12 +9,12 @@ import SingleProduct from './components/singleProduct'
 import allUsers from './components/allUsers'
 import Cart from './components/cart'
 import SingleUser from './components/singleUser'
+import AddProduct from './components/addProduct'
 import {initializeCartThunk, fetchCart} from './store/cart'
 
 let cartFlag = false
 //IMPORT CART COMPONENT HERE
 import AdminUser from './components/adminUser'
-
 
 /**
  * COMPONENT
@@ -25,7 +25,6 @@ class Routes extends Component {
   }
 
   render() {
-
     const {isLoggedIn, isAdmin} = this.props
 
     if (this.props.loggedIn.id > 0 && !this.props.orderId) {
@@ -53,6 +52,7 @@ class Routes extends Component {
             <Route exact path="/users" component={allUsers} />
             <Route path="/users/:userId" component={SingleUser} />
             <Route exact path="/cart" component={Cart} />
+            <Route exact path="/add-product" component={AddProduct} />
           </Switch>
         )}
         <Route path="/">
@@ -75,7 +75,6 @@ const mapState = state => {
     loggedIn: state.user.loggedIn,
     orderId: state.cart.orderId,
     isAdmin: state.user.loggedIn.isAdmin
-
   }
 }
 

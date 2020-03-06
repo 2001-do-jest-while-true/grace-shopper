@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import AllProducts from './allProducts'
 import AllUsers from './allUsers'
 
@@ -44,10 +45,12 @@ class AdminUser extends React.Component {
           <button type="button" onClick={this.handleAllUserClick}>
             All Users
           </button>
-          <button type="button">Add Product</button>
           <button type="button" onClick={this.handleAllProdClick}>
             All Products
           </button>
+          <Link to="/add-product">
+            <button type="button">Add Product</button>
+          </Link>
         </div>
         {this.state.displayAllProducts && <AllProducts />}
         {this.state.displayAllUsers && <AllUsers />}

@@ -4,7 +4,7 @@ import {fetchAllProducts} from '../store'
 import Loader from 'react-loader-spinner'
 //import {Link} from 'react-router-dom'
 import ProductBox from './productBox'
-//ADD FILTERS HERE FOR FILTERING ACCORDING TO FILTER TYPE
+import Filters from './filters'
 
 class AllProducts extends React.Component {
   constructor() {
