@@ -730,896 +730,895 @@ const users = [
 //SHIPPING ADDRESS DUMMY DATA
 const shippingAddresses = [
   {
-    fullName: "Cobb O'Caine",
-    address1: '118 Macpherson Point',
-    address2: '22 Grayhawk Avenue',
-    city: 'Billings',
-    state: 'MT',
-    zip: 9523,
-    phoneNumber: '406-665-3329'
+    fullName: 'Freddie Tyrie',
+    address1: '08104 Graceland Road',
+    address2: '6552 Buell Pass',
+    city: 'Chicago',
+    state: 'IL',
+    zip: 9696,
+    phoneNumber: '312-295-2719'
   },
   {
-    fullName: 'Ellissa Frondt',
-    address1: '04442 Elmside Crossing',
-    address2: '67223 Eastlawn Alley',
-    city: 'Albuquerque',
-    state: 'NM',
-    zip: 6910,
-    phoneNumber: '505-649-9489'
-  },
-  {
-    fullName: 'Adelle Scrivener',
-    address1: '5821 Ludington Crossing',
-    address2: '325 Saint Paul Lane',
-    city: 'Shawnee Mission',
-    state: 'KS',
-    zip: 1360,
-    phoneNumber: '816-212-9496'
-  },
-  {
-    fullName: 'Trumaine Scrowston',
-    address1: '752 Briar Crest Plaza',
-    address2: '0 Manley Circle',
-    city: 'Philadelphia',
-    state: 'PA',
-    zip: 2441,
-    phoneNumber: '610-921-2481'
-  },
-  {
-    fullName: 'Nevsa Dumingo',
-    address1: '465 Muir Court',
-    address2: '07 Scoville Lane',
-    city: 'Houston',
-    state: 'TX',
-    zip: 7722,
-    phoneNumber: '713-406-9292'
-  },
-  {
-    fullName: 'Luella Lyfe',
-    address1: '65049 Old Shore Alley',
-    address2: '883 Mcguire Lane',
-    city: 'San Jose',
-    state: 'CA',
-    zip: 7205,
-    phoneNumber: '408-414-7216'
-  },
-  {
-    fullName: 'Franky Josum',
-    address1: '8204 Pawling Hill',
-    address2: '9 Charing Cross Circle',
-    city: 'Dallas',
-    state: 'TX',
-    zip: 8929,
-    phoneNumber: '214-458-5446'
-  },
-  {
-    fullName: 'Gerianna Jagielski',
-    address1: '73171 Bellgrove Junction',
-    address2: '38077 Oak Valley Way',
+    fullName: 'Gerladina Russon',
+    address1: '776 Meadow Ridge Plaza',
+    address2: '515 Northwestern Center',
     city: 'Pittsburgh',
     state: 'PA',
-    zip: 2012,
-    phoneNumber: '412-663-5024'
+    zip: 4317,
+    phoneNumber: '412-121-8086'
   },
   {
-    fullName: 'Lauren Grzegorzewski',
-    address1: '50452 Fieldstone Drive',
-    address2: '36312 Donald Court',
-    city: 'Tulsa',
-    state: 'OK',
-    zip: 7106,
-    phoneNumber: '918-341-5872'
+    fullName: 'Minta Sentinella',
+    address1: '0165 Continental Circle',
+    address2: '23797 2nd Court',
+    city: 'Reading',
+    state: 'PA',
+    zip: 7423,
+    phoneNumber: '484-245-6120'
   },
   {
-    fullName: 'Theo Stent',
-    address1: '7 Waubesa Center',
-    address2: '68826 School Terrace',
-    city: 'Inglewood',
-    state: 'CA',
-    zip: 7577,
-    phoneNumber: '310-572-1697'
+    fullName: 'Nissy Thresher',
+    address1: '1522 Northridge Place',
+    address2: '72 Westridge Avenue',
+    city: 'Dayton',
+    state: 'OH',
+    zip: 7517,
+    phoneNumber: '937-410-4411'
   },
   {
-    fullName: 'Kayley Devine',
-    address1: '549 3rd Way',
-    address2: '1314 Parkside Road',
-    city: 'Montgomery',
-    state: 'AL',
-    zip: 4860,
-    phoneNumber: '334-790-5674'
+    fullName: 'Perri Childes',
+    address1: '6 Clarendon Way',
+    address2: '126 Transport Place',
+    city: 'Chicago',
+    state: 'IL',
+    zip: 4824,
+    phoneNumber: '312-728-7996'
   },
   {
-    fullName: 'Zuzana Bulcock',
-    address1: '22948 Oriole Place',
-    address2: '017 Autumn Leaf Drive',
-    city: 'Buffalo',
-    state: 'NY',
-    zip: 5419,
-    phoneNumber: '716-121-2004'
-  },
-  {
-    fullName: 'Dominga Diano',
-    address1: '678 American Ash Place',
-    address2: '94 Clarendon Point',
-    city: 'Omaha',
+    fullName: 'Kasey Euesden',
+    address1: '1266 Monica Road',
+    address2: '54043 Sutherland Park',
+    city: 'Lincoln',
     state: 'NE',
-    zip: 1241,
-    phoneNumber: '402-121-2933'
+    zip: 8015,
+    phoneNumber: '402-636-8802'
   },
   {
-    fullName: 'Daffie Coy',
-    address1: '26558 Stephen Parkway',
-    address2: '42 Ronald Regan Alley',
-    city: 'Fort Myers',
-    state: 'FL',
-    zip: 8083,
-    phoneNumber: '239-713-0337'
-  },
-  {
-    fullName: 'Tobiah Bennallck',
-    address1: '04433 Declaration Point',
-    address2: '742 Mesta Hill',
-    city: 'Panama City',
-    state: 'FL',
-    zip: 8027,
-    phoneNumber: '850-504-7017'
-  },
-  {
-    fullName: 'Modestine Bowmen',
-    address1: '74 Brickson Park Plaza',
-    address2: '98 Pierstorff Terrace',
-    city: 'Las Vegas',
-    state: 'NV',
-    zip: 5799,
-    phoneNumber: '702-390-1613'
-  },
-  {
-    fullName: 'Tish Wisham',
-    address1: '5 Bunker Hill Point',
-    address2: '3296 La Follette Trail',
-    city: 'Huntsville',
-    state: 'AL',
-    zip: 8343,
-    phoneNumber: '256-842-8238'
-  },
-  {
-    fullName: 'Godfry Jendricke',
-    address1: '40 Thierer Avenue',
-    address2: '68398 Del Sol Avenue',
-    city: 'Clearwater',
-    state: 'FL',
-    zip: 3771,
-    phoneNumber: '813-933-6502'
-  },
-  {
-    fullName: 'Tyne Dubbin',
-    address1: '644 Melby Drive',
-    address2: '85 Glendale Place',
-    city: 'Birmingham',
-    state: 'AL',
-    zip: 4555,
-    phoneNumber: '205-306-2298'
-  },
-  {
-    fullName: 'Bord McEvilly',
-    address1: '717 Springs Hill',
-    address2: '3934 Lakeland Lane',
-    city: 'San Diego',
-    state: 'CA',
-    zip: 9309,
-    phoneNumber: '760-579-4163'
-  },
-  {
-    fullName: 'Evy Conneely',
-    address1: '87422 Mcguire Trail',
-    address2: '6479 Sycamore Crossing',
-    city: 'Los Angeles',
-    state: 'CA',
-    zip: 5754,
-    phoneNumber: '213-906-4502'
-  },
-  {
-    fullName: 'Tedd Hakey',
-    address1: '9887 Evergreen Avenue',
-    address2: '574 Rieder Hill',
-    city: 'Portland',
-    state: 'OR',
-    zip: 9187,
-    phoneNumber: '971-917-0027'
-  },
-  {
-    fullName: 'Ethe Eastgate',
-    address1: '7 Manufacturers Avenue',
-    address2: '782 International Center',
-    city: 'Shawnee Mission',
-    state: 'KS',
-    zip: 9195,
-    phoneNumber: '913-592-9504'
-  },
-  {
-    fullName: 'Noby Childers',
-    address1: '372 Marquette Avenue',
-    address2: '3 Vahlen Plaza',
-    city: 'Fort Worth',
-    state: 'TX',
-    zip: 5492,
-    phoneNumber: '817-956-3453'
-  },
-  {
-    fullName: 'Isidore Shoebrook',
-    address1: '83 Lunder Drive',
-    city: 'Shreveport',
-    state: 'LA',
-    zip: 1214,
-    phoneNumber: '318-673-2857'
-  },
-  {
-    fullName: 'Antonius Banfill',
-    address1: '6 Colorado Street',
-    address2: '37 Dovetail Center',
-    city: 'Fresno',
-    state: 'CA',
-    zip: 3557,
-    phoneNumber: '559-772-5393'
-  },
-  {
-    fullName: 'Denny Boxe',
-    address1: '192 Crowley Lane',
-    address2: '53 Fordem Avenue',
-    city: 'Portland',
-    state: 'OR',
-    zip: 1059,
-    phoneNumber: '503-412-0906'
-  },
-  {
-    fullName: 'Katerine Swayne',
-    address1: '83 Melvin Court',
-    address2: '948 Johnson Crossing',
-    city: 'Columbus',
-    state: 'OH',
-    zip: 7640,
-    phoneNumber: '614-287-4657'
-  },
-  {
-    fullName: 'Cob Mauvin',
-    address1: '34 Hintze Trail',
-    city: 'Springfield',
-    state: 'MA',
-    zip: 2339,
-    phoneNumber: '413-591-9112'
-  },
-  {
-    fullName: 'Jacqui Selby',
-    address1: '788 Schmedeman Trail',
-    address2: '914 Laurel Drive',
-    city: 'Lansing',
-    state: 'MI',
-    zip: 1616,
-    phoneNumber: '517-290-7759'
-  },
-  {
-    fullName: 'Mada Naden',
-    address1: '0 Eliot Lane',
-    address2: '86892 Springs Alley',
-    city: 'Saint Paul',
-    state: 'MN',
-    zip: 1936,
-    phoneNumber: '651-199-1462'
-  },
-  {
-    fullName: 'North Nussen',
-    address1: '37 Eastwood Crossing',
-    address2: '4 Oak Way',
-    city: 'Washington',
-    state: 'DC',
-    zip: 7673,
-    phoneNumber: '202-542-9642'
-  },
-  {
-    fullName: 'Ana Gerty',
-    address1: '529 Coolidge Terrace',
-    address2: '7 Hanover Way',
-    city: 'Portland',
-    state: 'OR',
-    zip: 8527,
-    phoneNumber: '503-765-6547'
-  },
-  {
-    fullName: 'Gay Jakucewicz',
-    address1: '53892 Emmet Road',
-    address2: '67 Prairieview Lane',
-    city: 'Fort Smith',
-    state: 'AR',
-    zip: 6825,
-    phoneNumber: '479-622-0393'
-  },
-  {
-    fullName: 'Brett McCaskill',
-    address1: '10 Oakridge Junction',
-    address2: '32651 Kingsford Park',
-    city: 'Milwaukee',
-    state: 'WI',
-    zip: 4898,
-    phoneNumber: '414-690-3891'
-  },
-  {
-    fullName: 'Engelbert Brotherhood',
-    address1: '50 Harbort Terrace',
-    city: 'Roanoke',
-    state: 'VA',
-    zip: 3837,
-    phoneNumber: '540-523-7830'
-  },
-  {
-    fullName: 'Chane Puttock',
-    address1: '19 Sommers Lane',
-    address2: '052 Del Mar Hill',
-    city: 'Kansas City',
-    state: 'KS',
-    zip: 8254,
-    phoneNumber: '816-514-4703'
-  },
-  {
-    fullName: 'Andonis Chapple',
-    address1: '35522 Nova Junction',
-    address2: '9 Menomonie Hill',
-    city: 'Nashville',
-    state: 'TN',
-    zip: 3774,
-    phoneNumber: '615-408-9360'
-  },
-  {
-    fullName: 'Lanny Bly',
-    address1: '37181 Schiller Hill',
-    address2: '76 Daystar Plaza',
-    city: 'Macon',
-    state: 'GA',
-    zip: 8143,
-    phoneNumber: '478-470-5604'
-  },
-  {
-    fullName: 'Jayne Wilde',
-    address1: '1134 Stuart Junction',
-    address2: '504 Southridge Court',
-    city: 'Pasadena',
-    state: 'CA',
-    zip: 7116,
-    phoneNumber: '626-280-4184'
-  },
-  {
-    fullName: 'Otha Antonignetti',
-    address1: '9 Holmberg Pass',
-    city: 'Kansas City',
-    state: 'MO',
-    zip: 1929,
-    phoneNumber: '816-894-5043'
-  },
-  {
-    fullName: 'Lucais Lenoir',
-    address1: '5 Hoepker Drive',
-    address2: '3689 Victoria Lane',
-    city: 'Charleston',
-    state: 'WV',
-    zip: 5645,
-    phoneNumber: '304-158-6641'
-  },
-  {
-    fullName: 'Marsiella Woloschinski',
-    address1: '3 Kim Alley',
-    address2: '036 Talisman Drive',
-    city: 'Lancaster',
-    state: 'PA',
-    zip: 1195,
-    phoneNumber: '717-376-2293'
-  },
-  {
-    fullName: 'Anastassia Chapellow',
-    address1: '7 Carberry Alley',
-    address2: '425 Mendota Pass',
-    city: 'Des Moines',
-    state: 'IA',
-    zip: 9611,
-    phoneNumber: '515-556-0482'
-  },
-  {
-    fullName: 'Breena Gahan',
-    address1: '5 Nelson Court',
-    address2: '4395 Park Meadow Junction',
-    city: 'Akron',
-    state: 'OH',
-    zip: 4129,
-    phoneNumber: '330-647-8723'
-  },
-  {
-    fullName: 'Kayle Cauderlie',
-    address1: '2 Fairfield Place',
-    address2: '221 Portage Parkway',
-    city: 'Indianapolis',
-    state: 'IN',
-    zip: 3375,
-    phoneNumber: '317-821-6986'
-  },
-  {
-    fullName: 'Yvon Martino',
-    address1: '81097 Pleasure Lane',
-    address2: '3488 Bellgrove Terrace',
-    city: 'Portsmouth',
-    state: 'NH',
-    zip: 2780,
-    phoneNumber: '603-247-5186'
-  },
-  {
-    fullName: 'Artur Brocks',
-    address1: '4559 Springs Road',
-    address2: '20 Warrior Court',
-    city: 'Charleston',
-    state: 'SC',
-    zip: 9297,
-    phoneNumber: '843-759-8231'
-  },
-  {
-    fullName: 'Letitia Shambroke',
-    address1: '0358 Cambridge Parkway',
-    address2: '76672 American Ash Center',
-    city: 'Bowie',
-    state: 'MD',
-    zip: 9006,
-    phoneNumber: '240-241-0662'
-  },
-  {
-    fullName: 'Sigrid Alcalde',
-    address1: '34 Hovde Hill',
-    address2: '1191 Canary Place',
-    city: 'Chicago',
-    state: 'IL',
-    zip: 9962,
-    phoneNumber: '312-560-6761'
-  },
-  {
-    fullName: 'Vannie Stapylton',
-    address1: '207 Veith Street',
-    address2: '7 Maple Wood Hill',
-    city: 'Hollywood',
-    state: 'FL',
-    zip: 9150,
-    phoneNumber: '305-385-8359'
-  },
-  {
-    fullName: 'Evered Luxton',
-    address1: '1980 Redwing Plaza',
-    address2: '02486 Independence Avenue',
-    city: 'Columbus',
-    state: 'OH',
-    zip: 8863,
-    phoneNumber: '614-509-8031'
-  },
-  {
-    fullName: 'Briney Luckhurst',
-    address1: '8 Trailsway Avenue',
-    address2: '1933 La Follette Road',
-    city: 'Annapolis',
-    state: 'MD',
-    zip: 8497,
-    phoneNumber: '443-577-6371'
-  },
-  {
-    fullName: 'Clementius Treslove',
-    address1: '938 Kings Street',
-    city: 'Winston Salem',
-    state: 'NC',
-    zip: 9079,
-    phoneNumber: '336-723-3665'
-  },
-  {
-    fullName: 'Melonie Stirton',
-    address1: '614 Michigan Junction',
-    address2: '5 Elgar Road',
-    city: 'New Haven',
-    state: 'CT',
-    zip: 5638,
-    phoneNumber: '203-141-5618'
-  },
-  {
-    fullName: 'Gaylor Insley',
-    address1: '7502 Comanche Crossing',
-    address2: '6584 Surrey Center',
-    city: 'Springfield',
-    state: 'IL',
-    zip: 4877,
-    phoneNumber: '217-539-5025'
-  },
-  {
-    fullName: 'Graig Cuttles',
-    address1: '93 Eastlawn Hill',
-    address2: '928 Brickson Park Way',
-    city: 'Houston',
-    state: 'TX',
-    zip: 7308,
-    phoneNumber: '713-873-6760'
-  },
-  {
-    fullName: 'Heddie Minney',
-    address1: '85 Maple Wood Plaza',
-    address2: '7 Badeau Plaza',
-    city: 'Lexington',
-    state: 'KY',
-    zip: 4906,
-    phoneNumber: '859-380-6192'
-  },
-  {
-    fullName: 'Jolene Skellington',
-    address1: '642 Melvin Point',
-    address2: '777 Cody Hill',
-    city: 'Roanoke',
-    state: 'VA',
-    zip: 7291,
-    phoneNumber: '540-465-7426'
-  },
-  {
-    fullName: 'Kevan Keave',
-    address1: '8993 Talisman Place',
-    address2: '2 Calypso Parkway',
-    city: 'Worcester',
-    state: 'MA',
-    zip: 8120,
-    phoneNumber: '508-879-8188'
-  },
-  {
-    fullName: 'Brand Bohan',
-    address1: '1 Troy Hill',
-    address2: '8 Ridgeview Street',
-    city: 'Saint Augustine',
-    state: 'FL',
-    zip: 7792,
-    phoneNumber: '904-814-9500'
-  },
-  {
-    fullName: 'Rhianon Quixley',
-    address1: '57647 Johnson Circle',
-    address2: '57864 Swallow Center',
-    city: 'Houston',
-    state: 'TX',
-    zip: 4039,
-    phoneNumber: '713-658-9203'
-  },
-  {
-    fullName: 'Ebba Tiler',
-    address1: '57032 Mockingbird Trail',
-    address2: '252 Transport Road',
-    city: 'Jersey City',
-    state: 'NJ',
-    zip: 2468,
-    phoneNumber: '551-617-6719'
-  },
-  {
-    fullName: 'Margalit McKeveney',
-    address1: '32 Division Parkway',
-    address2: '7 Westridge Street',
-    city: 'Tampa',
-    state: 'FL',
-    zip: 7838,
-    phoneNumber: '813-989-3098'
-  },
-  {
-    fullName: 'Bettina Kern',
-    address1: '7 Petterle Plaza',
-    address2: '6 Kingsford Drive',
-    city: 'Louisville',
-    state: 'KY',
-    zip: 5735,
-    phoneNumber: '502-192-9066'
-  },
-  {
-    fullName: 'Radcliffe Kilborn',
-    address1: '5 Basil Point',
-    address2: '69 Welch Pass',
-    city: 'San Diego',
-    state: 'CA',
-    zip: 3058,
-    phoneNumber: '858-635-9191'
-  },
-  {
-    fullName: 'Sharl Schermick',
-    address1: '1 Hoepker Drive',
-    address2: '9 Clyde Gallagher Hill',
-    city: 'Santa Monica',
-    state: 'CA',
-    zip: 5009,
-    phoneNumber: '310-858-1857'
-  },
-  {
-    fullName: 'Berne Olyunin',
-    address1: '7 Corscot Road',
-    address2: '23 Manley Point',
-    city: 'Silver Spring',
-    state: 'MD',
-    zip: 4567,
-    phoneNumber: '240-805-1674'
-  },
-  {
-    fullName: 'Trude Mapledoram',
-    address1: '98647 Fair Oaks Road',
-    address2: '8520 Loomis Place',
-    city: 'North Las Vegas',
-    state: 'NV',
-    zip: 2550,
-    phoneNumber: '702-349-1132'
-  },
-  {
-    fullName: 'Brose Stripling',
-    address1: '46350 Pennsylvania Street',
-    address2: '16 Express Place',
-    city: 'Flushing',
-    state: 'NY',
-    zip: 4472,
-    phoneNumber: '347-809-7153'
-  },
-  {
-    fullName: 'Marlo Emby',
-    address1: '00543 Lakewood Terrace',
-    address2: '5 Sommers Circle',
-    city: 'Tuscaloosa',
-    state: 'AL',
-    zip: 1161,
-    phoneNumber: '205-457-9451'
-  },
-  {
-    fullName: "Kellie O'Rourke",
-    address1: '7402 Eastlawn Trail',
-    address2: '60658 Ludington Terrace',
-    city: 'Fresno',
-    state: 'CA',
-    zip: 3934,
-    phoneNumber: '559-298-2352'
-  },
-  {
-    fullName: 'Nixie Zanicchi',
-    address1: '9 Center Center',
-    address2: '35570 Corry Plaza',
-    city: 'Chicago',
-    state: 'IL',
-    zip: 7387,
-    phoneNumber: '312-948-0460'
-  },
-  {
-    fullName: 'Winna Sinnock',
-    address1: '1721 Loftsgordon Point',
-    address2: '1 Prairie Rose Park',
-    city: 'Philadelphia',
-    state: 'PA',
-    zip: 9477,
-    phoneNumber: '215-797-0615'
-  },
-  {
-    fullName: 'Katie Judge',
-    address1: '841 Del Mar Terrace',
-    address2: '3 Golf Course Junction',
-    city: 'New York City',
-    state: 'NY',
-    zip: 4350,
-    phoneNumber: '212-735-7269'
-  },
-  {
-    fullName: 'Arden Pottes',
-    address1: '8 Oxford Point',
-    address2: '8 Mcbride Parkway',
+    fullName: 'Sax Rumbelow',
+    address1: '3824 Dexter Junction',
     city: 'Saint Louis',
     state: 'MO',
-    zip: 2180,
-    phoneNumber: '314-729-9708'
+    zip: 5604,
+    phoneNumber: '314-898-7399'
   },
   {
-    fullName: 'Lawton Duncanson',
-    address1: '1 Ruskin Court',
-    address2: '47 Crownhardt Crossing',
-    city: 'Fort Worth',
-    state: 'TX',
-    zip: 8551,
-    phoneNumber: '682-115-3495'
+    fullName: 'Humbert Allder',
+    address1: '10 Shelley Center',
+    address2: '31173 Ludington Junction',
+    city: 'Bronx',
+    state: 'NY',
+    zip: 6708,
+    phoneNumber: '917-579-8422'
   },
   {
-    fullName: 'Tab Kiledal',
-    address1: '93902 Golf Course Park',
-    address2: '2707 Debs Junction',
-    city: 'Cleveland',
-    state: 'OH',
-    zip: 8017,
-    phoneNumber: '216-954-6683'
+    fullName: 'Steffi Paton',
+    address1: '2 Manitowish Point',
+    address2: '84 Larry Place',
+    city: 'Yonkers',
+    state: 'NY',
+    zip: 6887,
+    phoneNumber: '914-317-1454'
   },
   {
-    fullName: 'Mommy Brougham',
-    address1: '4098 International Pass',
-    address2: '5793 Colorado Alley',
-    city: 'Athens',
+    fullName: 'Dodi Haylock',
+    address1: '8 Spohn Point',
+    address2: '18330 Dennis Place',
+    city: 'Spokane',
+    state: 'WA',
+    zip: 5913,
+    phoneNumber: '509-448-0410'
+  },
+  {
+    fullName: 'Bailey Reditt',
+    address1: '43534 Old Shore Drive',
+    city: 'Tucson',
+    state: 'AZ',
+    zip: 9348,
+    phoneNumber: '520-497-2557'
+  },
+  {
+    fullName: 'Adorne Yacob',
+    address1: '61 Annamark Park',
+    address2: '40816 Lakewood Terrace',
+    city: 'Fort Lauderdale',
+    state: 'FL',
+    zip: 2830,
+    phoneNumber: '754-788-8799'
+  },
+  {
+    fullName: 'Rafaela Crookston',
+    address1: '7 Bonner Street',
+    city: 'Saint Paul',
+    state: 'MN',
+    zip: 1458,
+    phoneNumber: '763-314-9408'
+  },
+  {
+    fullName: 'Giacobo Dessent',
+    address1: '14 Spaight Alley',
+    address2: '3233 Utah Point',
+    city: 'Anchorage',
+    state: 'AK',
+    zip: 5102,
+    phoneNumber: '907-492-8109'
+  },
+  {
+    fullName: 'Harlen Barta',
+    address1: '5 Homewood Parkway',
+    address2: '3693 Sullivan Way',
+    city: 'Cambridge',
+    state: 'MA',
+    zip: 1149,
+    phoneNumber: '617-970-3000'
+  },
+  {
+    fullName: 'Glendon Sycamore',
+    address1: '3 Thackeray Center',
+    address2: '88 Canary Junction',
+    city: 'Memphis',
+    state: 'TN',
+    zip: 9342,
+    phoneNumber: '901-222-1429'
+  },
+  {
+    fullName: 'Ilysa Parlet',
+    address1: '86 Fallview Terrace',
+    address2: '316 Golf View Lane',
+    city: 'Oceanside',
+    state: 'CA',
+    zip: 5520,
+    phoneNumber: '760-455-2784'
+  },
+  {
+    fullName: 'Sofia Jacobssen',
+    address1: '709 Petterle Plaza',
+    address2: '3726 Donald Court',
+    city: 'Beaufort',
+    state: 'SC',
+    zip: 8027,
+    phoneNumber: '843-342-1654'
+  },
+  {
+    fullName: 'Normand Dwire',
+    address1: '4 Spaight Place',
+    address2: '6773 Walton Way',
+    city: 'Minneapolis',
+    state: 'MN',
+    zip: 3913,
+    phoneNumber: '952-869-7629'
+  },
+  {
+    fullName: 'Uriah Baugh',
+    address1: '9 Eagan Junction',
+    address2: '0241 Hansons Way',
+    city: 'Schenectady',
+    state: 'NY',
+    zip: 7210,
+    phoneNumber: '518-454-1926'
+  },
+  {
+    fullName: 'Marieann Grinyer',
+    address1: '541 Artisan Point',
+    address2: '69 Fairfield Crossing',
+    city: 'Philadelphia',
+    state: 'PA',
+    zip: 1495,
+    phoneNumber: '610-621-7369'
+  },
+  {
+    fullName: 'Grazia Siccombe',
+    address1: '64021 Harper Avenue',
+    address2: '963 Bluejay Park',
+    city: 'Atlanta',
     state: 'GA',
-    zip: 8737,
-    phoneNumber: '706-352-6041'
+    zip: 7724,
+    phoneNumber: '404-246-6199'
   },
   {
-    fullName: 'Vallie Saice',
-    address1: '8834 Oriole Street',
-    address2: '877 Luster Trail',
-    city: 'Topeka',
-    state: 'KS',
-    zip: 5596,
-    phoneNumber: '785-687-5491'
+    fullName: 'Heather Plampeyn',
+    address1: '7 Merrick Avenue',
+    address2: '191 Luster Circle',
+    city: 'New York City',
+    state: 'NY',
+    zip: 5860,
+    phoneNumber: '212-228-7830'
   },
   {
-    fullName: "Odie O'Dowd",
-    address1: '9 Atwood Street',
-    address2: '32 Amoth Way',
-    city: 'Saint Joseph',
-    state: 'MO',
-    zip: 1910,
-    phoneNumber: '816-332-7747'
+    fullName: 'Otho Lorant',
+    address1: '18665 Northview Street',
+    city: 'Fargo',
+    state: 'ND',
+    zip: 2765,
+    phoneNumber: '701-380-0000'
   },
   {
-    fullName: 'Carling Upcott',
-    address1: '829 Village Point',
-    address2: '9114 Forest Center',
-    city: 'Greeley',
-    state: 'CO',
-    zip: 3581,
-    phoneNumber: '970-925-6882'
+    fullName: 'Catlaina Pollock',
+    address1: '789 Novick Parkway',
+    address2: '6832 Eggendart Way',
+    city: 'Lakewood',
+    state: 'WA',
+    zip: 2141,
+    phoneNumber: '253-973-5343'
   },
   {
-    fullName: 'Mela Swettenham',
-    address1: '012 Moose Avenue',
-    address2: '2 Bunting Point',
-    city: 'San Bernardino',
+    fullName: 'Baillie McReidy',
+    address1: '1 Spaight Circle',
+    address2: '45396 Lotheville Lane',
+    city: 'Hollywood',
+    state: 'FL',
+    zip: 6558,
+    phoneNumber: '954-471-7749'
+  },
+  {
+    fullName: 'Loutitia Gartell',
+    address1: '8 Thierer Place',
+    address2: '6 Maryland Park',
+    city: 'Long Beach',
     state: 'CA',
-    zip: 1041,
-    phoneNumber: '760-731-7177'
+    zip: 4548,
+    phoneNumber: '310-851-2115'
   },
   {
-    fullName: 'Orel Fligg',
-    address1: '17 Steensland Alley',
-    city: 'North Little Rock',
-    state: 'AR',
-    zip: 9552,
-    phoneNumber: '501-322-5589'
+    fullName: 'Ajay MacAree',
+    address1: '36087 Heffernan Place',
+    address2: '73883 Almo Junction',
+    city: 'Memphis',
+    state: 'TN',
+    zip: 5026,
+    phoneNumber: '901-844-8326'
   },
   {
-    fullName: 'Cindelyn Bachellier',
-    address1: '8 Grim Avenue',
-    address2: '2552 Main Terrace',
-    city: 'Falls Church',
+    fullName: 'Francesca Mannooch',
+    address1: '05588 Becker Way',
+    address2: '84503 Pierstorff Plaza',
+    city: 'Monroe',
+    state: 'LA',
+    zip: 2118,
+    phoneNumber: '318-389-4806'
+  },
+  {
+    fullName: 'Giffy Rickeard',
+    address1: '26 1st Road',
+    address2: '5909 Fair Oaks Drive',
+    city: 'Corpus Christi',
+    state: 'TX',
+    zip: 6227,
+    phoneNumber: '361-248-2019'
+  },
+  {
+    fullName: 'Fran Attle',
+    address1: '2861 Lakewood Avenue',
+    address2: '197 Mcbride Point',
+    city: 'Mesquite',
+    state: 'TX',
+    zip: 5126,
+    phoneNumber: '214-575-7488'
+  },
+  {
+    fullName: 'Nilson Hryniewicki',
+    address1: '89 Old Shore Drive',
+    address2: '19162 Messerschmidt Plaza',
+    city: 'North Las Vegas',
+    state: 'NV',
+    zip: 3629,
+    phoneNumber: '702-277-5621'
+  },
+  {
+    fullName: 'Cosme Glavias',
+    address1: '0 Lakewood Gardens Junction',
+    address2: '49261 High Crossing Point',
+    city: 'Norfolk',
     state: 'VA',
-    zip: 9925,
-    phoneNumber: '571-728-0337'
+    zip: 6100,
+    phoneNumber: '757-585-7858'
   },
   {
-    fullName: 'Nat Muskett',
-    address1: '30 Messerschmidt Point',
-    city: 'Sacramento',
-    state: 'CA',
-    zip: 6381,
-    phoneNumber: '916-659-1800'
+    fullName: 'Magnum Paff',
+    address1: '0 Bobwhite Junction',
+    address2: '68 Cordelia Lane',
+    city: 'Lincoln',
+    state: 'NE',
+    zip: 6285,
+    phoneNumber: '402-137-0728'
   },
   {
-    fullName: 'Tymothy Larmet',
-    address1: '3919 Fordem Trail',
-    address2: '2294 Canary Park',
-    city: 'Glendale',
-    state: 'CA',
-    zip: 2221,
-    phoneNumber: '323-224-3160'
+    fullName: 'Arturo Rushworth',
+    address1: '575 Valley Edge Crossing',
+    address2: '50 Nevada Street',
+    city: 'Minneapolis',
+    state: 'MN',
+    zip: 3392,
+    phoneNumber: '763-789-1345'
   },
   {
-    fullName: 'Roslyn Hovard',
-    address1: '0 Merchant Plaza',
-    address2: '05698 Brentwood Terrace',
-    city: 'Charlotte',
-    state: 'NC',
-    zip: 7799,
-    phoneNumber: '704-167-1165'
+    fullName: 'Kippie Bettenson',
+    address1: '26168 Delladonna Center',
+    address2: '5 Sloan Way',
+    city: 'Bowie',
+    state: 'MD',
+    zip: 3571,
+    phoneNumber: '240-126-7402'
   },
   {
-    fullName: 'Hervey Rowler',
-    address1: '97 Moulton Pass',
-    address2: '7126 Sycamore Point',
-    city: 'Pueblo',
-    state: 'CO',
-    zip: 4492,
-    phoneNumber: '719-828-8630'
+    fullName: 'Bertie Shorie',
+    address1: '4735 Rigney Parkway',
+    address2: '5 Union Parkway',
+    city: 'Arlington',
+    state: 'VA',
+    zip: 8814,
+    phoneNumber: '571-396-2173'
   },
   {
-    fullName: 'Jacobo Joselevitch',
-    address1: '360 Mandrake Lane',
-    address2: '9 American Drive',
-    city: 'Burbank',
-    state: 'CA',
-    zip: 7129,
-    phoneNumber: '818-589-7052'
+    fullName: 'Benetta Ziemke',
+    address1: '47 Northport Pass',
+    address2: '52 Cody Hill',
+    city: 'Port Charlotte',
+    state: 'FL',
+    zip: 1647,
+    phoneNumber: '941-134-8872'
   },
   {
-    fullName: 'Lind Follos',
-    address1: '03778 Pine View Plaza',
-    address2: '6164 Haas Terrace',
+    fullName: 'Kristo McNeely',
+    address1: '0 Dorton Lane',
+    address2: '21 Del Mar Road',
+    city: 'Pensacola',
+    state: 'FL',
+    zip: 3203,
+    phoneNumber: '850-205-9696'
+  },
+  {
+    fullName: 'Umberto Chichgar',
+    address1: '05432 High Crossing Street',
+    address2: '67 Crowley Park',
+    city: 'Vancouver',
+    state: 'WA',
+    zip: 3210,
+    phoneNumber: '360-767-6751'
+  },
+  {
+    fullName: 'Robinia Newbury',
+    address1: '2290 Delaware Road',
+    address2: '3 South Point',
     city: 'Washington',
     state: 'DC',
-    zip: 6581,
-    phoneNumber: '202-740-2846'
+    zip: 2339,
+    phoneNumber: '202-613-8073'
   },
   {
-    fullName: 'Halette Doelle',
-    address1: '50184 Bowman Junction',
-    city: 'Albuquerque',
-    state: 'NM',
-    zip: 7564,
-    phoneNumber: '505-890-6823'
+    fullName: 'Erick Bastard',
+    address1: '3 Beilfuss Junction',
+    address2: '5876 Lindbergh Parkway',
+    city: 'Flint',
+    state: 'MI',
+    zip: 3043,
+    phoneNumber: '810-619-9603'
   },
   {
-    fullName: 'Ryann Daniell',
-    address1: '97 Summer Ridge Hill',
-    address2: '628 Shelley Alley',
-    city: 'San Antonio',
-    state: 'TX',
-    zip: 7206,
-    phoneNumber: '210-849-2971'
+    fullName: 'Cathe Minister',
+    address1: '35 Green Ridge Circle',
+    address2: '202 Brentwood Alley',
+    city: 'San Francisco',
+    state: 'CA',
+    zip: 5374,
+    phoneNumber: '415-892-9681'
   },
   {
-    fullName: 'Andrew Mortell',
-    address1: '1 Fieldstone Hill',
-    address2: '71 Shasta Pass',
-    city: 'Meridian',
-    state: 'MS',
-    zip: 7179,
-    phoneNumber: '601-724-5180'
+    fullName: 'Lari Collabine',
+    address1: '199 Hudson Point',
+    address2: '77300 Pine View Road',
+    city: 'Suffolk',
+    state: 'VA',
+    zip: 9184,
+    phoneNumber: '757-905-2538'
   },
   {
-    fullName: 'Elena Mordacai',
-    address1: '371 Cardinal Lane',
-    address2: '545 Nancy Point',
-    city: 'Wilmington',
-    state: 'DE',
-    zip: 2097,
-    phoneNumber: '302-610-8491'
-  },
-  {
-    fullName: 'Gayler Croall',
-    address1: '6324 Sutteridge Parkway',
-    address2: '07 Atwood Crossing',
+    fullName: 'Etienne Trimmell',
+    address1: '1427 Lien Court',
+    address2: '46687 Linden Way',
     city: 'Colorado Springs',
     state: 'CO',
-    zip: 6173,
-    phoneNumber: '719-249-6475'
+    zip: 9650,
+    phoneNumber: '719-751-2527'
   },
   {
-    fullName: 'Marylou Blackstone',
-    address1: '43657 Fair Oaks Way',
-    address2: '0815 Rockefeller Plaza',
-    city: 'Los Angeles',
-    state: 'CA',
-    zip: 1870,
-    phoneNumber: '213-492-2872'
+    fullName: 'Kassandra Coffey',
+    address1: '69 Arizona Point',
+    address2: '77 Memorial Trail',
+    city: 'Peoria',
+    state: 'AZ',
+    zip: 1213,
+    phoneNumber: '623-537-8963'
   },
   {
-    fullName: 'Edita Durgan',
-    address1: '6435 Upham Hill',
-    address2: '9 Waywood Way',
+    fullName: 'Zacherie Bartlosz',
+    address1: '2 Fairfield Alley',
+    address2: '81 Hooker Park',
+    city: 'Macon',
+    state: 'GA',
+    zip: 1490,
+    phoneNumber: '478-328-1282'
+  },
+  {
+    fullName: "D'arcy Ludye",
+    address1: '57 Surrey Way',
+    address2: '49 American Alley',
+    city: 'Baton Rouge',
+    state: 'LA',
+    zip: 8626,
+    phoneNumber: '225-767-0774'
+  },
+  {
+    fullName: 'Todd Vanyutin',
+    address1: '9 Melody Lane',
+    address2: '2 Schlimgen Crossing',
+    city: 'Olympia',
+    state: 'WA',
+    zip: 1091,
+    phoneNumber: '360-859-2088'
+  },
+  {
+    fullName: 'Mei Lambeth',
+    address1: '319 4th Trail',
+    address2: '0438 Bashford Point',
+    city: 'Murfreesboro',
+    state: 'TN',
+    zip: 4845,
+    phoneNumber: '615-317-4617'
+  },
+  {
+    fullName: 'Heidie Gummory',
+    address1: '55 Warrior Road',
+    address2: '8773 Susan Trail',
+    city: 'Lincoln',
+    state: 'NE',
+    zip: 1994,
+    phoneNumber: '402-379-2694'
+  },
+  {
+    fullName: 'Zollie Karleman',
+    address1: '68196 Kropf Crossing',
+    address2: '79590 Sullivan Way',
+    city: 'Shawnee Mission',
+    state: 'KS',
+    zip: 8055,
+    phoneNumber: '913-660-9844'
+  },
+  {
+    fullName: 'Georgiana Anton',
+    address1: '0027 Barby Court',
+    address2: '2 1st Park',
+    city: 'Montgomery',
+    state: 'AL',
+    zip: 2471,
+    phoneNumber: '334-537-8863'
+  },
+  {
+    fullName: 'Brunhilda Kelledy',
+    address1: '6455 Maywood Pass',
+    city: 'Albuquerque',
+    state: 'NM',
+    zip: 1443,
+    phoneNumber: '505-741-7247'
+  },
+  {
+    fullName: 'Delcine Percifull',
+    address1: '063 Hallows Drive',
+    address2: '986 Express Center',
     city: 'San Antonio',
     state: 'TX',
-    zip: 6248,
-    phoneNumber: '210-679-3483'
+    zip: 7100,
+    phoneNumber: '830-983-8479'
   },
   {
-    fullName: 'Heall De Gowe',
-    address1: '58 Haas Crossing',
-    address2: '57 Butternut Lane',
-    city: 'Scottsdale',
-    state: 'AZ',
-    zip: 5783,
-    phoneNumber: '480-455-9776'
+    fullName: 'Zak Castan',
+    address1: '59 Anniversary Hill',
+    address2: '44 Warbler Trail',
+    city: 'Saint Petersburg',
+    state: 'FL',
+    zip: 5658,
+    phoneNumber: '727-868-3144'
   },
   {
-    fullName: 'Ike Kendall',
-    address1: '93624 Schiller Way',
-    address2: '195 Miller Crossing',
-    city: 'Santa Monica',
+    fullName: "D'arcy Swatten",
+    address1: '0936 Northfield Parkway',
+    address2: '88 Debs Terrace',
+    city: 'Santa Ana',
     state: 'CA',
-    zip: 8702,
-    phoneNumber: '310-107-4768'
+    zip: 1091,
+    phoneNumber: '714-473-9789'
+  },
+  {
+    fullName: 'Crissy Paolazzi',
+    address1: '049 Carey Center',
+    address2: '46 Monterey Drive',
+    city: 'Norfolk',
+    state: 'VA',
+    zip: 1323,
+    phoneNumber: '757-432-9377'
+  },
+  {
+    fullName: 'Steffi Crotty',
+    address1: '35 Sherman Point',
+    address2: '80439 Maryland Circle',
+    city: 'Birmingham',
+    state: 'AL',
+    zip: 7929,
+    phoneNumber: '205-870-8951'
+  },
+  {
+    fullName: 'Demeter Hendrix',
+    address1: '3013 Killdeer Plaza',
+    address2: '46011 Sage Place',
+    city: 'East Saint Louis',
+    state: 'IL',
+    zip: 5805,
+    phoneNumber: '618-689-6789'
+  },
+  {
+    fullName: 'Truda Halley',
+    address1: '7267 Pond Road',
+    city: 'Brooklyn',
+    state: 'NY',
+    zip: 2910,
+    phoneNumber: '347-659-8419'
+  },
+  {
+    fullName: 'Morgan Marcroft',
+    address1: '917 Judy Center',
+    address2: '8000 Linden Junction',
+    city: 'Lubbock',
+    state: 'TX',
+    zip: 9482,
+    phoneNumber: '806-938-9341'
+  },
+  {
+    fullName: 'Benn Sillett',
+    address1: '4 Jackson Crossing',
+    address2: '3 Utah Terrace',
+    city: 'Columbus',
+    state: 'OH',
+    zip: 1408,
+    phoneNumber: '614-396-7687'
+  },
+  {
+    fullName: 'Wolfie While',
+    address1: '6948 Schurz Junction',
+    address2: '965 Evergreen Road',
+    city: 'San Jose',
+    state: 'CA',
+    zip: 4594,
+    phoneNumber: '408-676-3957'
+  },
+  {
+    fullName: 'Caesar Nesterov',
+    address1: '51922 Ridgeview Street',
+    address2: '574 Sutherland Circle',
+    city: 'Denver',
+    state: 'CO',
+    zip: 8143,
+    phoneNumber: '303-458-9736'
+  },
+  {
+    fullName: 'Blancha Senter',
+    address1: '2034 Lerdahl Park',
+    address2: '3 Oak Valley Court',
+    city: 'Saint Paul',
+    state: 'MN',
+    zip: 4049,
+    phoneNumber: '651-290-2836'
+  },
+  {
+    fullName: 'Kendell Parlet',
+    address1: '895 Blaine Center',
+    address2: '4058 Carberry Hill',
+    city: 'Biloxi',
+    state: 'MS',
+    zip: 9781,
+    phoneNumber: '228-146-5951'
+  },
+  {
+    fullName: 'Vyky Barford',
+    address1: '16434 Fairfield Crossing',
+    address2: '8 Marquette Trail',
+    city: 'Seattle',
+    state: 'WA',
+    zip: 3781,
+    phoneNumber: '206-589-8107'
+  },
+  {
+    fullName: 'Wylma Lindeboom',
+    address1: '1561 Veith Way',
+    address2: '25 International Drive',
+    city: 'Lubbock',
+    state: 'TX',
+    zip: 2493,
+    phoneNumber: '806-540-9487'
+  },
+  {
+    fullName: 'Riannon Eard',
+    address1: '2611 Heffernan Street',
+    address2: '131 Bashford Center',
+    city: 'Corpus Christi',
+    state: 'TX',
+    zip: 4457,
+    phoneNumber: '361-145-5154'
+  },
+  {
+    fullName: 'Torr Shorbrook',
+    address1: '9 Lakewood Gardens Parkway',
+    address2: '84 Cottonwood Street',
+    city: 'Cleveland',
+    state: 'OH',
+    zip: 4108,
+    phoneNumber: '216-202-6153'
+  },
+  {
+    fullName: 'Toddie Sherwyn',
+    address1: '1306 Dunning Junction',
+    city: 'Washington',
+    state: 'DC',
+    zip: 2964,
+    phoneNumber: '202-110-0166'
+  },
+  {
+    fullName: 'Margi Waple',
+    address1: '7412 International Park',
+    address2: '3628 Scoville Pass',
+    city: 'Rochester',
+    state: 'NY',
+    zip: 6896,
+    phoneNumber: '585-302-8492'
+  },
+  {
+    fullName: 'Verne Bosnell',
+    address1: '116 Towne Lane',
+    address2: '71 New Castle Parkway',
+    city: 'Fresno',
+    state: 'CA',
+    zip: 1747,
+    phoneNumber: '209-912-8930'
+  },
+  {
+    fullName: 'Meryl Staggs',
+    address1: '89919 Longview Park',
+    address2: '684 Graedel Court',
+    city: 'Miami',
+    state: 'FL',
+    zip: 9843,
+    phoneNumber: '305-334-4413'
+  },
+  {
+    fullName: 'Orazio Sargent',
+    address1: '06783 Melby Way',
+    address2: '0810 Clemons Park',
+    city: 'Pittsburgh',
+    state: 'PA',
+    zip: 1413,
+    phoneNumber: '412-915-3927'
+  },
+  {
+    fullName: 'Maribeth Friman',
+    address1: '76 Towne Parkway',
+    address2: '8045 Di Loreto Pass',
+    city: 'Wilkes Barre',
+    state: 'PA',
+    zip: 8688,
+    phoneNumber: '570-462-5347'
+  },
+  {
+    fullName: 'Wendel Crangle',
+    address1: '9 Fisk Pass',
+    address2: '1 Hovde Hill',
+    city: 'Fort Wayne',
+    state: 'IN',
+    zip: 8556,
+    phoneNumber: '260-815-8530'
+  },
+  {
+    fullName: 'Karissa Bellard',
+    address1: '1 Chive Court',
+    address2: '5 Prairie Rose Drive',
+    city: 'Fort Smith',
+    state: 'AR',
+    zip: 8666,
+    phoneNumber: '479-902-8933'
+  },
+  {
+    fullName: 'Basilius Gritskov',
+    address1: '190 Norway Maple Avenue',
+    address2: '2 Moose Place',
+    city: 'Dayton',
+    state: 'OH',
+    zip: 8917,
+    phoneNumber: '937-969-0685'
+  },
+  {
+    fullName: 'Erek Andreaccio',
+    address1: '1 Evergreen Court',
+    address2: '40128 Thackeray Court',
+    city: 'Portland',
+    state: 'OR',
+    zip: 3928,
+    phoneNumber: '971-327-7254'
+  },
+  {
+    fullName: 'Moritz Stormont',
+    address1: '87 Mayer Pass',
+    address2: '48118 Gerald Way',
+    city: 'Vienna',
+    state: 'VA',
+    zip: 7830,
+    phoneNumber: '571-714-4698'
+  },
+  {
+    fullName: 'Hakim Scardifeild',
+    address1: '9 Knutson Parkway',
+    address2: '42464 Cascade Avenue',
+    city: 'Santa Rosa',
+    state: 'CA',
+    zip: 8336,
+    phoneNumber: '707-573-4684'
+  },
+  {
+    fullName: 'Cathryn Milmoe',
+    address1: '90 Vera Parkway',
+    address2: '51 Del Sol Center',
+    city: 'New York City',
+    state: 'NY',
+    zip: 2896,
+    phoneNumber: '212-513-5569'
+  },
+  {
+    fullName: 'Sharia Hardes',
+    address1: '32 Loftsgordon Junction',
+    address2: '159 Bay Trail',
+    city: 'Mc Keesport',
+    state: 'PA',
+    zip: 2954,
+    phoneNumber: '412-168-0384'
+  },
+  {
+    fullName: 'Susi Weems',
+    address1: '3569 Oak Valley Drive',
+    address2: '4591 Hagan Lane',
+    city: 'Houston',
+    state: 'TX',
+    zip: 9931,
+    phoneNumber: '713-351-2815'
+  },
+  {
+    fullName: 'Cornelia Knibbs',
+    address1: '451 Spaight Pass',
+    address2: '8529 Vidon Park',
+    city: 'Raleigh',
+    state: 'NC',
+    zip: 1250,
+    phoneNumber: '919-370-7429'
+  },
+  {
+    fullName: 'Willard Roderham',
+    address1: '51782 Fisk Alley',
+    address2: '17885 Anniversary Park',
+    city: 'Lexington',
+    state: 'KY',
+    zip: 1697,
+    phoneNumber: '859-995-2290'
+  },
+  {
+    fullName: 'Bianka Body',
+    address1: '8151 Arapahoe Park',
+    address2: '57 Milwaukee Point',
+    city: 'Waltham',
+    state: 'MA',
+    zip: 9453,
+    phoneNumber: '978-587-8000'
+  },
+  {
+    fullName: 'Robbert Ivanov',
+    address1: '60 Mcguire Drive',
+    address2: '569 Reinke Court',
+    city: 'Meridian',
+    state: 'MS',
+    zip: 2942,
+    phoneNumber: '601-110-0730'
+  },
+  {
+    fullName: 'Terrance Goodrum',
+    address1: '04 Tony Court',
+    address2: '50 Memorial Way',
+    city: 'Peoria',
+    state: 'IL',
+    zip: 2150,
+    phoneNumber: '309-268-9798'
+  },
+  {
+    fullName: 'Roxy Dayton',
+    address1: '291 Sutherland Trail',
+    city: 'Lees Summit',
+    state: 'MO',
+    zip: 8599,
+    phoneNumber: '816-217-3419'
+  },
+  {
+    fullName: 'Silva Gardner',
+    address1: '86547 Warner Parkway',
+    address2: '026 Bonner Way',
+    city: 'Las Vegas',
+    state: 'NV',
+    zip: 2076,
+    phoneNumber: '702-532-4526'
+  },
+  {
+    fullName: 'Ruby Kilfeather',
+    address1: '34629 Katie Center',
+    address2: '8199 Memorial Trail',
+    city: 'Arlington',
+    state: 'VA',
+    zip: 7236,
+    phoneNumber: '571-547-1101'
+  },
+  {
+    fullName: 'Sissie Paddell',
+    address1: '9 Kropf Place',
+    address2: '12089 Summit Way',
+    city: 'Tucson',
+    state: 'AZ',
+    zip: 1985,
+    phoneNumber: '520-223-1483'
+  },
+  {
+    fullName: 'Ogdon Mitroshinov',
+    address1: '87 Prentice Road',
+    city: 'Milwaukee',
+    state: 'WI',
+    zip: 6354,
+    phoneNumber: '414-677-5727'
+  },
+  {
+    fullName: 'Chauncey Freda',
+    address1: '61 Eagle Crest Trail',
+    address2: '92 Sommers Pass',
+    city: 'Wilmington',
+    state: 'DE',
+    zip: 9501,
+    phoneNumber: '302-849-4030'
+  },
+  {
+    fullName: 'Mireille Roulston',
+    address1: '80 Forster Lane',
+    address2: '36 Sachtjen Pass',
+    city: 'Ashburn',
+    state: 'VA',
+    zip: 5475,
+    phoneNumber: '571-571-4779'
+  },
+  {
+    fullName: 'Davie Saker',
+    address1: '0253 Ruskin Crossing',
+    address2: '1 8th Street',
+    city: 'El Paso',
+    state: 'TX',
+    zip: 9010,
+    phoneNumber: '915-190-8158'
+  },
+  {
+    fullName: 'Wilma Chettle',
+    address1: '6 Pennsylvania Way',
+    address2: '77 Lindbergh Road',
+    city: 'Memphis',
+    state: 'TN',
+    zip: 9614,
+    phoneNumber: '901-341-7923'
   }
 ]
 //PRODUCTS DUMMY DATA
@@ -3155,20 +3154,52 @@ const orderProduct = [
   }
 ]
 
+// GETS THE MAGIC METHOS ON A MODEL THAT IS PASSED
+const getMagicMethods = model => {
+  const magicMethodsArr = []
+  const associations = model.associations
+  //console.log(associations)
+
+  for (let key in associations) {
+    if (associations.hasOwnProperty(key)) {
+      const accessors = associations[key].accessors
+      const magicMethods = Object.values(accessors)
+      const curAssociationObj = {association: key, magicMethods}
+
+      magicMethodsArr.push(curAssociationObj)
+    }
+  }
+
+  return magicMethodsArr
+}
+
+// VARIABLES HOLDING MAGIC METHODS FOR EACH MODEL
+const magMethodsUser = getMagicMethods(User)
+const magMethodsProduct = getMagicMethods(Product)
+const magMethodsOrder = getMagicMethods(Order)
+const magMethodsOrderProduct = getMagicMethods(OrderProduct)
+const magMethodsShippingAddress = getMagicMethods(ShippingAddress)
+
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  await Promise.all(
-    users.map(user => {
-      return User.create(user)
-    })
-  )
-  await Promise.all(
-    shippingAddresses.map(address => {
-      return ShippingAddress.create(address)
-    })
-  )
+  //console.log('these are the magic methods on user', magMethodsUser);
+  users.map(async user => {
+    const newUser = await User.create(user)
+    //console.log('Here is the newUser', newUser)
+    const newShippingAddress = await ShippingAddress.create(
+      shippingAddresses[newUser.id - 1]
+    )
+    await newUser.setShipping_addresses(newShippingAddress)
+    return newUser
+  })
+
+  // await Promise.all(
+  //   shippingAddresses.map(address => {
+  //     return ShippingAddress.create(address)
+  //   })
+  // )
   await Promise.all(
     products.map(product => {
       return Product.create(product)
@@ -3180,17 +3211,26 @@ async function seed() {
       return Order.create(order)
     })
   )
-  await OrderProduct.create(orderProduct[0])
-  await OrderProduct.create(orderProduct[1])
-  await OrderProduct.create(orderProduct[3])
 
-  const newUser = await User.create({
+  const newUserK = await User.create({
     username: 'kayo',
     isAdmin: true,
     imageUrl: 'https://robohash.org/velitmolestiasut.bmp?size=50x50&set=set1',
     email: 'kayo@gmail.com',
     password: 'kayo'
   })
+
+  const newShippingAddressK = await ShippingAddress.create({
+    fullName: 'Thorin Eley',
+    address1: '6915 Muir Hill',
+    address2: '7871 Mcbride Junction',
+    city: 'Atlanta',
+    state: 'GA',
+    zip: 7909,
+    phoneNumber: '404-888-1943'
+  })
+
+  newUserK.setShipping_addresses(newShippingAddressK)
 
   await Promise.all(
     orderProduct.map(item => {

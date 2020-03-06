@@ -34,7 +34,6 @@ class Routes extends Component {
       this.props.fetchCart(this.props.orderId)
       cartFlag = true
     }
-    console.log('This is the Routes component', this.props)
 
     return (
       <Switch>
