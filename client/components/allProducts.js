@@ -1,8 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts} from '../store'
-import Loader from 'react-loader-spinner'
-//import {Link} from 'react-router-dom'
 import ProductBox from './productBox'
 import Filters from './filters'
 
