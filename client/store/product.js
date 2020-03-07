@@ -1,9 +1,12 @@
 import axios from 'axios'
+import history from '../history'
 
 const initialState = {}
 
 // ACTION CONSTANTS
 const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
+const EDIT_PRODUCT = 'EDIT_PRODUCT'
+const DELETE_PRODUCT = 'DELETE_PRODUCT'
 
 // ACTION CREATORS
 const getSingleProduct = product => ({
@@ -11,6 +14,15 @@ const getSingleProduct = product => ({
   product
 })
 
+const editProduct = product => ({
+  type: EDIT_PRODUCT,
+  product
+})
+
+const deleteProduct = product => ({
+  type: DELETE_PRODUCT,
+  product
+})
 // THUNK CREATORS
 
 export const fetchSingleProduct = productId => async dispatch => {
@@ -22,10 +34,36 @@ export const fetchSingleProduct = productId => async dispatch => {
   }
 }
 
+export const editProductThunk = (productId, product) => async dispatch => {
+  try {
+    const {data} = await axios.put(`/api/products/${productId}`, product)
+    dispatch(editProduct(data))
+    history.push('/home')
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export const deleteProductThunk = productId => dispatch => {
+  try {
+    axios.delete(`/api/products/${productId}`)
+    dispatch(deleteProduct(productId))
+    history.push('/home')
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_SINGLE_PRODUCT: {
       return action.product
+    }
+    case EDIT_PRODUCT: {
+      return action.product
+    }
+    case DELETE_PRODUCT: {
+      return initialState
     }
     default: {
       return state
