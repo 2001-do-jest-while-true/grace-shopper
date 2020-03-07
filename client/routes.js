@@ -18,7 +18,6 @@ let cartFlag = false
 import AdminUser from './components/adminUser'
 import UserSignup from './components/UserSignup'
 
-
 /**
  * COMPONENT
  */
@@ -26,6 +25,13 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
     this.props.fetchAllProducts()
+    window.addEventListener('beforeunload', async event => {
+      const orderId = this.props.orderId
+      const cart = this.props.cart
+      // this.props.storeCart({orderId, cart})
+      window.localStorage.setItem('orderId', String(orderId))
+      window.localStorage.setItem('cart', cart)
+    })
   }
 
   render() {

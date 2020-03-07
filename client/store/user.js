@@ -8,9 +8,7 @@ const GET_LOGGED_IN = 'GET_LOGGED_IN'
 const LOG_OUT = 'LOG_OUT'
 const GET_USER = 'GET_USER'
 const GET_ALL_USERS = 'GET_ALL_USERS'
-const LOG_OUT = 'LOG_OUT'
 const ADD_USER = 'ADD_USER'
-
 
 /**
  * INITIAL STATE
