@@ -1,6 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {deleteFromCart, changeCartQuantity} from '../store'
+import {
+  deleteFromCart,
+  deleteFromCartThunk,
+  changeCartQuantity,
+  updateQtyThunk
+} from '../store'
 
 class CartItem extends React.Component {
   constructor() {
@@ -11,6 +16,8 @@ class CartItem extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleQuantitySubmit = this.handleQuantitySubmit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
   }
 
   componentDidMount() {
@@ -26,13 +33,33 @@ class CartItem extends React.Component {
   }
 
   handleQuantitySubmit() {
-    if (!+this.state.cartQuantity)
-      this.props.deleteFromCart(this.props.product.id)
-    else
+    if (!+this.state.cartQuantity) this.handleDelete()
+    else {
+      this.handleUpdate()
+    }
+  }
+
+  handleUpdate() {
+    if (this.props.isLoggedIn) {
+      const product = {
+        productId: this.props.product.id,
+        quantity: +this.state.cartQuantity
+      }
+      this.props.updateQtyThunk(this.props.orderId, product)
+    } else {
       this.props.changeCartQuantity(
         this.props.product.id,
         +this.state.cartQuantity
       )
+    }
+  }
+
+  handleDelete() {
+    if (this.props.isLoggedIn) {
+      this.props.deleteFromCartThunk(this.props.orderId, this.props.product.id)
+    } else {
+      this.props.deleteFromCart(this.props.product.id)
+    }
   }
 
   render() {
@@ -63,10 +90,7 @@ class CartItem extends React.Component {
             Update Quantity
           </button>
 
-          <button
-            type="button"
-            onClick={() => this.props.deleteFromCart(product.id)}
-          >
+          <button type="button" onClick={this.handleDelete}>
             Remove Item
           </button>
         </div>
@@ -76,14 +100,23 @@ class CartItem extends React.Component {
 }
 
 const mapState = state => ({
+  isLoggedIn: !!state.user.loggedIn.id,
   products: state.product.allProducts,
+  orderId: state.cart.orderId,
   cart: state.cart.cart
 })
 
 const mapDispatch = dispatch => ({
   deleteFromCart: productId => dispatch(deleteFromCart(productId)),
+
+  deleteFromCartThunk: (orderId, productId) =>
+    dispatch(deleteFromCartThunk(orderId, productId)),
+
   changeCartQuantity: (productId, quantity) =>
-    dispatch(changeCartQuantity(productId, quantity))
+    dispatch(changeCartQuantity(productId, quantity)),
+
+  updateQtyThunk: (orderId, product) =>
+    dispatch(updateQtyThunk(orderId, product))
 })
 
 export default connect(mapState, mapDispatch)(CartItem)
