@@ -1,8 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store'
-import Loader from 'react-loader-spinner'
-//import {Link} from 'react-router-dom'
 import ProductBox from './productBox'
 import Filters from './filters'
 
@@ -18,8 +16,7 @@ class AllProducts extends React.Component {
         'summer',
         'xmas',
         'misc'
-      ],
-      identifier: 0
+      ]
     }
 
     this.setFilters = this.setFilters.bind(this)
@@ -48,7 +45,7 @@ class AllProducts extends React.Component {
         <Filters filters={this.state.filters} setFilters={this.setFilters} />
         {this.props.products.length ? (
           products.map(product => (
-            <div>
+            <div key={product.id}>
               <ProductBox product={product} />}
             </div>
           ))
