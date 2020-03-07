@@ -9,7 +9,9 @@ import SingleProduct from './components/singleProduct'
 import allUsers from './components/allUsers'
 import Cart from './components/cart'
 import SingleUser from './components/singleUser'
-import {initializeCartThunk, fetchCart, storeCart} from './store/cart'
+import AddProduct from './components/addProduct'
+import EditProduct from './components/editProduct'
+import {initializeCartThunk, fetchCart} from './store/cart'
 
 let cartFlag = false
 //IMPORT CART COMPONENT HERE
@@ -62,6 +64,11 @@ class Routes extends Component {
             <Route exact path="/users" component={allUsers} />
             <Route path="/users/:userId" component={SingleUser} />
             <Route exact path="/cart" component={Cart} />
+            <Route exact path="/add-product" component={AddProduct} />
+            <Route
+              path="/products/:productId/edit-product"
+              component={EditProduct}
+            />
           </Switch>
         )}
         <Route path="/">
@@ -91,8 +98,7 @@ const mapDispatch = dispatch => ({
   loadInitialData: () => dispatch(me()),
   initializeCartThunk: userId => dispatch(initializeCartThunk(userId)),
   fetchCart: orderId => dispatch(fetchCart(orderId)),
-  fetchAllProducts: () => dispatch(fetchAllProducts()),
-  storeCart: cart => dispatch(storeCart(cart))
+  fetchAllProducts: () => dispatch(fetchAllProducts())
 })
 
 // The `withRouter` wrapper makes sure that updates are not blocked
