@@ -44,26 +44,34 @@ class CartItem extends React.Component {
   }
 
   handleUpdate() {
+    const prodId = this.props.product.id
+    const cartQty = this.state.cartQuantity
+
     if (this.props.isLoggedIn) {
       const product = {
-        productId: this.props.product.id,
-        quantity: +this.state.cartQuantity
+        productId: prodId,
+        quantity: +cartQty
       }
       this.props.updateQtyThunk(this.props.orderId, product)
     } else {
-      this.props.changeCartQuantity(
-        this.props.product.id,
-        +this.state.cartQuantity
-      )
+      this.props.changeCartQuantity(prodId, +cartQty)
     }
+
+    const quantityDifference = this.props.cart[prodId] - +cartQty
+    this.props.addToOrderTotal(-quantityDifference * this.props.product.price)
   }
 
   handleDelete() {
+    const prodId = this.props.product.id
+
     if (this.props.isLoggedIn) {
-      this.props.deleteFromCartThunk(this.props.orderId, this.props.product.id)
+      this.props.deleteFromCartThunk(this.props.orderId, prodId)
     } else {
-      this.props.deleteFromCart(this.props.product.id)
+      this.props.deleteFromCart(prodId)
     }
+    this.props.addToOrderTotal(
+      -(this.props.cart[prodId] * this.props.product.price)
+    )
   }
 
   render() {

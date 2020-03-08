@@ -23,13 +23,14 @@ class Cart extends React.Component {
 
   render() {
     return (
-      <div>
-        <div id="cart-div">
+      <div id="cart-container">
+        <div id="cart-items-div">
           {Object.keys(this.props.cart).map(prodId => (
             <CartItem
               key={prodId}
               product={this.props.allProducts.find(item => item.id === +prodId)}
               addToOrderTotal={this.addToOrderTotal}
+              refreshTotal={this.refreshTotal}
             />
           ))}
         </div>
