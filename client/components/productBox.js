@@ -2,7 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addToCart, addToCartThunk} from '../store'
-//addToCartThunk
+import Dinero from 'dinero.js'
+
 class ProductBox extends React.Component {
   constructor() {
     super()
@@ -42,7 +43,7 @@ class ProductBox extends React.Component {
               <h2>{name}</h2>
             </Link>
             <div id="inventory-box">
-              <p>Price: {price / 100}</p>
+              <p>Price: {Dinero({amount: price}).toFormat('$0.00')}</p>
               {quantity === 0 && (
                 <span className="warning">Out of stock, check back soon!</span>
               )}

@@ -69,7 +69,6 @@ export const fetchCart = orderId => async dispatch => {
 
 export const storeCart = cart => async dispatch => {
   try {
-    console.log(cart)
     const res = await axios.post('/api/cart', cart)
     dispatch(deleteCart())
   } catch (error) {

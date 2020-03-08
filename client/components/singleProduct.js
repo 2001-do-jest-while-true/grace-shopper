@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct, deleteProductThunk} from '../store'
 import EditProduct from './editProduct'
+import Dinero from 'dinero.js'
 
 class SingleProduct extends React.Component {
   constructor() {
@@ -19,7 +20,7 @@ class SingleProduct extends React.Component {
   }
 
   render() {
-    if (this.props.singleProduct) {
+    if (this.props.singleProduct.id) {
       const product = this.props.singleProduct
       return (
         <div>
@@ -29,7 +30,9 @@ class SingleProduct extends React.Component {
                 <img src={product.imageUrl} />
                 <div className="single-product-info">
                   <h2>{product.name}</h2>
-                  <p>Price: {product.price}</p>
+                  <p>
+                    Price: {Dinero({amount: product.price}).toFormat('$0.00')}
+                  </p>
                   <p>
                     {product.quantity > 6 && (
                       <span className="in-stock">In stock</span>
@@ -87,7 +90,7 @@ class SingleProduct extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isAdmin: state.user.loggedIn.isAdmin,
+  isAdmin: state.user.isAdmin,
   singleProduct: state.product
 })
 

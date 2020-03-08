@@ -6,6 +6,7 @@ import {
   changeCartQuantity,
   updateQtyThunk
 } from '../store'
+import Dinero from 'dinero.js'
 
 class CartItem extends React.Component {
   constructor() {
@@ -20,10 +21,13 @@ class CartItem extends React.Component {
     this.handleUpdate = this.handleUpdate.bind(this)
   }
 
-  componentDidMount() {
-    this.setState({
+  async componentDidMount() {
+    await this.setState({
       cartQuantity: this.props.cart[this.props.product.id]
     })
+    this.props.addToOrderTotal(
+      this.props.product.price * this.state.cartQuantity
+    )
   }
 
   handleChange() {
@@ -71,7 +75,7 @@ class CartItem extends React.Component {
         </div>
         <div className="cart-col1">
           <h2>{product.name}</h2>
-          <p>Price: {product.price}</p>
+          <p>Price: {Dinero({amount: product.price}).toFormat('$0.00')}</p>
           <br />
           {product.quantity < 5 &&
             product.quantity > 0 && <span>Low on stock. Buy now!</span>}
@@ -100,7 +104,7 @@ class CartItem extends React.Component {
 }
 
 const mapState = state => ({
-  isLoggedIn: !!state.user.loggedIn.id,
+  isLoggedIn: !!state.user.id,
   products: state.product.allProducts,
   orderId: state.cart.orderId,
   cart: state.cart.cart
