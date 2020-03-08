@@ -6,28 +6,19 @@ import history from '../history'
  */
 const GET_LOGGED_IN = 'GET_LOGGED_IN'
 const LOG_OUT = 'LOG_OUT'
-const GET_USER = 'GET_USER'
-const GET_ALL_USERS = 'GET_ALL_USERS'
 const ADD_USER = 'ADD_USER'
 
 /**
  * INITIAL STATE
  */
 
-const initialState = {
-  loggedIn: {},
-  users: [],
-  singleUser: {},
-  user: {}
-}
+const initialState = {}
 
 /**
  * ACTION CREATORS
  */
 const getLoggedIn = user => ({type: GET_LOGGED_IN, user})
-const logOutUser = () => ({type: LOG_OUT})
-const getUser = user => ({type: GET_USER, user})
-const getAllUsers = users => ({type: GET_ALL_USERS, users})
+const logOutUser = () => ({type: LOG_OUT, user: {}})
 const addUser = user => ({type: ADD_USER, user})
 /**
  * THUNK CREATORS
@@ -36,6 +27,7 @@ const addUser = user => ({type: ADD_USER, user})
 export const addUserThunk = user => async dispatch => {
   try {
     const {data} = await axios.post('/api/users/signup', user)
+
     dispatch(addUser(data))
   } catch (error) {
     console.error(error)
@@ -51,24 +43,6 @@ export const me = () => async dispatch => {
   }
 }
 
-export const fetchAllUsers = () => async dispatch => {
-  try {
-    const {data} = await axios.get('/api/users')
-    dispatch(getAllUsers(data))
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-export const fetchSingleUser = userId => async dispatch => {
-  try {
-    const {data} = await axios.get(`/api/users/${userId}`)
-    dispatch(getUser(data))
-  } catch (error) {
-    console.error(error)
-  }
-}
-
 export const auth = (userparam, password, method) => async dispatch => {
   let res
   try {
@@ -79,6 +53,7 @@ export const auth = (userparam, password, method) => async dispatch => {
 
   try {
     dispatch(getLoggedIn(res.data))
+    console.log(res.data)
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
@@ -100,16 +75,12 @@ export const logout = () => async dispatch => {
  */
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_ALL_USERS:
-      return {...state, users: action.users}
     case GET_LOGGED_IN:
-      return {...state, loggedIn: action.user}
-    case GET_USER:
-      return {...state, singleUser: action.user}
+      return action.user
     case LOG_OUT:
-      return {...state, loggedIn: {}}
+      return action.user
     case ADD_USER:
-      return {...state, user: action.user}
+      return action.user
     default:
       return state
   }

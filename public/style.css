@@ -124,6 +124,7 @@ form div {
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
 #filter-container {
   border: 1px solid black;
@@ -140,5 +141,4 @@ form div {
 
 .filter-check {
   display: flex;
-
 }

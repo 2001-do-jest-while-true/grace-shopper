@@ -35,6 +35,7 @@ class Routes extends Component {
   }
 
   render() {
+    console.log('CHECKING ROUTE', this.props)
     const {isLoggedIn, isAdmin} = this.props
 
     if (this.props.loggedIn.id > 0 && !this.props.orderId) {
@@ -86,11 +87,11 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.loggedIn.id,
+    isLoggedIn: !!state.user.id,
     cart: state.cart.cart,
-    loggedIn: state.user.loggedIn,
+    loggedIn: state.user,
     orderId: state.cart.orderId,
-    isAdmin: state.user.loggedIn.isAdmin
+    isAdmin: state.user.isAdmin
   }
 }
 

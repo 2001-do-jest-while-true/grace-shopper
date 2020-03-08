@@ -82,7 +82,7 @@ class ProductBox extends React.Component {
 
 //onClick={() => this.props.addToCart(id, this.props.userId)}
 const mapState = state => ({
-  isLoggedIn: !!state.user.loggedIn.id,
+  isLoggedIn: !!state.user.id,
   orderId: state.cart.orderId
 })
 

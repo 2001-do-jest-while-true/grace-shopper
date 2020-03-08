@@ -44,8 +44,9 @@ const Header = props => {
  * CONTAINER
  */
 const mapState = state => {
+  console.log(state.user)
   return {
-    isLoggedIn: !!state.user.loggedIn.id
+    isLoggedIn: !!state.user.id
   }
 }
 

@@ -23,7 +23,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    username: state.user.loggedIn.username
+    username: state.user.username
   }
 }
 

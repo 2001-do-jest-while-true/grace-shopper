@@ -8,6 +8,7 @@ const Order = db.define('order', {
   },
   status: {
     type: Sequelize.STRING,
+    defaultValue: 'active',
     validate: {
       isIn: [['active', 'inactive', 'processing', 'fulfilled']]
     }

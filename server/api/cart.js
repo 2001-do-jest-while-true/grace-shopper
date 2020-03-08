@@ -127,6 +127,7 @@ router.get('/:orderId', async (req, res, next) => {
       },
       attributes: ['productId', 'quantity']
     })
+    console.log(products)
     res.json(products)
   } catch (err) {
     next(err)
