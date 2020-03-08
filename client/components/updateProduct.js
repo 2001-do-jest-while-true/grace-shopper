@@ -1,40 +1,55 @@
 import React from 'react'
-import {addProductThunk} from '../store'
+import {addProductThunk, editProductThunk} from '../store'
 import {connect} from 'react-redux'
 
 const defaultState = {
   name: '',
   size: 'small',
-  type: 'duck',
-  category: 'business/casual',
+  type: 'yellow-duck',
+  category: 'misc',
   price: 0,
   quantity: 1,
   description: '',
   imageUrl: ''
 }
 
-class AddProduct extends React.Component {
-  constructor() {
-    super()
+class UpdateProduct extends React.Component {
+  constructor(props) {
+    super(props)
     this.state = defaultState
+    this.state = this.props.product ? this.props.product : defaultState
+    this.handleChange = this.handleChange.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
+
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    })
+  }
+
+  handleClick() {
+    this.props.resetDisplay()
+    this.props.name === 'add'
+      ? this.props.addProductThunk(this.state)
+      : this.props.editProductThunk(this.props.product.id, this.state)
+  }
+
   render() {
     return (
-      <div id="addProduct-outer-continer">
+      <div id="updateProduct-outer-continer">
         <div id="name-box">
           <label htmlFor="name">Name:</label>
           <input
             type="text"
+            name="name"
             value={this.state.name}
-            onChange={evt => this.setState({name: evt.target.value})}
+            onChange={this.handleChange}
           />
         </div>
         <div id="size-box">
           <label htmlFor="size">Size: </label>
-          <select
-            name="size"
-            onChange={evt => this.setState({size: evt.target.value})}
-          >
+          <select name="size" onChange={this.handleChange}>
             <option value="small"> Small </option>
             <option value="medium"> Medium </option>
             <option value="large"> Large </option>
@@ -43,11 +58,13 @@ class AddProduct extends React.Component {
         </div>
         <div id="type-box">
           <label htmlFor="type">Type: </label>
-          <select
-            name="type"
-            onChange={evt => this.setState({type: evt.target.value})}
-          >
-            <option value="duck"> Duck </option>
+          <select name="type" onChange={this.handleChange}>
+            <option value="yellow-duck"> Yellow duck </option>
+            <option value="purple-duck"> Purple duck </option>
+            <option value="red-duck"> Red duck </option>
+            <option value="blue-duck"> Blue duck </option>
+            <option value="gold-duck"> Gold duck </option>
+            <option value="silver-duck"> Silver duck </option>
             <option value="accessory"> Accessory </option>
             <option value="preset"> Preset </option>
             <option value="outfit"> Outfit </option>
@@ -56,10 +73,7 @@ class AddProduct extends React.Component {
         </div>
         <div id="category-box">
           <label htmlFor="category">Category: </label>
-          <select
-            name="category"
-            onChange={evt => this.setState({category: evt.target.value})}
-          >
+          <select name="category" onChange={this.handleChange}>
             <option value="business/casual"> Business/Casual </option>
             <option value="halloween"> Halloween </option>
             <option value="medieval"> Medieval </option>
@@ -73,52 +87,68 @@ class AddProduct extends React.Component {
           <label htmlFor="price">Price:</label>
           <input
             type="number"
+            name="price"
             min="0"
             value={this.state.price}
-            onChange={evt => this.setState({price: evt.target.value})}
+            onChange={this.handleChange}
           />
         </div>
         <div id="quantity-box">
           <label htmlFor="quantity">Quantity:</label>
           <input
             type="number"
+            name="quantity"
             min="1"
             value={this.state.quantity}
-            onChange={evt => this.setState({quantity: evt.target.value})}
+            onChange={this.handleChange}
           />
         </div>
         <div id="description-box">
           <label htmlFor="description">Description:</label>
           <input
             type="text"
+            name="description"
             value={this.state.description}
-            onChange={evt => this.setState({description: evt.target.value})}
+            onChange={this.handleChange}
           />
         </div>
         <div id="imageUrl-box">
           <label htmlFor="imageUrl">ImageURL:</label>
           <input
             type="text"
+            name="imageUrl"
             value={this.state.imageUrl}
-            onChange={evt => this.setState({imageUrl: evt.target.value})}
+            onChange={this.handleChange}
           />
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            this.props.addProductThunk(this.state)
-            this.setState(defaultState)
-          }}
-        >
-          Save Changes
+        <button type="button" onClick={this.handleClick}>
+          {' '}
+          Save{' '}
         </button>
       </div>
     )
   }
 }
 
+const mapAdd = state => {
+  return {
+    name: 'add',
+    displayName: 'Add '
+  }
+}
+
+const mapEdit = state => {
+  return {
+    name: 'edit',
+    display: 'Edit '
+  }
+}
+
 const mapDispatch = dispatch => ({
-  addProductThunk: product => dispatch(addProductThunk(product))
+  addProductThunk: product => dispatch(addProductThunk(product)),
+  editProductThunk: (productId, product) =>
+    dispatch(editProductThunk(productId, product))
 })
 
-export default connect(null, mapDispatch)(AddProduct)
+export const AddProduct = connect(mapAdd, mapDispatch)(UpdateProduct)
+export const EditProduct = connect(mapEdit, mapDispatch)(UpdateProduct)

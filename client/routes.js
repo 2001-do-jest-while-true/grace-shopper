@@ -9,12 +9,12 @@ import SingleProduct from './components/singleProduct'
 import allUsers from './components/allUsers'
 import Cart from './components/cart'
 import SingleUser from './components/singleUser'
-import AddProduct from './components/addProduct'
-import EditProduct from './components/editProduct'
+import {AddProduct, EditProduct} from './components/updateProduct'
 
 let cartFlag = false
 //IMPORT CART COMPONENT HERE
 import AdminUser from './components/adminUser'
+import UserSignup from './components/UserSignup'
 
 /**
  * COMPONENT
@@ -26,7 +26,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn, isAdmin, products} = this.props
+    const {isLoggedIn, isAdmin} = this.props
 
     if (this.props.loggedIn.id > 0 && !this.props.orderId) {
       this.props.initializeCartThunk(this.props.loggedIn.id)
@@ -40,21 +40,22 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/signup" component={UserSignup} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
+        <Route exact path="/cart" component={Cart} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home">
-              {isAdmin ? <AdminUser products={products} /> : <UserHome />}
-            </Route>
+            <Route path="/home">{isAdmin ? <AdminUser /> : <UserHome />}</Route>
             <Route exact path="/users" component={allUsers} />
             <Route path="/users/:userId" component={SingleUser} />
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/add-product" component={AddProduct} />
             <Route
               path="/products/:productId/edit-product"
-              component={EditProduct}
+              render={props => <EditProduct {...props} />}
+            />
             />
           </Switch>
         )}
@@ -77,8 +78,7 @@ const mapState = state => {
     isAdmin: state.user.loggedIn.isAdmin,
     loggedIn: state.user.loggedIn,
     cart: state.cart.cart,
-    orderId: state.cart.orderId,
-    products: state.allProducts
+    orderId: state.cart.orderId
   }
 }
 
@@ -86,7 +86,7 @@ const mapDispatch = dispatch => ({
   loadInitialData: () => dispatch(me()),
   initializeCartThunk: userId => dispatch(initializeCartThunk(userId)),
   fetchCart: orderId => dispatch(fetchCart(orderId)),
-  fetchAllProducts: () => dispatch(fetchAllProducts)
+  fetchAllProducts: () => dispatch(fetchAllProducts())
 })
 
 // The `withRouter` wrapper makes sure that updates are not blocked

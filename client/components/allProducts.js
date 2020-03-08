@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts} from '../store'
 import ProductBox from './productBox'
 import Filters from './filters'
+import {AddProduct} from './updateProduct'
+import {fetchAllProducts} from '../store'
 
 class AllProducts extends React.Component {
   constructor() {
@@ -16,20 +17,26 @@ class AllProducts extends React.Component {
         'summer',
         'xmas',
         'misc'
-      ]
+      ],
+      displayAddProd: false
     }
-
     this.setFilters = this.setFilters.bind(this)
-  }
-
-  componentDidMount() {
-    this.props.fetchAllProducts()
+    this.toggleDisplayAddProd = this.toggleDisplayAddProd.bind(this)
   }
 
   setFilters(array) {
     this.setState({
       filters: [...array]
     })
+  }
+
+  toggleDisplayAddProd() {
+    const newState = !this.state.displayAddProd
+    this.setState({displayAddProd: newState})
+  }
+
+  componentDidMount() {
+    this.props.fetchAllProducts()
   }
 
   render() {
@@ -42,16 +49,25 @@ class AllProducts extends React.Component {
 
     return (
       <div>
-        <Filters filters={this.state.filters} setFilters={this.setFilters} />
-        {this.props.products.length ? (
-          products.map(product => (
-            <div key={product.id}>
-              <ProductBox product={product} />}
-            </div>
-          ))
+        <button type="button" onClick={this.toggleDisplayAddProd}>
+          Add Product
+        </button>
+        {this.state.displayAddProd ? (
+          <AddProduct resetDisplay={this.toggleDisplayAddProd} />
         ) : (
-          <p> No products yet...</p>
+          <Filters filters={this.state.filters} setFilters={this.setFilters} />
         )}
+        {!this.state.displayAddProd && this.props.products.length
+          ? products.map(product => {
+              if (this.state.filters.includes(product.category)) {
+                return (
+                  <div key={product.id}>
+                    <ProductBox product={product} />
+                  </div>
+                )
+              }
+            })
+          : !this.state.displayAddProd && <p>empty products</p>}
       </div>
     )
   }
@@ -63,8 +79,7 @@ const mapStateToProps = state => ({
   cart: state.cart.cart
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatch = dispatch => ({
   fetchAllProducts: () => dispatch(fetchAllProducts())
 })
-
-export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
+export default connect(mapStateToProps, mapDispatch)(AllProducts)

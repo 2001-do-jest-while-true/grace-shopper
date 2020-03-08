@@ -45,3 +45,13 @@ router.get('/:userId', adminsOnly, async (req, res, next) => {
     next(error)
   }
 })
+
+router.post('/signup', async (req, res, next) => {
+  try {
+    console.log('This is the req.body', req.body)
+    const addUser = await User.create(req.body)
+    res.status(200).json(addUser)
+  } catch (error) {
+    next(error)
+  }
+})
