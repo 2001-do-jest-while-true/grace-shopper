@@ -18,7 +18,7 @@ const initialState = {}
  * ACTION CREATORS
  */
 const getLoggedIn = user => ({type: GET_LOGGED_IN, user})
-const logOutUser = () => ({type: LOG_OUT})
+const logOutUser = () => ({type: LOG_OUT, user: {}})
 const addUser = user => ({type: ADD_USER, user})
 /**
  * THUNK CREATORS

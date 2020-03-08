@@ -7,26 +7,31 @@ class AllUsers extends React.Component {
     this.props.fetchAllUsers()
   }
   render() {
-    if (this.props.users) {
-      return (
-        <div>
-          {this.props.users.map(user => (
-            <div key={user.id}>
-              <h3>{user.username}</h3>
-              Email:
-              {user.email}
-            </div>
-          ))}
-        </div>
-      )
+    if (this.props.isAdmin) {
+      if (this.props.users.length) {
+        return (
+          <div>
+            {this.props.users.map(user => (
+              <div key={user.id}>
+                <h3>{user.username}</h3>
+                Email:
+                {user.email}
+              </div>
+            ))}
+          </div>
+        )
+      } else {
+        return <div>No Users</div>
+      }
     } else {
-      return <div>No Users</div>
+      return <div>Not Authorized!!!</div>
     }
   }
 }
 
 const mapStateToProps = state => ({
-  users: state.admin.users
+  users: state.user.users,
+  isAdmin: state.user.loggedIn.isAdmin
 })
 const mapDispatchToProps = dispatch => ({
   fetchAllUsers: () => dispatch(fetchAllUsers())

@@ -23,8 +23,10 @@ const Header = props => {
               Log In
             </button>
           )}
-          <button type="button">Sign Up</button>
-          <img src="cart.svg" />
+          <Link to="/signup">Sign up</Link>
+          <Link to="/cart">
+            <img src="cart.svg" />
+          </Link>
         </div>
       </div>
       <div id="header-bottom">
@@ -42,6 +44,7 @@ const Header = props => {
  * CONTAINER
  */
 const mapState = state => {
+  console.log(state.user)
   return {
     isLoggedIn: !!state.user.id
   }

@@ -3,12 +3,32 @@ import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store'
 import Loader from 'react-loader-spinner'
 //import {Link} from 'react-router-dom'
-import ProductBox from './ProductBox'
+import ProductBox from './productBox'
+import Filters from './filters'
 //ADD FILTERS HERE FOR FILTERING ACCORDING TO FILTER TYPE
 
 class AllProducts extends React.Component {
-  componentDidMount() {
-    this.props.fetchAllProducts()
+  constructor() {
+    super()
+    this.state = {
+      filters: [
+        'business/casual',
+        'halloween',
+        'medieval',
+        'gamer',
+        'summer',
+        'xmas',
+        'misc'
+      ]
+    }
+
+    this.setFilters = this.setFilters.bind(this)
+  }
+
+  setFilters(array) {
+    this.setState({
+      filters: [...array]
+    })
   }
 
   render() {
@@ -18,16 +38,22 @@ class AllProducts extends React.Component {
       const type = location.search.split('=')[1]
       products = products.filter(product => product.type === type)
     }
+
     return (
       <div>
+        <Filters filters={this.state.filters} setFilters={this.setFilters} />
         {this.props.products.length ? (
-          products.map(product => (
-            <div key={product.id}>
-              <ProductBox product={product} />}
-            </div>
-          ))
+          products.map(product => {
+            if (this.state.filters.includes(product.category)) {
+              return (
+                <div key={product.id}>
+                  <ProductBox product={product} />
+                </div>
+              )
+            }
+          })
         ) : (
-          <p> No products yet...</p>
+          <p>empty products</p>
         )}
       </div>
     )
@@ -35,11 +61,9 @@ class AllProducts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.allProducts
+  products: state.allProducts,
+  orderId: state.cart.orderId,
+  cart: state.cart.cart
 })
 
-const mapDispatchToProps = dispatch => ({
-  fetchAllProducts: () => dispatch(fetchAllProducts())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
+export default connect(mapStateToProps)(AllProducts)

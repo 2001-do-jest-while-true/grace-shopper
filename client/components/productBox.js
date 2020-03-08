@@ -1,11 +1,22 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchCart, addToCartThunk} from '../store'
+import {addToCart} from '../store'
 //addToCartThunk
 class ProductBox extends React.Component {
-  componentDidMount() {
-    this.props.fetchCart()
+  constructor() {
+    super()
+    this.state = {
+      orderQuantity: 1
+    }
+
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange() {
+    this.setState({
+      orderQuantity: event.target.value
+    })
   }
 
   render() {
@@ -19,7 +30,7 @@ class ProductBox extends React.Component {
               <h2>{name}</h2>
             </Link>
             <div id="inventory-box">
-              <p>{price}</p>
+              <p>Price: {price / 100}</p>
               {quantity === 0 && (
                 <span className="warning">Out of stock, check back soon!</span>
               )}
@@ -30,14 +41,25 @@ class ProductBox extends React.Component {
             </div>
             <div id="select-qty-add-to-cart">
               <label htmlFor="qty">Qty: </label>
-              <select name="quantity" id="select-item-quantity">
+              <select
+                value={this.state.orderQuantity}
+                name="quantity"
+                id="select-item-quantity"
+                onChange={this.handleChange}
+              >
                 <option value={1}>1</option>
                 <option value={2}>2</option>
                 <option value={3}>3</option>
                 <option value={4}>4</option>
                 <option value={5}>5</option>
               </select>
-              <button id="add-to-cart" type="button">
+              <button
+                id="add-to-cart"
+                type="button"
+                onClick={() =>
+                  this.props.addToCart(id, Number(this.state.orderQuantity))
+                }
+              >
                 Add to cart
               </button>
             </div>
@@ -54,8 +76,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  fetchCart: () => dispatch(fetchCart())
-  //addToCart: (id, userId) => dispatch(addToCartThunk(id, userId))
+  addToCart: (id, quantity) => dispatch(addToCart(id, quantity))
 })
 
 export default connect(mapState, mapDispatch)(ProductBox)
