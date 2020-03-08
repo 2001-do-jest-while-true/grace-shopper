@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, User, OrderProduct} = require('../db/models')
+const {Order, User, OrderProduct, Product} = require('../db/models')
 
 module.exports = router
 
@@ -37,31 +37,84 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.put('/', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    const productId = req.body.productId
-    const quantity = req.body.quantity
-    const orderId = req.body.orderId
+    let {orderId, cart} = req.body
     if (!orderId) {
-      const newOrder = await Order.create({
-        productId: productId,
-        quantity: quantity
-      })
-      res.json({orderId: newOrder.id, productId, quantity})
-    } else {
-      const [cart, created] = await OrderProduct.findOrCreate({
-        where: {
-          productId,
-          orderId
-        },
-        defaults: {quantity: 1}
-      })
-      if (!created) cart.increment('quantity', {by: quantity})
-
-      res.json({orderId, productId, quantity: cart.quantity})
+      const newOrder = await Order.create({status: 'inactive'})
+      orderId = newOrder.id
     }
-  } catch (err) {
-    next(err)
+
+    const cartEntries = Object.entries(cart)
+    cartEntries.forEach(async item => {
+      const prodId = item[0]
+      const qty = item[1]
+
+      const order = await Order.findOne({where: {id: orderId}})
+      const product = await Product.findOne({where: {id: prodId}})
+
+      order.addProduct(product, {through: {quantity: qty}})
+    })
+
+    res.sendStatus(200)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/update/:orderId', async (req, res, next) => {
+  try {
+    const {productId, quantity} = req.body
+
+    const orderProduct = await OrderProduct.findOne({
+      where: {
+        orderId: req.params.orderId,
+        productId: productId
+      }
+    })
+
+    if (orderProduct) {
+      orderProduct.quantity = quantity
+      await orderProduct.save()
+      res.sendStatus(201)
+    } else res.sendStatus(404)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/:orderId', async (req, res, next) => {
+  try {
+    const {productId, quantity} = req.body
+
+    const [orderProduct] = await OrderProduct.findOrCreate({
+      where: {
+        orderId: req.params.orderId,
+        productId: productId
+      },
+      defaults: {quantity: 0}
+    })
+
+    orderProduct.quantity = orderProduct.quantity + quantity
+    await orderProduct.save()
+
+    res.sendStatus(201)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/:orderId/:productId', async (req, res, next) => {
+  try {
+    await OrderProduct.destroy({
+      where: {
+        orderId: req.params.orderId,
+        productId: req.params.productId
+      }
+    })
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
   }
 })
 
@@ -78,10 +131,3 @@ router.get('/:orderId', async (req, res, next) => {
     next(err)
   }
 })
-
-// const {rows} = await OrderProduct.findAndCountAll({
-//   where: {
-//     orderId: active.dataValues.id
-//   },
-//   attributes: ['productId', 'quantity']
-// })

@@ -2,11 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import {logout, deleteCart} from '../store'
 import Navbar from './navbar'
 import {Login} from './auth-form'
 
 const Header = props => {
+  const handleLogin = () => {
+    props.deleteCart()
+    props.loginClickHandler()
+  }
+
   return (
     <div id="header">
       <div id="header-top">
@@ -15,11 +20,11 @@ const Header = props => {
         </div>
         <div id="header-buttons">
           {props.isLoggedIn ? (
-            <button type="button" onClick={props.handleClick}>
+            <button type="button" onClick={props.handleLogout}>
               Log Out
             </button>
           ) : (
-            <button type="button" onClick={props.loginClickHandler}>
+            <button type="button" onClick={handleLogin}>
               Log In
             </button>
           )}
@@ -33,9 +38,7 @@ const Header = props => {
         <Navbar />
       </div>
       {props.login &&
-        !props.isLoggedIn && (
-          <Login loginClickHandler={props.loginClickHandler} />
-        )}
+        !props.isLoggedIn && <Login loginClickHandler={handleLogin} />}
     </div>
   )
 }
@@ -45,14 +48,19 @@ const Header = props => {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.loggedIn.id
+    isLoggedIn: !!state.user.id
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    handleClick() {
-      dispatch(logout())
+    async deleteCart() {
+      await dispatch(deleteCart())
+    },
+
+    async handleLogout() {
+      await dispatch(logout())
+      await dispatch(deleteCart())
     }
   }
 }
@@ -63,7 +71,7 @@ export default connect(mapState, mapDispatch)(Header)
  * PROP TYPES
  */
 Header.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
 

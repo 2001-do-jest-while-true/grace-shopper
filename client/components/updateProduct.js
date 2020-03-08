@@ -1,6 +1,7 @@
 import React from 'react'
 import {addProductThunk, editProductThunk} from '../store'
 import {connect} from 'react-redux'
+import Dinero from 'dinero.js'
 
 const defaultState = {
   name: '',
@@ -20,8 +21,14 @@ class UpdateProduct extends React.Component {
     this.state = this.props.product ? this.props.product : defaultState
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handlePriceChange = this.handlePriceChange.bind(this)
   }
 
+  handlePriceChange(evt) {
+    this.setState({
+      price: evt.target.value * 100
+    })
+  }
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value
@@ -36,6 +43,9 @@ class UpdateProduct extends React.Component {
   }
 
   render() {
+    console.log('STATE PRICE', this.state.price)
+    console.log('DINERO TO UNIT', typeof Dinero(this.state.price).toUnit())
+    console.log('DINER TO OBJ', Dinero(this.state.price).toObject())
     return (
       <div id="updateProduct-outer-continer">
         <div id="name-box">
@@ -89,8 +99,8 @@ class UpdateProduct extends React.Component {
             type="number"
             name="price"
             min="0"
-            value={this.state.price}
-            onChange={this.handleChange}
+            value={this.state.price / 100}
+            onChange={this.handlePriceChange}
           />
         </div>
         <div id="quantity-box">

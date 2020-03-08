@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store'
 import {EditProduct} from './updateProduct'
+import Dinero from 'dinero.js'
 
 class SingleProduct extends React.Component {
   constructor() {
@@ -21,9 +22,8 @@ class SingleProduct extends React.Component {
     const productId = this.props.match.params.productId
     this.props.fetchSingleProduct(productId)
   }
-
+  // {Dinero({amount: product.price}).toFormat('$0.00')}
   render() {
-    console.log(this.props)
     if (this.props.singleProduct) {
       const product = this.props.singleProduct
       return this.state.displayEdit ? (
@@ -37,7 +37,7 @@ class SingleProduct extends React.Component {
             <img src={product.imageUrl} />
             <div className="single-product-info">
               <h2>{product.name}</h2>
-              <p>Price: {product.price / 100}</p>
+              <p>Price:${product.price / 100}</p>
               <p>
                 {product.quantity > 6 && (
                   <span className="in-stock">In stock</span>
@@ -78,7 +78,7 @@ class SingleProduct extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isAdmin: state.user.loggedIn.isAdmin,
+  isAdmin: state.user.isAdmin,
   singleProduct: state.product
 })
 

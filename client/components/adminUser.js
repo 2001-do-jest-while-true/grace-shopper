@@ -57,7 +57,7 @@ class AdminUser extends React.Component {
 
 const mapState = state => {
   return {
-    email: state.user.loggedIn.email
+    email: state.user.email
   }
 }
 
