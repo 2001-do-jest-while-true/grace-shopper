@@ -45,11 +45,7 @@ class Routes extends Component {
       cartFlag = false
     }
 
-    if (
-      this.props.orderId &&
-      !Object.keys(this.props.cart).length &&
-      !cartFlag
-    ) {
+    if (this.props.orderId && !this.props.cart.length && !cartFlag) {
       this.props.fetchCart(this.props.orderId)
       cartFlag = true
     }

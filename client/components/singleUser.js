@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleUser} from '../store'
+import {Link} from 'react-router-dom'
 
 class SingleUser extends React.Component {
   componentDidMount() {
@@ -14,30 +15,40 @@ class SingleUser extends React.Component {
         let shippingCounter = 0
         return (
           <div className="single-user-main">
-            <h1>User Info</h1>
-            <div className="single-user-pane">
-              <div className="single-user-info">
-                <p>Username: {user.username}</p>
-                <p>email: {user.email}</p>
-                <p>Admin: {JSON.stringify(user.isAdmin)}</p>
-                <br />
-                <p>googleId: {user.googleId}</p>
-                <p>facebookId: {user.facebookId}</p>
+            <Link to="/home">Back to Home</Link>
+            <div className="single-user-details">
+              <h1>User Info</h1>
+              <div className="single-user-pane">
+                <div className="single-user-info">
+                  <p>Username: {user.username}</p>
+                  <p>Email: {user.email}</p>
+                  <p>Admin: {JSON.stringify(user.isAdmin)}</p>
+                </div>
+                <div className="single-user-img">
+                  <img src={user.imageUrl} />
+                </div>
               </div>
-              <div className="single-user-img">
-                <img src={user.imageUrl} />
+              <div className="single-user-billing">
+                <h2>Billing Address</h2>
+                <p>{user.billingAddress}</p>
               </div>
-            </div>
-            <div className="single-user-billing">
-              <h2>Billing Address</h2>
-              <p>{user.billingAddress}</p>
-            </div>
-            <div className="single-user-shipping">
-              <h2>Shipping Addresses</h2>
-              {user.shippingAddress &&
-                user.shippingAddress.map(address => {
-                  return <p key={shippingCounter++}>{address}</p>
-                })}
+              <div className="single-user-shipping">
+                <h2>Shipping Addresses</h2>
+                {user.shipping_addresses &&
+                  user.shipping_addresses.map(address => {
+                    return (
+                      <div key={++shippingCounter} className="shipping-address">
+                        <h3>{address.fullName}</h3>
+                        <div>{address.address1}</div>
+                        {address.address2 && <div>{address.address2}</div>}
+                        <div>{address.city}</div>
+                        <div>{address.state}</div>
+                        <div>{address.zip}</div>
+                        <div>{address.phoneNumber}</div>
+                      </div>
+                    )
+                  })}
+              </div>
             </div>
           </div>
         )
@@ -51,7 +62,7 @@ class SingleUser extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  singleUser: state.user,
+  singleUser: state.admin.user,
   isAdmin: state.user.isAdmin
 })
 
