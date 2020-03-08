@@ -9,6 +9,8 @@ import SingleProduct from './components/singleProduct'
 import allUsers from './components/allUsers'
 import Cart from './components/cart'
 import SingleUser from './components/singleUser'
+import AddProduct from './components/addProduct'
+import EditProduct from './components/editProduct'
 import {initializeCartThunk, fetchCart} from './store/cart'
 
 let cartFlag = false
@@ -23,6 +25,13 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
     this.props.fetchAllProducts()
+    window.addEventListener('beforeunload', async event => {
+      const orderId = this.props.orderId
+      const cart = this.props.cart
+      // this.props.storeCart({orderId, cart})
+      window.localStorage.setItem('orderId', String(orderId))
+      window.localStorage.setItem('cart', cart)
+    })
   }
 
   render() {
@@ -56,6 +65,11 @@ class Routes extends Component {
             <Route exact path="/users" component={allUsers} />
             <Route path="/users/:userId" component={SingleUser} />
             <Route exact path="/cart" component={Cart} />
+            <Route exact path="/add-product" component={AddProduct} />
+            <Route
+              path="/products/:productId/edit-product"
+              component={EditProduct}
+            />
           </Switch>
         )}
         <Route path="/">

@@ -19,7 +19,8 @@ class AllProducts extends React.Component {
         'summer',
         'xmas',
         'misc'
-      ]
+      ],
+      identifier: 0
     }
 
     this.setFilters = this.setFilters.bind(this)

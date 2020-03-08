@@ -53,6 +53,7 @@ export const auth = (userparam, password, method) => async dispatch => {
 
   try {
     dispatch(getLoggedIn(res.data))
+    console.log(res.data)
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)

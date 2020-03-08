@@ -30,8 +30,8 @@ class AllUsers extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  users: state.user.users,
-  isAdmin: state.user.loggedIn.isAdmin
+  users: state.admin.users,
+  isAdmin: state.user.isAdmin
 })
 const mapDispatchToProps = dispatch => ({
   fetchAllUsers: () => dispatch(fetchAllUsers())
