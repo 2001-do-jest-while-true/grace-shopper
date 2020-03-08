@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+
 const initialState = []
 
 // ACTION CONSTANTS
@@ -30,8 +31,8 @@ export const fetchAllProducts = () => async dispatch => {
 
 export const addProductThunk = product => async dispatch => {
   try {
-    await axios.post('/api/products', product)
-    dispatch(addProduct(product))
+    const {data} = await axios.post('/api/products', product)
+    dispatch(addProduct(data))
     history.push('/home')
   } catch (error) {
     console.error(error)
