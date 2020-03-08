@@ -22,23 +22,29 @@ class Cart extends React.Component {
   }
 
   render() {
-    return (
-      <div id="cart-container">
-        <div id="cart-items-div">
-          {Object.keys(this.props.cart).map(prodId => (
-            <CartItem
-              key={prodId}
-              product={this.props.allProducts.find(item => item.id === +prodId)}
-              addToOrderTotal={this.addToOrderTotal}
-              refreshTotal={this.refreshTotal}
-            />
-          ))}
+    if (Object.keys(this.props.cart).length && this.props.allProducts.length) {
+      return (
+        <div id="cart-container">
+          <div id="cart-items-div">
+            {Object.keys(this.props.cart).map(prodId => (
+              <CartItem
+                key={prodId}
+                product={this.props.allProducts.find(
+                  item => item.id === +prodId
+                )}
+                addToOrderTotal={this.addToOrderTotal}
+                refreshTotal={this.refreshTotal}
+              />
+            ))}
+          </div>
+          <div id="order-total-div">
+            Total: {Dinero({amount: this.state.orderTotal}).toFormat('$0.00')}
+          </div>
         </div>
-        <div id="order-total-div">
-          Total: {Dinero({amount: this.state.orderTotal}).toFormat('$0.00')}
-        </div>
-      </div>
-    )
+      )
+    } else {
+      return <div>No items here...</div>
+    }
   }
 }
 

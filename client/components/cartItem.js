@@ -76,38 +76,46 @@ class CartItem extends React.Component {
 
   render() {
     const product = this.props.product
-    return (
-      <div className="cart-item">
-        <div className="cart-img-div">
-          <img src={product.imageUrl} />
-        </div>
-        <div className="cart-col1">
-          <h2>{product.name}</h2>
-          <p>Price: {Dinero({amount: product.price}).toFormat('$0.00')}</p>
-          <br />
-          {product.quantity < 5 &&
-            product.quantity > 0 && <span>Low on stock. Buy now!</span>}
-          {product.quantity <= 0 && <span>Out of stock. Check back soon!</span>}
-        </div>
-        <div className="cart-col2">
-          <label htmlFor="quantity">Quantity: </label>
-          <input
-            type="number"
-            name="quantity"
-            min={0}
-            value={this.state.cartQuantity}
-            onChange={this.handleChange}
-          />
-          <button type="button" onClick={this.handleQuantitySubmit}>
-            Update Quantity
-          </button>
+    console.log(product)
+    if (product) {
+      console.log('hitting inside if')
+      return (
+        <div className="cart-item">
+          <div className="cart-img-div">
+            <img src={product.imageUrl} />
+          </div>
+          <div className="cart-col1">
+            <h2>{product.name}</h2>
+            <p>Price: {Dinero({amount: product.price}).toFormat('$0.00')}</p>
+            <br />
+            {product.quantity < 5 &&
+              product.quantity > 0 && <span>Low on stock. Buy now!</span>}
+            {product.quantity <= 0 && (
+              <span>Out of stock. Check back soon!</span>
+            )}
+          </div>
+          <div className="cart-col2">
+            <label htmlFor="quantity">Quantity: </label>
+            <input
+              type="number"
+              name="quantity"
+              min={0}
+              value={this.state.cartQuantity}
+              onChange={this.handleChange}
+            />
+            <button type="button" onClick={this.handleQuantitySubmit}>
+              Update Quantity
+            </button>
 
-          <button type="button" onClick={this.handleDelete}>
-            Remove Item
-          </button>
+            <button type="button" onClick={this.handleDelete}>
+              Remove Item
+            </button>
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return <div>Loading...</div>
+    }
   }
 }
 

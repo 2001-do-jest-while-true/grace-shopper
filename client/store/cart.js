@@ -12,6 +12,7 @@ const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const DELETE_CART = 'DELETE_CART'
 const CHANGE_CART_QUANTITY = 'CHANGE_CART_QUANTITY'
+const SET_CART = 'SET_CART'
 
 // ACTION CREATORS
 
@@ -23,6 +24,11 @@ const initializeCart = orderId => ({
 const getCart = productsWithQuantity => ({
   type: GET_CART,
   productsWithQuantity
+})
+
+export const setCart = cartObj => ({
+  type: SET_CART,
+  cartObj
 })
 
 //I AM RETURNING PRODUCTS; SHOULD I ONLY RETURN THE PRODUCT ADDED???
@@ -124,6 +130,8 @@ export default function(state = initialState, action) {
         newCart[item.productId] = item.quantity
       })
       return {...state, cart: newCart}
+    case SET_CART:
+      return {...state, cart: action.cartObj}
     case ADD_TO_CART:
       let updatedCart = {...state.cart}
       if (updatedCart[action.productId]) {
