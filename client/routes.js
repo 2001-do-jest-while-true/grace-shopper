@@ -10,12 +10,12 @@ import allUsers from './components/allUsers'
 import Cart from './components/cart'
 import SingleUser from './components/singleUser'
 import AddProduct from './components/addProduct'
-import {initializeCartThunk, fetchCart} from './store/cart'
-
-let cartFlag = false
-//IMPORT CART COMPONENT HERE
+import EditProduct from './components/editProduct'
+import {initializeCartThunk, fetchCart, setCart} from './store/cart'
 import AdminUser from './components/adminUser'
 import UserSignup from './components/UserSignup'
+
+let cartFlag = false
 
 /**
  * COMPONENT
@@ -24,6 +24,17 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
     this.props.fetchAllProducts()
+
+    const cartStr = window.localStorage.getItem('cart')
+    console.log(cartStr)
+    this.props.setCart(JSON.parse(cartStr))
+
+    window.addEventListener('beforeunload', async event => {
+      const orderId = this.props.orderId
+      const cart = this.props.cart
+      window.localStorage.setItem('orderId', String(orderId))
+      window.localStorage.setItem('cart', JSON.stringify(cart))
+    })
   }
 
   render() {
@@ -31,9 +42,14 @@ class Routes extends Component {
 
     if (this.props.loggedIn.id > 0 && !this.props.orderId) {
       this.props.initializeCartThunk(this.props.loggedIn.id)
+      cartFlag = false
     }
 
-    if (this.props.orderId && !cartFlag) {
+    if (
+      this.props.orderId &&
+      !Object.keys(this.props.cart).length &&
+      !cartFlag
+    ) {
       this.props.fetchCart(this.props.orderId)
       cartFlag = true
     }
@@ -57,6 +73,10 @@ class Routes extends Component {
             <Route path="/users/:userId" component={SingleUser} />
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/add-product" component={AddProduct} />
+            <Route
+              path="/products/:productId/edit-product"
+              component={EditProduct}
+            />
           </Switch>
         )}
         <Route path="/">
@@ -74,11 +94,11 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.loggedIn.id,
+    isLoggedIn: !!state.user.id,
     cart: state.cart.cart,
-    loggedIn: state.user.loggedIn,
+    loggedIn: state.user,
     orderId: state.cart.orderId,
-    isAdmin: state.user.loggedIn.isAdmin
+    isAdmin: state.user.isAdmin
   }
 }
 
@@ -86,7 +106,8 @@ const mapDispatch = dispatch => ({
   loadInitialData: () => dispatch(me()),
   initializeCartThunk: userId => dispatch(initializeCartThunk(userId)),
   fetchCart: orderId => dispatch(fetchCart(orderId)),
-  fetchAllProducts: () => dispatch(fetchAllProducts())
+  fetchAllProducts: () => dispatch(fetchAllProducts()),
+  setCart: cartObj => dispatch(setCart(cartObj))
 })
 
 // The `withRouter` wrapper makes sure that updates are not blocked

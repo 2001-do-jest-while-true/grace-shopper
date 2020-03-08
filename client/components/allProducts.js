@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import ProductBox from './productBox'
 import Filters from './filters'
+//ADD FILTERS HERE FOR FILTERING ACCORDING TO FILTER TYPE
 
 class AllProducts extends React.Component {
   constructor() {
@@ -15,7 +16,8 @@ class AllProducts extends React.Component {
         'summer',
         'xmas',
         'misc'
-      ]
+      ],
+      identifier: 0
     }
 
     this.setFilters = this.setFilters.bind(this)

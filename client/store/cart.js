@@ -12,6 +12,7 @@ const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const DELETE_CART = 'DELETE_CART'
 const CHANGE_CART_QUANTITY = 'CHANGE_CART_QUANTITY'
+const SET_CART = 'SET_CART'
 
 // ACTION CREATORS
 
@@ -23,6 +24,11 @@ const initializeCart = orderId => ({
 const getCart = productsWithQuantity => ({
   type: GET_CART,
   productsWithQuantity
+})
+
+export const setCart = cartObj => ({
+  type: SET_CART,
+  cartObj
 })
 
 //I AM RETURNING PRODUCTS; SHOULD I ONLY RETURN THE PRODUCT ADDED???
@@ -43,7 +49,7 @@ export const changeCartQuantity = (productId, quantity) => ({
   quantity
 })
 
-const deleteCart = () => ({
+export const deleteCart = () => ({
   type: DELETE_CART
 })
 
@@ -61,30 +67,58 @@ export const initializeCartThunk = userId => async dispatch => {
 export const fetchCart = orderId => async dispatch => {
   try {
     const {data} = await axios.get(`/api/cart/${orderId}`)
-    console.log(data)
     dispatch(getCart(data))
   } catch (error) {
     console.error(error)
   }
 }
 
-// export const addToCartThunk = (
-//   productId,
-//   quantity,
-//   orderId
-// ) => async dispatch => {
-//   try {
-//     const newProduct = await axios.put('/api/cart', {
-//       productId: productId,
-//       quantity: quantity,
-//       orderId: orderId
-//     })
-//     dispatch(addToCart(newProduct))
-//   } catch (err) {
-//     console.error(err)
-//     console.error(err.stack)
-//   }
-// }
+export const storeCart = cart => async dispatch => {
+  try {
+    const res = await axios.post('/api/cart', cart)
+    dispatch(deleteCart())
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const addToCartThunk = (
+  orderId,
+  productWithQuantity
+) => async dispatch => {
+  try {
+    const {productId, quantity} = productWithQuantity
+    const res = await axios.put(`/api/cart/${orderId}`, productWithQuantity)
+    dispatch(addToCart(productId, quantity))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const updateQtyThunk = (
+  orderId,
+  productWithQuantity
+) => async dispatch => {
+  try {
+    const {productId, quantity} = productWithQuantity
+    const res = await axios.put(
+      `/api/cart/update/${orderId}`,
+      productWithQuantity
+    )
+    dispatch(changeCartQuantity(productId, quantity))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const deleteFromCartThunk = (orderId, productId) => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/cart/${orderId}/${productId}`)
+    dispatch(deleteFromCart(productId))
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -96,6 +130,8 @@ export default function(state = initialState, action) {
         newCart[item.productId] = item.quantity
       })
       return {...state, cart: newCart}
+    case SET_CART:
+      return {...state, cart: action.cartObj}
     case ADD_TO_CART:
       let updatedCart = {...state.cart}
       if (updatedCart[action.productId]) {
@@ -121,6 +157,9 @@ export default function(state = initialState, action) {
       const cartCopy = state.cart
       cartCopy[action.productId] = action.quantity
       return {...state, cart: cartCopy}
+    }
+    case DELETE_CART: {
+      return {orderId: 0, cart: {}}
     }
     default: {
       return state

@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import history from '../history'
 const initialState = []
 
 // ACTION CONSTANTS
@@ -30,10 +30,9 @@ export const fetchAllProducts = () => async dispatch => {
 
 export const addProductThunk = product => async dispatch => {
   try {
-    console.log('BEFORE AWAIT')
     await axios.post('/api/products', product)
-    console.log('IAM IN THUNK')
     dispatch(addProduct(product))
+    history.push('/home')
   } catch (error) {
     console.error(error)
   }
@@ -44,7 +43,7 @@ export default function(state = initialState, action) {
     case GET_ALL_PRODUCTS:
       return action.products
     case ADD_PRODUCT:
-      return [...state.products, action.product]
+      return [...state, action.product]
     default: {
       return state
     }

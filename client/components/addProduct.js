@@ -106,12 +106,10 @@ class AddProduct extends React.Component {
         <button
           type="button"
           onClick={() => {
-            console.log('BUTTON')
             this.props.addProductThunk(this.state)
             this.setState(defaultState)
           }}
         >
-          {' '}
           Save Changes
         </button>
       </div>

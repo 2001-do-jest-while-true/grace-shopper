@@ -1,8 +1,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {addToCart} from '../store'
-//addToCartThunk
+import {addToCart, addToCartThunk} from '../store'
+import Dinero from 'dinero.js'
+
 class ProductBox extends React.Component {
   constructor() {
     super()
@@ -11,12 +12,24 @@ class ProductBox extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this)
+    this.handleAdd = this.handleAdd.bind(this)
   }
 
   handleChange() {
     this.setState({
       orderQuantity: event.target.value
     })
+  }
+
+  handleAdd(productId) {
+    if (this.props.isLoggedIn) {
+      this.props.addToCartThunk(this.props.orderId, {
+        productId,
+        quantity: +this.state.orderQuantity
+      })
+    } else {
+      this.props.addToCart(productId, +this.state.orderQuantity)
+    }
   }
 
   render() {
@@ -30,7 +43,7 @@ class ProductBox extends React.Component {
               <h2>{name}</h2>
             </Link>
             <div id="inventory-box">
-              <p>Price: {price / 100}</p>
+              <p>Price: {Dinero({amount: price}).toFormat('$0.00')}</p>
               {quantity === 0 && (
                 <span className="warning">Out of stock, check back soon!</span>
               )}
@@ -56,9 +69,7 @@ class ProductBox extends React.Component {
               <button
                 id="add-to-cart"
                 type="button"
-                onClick={() =>
-                  this.props.addToCart(id, Number(this.state.orderQuantity))
-                }
+                onClick={() => this.handleAdd(id)}
               >
                 Add to cart
               </button>
@@ -72,11 +83,14 @@ class ProductBox extends React.Component {
 
 //onClick={() => this.props.addToCart(id, this.props.userId)}
 const mapState = state => ({
-  cart: state.cart
+  isLoggedIn: !!state.user.id,
+  orderId: state.cart.orderId
 })
 
 const mapDispatch = dispatch => ({
-  addToCart: (id, quantity) => dispatch(addToCart(id, quantity))
+  addToCart: (id, quantity) => dispatch(addToCart(id, quantity)),
+  addToCartThunk: (orderId, product) =>
+    dispatch(addToCartThunk(orderId, product))
 })
 
 export default connect(mapState, mapDispatch)(ProductBox)
