@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCart} from '../store'
 import CartItem from './cartItem'
 import Dinero from 'dinero.js'
 
@@ -33,7 +32,6 @@ class Cart extends React.Component {
                   item => item.id === +prodId
                 )}
                 addToOrderTotal={this.addToOrderTotal}
-                refreshTotal={this.refreshTotal}
               />
             ))}
           </div>

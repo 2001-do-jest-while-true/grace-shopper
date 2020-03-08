@@ -76,9 +76,7 @@ class CartItem extends React.Component {
 
   render() {
     const product = this.props.product
-    console.log(product)
     if (product) {
-      console.log('hitting inside if')
       return (
         <div className="cart-item">
           <div className="cart-img-div">

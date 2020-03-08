@@ -49,7 +49,7 @@ export const changeCartQuantity = (productId, quantity) => ({
   quantity
 })
 
-const deleteCart = () => ({
+export const deleteCart = () => ({
   type: DELETE_CART
 })
 

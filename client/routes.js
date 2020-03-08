@@ -12,11 +12,10 @@ import SingleUser from './components/singleUser'
 import AddProduct from './components/addProduct'
 import EditProduct from './components/editProduct'
 import {initializeCartThunk, fetchCart, setCart} from './store/cart'
-
-let cartFlag = false
-//IMPORT CART COMPONENT HERE
 import AdminUser from './components/adminUser'
 import UserSignup from './components/UserSignup'
+
+let cartFlag = false
 
 /**
  * COMPONENT
@@ -43,9 +42,14 @@ class Routes extends Component {
 
     if (this.props.loggedIn.id > 0 && !this.props.orderId) {
       this.props.initializeCartThunk(this.props.loggedIn.id)
+      cartFlag = false
     }
 
-    if (this.props.orderId && !cartFlag) {
+    if (
+      this.props.orderId &&
+      !Object.keys(this.props.cart).length &&
+      !cartFlag
+    ) {
       this.props.fetchCart(this.props.orderId)
       cartFlag = true
     }
