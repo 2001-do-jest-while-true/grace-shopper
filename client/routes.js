@@ -11,12 +11,11 @@ import Cart from './components/cart'
 import SingleUser from './components/singleUser'
 import AddProduct from './components/addProduct'
 import EditProduct from './components/editProduct'
-import {initializeCartThunk, fetchCart} from './store/cart'
-
-let cartFlag = false
-//IMPORT CART COMPONENT HERE
+import {initializeCartThunk, fetchCart, setCart} from './store/cart'
 import AdminUser from './components/adminUser'
 import UserSignup from './components/UserSignup'
+
+let cartFlag = false
 
 /**
  * COMPONENT
@@ -25,24 +24,32 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
     this.props.fetchAllProducts()
+
+    const cartStr = window.localStorage.getItem('cart')
+    console.log(cartStr)
+    this.props.setCart(JSON.parse(cartStr))
+
     window.addEventListener('beforeunload', async event => {
       const orderId = this.props.orderId
       const cart = this.props.cart
-      // this.props.storeCart({orderId, cart})
       window.localStorage.setItem('orderId', String(orderId))
-      window.localStorage.setItem('cart', cart)
+      window.localStorage.setItem('cart', JSON.stringify(cart))
     })
   }
 
   render() {
-    console.log('CHECKING ROUTE', this.props)
     const {isLoggedIn, isAdmin} = this.props
 
     if (this.props.loggedIn.id > 0 && !this.props.orderId) {
       this.props.initializeCartThunk(this.props.loggedIn.id)
+      cartFlag = false
     }
 
-    if (this.props.orderId && !cartFlag) {
+    if (
+      this.props.orderId &&
+      !Object.keys(this.props.cart).length &&
+      !cartFlag
+    ) {
       this.props.fetchCart(this.props.orderId)
       cartFlag = true
     }
@@ -99,7 +106,8 @@ const mapDispatch = dispatch => ({
   loadInitialData: () => dispatch(me()),
   initializeCartThunk: userId => dispatch(initializeCartThunk(userId)),
   fetchCart: orderId => dispatch(fetchCart(orderId)),
-  fetchAllProducts: () => dispatch(fetchAllProducts())
+  fetchAllProducts: () => dispatch(fetchAllProducts()),
+  setCart: cartObj => dispatch(setCart(cartObj))
 })
 
 // The `withRouter` wrapper makes sure that updates are not blocked

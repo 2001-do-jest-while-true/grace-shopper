@@ -64,7 +64,6 @@ router.post('/', async (req, res, next) => {
 
 router.put('/update/:orderId', async (req, res, next) => {
   try {
-    console.log(req.body)
     const {productId, quantity} = req.body
 
     const orderProduct = await OrderProduct.findOne({
@@ -127,7 +126,6 @@ router.get('/:orderId', async (req, res, next) => {
       },
       attributes: ['productId', 'quantity']
     })
-    console.log(products)
     res.json(products)
   } catch (err) {
     next(err)
