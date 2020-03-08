@@ -3,15 +3,19 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
-import {me, fetchAllProducts} from './store'
+import {
+  me,
+  initializeCartThunk,
+  fetchCart,
+  setCart,
+  fetchAllProducts
+} from './store'
 import AllProducts from './components/allProducts'
 import SingleProduct from './components/singleProduct'
 import allUsers from './components/allUsers'
 import Cart from './components/cart'
 import SingleUser from './components/singleUser'
-import AddProduct from './components/addProduct'
-import EditProduct from './components/editProduct'
-import {initializeCartThunk, fetchCart, setCart} from './store/cart'
+import {AddProduct, EditProduct} from './components/updateProduct'
 import AdminUser from './components/adminUser'
 import UserSignup from './components/UserSignup'
 
@@ -45,7 +49,7 @@ class Routes extends Component {
       cartFlag = false
     }
 
-    if (this.props.orderId && !this.props.cart.length && !cartFlag) {
+    if (this.props.orderId && !this.props.cart && !cartFlag) {
       this.props.fetchCart(this.props.orderId)
       cartFlag = true
     }
@@ -57,13 +61,9 @@ class Routes extends Component {
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
         <Route exact path="/cart" component={Cart} />
-        {/* <Route exact path="/users" component={allUsers} />
-        <Route path="/users/:userId" component={SingleUser} /> */}
-
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            {/* <Route path="/home" component={UserHome} /> */}
             <Route path="/home">{isAdmin ? <AdminUser /> : <UserHome />}</Route>
             <Route exact path="/users" component={allUsers} />
             <Route path="/users/:userId" component={SingleUser} />
@@ -71,7 +71,8 @@ class Routes extends Component {
             <Route exact path="/add-product" component={AddProduct} />
             <Route
               path="/products/:productId/edit-product"
-              component={EditProduct}
+              render={props => <EditProduct {...props} />}
+            />
             />
           </Switch>
         )}

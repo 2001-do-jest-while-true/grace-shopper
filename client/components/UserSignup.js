@@ -12,8 +12,6 @@ class UserSignup extends React.Component {
     this.validateImageUrl = this.validateImageUrl.bind(this)
   }
 
-  // componentDidMount() {}
-
   handleSubmit(e) {
     e.preventDefault()
     const validImageUrl = this.validateImageUrl(e.target.imageUrl.value)
