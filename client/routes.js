@@ -9,8 +9,8 @@ import SingleProduct from './components/singleProduct'
 import allUsers from './components/allUsers'
 import Cart from './components/cart'
 import SingleUser from './components/singleUser'
-import AddProduct from './components/updateProduct'
-import EditProduct from './components/updateProduct'
+import {AddProduct, EditProduct} from './components/updateProduct'
+import OrderConfirmation from './components/orderConfirmation'
 import {initializeCartThunk, fetchCart} from './store/cart'
 
 let cartFlag = false
@@ -52,10 +52,12 @@ class Routes extends Component {
         <Route exact path="/signup" component={UserSignup} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
-        <Route exact path="/cart" component={Cart} />
-        {/* <Route exact path="/users" component={allUsers} />
-        <Route path="/users/:userId" component={SingleUser} /> */}
-
+        <Route
+          exact
+          path="/cart"
+          render={() => <Cart orderId={this.props.orderId} />}
+        />
+        <Route path="/cart/checkout" component={OrderConfirmation} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

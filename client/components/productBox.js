@@ -19,7 +19,6 @@ class ProductBox extends React.Component {
   handleDelete() {
     this.setState({deleted: true})
     this.props.deleteProductThunk(this.props.product.id)
-    this.handleAdd = this.handleAdd.bind(this)
   }
 
   handleChange() {
