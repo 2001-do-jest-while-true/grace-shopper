@@ -7,15 +7,25 @@ const SingleUserBox = props => {
   // console.log('THESE ARE THE PROPS', props)
   return (
     <div className="single-user-box">
-      <div className="single-user-img-box">
-        <img src={props.imageUrl} />
+      <div className="single-user-details">
+        <div className="single-user-img-box">
+          <img src={props.imageUrl} />
+        </div>
+        <div className="single-user-info-box">
+          <Link to={`/users/${props.id}`}>
+            <h3>{props.username}</h3>
+          </Link>
+          <p>Email:{props.email}</p>
+          {props.isAdmin ? (
+            <p className="admin-priv">Administrator privleges</p>
+          ) : (
+            <p className="no-admin-priv">No Administrator privleges</p>
+          )}
+        </div>
       </div>
-      <div className="single-user-info-box">
-        <Link to={`/users/${props.id}`}>
-          <h3>{props.username}</h3>
-        </Link>
-        <p>Email:{props.email}</p>
-        {props.isAdmin && <p className="admin-priv">Administrator privleges</p>}
+      <div className="single-user-buttons">
+        <button type="button">Update User</button>
+        <button type="button">Delete User</button>
       </div>
     </div>
   )

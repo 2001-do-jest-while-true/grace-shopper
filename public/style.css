@@ -158,15 +158,26 @@ form div {
 }
 
 .single-user-box {
-  margin: 10px 80px;
+  margin: 10px 350px;
+  height: fit-content;
   /* border: blue 1px dashed; */
-  background-color: #ebf5df;
+  background-color: #b4b8ab;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.single-user-details {
   display: flex;
   align-items: center;
+  width: 300px;
+  color: #231f20;
 }
 
 .single-user-img-box {
   margin: 0px 30px;
+  height: fit-content;
+  width: fit-content;
 }
 
 .single-user-img-box img {
@@ -179,7 +190,11 @@ form div {
   margin: 0px 30px;
 }
 
-.admin-priv {
-  font-weight: bold;
-  color: red;
+.no-admin-priv {
+  color: #383b53;
+}
+
+.single-user-buttons {
+  display: flex;
+  flex-direction: column;
 }
