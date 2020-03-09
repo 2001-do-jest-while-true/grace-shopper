@@ -11,7 +11,6 @@ import {AddProduct, EditProduct} from './components/updateProduct'
 import AdminUser from './components/adminUser'
 import UserSignup from './components/UserSignup'
 import OrderConfirmation from './components/orderConfirmation'
-import {me} from './store'
 import UserHome from './components/user-home'
 
 /**
