@@ -24,11 +24,10 @@ class ProductBox extends React.Component {
   handleAdd(productId) {
     if (this.props.isLoggedIn) {
       this.props.addToCartThunk(this.props.orderId, {
-        productId,
-        quantity: +this.state.orderQuantity
+        [productId]: +this.state.orderQuantity
       })
     } else {
-      this.props.addToCart(productId, +this.state.orderQuantity)
+      this.props.addToCart({[productId]: +this.state.orderQuantity})
     }
   }
 
@@ -81,14 +80,13 @@ class ProductBox extends React.Component {
   }
 }
 
-//onClick={() => this.props.addToCart(id, this.props.userId)}
 const mapState = state => ({
   isLoggedIn: !!state.user.id,
   orderId: state.cart.orderId
 })
 
 const mapDispatch = dispatch => ({
-  addToCart: (id, quantity) => dispatch(addToCart(id, quantity)),
+  addToCart: item => dispatch(addToCart(item)),
   addToCartThunk: (orderId, product) =>
     dispatch(addToCartThunk(orderId, product))
 })

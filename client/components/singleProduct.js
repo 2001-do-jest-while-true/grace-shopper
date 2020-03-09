@@ -1,6 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleProduct, deleteProductThunk} from '../store'
+import {
+  fetchSingleProduct,
+  deleteProductThunk,
+  addToCartThunk,
+  addToCart
+} from '../store'
 import EditProduct from './editProduct'
 import Dinero from 'dinero.js'
 
@@ -8,11 +13,24 @@ class SingleProduct extends React.Component {
   constructor() {
     super()
     this.state = {edit: false}
+    this.handleAdd = this.handleAdd.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchSingleProduct(this.props.match.params.productId)
+  }
+
+  handleAdd() {
+    const productId = this.props.match.params.productId
+
+    if (this.props.isLoggedIn) {
+      this.props.addToCartThunk(this.props.orderId, {
+        [productId]: 1
+      })
+    } else {
+      this.props.addToCart({[productId]: 1})
+    }
   }
 
   toggleEdit = () => {
@@ -49,7 +67,11 @@ class SingleProduct extends React.Component {
                   </p>
                 </div>
                 <div className="single-product-cart-div">
-                  <button type="button" className="cart-button">
+                  <button
+                    type="button"
+                    className="cart-button"
+                    onClick={this.handleAdd}
+                  >
                     Add to Cart
                   </button>
                   {this.props.isAdmin && (
@@ -90,13 +112,17 @@ class SingleProduct extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isLoggedIn: !!state.user.id,
   isAdmin: state.user.isAdmin,
-  singleProduct: state.product
+  singleProduct: state.product,
+  orderId: state.cart.orderId
 })
 
 const mapDispatchToProps = dispatch => ({
   fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
-  deleteProductThunk: id => dispatch(deleteProductThunk(id))
+  deleteProductThunk: id => dispatch(deleteProductThunk(id)),
+  addToCart: item => dispatch(addToCart(item)),
+  addToCartThunk: (orderId, item) => dispatch(addToCartThunk(orderId, item))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
