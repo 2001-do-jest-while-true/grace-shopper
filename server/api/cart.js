@@ -139,12 +139,7 @@ router.get('/:userId/past-orders', async (req, res, next) => {
         status: 'inactive'
       }
     })
-    if (pastOrders) {
-      console.log('PAST ORDERS', pastOrders)
-      res.json(pastOrders)
-    } else {
-      console.log('NO ORDERS')
-    }
+    pastOrders ? res.json(pastOrders) : res.json({})
   } catch (err) {
     next(err)
   }

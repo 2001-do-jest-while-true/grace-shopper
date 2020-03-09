@@ -2,7 +2,8 @@ import axios from 'axios'
 
 const initialState = {
   orderId: 0,
-  cart: {}
+  cart: {},
+  pastOrders: {}
 }
 
 // ACTION CONSTANTS
@@ -145,6 +146,12 @@ export default function(state = initialState, action) {
         newCart[item.productId] = item.quantity
       })
       return {...state, cart: newCart}
+    case GET_PAST_ORDERS:
+      let userHistory = {}
+      action.pastOrders.forEach(order => {
+        pastOders[order.productId] = order.quantity
+      })
+      return {state, pastOrders: userHistory}
     case SET_CART:
       return {...state, cart: action.cartObj}
     case ADD_TO_CART:
