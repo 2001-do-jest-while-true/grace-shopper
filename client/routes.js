@@ -35,7 +35,6 @@ class Routes extends Component {
   }
 
   render() {
-    console.log('CHECKING ROUTE', this.props)
     const {isLoggedIn, isAdmin} = this.props
 
     if (this.props.loggedIn.id > 0 && !this.props.orderId) {
