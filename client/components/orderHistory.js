@@ -5,8 +5,8 @@ import {fetchPastOrders} from '../store'
 
 class OrderHistory extends React.Component {
   componentDidMount() {
-    console.log(this.props.user)
-    //this.props.fetchPastOrders(this.props.userId)
+    const userId = this.props.match.params.userId
+    this.props.fetchPastOrders(userId)
   }
 
   render() {
@@ -14,12 +14,8 @@ class OrderHistory extends React.Component {
   }
 }
 
-// const mapState = state => ({
-//   user: state.admin.user
-// })
-
 const mapDispatch = dispatch => ({
   fetchPastOrders: userId => dispatch(fetchPastOrders(userId))
 })
 
-export default connect(mapState, mapDispatch)(OrderHistory)
+export default connect(null, mapDispatch)(OrderHistory)
