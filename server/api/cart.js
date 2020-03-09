@@ -130,3 +130,22 @@ router.get('/:orderId', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/:userId/past-orders', async (req, res, next) => {
+  try {
+    const pastOrders = await Order.findAll({
+      where: {
+        userId: req.params.userId,
+        status: 'inactive'
+      }
+    })
+    if (pastOrders) {
+      console.log('PAST ORDERS', pastOrders)
+      res.json(pastOrders)
+    } else {
+      console.log('NO ORDERS')
+    }
+  } catch (err) {
+    next(err)
+  }
+})

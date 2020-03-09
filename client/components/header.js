@@ -28,7 +28,22 @@ const Header = props => {
               Log In
             </button>
           )}
-          <Link to="/signup">Sign up</Link>
+          {!props.isLoggedIn ? (
+            <button type="button">
+              <Link to="/signup">Sign up</Link>
+            </button>
+          ) : (
+            <div id="dropdown-container">
+              <button type="button" id="dropdown-btn">
+                {' '}
+                Account ▾{' '}
+              </button>
+              <div id="dropdown-content">
+                <a href={`/${props.userId}/past-orders`}>Order History</a>
+                <a href={`/${props.userId}/account`}>Account</a>
+              </div>
+            </div>
+          )}
           <Link to="/cart">
             <img src="cart.svg" />
           </Link>
@@ -48,7 +63,8 @@ const Header = props => {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userId: state.user.id
   }
 }
 

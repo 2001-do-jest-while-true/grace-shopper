@@ -12,6 +12,7 @@ import SingleUser from './components/singleUser'
 import {AddProduct, EditProduct} from './components/updateProduct'
 import OrderConfirmation from './components/orderConfirmation'
 import {initializeCartThunk, fetchCart} from './store/cart'
+import OrderHistory from './components/orderHistory'
 
 let cartFlag = false
 //IMPORT CART COMPONENT HERE
@@ -52,6 +53,7 @@ class Routes extends Component {
         <Route exact path="/signup" component={UserSignup} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
+        <Route exact path="/:userId/past-orders" component={OrderHistory} />
         <Route
           exact
           path="/cart"
