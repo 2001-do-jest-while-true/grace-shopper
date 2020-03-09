@@ -161,7 +161,7 @@ form div {
   margin: 10px 350px;
   height: fit-content;
   /* border: blue 1px dashed; */
-  background-color: #b4b8ab;
+  background-color: #dd9f23;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -171,7 +171,7 @@ form div {
   display: flex;
   align-items: center;
   width: 300px;
-  color: #231f20;
+  color: #383b53;
 }
 
 .single-user-img-box {
@@ -191,7 +191,7 @@ form div {
 }
 
 .no-admin-priv {
-  color: #383b53;
+  color: #ebf5df;
 }
 
 .single-user-buttons {
