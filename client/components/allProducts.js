@@ -49,9 +49,11 @@ class AllProducts extends React.Component {
 
     return (
       <div>
-        <button type="button" onClick={this.toggleDisplayAddProd}>
-          Add Product
-        </button>
+        {this.props.isAdmin && (
+          <button type="button" onClick={this.toggleDisplayAddProd}>
+            Add Product
+          </button>
+        )}
         {this.state.displayAddProd ? (
           <AddProduct resetDisplay={this.toggleDisplayAddProd} />
         ) : (
@@ -74,6 +76,7 @@ class AllProducts extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isAdmin: state.user.isAdmin,
   products: state.allProducts,
   orderId: state.cart.orderId,
   cart: state.cart.cart

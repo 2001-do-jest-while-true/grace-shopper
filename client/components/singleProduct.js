@@ -1,16 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleProduct} from '../store'
+import {fetchSingleProduct, addToCartThunk, addToCart} from '../store'
 import {EditProduct} from './updateProduct'
-import Dinero from 'dinero.js'
 
 class SingleProduct extends React.Component {
   constructor() {
     super()
     this.state = {
-      displayEdit: false
+      displayEdit: false,
+      addQty: 1
     }
     this.toggleDisplayEdit = this.toggleDisplayEdit.bind(this)
+    this.handleQty = this.handleQty.bind(this)
+    this.handleAdd = this.handleAdd.bind(this)
   }
 
   toggleDisplayEdit() {
@@ -18,11 +20,27 @@ class SingleProduct extends React.Component {
     this.setState({displayEdit: newState})
   }
 
+  handleQty() {
+    this.setState({
+      addQty: +event.target.value
+    })
+  }
+
+  handleAdd(productId) {
+    if (this.props.isLoggedIn) {
+      this.props.addToCartThunk(this.props.orderId, {
+        productId,
+        quantity: +this.state.addQty
+      })
+    } else {
+      this.props.addToCart(productId, +this.state.addQuantity)
+    }
+  }
+
   componentDidMount() {
     const productId = this.props.match.params.productId
     this.props.fetchSingleProduct(productId)
   }
-  // {Dinero({amount: product.price}).toFormat('$0.00')}
   render() {
     if (this.props.singleProduct) {
       const product = this.props.singleProduct
@@ -54,7 +72,22 @@ class SingleProduct extends React.Component {
               </p>
             </div>
             <div className="single-product-cart-div">
-              <button type="button" className="cart-button">
+              <select
+                name="qty"
+                value={this.state.addQuantity}
+                onChange={this.handleQty}
+              >
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>c
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+              </select>
+              <button
+                type="button"
+                className="cart-button"
+                onClick={() => this.handleAdd(product.id)}
+              >
                 Add to Cart
               </button>
               {this.props.isAdmin && (
@@ -79,11 +112,16 @@ class SingleProduct extends React.Component {
 
 const mapStateToProps = state => ({
   isAdmin: state.user.isAdmin,
-  singleProduct: state.product
+  singleProduct: state.product,
+  isLoggedIn: !!state.user.id,
+  orderId: state.cart.orderId
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchSingleProduct: id => dispatch(fetchSingleProduct(id))
+  fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
+  addToCartThunk: (orderId, product) =>
+    dispatch(addToCartThunk(orderId, product)),
+  addToCart: (id, quantity) => dispatch(addToCart(id, quantity))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
