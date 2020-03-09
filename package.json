@@ -50,6 +50,7 @@
     "history": "^4.10.1",
     "morgan": "^1.9.1",
     "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
     "passport-google-oauth": "^2.0.0",
     "pg": "^7.18.2",
     "pg-hstore": "^2.3.2",
@@ -63,7 +64,9 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "sequelize": "^5.21.5",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
@@ -102,8 +105,6 @@
     "redux-mock-store": "^1.5.4",
     "simple-git": "^1.131.0",
     "supertest": "^4.0.2",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.11",
     "yaml": "^1.7.2"
   }
 }

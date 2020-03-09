@@ -12,8 +12,6 @@ class UserSignup extends React.Component {
     this.validateImageUrl = this.validateImageUrl.bind(this)
   }
 
-  // componentDidMount() {}
-
   handleSubmit(e) {
     e.preventDefault()
     const validImageUrl = this.validateImageUrl(e.target.imageUrl.value)
@@ -26,8 +24,6 @@ class UserSignup extends React.Component {
       const newUser = {
         username: e.target.username.value,
         imageUrl: e.target.imageUrl.value,
-        shippingAddress: [e.target.shippingAddress.value],
-        billingAddress: e.target.billingAddress.value,
         email: e.target.email.value,
         password: e.target.password.value
       }
@@ -60,10 +56,7 @@ class UserSignup extends React.Component {
           />
           <label className="signup-label">Profile Picture</label>
           <input className="signup-input" type="file" name="imageUrl" />
-          <label className="signup-label">Shipping Address</label>
-          <input className="signup-input" type="text" name="shippingAddress" />
-          <label className="signup-label">Billing Address</label>
-          <input className="signup-input" type="text" name="billingAddress" />
+
           <label className="signup-label">Email</label>
           <input className="signup-input" type="text" name="email" required />
           <label className="signup-label">Password</label>

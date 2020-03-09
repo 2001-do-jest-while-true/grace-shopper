@@ -1,11 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts} from '../store'
-import Loader from 'react-loader-spinner'
-//import {Link} from 'react-router-dom'
 import ProductBox from './productBox'
 import Filters from './filters'
-//ADD FILTERS HERE FOR FILTERING ACCORDING TO FILTER TYPE
+import {AddProduct} from './updateProduct'
+import {fetchAllProducts} from '../store'
 
 class AllProducts extends React.Component {
   constructor() {
@@ -20,16 +18,25 @@ class AllProducts extends React.Component {
         'xmas',
         'misc'
       ],
-      identifier: 0
+      displayAddProd: false
     }
-
     this.setFilters = this.setFilters.bind(this)
+    this.toggleDisplayAddProd = this.toggleDisplayAddProd.bind(this)
   }
 
   setFilters(array) {
     this.setState({
       filters: [...array]
     })
+  }
+
+  toggleDisplayAddProd() {
+    const newState = !this.state.displayAddProd
+    this.setState({displayAddProd: newState})
+  }
+
+  componentDidMount() {
+    this.props.fetchAllProducts()
   }
 
   render() {
@@ -42,29 +49,40 @@ class AllProducts extends React.Component {
 
     return (
       <div>
-        <Filters filters={this.state.filters} setFilters={this.setFilters} />
-        {this.props.products.length ? (
-          products.map(product => {
-            if (this.state.filters.includes(product.category)) {
-              return (
-                <div key={product.id}>
-                  <ProductBox product={product} />
-                </div>
-              )
-            }
-          })
-        ) : (
-          <p>empty products</p>
+        {this.props.isAdmin && (
+          <button type="button" onClick={this.toggleDisplayAddProd}>
+            Add Product
+          </button>
         )}
+        {this.state.displayAddProd ? (
+          <AddProduct resetDisplay={this.toggleDisplayAddProd} />
+        ) : (
+          <Filters filters={this.state.filters} setFilters={this.setFilters} />
+        )}
+        {!this.state.displayAddProd && this.props.products.length
+          ? products.map(product => {
+              if (this.state.filters.includes(product.category)) {
+                return (
+                  <div key={product.id}>
+                    <ProductBox product={product} />
+                  </div>
+                )
+              }
+            })
+          : !this.state.displayAddProd && <p>empty products</p>}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
+  isAdmin: state.user.isAdmin,
   products: state.allProducts,
   orderId: state.cart.orderId,
   cart: state.cart.cart
 })
 
-export default connect(mapStateToProps)(AllProducts)
+const mapDispatch = dispatch => ({
+  fetchAllProducts: () => dispatch(fetchAllProducts())
+})
+export default connect(mapStateToProps, mapDispatch)(AllProducts)
