@@ -1,83 +1,107 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleProduct, deleteProductThunk} from '../store'
-import EditProduct from './editProduct'
+import {fetchSingleProduct, addToCartThunk, addToCart} from '../store'
+import {EditProduct} from './updateProduct'
 
 class SingleProduct extends React.Component {
   constructor() {
     super()
-    this.state = {edit: false}
-    this.toggleEdit = this.toggleEdit.bind(this)
+    this.state = {
+      displayEdit: false,
+      addQty: 1
+    }
+    this.toggleDisplayEdit = this.toggleDisplayEdit.bind(this)
+    this.handleQty = this.handleQty.bind(this)
+    this.handleAdd = this.handleAdd.bind(this)
+  }
+
+  toggleDisplayEdit() {
+    const newState = !this.state.displayEdit
+    this.setState({displayEdit: newState})
+  }
+
+  handleQty() {
+    this.setState({
+      addQty: +event.target.value
+    })
+  }
+
+  handleAdd(productId) {
+    if (this.props.isLoggedIn) {
+      this.props.addToCartThunk(this.props.orderId, {
+        productId,
+        quantity: +this.state.addQty
+      })
+    } else {
+      this.props.addToCart(productId, +this.state.addQuantity)
+    }
   }
 
   componentDidMount() {
-    this.props.fetchSingleProduct(this.props.match.params.productId)
+    const productId = this.props.match.params.productId
+    this.props.fetchSingleProduct(productId)
   }
-
-  toggleEdit = () => {
-    return !this.state.edit
-  }
-
   render() {
     if (this.props.singleProduct) {
       const product = this.props.singleProduct
-      return (
-        <div>
-          {!this.state.edit ? (
-            <div className="single-product-main">
-              <div className="single-product-pane">
-                <img src={product.imageUrl} />
-                <div className="single-product-info">
-                  <h2>{product.name}</h2>
-                  <p>Price: {product.price}</p>
-                  <p>
-                    {product.quantity > 6 && (
-                      <span className="in-stock">In stock</span>
-                    )}
-                    {product.quantity < 6 &&
-                      product.quantity && (
-                        <span className="warning">Low on stock. Buy soon!</span>
-                      )}
-                    {!product.quantity && (
-                      <span className="warning">
-                        Out of stock. Check back soon!
-                      </span>
-                    )}
-                  </p>
-                </div>
-                <div className="single-product-cart-div">
-                  <button type="button" className="cart-button">
-                    Add to Cart
-                  </button>
-                  {this.props.isAdmin && (
-                    <div>
-                      <button
-                        type="button"
-                        onClick={() => this.setState({edit: this.toggleEdit()})}
-                      >
-                        {' '}
-                        Edit Product
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          this.props.deleteProductThunk(product.id)
-                        }
-                      >
-                        {' '}
-                        Delete Product
-                      </button>
-                    </div>
+      return this.state.displayEdit ? (
+        <EditProduct
+          product={this.props.singleProduct}
+          resetDisplay={this.toggleDisplayEdit}
+        />
+      ) : (
+        <div className="single-product-main">
+          <div className="single-product-pane">
+            <img src={product.imageUrl} />
+            <div className="single-product-info">
+              <h2>{product.name}</h2>
+              <p>Price:${product.price / 100}</p>
+              <p>
+                {product.quantity > 6 && (
+                  <span className="in-stock">In stock</span>
+                )}
+                {product.quantity < 6 &&
+                  product.quantity && (
+                    <span className="warning">Low on stock. Buy soon!</span>
                   )}
-                </div>
-              </div>
-              <div className="single-product-description">
-                {product.description}
-              </div>
+                {!product.quantity && (
+                  <span className="warning">
+                    Out of stock. Check back soon!
+                  </span>
+                )}
+              </p>
             </div>
-          ) : (
-            <EditProduct singleProduct={this.props.singleProduct} />
-          )}
+            <div className="single-product-cart-div">
+              <select
+                name="qty"
+                value={this.state.addQuantity}
+                onChange={this.handleQty}
+              >
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>c
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+              </select>
+              <button
+                type="button"
+                className="cart-button"
+                onClick={() => this.handleAdd(product.id)}
+              >
+                Add to Cart
+              </button>
+              {this.props.isAdmin && (
+                <div>
+                  <button type="button" onClick={this.toggleDisplayEdit}>
+                    Edit Product
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="single-product-description">
+            {product.description}
+          </div>
         </div>
       )
     } else {
@@ -87,13 +111,17 @@ class SingleProduct extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isAdmin: state.user.loggedIn.isAdmin,
-  singleProduct: state.product
+  isAdmin: state.user.isAdmin,
+  singleProduct: state.product,
+  isLoggedIn: !!state.user.id,
+  orderId: state.cart.orderId
 })
 
 const mapDispatchToProps = dispatch => ({
   fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
-  deleteProductThunk: id => dispatch(deleteProductThunk(id))
+  addToCartThunk: (orderId, product) =>
+    dispatch(addToCartThunk(orderId, product)),
+  addToCart: (id, quantity) => dispatch(addToCart(id, quantity))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)

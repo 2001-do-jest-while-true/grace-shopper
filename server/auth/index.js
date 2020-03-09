@@ -11,8 +11,6 @@ router.post('/login', async (req, res, next) => {
       user = await User.findOne({where: {username: req.body.userparam}})
     }
 
-    console.log(user)
-
     if (!user) {
       console.log('No such user found:', req.body.userparam)
       res.status(401).send('Wrong username and/or password')
@@ -31,7 +29,6 @@ router.post('/signup', async (req, res, next) => {
   try {
     const {userparam, password} = req.body
     const user = await User.create({email: userparam, password})
-    console.log(req.body)
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
@@ -53,3 +50,4 @@ router.get('/me', (req, res) => {
 })
 
 router.use('/google', require('./google'))
+router.use('/facebook', require('./facebook'))

@@ -142,3 +142,32 @@ form div {
 .filter-check {
   display: flex;
 }
+
+#cart-container {
+  display: flex;
+}
+
+#cart-items-div {
+  flex-grow: 2;
+}
+
+#order-total-div {
+  border: 1px solid black;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+#confirmation-container {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}
+
+#confirmation-box {
+  background-color: #c5e3cf;
+  border: 1px solid #50ad6f;
+  color: #50ad6f;
+  width: 70%;
+  padding: 20px;
+  min-height: 200px;
+}

@@ -25,6 +25,7 @@ class Filters extends React.Component {
     })
   }
 
+  //REMOVE ASYNC?
   async handleChange() {
     await this.setState({
       [event.target.name]: event.target.checked
