@@ -3,6 +3,7 @@ import history from '../history'
 
 const GET_ALL_USERS = 'GET_ALL_USERS'
 const GET_USER = 'GET_USER'
+const UPDATED_USER = 'UPDATED_USER'
 
 // Initial State
 const initialState = {users: [], user: {}}
@@ -10,6 +11,7 @@ const initialState = {users: [], user: {}}
 // ACTION CREATOR
 const getAllUsers = users => ({type: GET_ALL_USERS, users})
 const getUser = user => ({type: GET_USER, user})
+const updateUser = user => ({type: UPDATED_USER, user})
 /******************************************** */
 // THUNK CREATOR
 export const fetchAllUsers = () => async dispatch => {
@@ -28,6 +30,15 @@ export const fetchSingleUser = userId => async dispatch => {
     console.error(error)
   }
 }
+
+export const updateSingleUser = (userId, user) => async dispatch => {
+  try {
+    const {data} = await axios.put(`/api/users/${userId}`, user)
+    dispatch(updateUser(data))
+  } catch (error) {
+    console.error(error)
+  }
+}
 /******************************************** */
 // REDUCER
 export default function(state = initialState, action) {
@@ -35,6 +46,8 @@ export default function(state = initialState, action) {
     case GET_ALL_USERS:
       return {...state, users: action.users}
     case GET_USER:
+      return {...state, user: action.user}
+    case UPDATED_USER:
       return {...state, user: action.user}
     default:
       return state

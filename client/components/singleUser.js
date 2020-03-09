@@ -1,11 +1,22 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleUser} from '../store'
+import {fetchSingleUser, updateSingleUser} from '../store'
 import {Link} from 'react-router-dom'
 
 class SingleUser extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleAdminOnClick = this.handleAdminOnClick.bind(this)
+  }
+
   componentDidMount() {
     this.props.fetchSingleUser(this.props.match.params.userId)
+  }
+
+  handleAdminOnClick() {
+    this.props.updateSingleUser(this.props.match.params.userId, {
+      isAdmin: !this.props.singleUser.isAdmin
+    })
   }
 
   render() {
@@ -27,6 +38,13 @@ class SingleUser extends React.Component {
                 <div className="single-user-img">
                   <img src={user.imageUrl} />
                 </div>
+              </div>
+              <div>
+                <button type="button" onClick={this.handleAdminOnClick}>
+                  {user.isAdmin
+                    ? 'Remove Administrator Privledges'
+                    : 'Make Administrator'}
+                </button>
               </div>
               <div className="single-user-billing">
                 <h2>Billing Address</h2>
@@ -50,6 +68,9 @@ class SingleUser extends React.Component {
                   })}
               </div>
             </div>
+            <div className="single-user-deletebtn">
+              <button type="button">Delete User</button>
+            </div>
           </div>
         )
       } else {
@@ -67,7 +88,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchSingleUser: id => dispatch(fetchSingleUser(id))
+  fetchSingleUser: id => dispatch(fetchSingleUser(id)),
+  updateSingleUser: (id, user) => dispatch(updateSingleUser(id, user))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleUser)

@@ -7,7 +7,7 @@ const SingleUserBox = props => {
   // console.log('THESE ARE THE PROPS', props)
   return (
     <div className="single-user-box">
-      <div className="single-user-details">
+      <div className="single-user-box-details">
         <div className="single-user-img-box">
           <img src={props.imageUrl} />
         </div>
@@ -23,8 +23,8 @@ const SingleUserBox = props => {
           )}
         </div>
       </div>
-      <div className="single-user-buttons">
-        <button type="button">Update User</button>
+      <div className="single-user-box-buttons">
+        <button type="button">Edit User</button>
         <button type="button">Delete User</button>
       </div>
     </div>
