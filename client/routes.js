@@ -18,6 +18,7 @@ import SingleUser from './components/singleUser'
 import {AddProduct, EditProduct} from './components/updateProduct'
 import AdminUser from './components/adminUser'
 import UserSignup from './components/UserSignup'
+import OrderConfirmation from './components/orderConfirmation'
 
 let cartFlag = false
 
@@ -30,7 +31,6 @@ class Routes extends Component {
     this.props.fetchAllProducts()
 
     const cartStr = window.localStorage.getItem('cart')
-    console.log(cartStr)
     this.props.setCart(JSON.parse(cartStr))
 
     window.addEventListener('beforeunload', async event => {
@@ -61,6 +61,10 @@ class Routes extends Component {
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
         <Route exact path="/cart" component={Cart} />
+        <Route path="/cart/checkout" component={OrderConfirmation} />
+        {/* <Route exact path="/users" component={allUsers} />
+        <Route path="/users/:userId" component={SingleUser} /> */}
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

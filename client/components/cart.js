@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import CartItem from './cartItem'
+import {storeCart} from '../store'
 import Dinero from 'dinero.js'
 
 class Cart extends React.Component {
@@ -11,6 +13,7 @@ class Cart extends React.Component {
     }
 
     this.addToOrderTotal = this.addToOrderTotal.bind(this)
+    this.handleCheckout = this.handleCheckout.bind(this)
   }
 
   addToOrderTotal(amount) {
@@ -18,6 +21,15 @@ class Cart extends React.Component {
     this.setState({
       orderTotal: newTotal
     })
+  }
+
+  handleCheckout() {
+    this.props.storeCart({
+      orderId: this.props.orderId,
+      cart: this.props.cart
+    })
+
+    this.props.history.push(`/cart/checkout?order=${this.props.orderId}`)
   }
 
   render() {
@@ -37,6 +49,9 @@ class Cart extends React.Component {
           </div>
           <div id="order-total-div">
             Total: {Dinero({amount: this.state.orderTotal}).toFormat('$0.00')}
+            <button type="button" onClick={this.handleCheckout}>
+              Proceed to Checkout
+            </button>
           </div>
         </div>
       )
@@ -52,4 +67,8 @@ const mapState = state => ({
   orderId: state.cart.orderId
 })
 
-export default connect(mapState)(Cart)
+const mapDispatch = dispatch => ({
+  storeCart: cart => dispatch(storeCart(cart))
+})
+
+export default connect(mapState, mapDispatch)(Cart)
