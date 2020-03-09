@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {Product} = require('../db/models')
+const {Product, Order} = require('../db/models')
 
 //MIDDLEWARE FOR ADMIN-ACCESS-CONTROL
 const adminsOnly = (req, res, next) => {
