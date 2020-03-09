@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout, deleteCart} from '../store'
 import Navbar from './navbar'
 import {Login} from './auth-form'
+import UserEditAccount from './userEditAccount'
 
 const Header = props => {
   const handleLogin = () => {
@@ -28,6 +29,9 @@ const Header = props => {
               Log In
             </button>
           )}
+          {props.isLoggedIn ? (
+            <Link to="/editaccount">Edit Account</Link>
+          ) : null}
           <Link to="/signup">Sign up</Link>
           <Link to="/cart">
             <img src="cart.svg" />

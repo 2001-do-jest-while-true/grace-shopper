@@ -12,6 +12,7 @@ import SingleUser from './components/singleUser'
 import AddProduct from './components/updateProduct'
 import EditProduct from './components/updateProduct'
 import {initializeCartThunk, fetchCart} from './store/cart'
+import UserEditAccount from './components/userEditAccount'
 
 let cartFlag = false
 //IMPORT CART COMPONENT HERE
@@ -68,6 +69,10 @@ class Routes extends Component {
             <Route
               path="/products/:productId/edit-product"
               component={EditProduct}
+            />
+            <Route
+              path="/users/:userId/editaccount"
+              component={UserEditAccount}
             />
           </Switch>
         )}
