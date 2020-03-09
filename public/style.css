@@ -198,3 +198,18 @@ form div {
   display: flex;
   flex-direction: column;
 }
+
+#confirmation-container {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}
+
+#confirmation-box {
+  background-color: #c5e3cf;
+  border: 1px solid #50ad6f;
+  color: #50ad6f;
+  width: 70%;
+  padding: 20px;
+  min-height: 200px;
+}

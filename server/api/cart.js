@@ -40,23 +40,22 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     let {orderId, cart} = req.body
-    if (!orderId) {
-      const newOrder = await Order.create({status: 'inactive'})
-      orderId = newOrder.id
-    }
+    let [order] = await Order.findOrCreate({where: {id: orderId}})
 
+    // Adds all product-order relationships to the through table
     const cartEntries = Object.entries(cart)
     cartEntries.forEach(async item => {
       const prodId = item[0]
       const qty = item[1]
-
-      const order = await Order.findOne({where: {id: orderId}})
       const product = await Product.findOne({where: {id: prodId}})
 
       order.addProduct(product, {through: {quantity: qty}})
     })
 
-    res.sendStatus(200)
+    // Update order so that it is no longer the active cart
+    const updated = await order.update({status: 'inactive'})
+
+    res.sendStatus(201)
   } catch (error) {
     next(error)
   }
