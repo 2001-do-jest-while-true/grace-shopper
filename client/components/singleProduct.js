@@ -33,7 +33,7 @@ class SingleProduct extends React.Component {
         quantity: +this.state.addQty
       })
     } else {
-      this.props.addToCart(productId, +this.state.addQuantity)
+      this.props.addToCart(productId, +this.state.addQty)
     }
   }
 

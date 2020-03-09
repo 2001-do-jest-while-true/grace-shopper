@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+//import {Link} from 'react-router-dom'
 import CartItem from './cartItem'
+
 import {
   storeCart,
   fetchCart,
@@ -9,6 +10,7 @@ import {
   addToCartThunk,
   me
 } from '../store'
+
 import Dinero from 'dinero.js'
 
 class Cart extends React.Component {
@@ -53,6 +55,10 @@ class Cart extends React.Component {
     })
 
     this.props.history.push(`/cart/checkout?order=${this.props.orderId}`)
+  }
+
+  componentDidMount() {
+    this.props.fetchCart(this.props.orderId)
   }
 
   render() {
