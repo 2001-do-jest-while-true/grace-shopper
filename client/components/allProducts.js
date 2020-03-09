@@ -48,7 +48,7 @@ class AllProducts extends React.Component {
     }
 
     return (
-      <div>
+      <div id="all-products-div">
         {this.props.isAdmin && (
           <button type="button" onClick={this.toggleDisplayAddProd}>
             Add Product
