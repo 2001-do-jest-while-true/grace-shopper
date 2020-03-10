@@ -21,7 +21,7 @@ class OrderHistory extends React.Component {
       <div id="order-history-container">
         <div id="search-bar-container">
           <h1 id="page-title">Your Orders</h1>
-          <div id="search-contianer">
+          <div id="search-container">
             <input type="text" placeholder="Search orders" />
             <button type="button">Search</button>
           </div>
@@ -47,19 +47,25 @@ class OrderHistory extends React.Component {
             </option>
           </select>
         </div>
-        <div id="purchases-container">
-          {/* {Object.keys(this.props.orders).map(orderId => (
-            <div>
-              <h3>Order Date</h3>
-              <p></p>
+        <div>
+          {Object.keys(this.props.orders).map(order => (
+            <div key={order} id="purchases-container">
+              <div id="order-details">
+                <div id="date-container">
+                  <h3>Order Date</h3>
+                  <p>{order.split(':')[1]}</p>
+                </div>
+                <div id="id-container">
+                  <h3>Order # </h3>
+                  <p>{order.split(':')[0]}</p>
+                </div>
+              </div>
+              <div id="purchases-details">
+                {this.props.orders[order].map(product => (
+                  <Purchase key={product.id} product={product} />
+                ))}
+              </div>
             </div>
-            this.props.orders[orderId].map(purchase => (
-              <Purchase key={purchase.id} product={purchase}
-            )
-
-          )) */}
-          {Object.entries(this.props.orders).map(purchase => (
-            <Purchase key={purchase.id} product={purchase} />
           ))}
         </div>
       </div>

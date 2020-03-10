@@ -321,3 +321,78 @@ form div {
   max-width: 250px;
   object-fit: contain;
 }
+
+#purchases-container {
+  border: 1px solid black;
+}
+#purchase-container {
+  display: flex;
+  background-color: lightgray;
+  height: 270px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#purchase-container > img {
+  max-height: 250px;
+  max-width: 250px;
+  object-fit: contain;
+}
+
+#purchase-info {
+  width: 30%;
+}
+
+#order-history-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#search-bar-container {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  padding-bottom: 0;
+}
+
+#page-title {
+  width: 70%;
+}
+
+#search-container {
+  width: 30%;
+  justify-content: flex-end;
+}
+
+#order-filter-container {
+  display: flex;
+  align-items: center;
+}
+
+#order-filter-container > p {
+  padding: 15px;
+}
+
+#order-details {
+  display: flex;
+  border-bottom: 1px solid black;
+}
+
+#date-container {
+  padding: 15px;
+  width: 70%;
+  display: flex;
+  align-items: center;
+}
+
+#date-container p {
+  padding: 10px;
+  border: 0;
+}
+
+#id-container {
+  padding: 15px;
+  width: 50%;
+  align-items: center;
+  display: flex;
+}
