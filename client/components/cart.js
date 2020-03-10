@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-//import {Link} from 'react-router-dom'
+import Loader from 'react-loader-spinner'
 import CartItem from './cartItem'
 
 import {
@@ -103,7 +103,7 @@ class Cart extends React.Component {
     } else {
       return (
         <div>
-          Loading... If loading for more than 5 seconds, please click refresh.
+          <Loader type="ThreeDots" color="Cyan" width={80} height={80} />
         </div>
       )
     }

@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct, addToCartThunk, addToCart} from '../store'
 import {EditProduct} from './updateProduct'
+import Loader from 'react-loader-spinner'
 
 class SingleProduct extends React.Component {
   constructor() {
@@ -108,7 +109,7 @@ class SingleProduct extends React.Component {
         </div>
       )
     } else {
-      return <div>Loading...</div>
+      return <Loader type="ThreeDots" color="Cyan" width={80} height={80} />
     }
   }
 }
