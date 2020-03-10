@@ -39,7 +39,9 @@ const Header = props => {
                 Account ▾{' '}
               </button>
               <div id="dropdown-content">
-                <a href={`/${props.userId}/past-orders`}>Order History</a>
+                <a href={`/orders/${props.userId}/past-orders`}>
+                  Order History
+                </a>
                 <a href={`/${props.userId}/account`}>Account</a>
               </div>
             </div>
