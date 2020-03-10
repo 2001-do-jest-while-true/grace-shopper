@@ -57,10 +57,6 @@ class Cart extends React.Component {
     this.props.history.push(`/cart/checkout?order=${this.props.orderId}`)
   }
 
-  componentDidMount() {
-    this.props.fetchCart(this.props.orderId)
-  }
-
   render() {
     const merged = JSON.parse(window.localStorage.getItem('merged'))
 
