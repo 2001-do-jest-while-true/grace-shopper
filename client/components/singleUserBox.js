@@ -33,8 +33,12 @@ const SingleUserBox = props => {
         <button type="button" onClick={handleDeleteUser}>
           Delete User
         </button>
-
       </div>
     </div>
   )
 }
+
+const mapDispatchToProps = dispatch => ({
+  deleteSingleUser: userId => dispatch(deleteSingleUser(userId))
+})
+export default connect(null, mapDispatchToProps)(SingleUserBox)
