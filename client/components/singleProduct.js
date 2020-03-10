@@ -29,11 +29,10 @@ class SingleProduct extends React.Component {
   handleAdd(productId) {
     if (this.props.isLoggedIn) {
       this.props.addToCartThunk(this.props.orderId, {
-        productId,
-        quantity: +this.state.addQty
+        [productId]: +this.state.addQty
       })
     } else {
-      this.props.addToCart(productId, +this.state.addQty)
+      this.props.addToCart({[productId]: +this.state.addQty})
     }
   }
 
@@ -100,6 +99,7 @@ class SingleProduct extends React.Component {
             </div>
           </div>
           <div className="single-product-description">
+            <h2>Description</h2>
             {product.description}
           </div>
         </div>

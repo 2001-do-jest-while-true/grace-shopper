@@ -33,8 +33,9 @@ const SingleUserBox = props => {
         <button type="button" onClick={handleDeleteUser}>
           Delete User
         </button>
-
       </div>
     </div>
   )
 }
+
+export default SingleUserBox

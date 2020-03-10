@@ -64,10 +64,9 @@ const mapDispatch = dispatch => {
     async handleLogout() {
       await dispatch(deleteCart())
       await dispatch(logout())
-      console.log('logging out')
+
       window.localStorage.setItem('cart', JSON.stringify({}))
       window.localStorage.setItem('merged', false)
-      console.log(window.localStorage)
     },
 
     fetchCart: orderId => dispatch(fetchCart(orderId))
