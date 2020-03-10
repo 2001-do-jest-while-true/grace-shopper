@@ -38,4 +38,7 @@ const SingleUserBox = props => {
   )
 }
 
-export default SingleUserBox
+const mapDispatchToProps = dispatch => ({
+  deleteSingleUser: userId => dispatch(deleteSingleUser(userId))
+})
+export default connect(null, mapDispatchToProps)(SingleUserBox)
