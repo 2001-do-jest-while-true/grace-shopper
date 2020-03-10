@@ -10,11 +10,21 @@ router.get('/:userId/past-orders', async (req, res, next) => {
         userId: req.params.userId,
         status: 'inactive'
       },
+      attribute: ['date'],
       include: [{model: Product}]
     })
+    //DONT KNOW WHY THIS WONT RETURN ANYTHING?!
+    // const orderDict = new Map()
+    // pastOrders.forEach(order => {
+    //   const key = {}
+    //   key[order.id] = order.date
+    //   orderDict.set(key, order.products)
+
+    // })
     const orderDict = {}
     pastOrders.forEach(order => {
-      orderDict[order.id] = order.products
+      const key = `${order.id}:${order.date}`
+      orderDict[key] = order.products
     })
     res.json(orderDict)
   } catch (err) {
