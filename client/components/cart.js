@@ -24,7 +24,6 @@ class Cart extends React.Component {
   }
 
   async componentDidMount() {
-    //this.props.fetchCart(this.props.orderId)
     const merged = JSON.parse(window.localStorage.getItem('merged'))
     await this.props.loadInitialData()
     await this.props.initializeCartThunk(this.props.loggedIn.id)
@@ -37,7 +36,7 @@ class Cart extends React.Component {
       window.localStorage.setItem('merged', true)
     }
 
-    // if (this.props.loggedIn.id) await this.props.fetchCart(this.props.orderId)
+    if (this.props.loggedIn.id) await this.props.fetchCart(this.props.orderId)
   }
 
   addToOrderTotal(amount) {

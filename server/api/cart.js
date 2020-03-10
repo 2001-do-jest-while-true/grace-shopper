@@ -3,7 +3,17 @@ const {Order, User, OrderProduct, Product} = require('../db/models')
 
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+const usersOnly = (req, res, next) => {
+  console.log(req.user.id, req.query.id)
+  if (req.user.id !== +req.query.id) {
+    const notAllowedError = new Error('This is illegal!')
+    notAllowedError.status = 401
+    return next(notAllowedError)
+  }
+  next()
+}
+
+router.get('/', usersOnly, async (req, res, next) => {
   try {
     let userId
     let user
