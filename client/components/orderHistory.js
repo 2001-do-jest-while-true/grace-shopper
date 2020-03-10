@@ -48,6 +48,16 @@ class OrderHistory extends React.Component {
           </select>
         </div>
         <div id="purchases-container">
+          {/* {Object.keys(this.props.orders).map(orderId => (
+            <div>
+              <h3>Order Date</h3>
+              <p></p>
+            </div>
+            this.props.orders[orderId].map(purchase => (
+              <Purchase key={purchase.id} product={purchase}
+            )
+
+          )) */}
           {Object.entries(this.props.orders).map(purchase => (
             <Purchase key={purchase.id} product={purchase} />
           ))}

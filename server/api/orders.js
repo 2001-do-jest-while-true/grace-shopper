@@ -5,17 +5,22 @@ module.exports = router
 
 router.get('/:userId/past-orders', async (req, res, next) => {
   try {
+    console.log('USERID', req.params.userId)
     const pastOrders = await Order.findAll({
       where: {
         userId: req.params.userId,
         status: 'inactive'
       },
+      attribute: ['date'],
       include: [{model: Product}]
     })
-    const orderDict = {}
+    const orderDict = new Map()
     pastOrders.forEach(order => {
-      orderDict[order.id] = order.products
+      const key = {}
+      key[order.id] = order.date
+      orderDict.set(key, order.products)
     })
+    console.log('SENT ORDERDICT', orderDict)
     res.json(orderDict)
   } catch (err) {
     next(err)

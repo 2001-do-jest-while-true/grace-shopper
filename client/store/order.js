@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const initialState = {}
+const initialState = new Map()
 
 //ACTION TYPE
 const GET_PAST_ORDERS = 'GET_PAST_ORDERS'
@@ -14,7 +14,9 @@ const getPastOrders = orders => ({
 //THUNK CREATOR
 export const fetchPastOrders = userId => async dispatch => {
   try {
+    console.log('USERID', userId)
     const {data} = await axios.get(`/api/orders/${userId}/past-orders`)
+    console.log('ORDERS DATA', data)
     dispatch(getPastOrders(data))
   } catch (err) {
     console.error(err)
