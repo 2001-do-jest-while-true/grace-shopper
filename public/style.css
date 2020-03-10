@@ -1,5 +1,7 @@
 body {
   font-family: sans-serif;
+  background-color: #b4b8ab;
+  margin: 0px;
 }
 
 a {
@@ -54,6 +56,8 @@ form div {
 #header {
   display: flex;
   flex-direction: column;
+  background-color: #dd9f23;
+  margin: 0px;
 }
 
 #header-top {
@@ -67,6 +71,9 @@ form div {
   width: 30%;
   justify-content: space-around;
   align-items: center;
+  background-color: #ebf5df;
+  margin-right: 10px;
+  border: 1px solid #231f20;
 }
 
 #header-buttons > button {
@@ -78,9 +85,13 @@ form div {
   height: 50px;
 }
 
+#logo-div {
+  margin-left: 10px;
+}
+
 #navbar {
   display: flex;
-  background-color: black;
+  background-color: #231f20;
   justify-content: space-around;
   height: 50px;
   align-items: center;
@@ -128,7 +139,7 @@ form div {
   background-color: white;
   padding: 10px;
   z-index: 40;
-  position: fixed;
+  width: 100%;
 }
 
 #category-filters {
@@ -152,6 +163,8 @@ form div {
   border: 1px solid black;
   padding: 10px;
   flex-grow: 1;
+  background-color: #ebf5df;
+  height: 84vh;
 }
 
 #confirmation-container {
@@ -198,4 +211,31 @@ form div {
 }
 #dropdown-container:hover #dropdown-btn {
   background-color: grey;
+}
+
+#all-products-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.product-box-container {
+  border: 1px solid gray;
+  background-color: #ebf5df;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  width: 400px;
+  transition: all 1s;
+}
+
+.product-box-container:hover {
+  background-color: white;
+}
+
+.product-box-image-div {
+  display: flex;
+  justify-content: center;
 }

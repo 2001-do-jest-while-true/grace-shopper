@@ -63,19 +63,22 @@ router.post('/', async (req, res, next) => {
 
 router.put('/update/:orderId', async (req, res, next) => {
   try {
-    const {productId, quantity} = req.body
+    if (+req.params.orderId) {
+      console.log('req.body', req.body)
+      const {productId, quantity} = req.body
 
-    const orderProduct = await OrderProduct.findOne({
-      where: {
-        orderId: req.params.orderId,
-        productId: productId
-      }
-    })
+      const orderProduct = await OrderProduct.findOne({
+        where: {
+          orderId: req.params.orderId,
+          productId: productId
+        }
+      })
 
-    if (orderProduct) {
-      orderProduct.quantity = quantity
-      await orderProduct.save()
-      res.sendStatus(201)
+      if (orderProduct) {
+        orderProduct.quantity = quantity
+        await orderProduct.save()
+        res.sendStatus(201)
+      } else res.sendStatus(404)
     } else res.sendStatus(404)
   } catch (error) {
     next(error)
@@ -84,18 +87,20 @@ router.put('/update/:orderId', async (req, res, next) => {
 
 router.put('/:orderId', async (req, res, next) => {
   try {
-    const {productId, quantity} = req.body
+    const productArr = Object.entries(req.body)
 
-    const [orderProduct] = await OrderProduct.findOrCreate({
-      where: {
-        orderId: req.params.orderId,
-        productId: productId
-      },
-      defaults: {quantity: 0}
+    productArr.forEach(async ([prodId, quantity]) => {
+      const [orderProduct] = await OrderProduct.findOrCreate({
+        where: {
+          orderId: req.params.orderId,
+          productId: prodId
+        },
+        defaults: {quantity: 0}
+      })
+
+      orderProduct.quantity = orderProduct.quantity + quantity
+      await orderProduct.save()
     })
-
-    orderProduct.quantity = orderProduct.quantity + quantity
-    await orderProduct.save()
 
     res.sendStatus(201)
   } catch (error) {

@@ -111,9 +111,9 @@ class SingleProduct extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isLoggedIn: !!state.user.id,
   isAdmin: state.user.isAdmin,
   singleProduct: state.product,
-  isLoggedIn: !!state.user.id,
   orderId: state.cart.orderId
 })
 
