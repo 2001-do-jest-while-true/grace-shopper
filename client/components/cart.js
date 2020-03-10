@@ -78,8 +78,16 @@ class Cart extends React.Component {
               ))}
             </div>
             <div id="order-total-div">
-              Total: {Dinero({amount: this.state.orderTotal}).toFormat('$0.00')}
-              <button type="button" onClick={this.handleCheckout}>
+              <h2>Order Information:</h2>
+              <p>
+                Total:{' '}
+                {Dinero({amount: this.state.orderTotal}).toFormat('$0.00')}
+              </p>
+              <button
+                id="checkout-btn"
+                type="button"
+                onClick={this.handleCheckout}
+              >
                 Proceed to Checkout
               </button>
             </div>
