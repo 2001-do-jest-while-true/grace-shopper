@@ -4,7 +4,7 @@ const {User, Order, ShippingAddress} = require('../db/models')
 module.exports = router
 
 const adminsOnly = (req, res, next) => {
-  if (!req.user.isAdmin) {
+  if (!req.user || !req.user.isAdmin) {
     const notAllowedError = new Error('This is illegal!')
     notAllowedError.status = 401
     return next(notAllowedError)
@@ -46,6 +46,17 @@ router.put('/:userId', adminsOnly, async (req, res, next) => {
     })
     const updatedUser = await foundUser.update(req.body)
     res.json(updatedUser)
+  } catch (error) {
+    next(error)
+  }
+})
+
+
+router.delete('/:userId', adminsOnly, async (req, res, next) => {
+  try {
+    const foundUser = await User.findByPk(req.params.userId)
+    await foundUser.destroy()
+    res.sendStatus(200)
   } catch (error) {
     next(error)
   }

@@ -1,10 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-// import {connect} from 'react-redux'
-// import {fetchSingleUser} from '../store'
+import {connect} from 'react-redux'
+import {deleteSingleUser} from '../store'
 
 const SingleUserBox = props => {
-  // console.log('THESE ARE THE PROPS', props)
+  const handleDeleteUser = () => {
+    props.deleteSingleUser(props.id)
+  }
+
   return (
     <div className="single-user-box">
       <div className="single-user-box-details">
@@ -24,41 +27,14 @@ const SingleUserBox = props => {
         </div>
       </div>
       <div className="single-user-box-buttons">
-        <button type="button">Edit User</button>
-        <button type="button">Delete User</button>
+        <Link to={`/users/${props.id}`}>
+          <button type="button">Edit User</button>
+        </Link>
+        <button type="button" onClick={handleDeleteUser}>
+          Delete User
+        </button>
+
       </div>
     </div>
   )
 }
-
-export default SingleUserBox
-// class SingleUserBox extends React.Component {
-//   componentDidMount() {
-//     this.props.fetchSingleUser(this.props.match.params.userId)
-//   }
-
-//   render() {
-//     const user = this.props.singleUser
-//     return (
-//       <div className="single-user-box">
-//         <div className="single-user-img-box">
-//           <img src={user.imageUrl} />
-//         </div>
-//         <div className="single-user-info-box">
-//           <h3>{user.username}</h3>
-//           <p>Email:{user.email}</p>
-//         </div>
-//       </div>
-//     )
-//   }
-// }
-
-// const mapStateToProps = state => ({
-//   singleUser: state.singleUser
-// })
-
-// const mapDispatchToProps = dispatch => ({
-//   fetchSingleUser: userId => dispatch(fetchSingleUser(userId))
-// })
-
-// export default connect(mapStateToProps, mapDispatchToProps)(SingleUserBox)

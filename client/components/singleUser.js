@@ -1,12 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleUser, updateSingleUser} from '../store'
-import {Link} from 'react-router-dom'
+import {fetchSingleUser, updateSingleUser, deleteSingleUser} from '../store'
+import {Link, Redirect} from 'react-router-dom'
+
 
 class SingleUser extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      deletedUser: false
+    }
     this.handleAdminOnClick = this.handleAdminOnClick.bind(this)
+    this.handleDeleteOnClick = this.handleDeleteOnClick.bind(this)
+
   }
 
   componentDidMount() {
@@ -19,8 +25,17 @@ class SingleUser extends React.Component {
     })
   }
 
+
+  handleDeleteOnClick() {
+    this.setState({deletedUser: true})
+    this.props.deleteSingleUser(this.props.match.params.userId)
+  }
+
   render() {
     if (this.props.isAdmin) {
+      if (this.state.deletedUser) {
+        return <Redirect to="/home" />
+      }
       if (this.props.singleUser.username) {
         const user = this.props.singleUser
         let shippingCounter = 0
@@ -69,7 +84,12 @@ class SingleUser extends React.Component {
               </div>
             </div>
             <div className="single-user-deletebtn">
+
+              <button type="button" onClick={this.handleDeleteOnClick}>
+                Delete User
+              </button>
               <button type="button">Delete User</button>
+
             </div>
           </div>
         )
@@ -89,7 +109,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchSingleUser: id => dispatch(fetchSingleUser(id)),
-  updateSingleUser: (id, user) => dispatch(updateSingleUser(id, user))
+
+  updateSingleUser: (id, user) => dispatch(updateSingleUser(id, user)),
+  deleteSingleUser: id => dispatch(deleteSingleUser(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleUser)

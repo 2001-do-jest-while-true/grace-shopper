@@ -80,7 +80,11 @@ form div {
 }
 
 #logo-div {
-  margin-left: 10px;
+  margin: 5px;
+}
+
+#logo-div img {
+  height: 100px;
 }
 
 #navbar {
