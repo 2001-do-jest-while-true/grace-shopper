@@ -389,6 +389,7 @@ form div {
 #order-history-container {
   display: flex;
   flex-direction: column;
+  background-color: #b4b8ab;
 }
 
 #search-bar-container {
@@ -419,6 +420,7 @@ form div {
 #order-details {
   display: flex;
   border-bottom: 1px solid black;
+  background-color: #b4b8ab;
 }
 
 #date-container {
