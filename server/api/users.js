@@ -3,16 +3,33 @@ const {User, Order, ShippingAddress} = require('../db/models')
 
 module.exports = router
 
+const isAUser = (req, res, next) => {
+  if (!req.user) {
+    const notUserError = new Error('Not a User')
+    notUserError.status = 401
+    return next(notUserError)
+  }
+  next()
+}
 const adminsOnly = (req, res, next) => {
-  if (!req.user || !req.user.isAdmin) {
-    const notAllowedError = new Error('This is illegal!')
-    notAllowedError.status = 401
-    return next(notAllowedError)
+  if (!req.user.isAdmin) {
+    const notAdminError = new Error('Not an Admin')
+    notAdminError.status = 401
+    return next(notAdminError)
   }
   next()
 }
 
-router.get('/', adminsOnly, async (req, res, next) => {
+const isYouOnly = (req, res, next) => {
+  if (req.params.userId === req.user.id) {
+    const notMeError = new Error('Not the right User')
+    notMeError.status = 401
+    return next(notMeError)
+  }
+  next()
+}
+
+router.get('/', isAUser, adminsOnly, async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
@@ -26,7 +43,7 @@ router.get('/', adminsOnly, async (req, res, next) => {
   }
 })
 
-router.get('/:userId', adminsOnly, async (req, res, next) => {
+router.get('/:userId', isAUser, adminsOnly, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId, {
       include: [{model: Order}, {model: ShippingAddress}],
@@ -39,7 +56,9 @@ router.get('/:userId', adminsOnly, async (req, res, next) => {
   }
 })
 
-router.put('/:userId', adminsOnly, async (req, res, next) => {
+//could check if req.user is the same user as req.params.userId, removing the isAdmin from the req.body
+
+router.put('/:userId', isAUser, adminsOnly, async (req, res, next) => {
   try {
     const foundUser = await User.findByPk(req.params.userId, {
       include: [{model: Order}, {model: ShippingAddress}]
@@ -50,7 +69,6 @@ router.put('/:userId', adminsOnly, async (req, res, next) => {
     next(error)
   }
 })
-
 
 router.delete('/:userId', adminsOnly, async (req, res, next) => {
   try {
