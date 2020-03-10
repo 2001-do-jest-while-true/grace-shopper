@@ -19,14 +19,13 @@ class Cart extends React.Component {
     this.state = {
       orderTotal: 0
     }
-
     this.addToOrderTotal = this.addToOrderTotal.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
   }
 
   async componentDidMount() {
+    //this.props.fetchCart(this.props.orderId)
     const merged = JSON.parse(window.localStorage.getItem('merged'))
-
     await this.props.loadInitialData()
     await this.props.initializeCartThunk(this.props.loggedIn.id)
 
@@ -38,7 +37,7 @@ class Cart extends React.Component {
       window.localStorage.setItem('merged', true)
     }
 
-    if (this.props.loggedIn.id) await this.props.fetchCart(this.props.orderId)
+    // if (this.props.loggedIn.id) await this.props.fetchCart(this.props.orderId)
   }
 
   addToOrderTotal(amount) {
@@ -55,10 +54,6 @@ class Cart extends React.Component {
     })
 
     this.props.history.push(`/cart/checkout?order=${this.props.orderId}`)
-  }
-
-  componentDidMount() {
-    this.props.fetchCart(this.props.orderId)
   }
 
   render() {
