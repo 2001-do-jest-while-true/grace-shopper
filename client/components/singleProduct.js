@@ -33,7 +33,7 @@ class SingleProduct extends React.Component {
         quantity: +this.state.addQty
       })
     } else {
-      this.props.addToCart(productId, +this.state.addQuantity)
+      this.props.addToCart(productId, +this.state.addQty)
     }
   }
 
@@ -111,9 +111,9 @@ class SingleProduct extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isLoggedIn: !!state.user.id,
   isAdmin: state.user.isAdmin,
   singleProduct: state.product,
-  isLoggedIn: !!state.user.id,
   orderId: state.cart.orderId
 })
 

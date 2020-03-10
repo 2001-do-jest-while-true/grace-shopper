@@ -69,6 +69,11 @@ class Routes extends Component {
               path="/products/:productId/edit-product"
               component={EditProduct}
             />
+            <Route
+              exact
+              path="/users/:userId/editaccount"
+              component={UserEditAccount}
+            />
           </Switch>
         )}
         <Route path="/">

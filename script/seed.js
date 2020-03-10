@@ -1624,35 +1624,34 @@ const shippingAddresses = [
 //PRODUCTS DUMMY DATA
 const products = [
   {
-    name: 'ligula suspendisse ornare',
+    name: 'Santa Outfit',
     size: 'medium',
-    type: 'yellow-duck',
+    type: 'outfit',
     category: 'xmas',
-    price: 100,
+    price: 2999,
     quantity: 3,
     description:
-      'ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
+      'Santa outfit for your duck. Merry Quackmas to all, and to all a good night!',
+    imageUrl: '/santaoutfit.jpeg'
   },
   {
-    name: 'justo eu massa donec dapibus',
-    size: 'x-large',
-    category: 'gamer',
-    price: 100,
+    name: 'Xmas Tree',
+    type: 'outfit',
+    category: 'xmas',
+    price: 4999,
     quantity: 69,
     description:
-      'maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
+      "This limited-edition holiday outfit is pine-scented, and won't leave needles all over your carpet!",
+    imageUrl: '/xmastreeoutfit.jpg'
   },
   {
-    name: 'a feugiat et',
-    size: 'small',
+    name: 'Skeleton Outfit',
+    type: 'outfit',
     category: 'halloween',
-    price: 100,
+    price: 2499,
     quantity: 8,
-    description:
-      'quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+    description: 'Spooky scary skeleton ducks send shivers down my spine...',
+    imageUrl: '/skeletonoutfit.jpg'
   },
   {
     name: 'habitasse platea dictumst morbi',
@@ -1666,78 +1665,73 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
   },
   {
-    name: 'et ultrices posuere cubilia curae',
-    size: 'x-large',
-    type: 'red-duck',
-    price: 100,
+    name: "Runner's Jersey",
+    type: 'outfit',
+    category: 'misc',
+    price: 1399,
     quantity: 33,
     description:
-      'nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+      "Motivate your duck to strive for excellence with this runner's jersey!",
+    imageUrl: '/marathonoutfit.jpg'
   },
   {
-    name: 'pede malesuada in',
-    size: 'large',
-    type: 'blue-duck',
-    category: 'gamer',
-    price: 100,
+    name: 'Ornament Outfit',
+    type: 'outfit',
+    category: 'xmas',
+    price: 2499,
     quantity: 27,
     description:
-      'bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
+      'Have you ever wanted to hang a rubber duck from your Christmas tree? If you have, we have the outfit for you! Note: ornament hanging materials not included.',
+    imageUrl: '/ornamentoutfit.jpg'
   },
   {
-    name: 'vel nulla eget eros elementum',
-    size: 'x-large',
-    type: 'gold-duck',
+    name: 'Swim Trunks',
+    type: 'outfit',
     category: 'summer',
-    price: 100,
+    price: 1999,
     quantity: 18,
     description:
-      'eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
+      'Your duck will be too cool for the summer in these hot swimming trunks! Note: sunglasses not included. Please see accessories for pricing.',
+    imageUrl: '/swimmingtrunksoutfit.jpg'
   },
   {
-    name: 'sit amet lobortis sapien',
-    size: 'large',
-    type: 'gold-duck',
+    name: 'Plumber Toolbelt',
+    type: 'outfit',
     category: 'business/casual',
-    price: 100,
+    price: 899,
     quantity: 98,
     description:
-      'nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in',
-    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+      'While our ducks may not be certified plumbers, yours will certainly look like one with this handy tool belt!',
+    imageUrl: '/plumberoutfit.jpg'
   },
   {
-    name: 'mattis odio donec vitae',
-    size: 'large',
-    type: 'misc',
-    category: 'summer',
-    price: 100,
+    name: 'Blue Jeans',
+    type: 'outfit',
+    category: 'misc',
+    price: 999,
     quantity: 30,
     description:
-      'at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi',
-    imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
+      'A timeless classic, these blue jeans look spectacular on any duck!',
+    imageUrl: '/jeansoutfit.jpg'
   },
   {
-    name: 'faucibus cursus urna ut tellus',
-    size: 'large',
-    type: 'purple-duck',
-    category: 'xmas',
-    price: 100,
+    name: 'Overalls',
+    type: 'outfit',
+    category: 'misc',
+    price: 999,
     quantity: 78,
-    description:
-      'orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
+    description: 'A classic pair of overalls for any hard-working duck!',
+    imageUrl: '/overallsoutfit.jpg'
   },
   {
-    name: 'magna vulputate luctus',
-    size: 'small',
-    price: 100,
+    name: 'Sailor Uniform',
+    type: 'outfit',
+    category: 'misc',
+    price: 1499,
     quantity: 6,
     description:
-      'eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+      "A smart sailor outfit for your seafaring friend! Why does a duck need a boat? We're not sure...",
+    imageUrl: '/sailoroutfit.jpg'
   },
   {
     name: 'sed interdum venenatis turpis',
@@ -1751,64 +1745,65 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
   },
   {
-    name: 'id consequat in consequat ut',
+    name: 'Tuxedo',
     size: 'medium',
-    type: 'blue-duck',
+    type: 'outfit',
     category: 'business/casual',
-    price: 100,
+    price: 4999,
     quantity: 18,
     description:
-      'pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+      'Your friend will be ready for high society in this classy tuxedo!',
+    imageUrl: '/tux.jpg'
   },
   {
-    name: 'non quam nec dui',
-    type: 'gold-duck',
-    category: 'business/casual',
-    price: 100,
+    name: 'Aquaman Costume',
+    type: 'outfit',
+    category: 'halloween',
+    price: 999,
     quantity: 57,
     description:
-      'nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+      'What more appropriate superhero to dress your duck up as for Halloween than Aquaman, protector of the sea?',
+    imageUrl: '/aquamanoutfit.jpg'
   },
   {
-    name: 'integer pede justo lacinia eget',
-    type: 'silver-duck',
-    category: 'summer',
-    price: 100,
-    quantity: 64,
+    name: 'Astronaut Suit',
+    type: 'outfit',
+    category: 'misc',
+    price: 5999,
+    quantity: 10,
     description:
-      'faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
+      'High quality astronaut suit including an air-tight helmet! We would not recommend launching your duck into outer space. These suits are not certified by NASA.',
+    imageUrl: '/astronautoutfit.jpg'
   },
   {
-    name: 'ac lobortis vel',
-    category: 'summer',
-    price: 100,
+    name: 'Construction Uniform',
+    type: 'outfit',
+    category: 'business/casual',
+    price: 999,
     quantity: 86,
     description:
-      'nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
+      "It's all in a day's work for your duck with this construction uniform straight from the job site!",
+    imageUrl: '/constructionoutfit.jpg'
   },
   {
-    name: 'neque aenean auctor gravida sem',
-    size: 'large',
-    price: 100,
+    name: "Doctor's Outfit",
+    type: 'outfit',
+    category: 'business/casual',
+    price: 1499,
     quantity: 30,
     description:
-      'donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+      "This uniform will reflect your duck's immense medical knowledge.",
+    imageUrl: '/doctoroutfit.jpg'
   },
   {
-    name: 'orci luctus et ultrices posuere',
-    size: 'large',
-    type: 'silver-duck',
-    category: 'halloween',
-    price: 100,
+    name: 'Donut Costume',
+    type: 'outfit',
+    category: 'misc',
+    price: 1599,
     quantity: 57,
     description:
-      'vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+      'We would encourage you not to take a bite out of this scrumptious outfit for your feathered friend.',
+    imageUrl: '/donutoutfit.jpg'
   },
   {
     name: 'donec posuere metus',
@@ -1821,57 +1816,55 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
   },
   {
-    name: 'vulputate vitae nisl aenean lectus',
-    size: 'x-large',
-    type: 'misc',
-    category: 'xmas',
-    price: 100,
+    name: 'Dragon Costume',
+    type: 'outfit',
+    category: 'medieval',
+    price: 4999,
     quantity: 2,
     description:
-      'pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus',
-    imageUrl: 'http://dummyimage.com/250x250.png/5fa2dd/ffffff'
+      'BEST SELLER! Transform your duck into a ferocious dragon with this cute costume!',
+    imageUrl: '/dragonoutfit.jpeg'
   },
   {
-    name: 'accumsan tortor quis turpis',
-    size: 'small',
-    type: 'blue-duck',
-    category: 'medieval',
-    price: 100,
+    name: 'Fairy Outfit',
+    type: 'outfit',
+    category: 'halloween',
+    price: 1599,
     quantity: 56,
     description:
-      'iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
+      'This costume may not transform your duck into a wish-granting fairy, but it will enchant your heart.',
+    imageUrl: '/fairyoutfit.jpg'
   },
   {
-    name: 'sagittis dui vel',
+    name: 'Frankenstein Costume',
     size: 'medium',
-    type: 'silver-duck',
+    type: 'outfit',
     category: 'halloween',
-    price: 100,
+    price: 1999,
     quantity: 30,
     description:
-      'leo odio condimentum id luctus nec molestie sed justo pellentesque',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+      "Your duck will come to life with this terrifying costume based on Frankenstein's monster!",
+    imageUrl: '/frankenoutfit.jpg'
   },
   {
-    name: 'mi sit amet',
-    size: 'x-large',
-    type: 'misc',
-    category: 'business/casual',
-    price: 100,
+    name: 'Kimono',
+    type: 'outfit',
+    category: 'misc',
+    price: 1599,
     quantity: 47,
-    description:
-      'dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
+    description: 'Your duck will look gorgeous in this stylish red kimono!',
+    imageUrl: '/kimonooutfit.jpg'
   },
   {
-    name: 'ultrices posuere cubilia curae duis',
+    name: 'Leprechaun Outfit',
     size: 'medium',
-    price: 100,
+    type: 'outfit',
+    category: 'misc',
+    price: 777,
     quantity: 90,
     description:
-      'volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus',
-    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+      "Luck o' the Irish will be with you when your duck wears this festive green jacket!",
+    imageUrl: '/leprechaunoutfit.jpg'
   },
   {
     name: 'ipsum dolor sit amet',
@@ -1883,48 +1876,45 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
   },
   {
-    name: 'eu est congue',
-    size: 'large',
-    type: 'gold-duck',
-    category: 'xmas',
-    price: 100,
+    name: 'Mermaid Costume',
+    type: 'outfit',
+    category: 'halloween',
+    price: 599,
     quantity: 85,
     description:
-      'libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+      'Even though our rubber ducks cannot swim below the sea, they can pretend to be part of that world with this mermaid-themed costume!',
+    imageUrl: '/mermaidoutfit.jpeg'
   },
   {
-    name: 'amet nunc viverra',
-    size: 'small',
-    type: 'red-duck',
-    category: 'summer',
-    price: 100,
+    name: 'Minion Costume',
+    type: 'outfit',
+    category: 'halloween',
+    price: 1499,
     quantity: 20,
     description:
-      'felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+      'Kids will love this outfit themed around the Minions from the Despicable Me franchise!',
+    imageUrl: '/minionoutfit.jpg'
   },
   {
-    name: 'neque sapien placerat',
-    size: 'small',
+    name: 'Bikini',
     type: 'outfit',
     category: 'summer',
-    price: 100,
+    price: 2000,
     quantity: 17,
     description:
-      'integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+      'Your duck will be ready for the beach with this stylish polka-dotted bikini!',
+    imageUrl: '/bikini.png'
   },
   {
-    name: 'egestas metus aenean fermentum',
+    name: 'Ninja Outfit',
     size: 'medium',
-    type: 'yellow-duck',
-    category: 'gamer',
-    price: 100,
+    type: 'outfit',
+    category: 'misc',
+    price: 1999,
     quantity: 23,
     description:
-      'rutrum ac lobortis vel dapibus at diam nam tristique tortor eu',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+      'Your duck will be as stealthy as something that squeaks loudly can be in this stealthy costume!',
+    imageUrl: '/ninjaoutfit.jpg'
   },
   {
     name: 'risus praesent lectus',
@@ -1938,15 +1928,15 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
   },
   {
-    name: 'turpis donec posuere',
+    name: 'Nurse Outfit',
     size: 'medium',
-    type: 'purple-duck',
+    type: 'outfit',
     category: 'business/casual',
-    price: 100,
+    price: 999,
     quantity: 4,
     description:
-      'blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis',
-    imageUrl: 'http://dummyimage.com/250x250.png/5fa2dd/ffffff'
+      "A nurse's costume for your medically-trained rubber duck. (Ducks are not actually medically trained.)",
+    imageUrl: '/nurseoutfit.jpg'
   },
   {
     name: 'tincidunt eu felis fusce posuere',
@@ -1959,101 +1949,95 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
   },
   {
-    name: 'erat tortor sollicitudin mi sit',
-    size: 'small',
+    name: 'Luau Dress',
     type: 'outfit',
-    category: 'misc',
-    price: 100,
+    category: 'summer',
+    price: 1599,
     quantity: 25,
     description:
-      'amet cursus id turpis integer aliquet massa id lobortis convallis tortor',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+      'Say aloha to style with this beautiful dress, straight from the summery shores of Hawaii!',
+    imageUrl: '/alohaoutfit.jpg'
   },
   {
-    name: 'justo eu massa donec',
-    size: 'x-large',
-    type: 'misc',
-    category: 'summer',
-    price: 100,
+    name: 'Pirate outfit',
+    type: 'outfit',
+    category: 'halloween',
+    price: 1999,
     quantity: 16,
     description:
-      'volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in',
-    imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
+      'Yar har har and shiver me timbers, this be a pirate outfit for your avian friend!',
+    imageUrl: '/pirateoutfit.jpg'
   },
   {
-    name: 'curae duis faucibus accumsan odio',
-    type: 'silver-duck',
-    category: 'halloween',
-    price: 100,
-    quantity: 55,
-    description:
-      'nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
-  },
-  {
-    name: 'eu orci mauris',
-    size: 'medium',
-    type: 'silver-duck',
-    category: 'business/casual',
-    price: 100,
-    quantity: 6,
-    description:
-      'at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
-  },
-  {
-    name: 'semper porta volutpat',
-    size: 'large',
-    type: 'gold-duck',
-    category: 'summer',
-    price: 100,
-    quantity: 98,
-    description:
-      'cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
-  },
-  {
-    name: 'pellentesque ultrices phasellus id sapien',
-    size: 'large',
-    type: 'gold-duck',
-    category: 'xmas',
-    price: 100,
-    quantity: 22,
-    description:
-      'in porttitor pede justo eu massa donec dapibus duis at velit eu est',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
-  },
-  {
-    name: 'sed accumsan felis',
-    size: 'large',
-    category: 'gamer',
-    price: 100,
-    quantity: 36,
-    description:
-      'fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
-  },
-  {
-    name: 'quis tortor id nulla',
-    size: 'small',
+    name: 'Police Outfit Collection',
     type: 'outfit',
     category: 'business/casual',
-    price: 100,
-    quantity: 37,
+    price: 12999,
+    quantity: 5,
     description:
-      'ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+      'A limited-edition collection of police uniforms for your ducks! Comes with all three varieties.',
+    imageUrl: '/policeoutfits.jpg'
   },
   {
-    name: 'vivamus vestibulum sagittis sapien',
-    size: 'small',
-    type: 'purple-duck',
+    name: 'Sports Jersey Collection',
+    size: 'medium',
+    type: 'outfit',
+    category: 'misc',
+    price: 9999,
+    quantity: 6,
+    description:
+      'A limited-edition collection of sports jerseys for your ducks. Comes with all three varieties.',
+    imageUrl: '/sportsjerseyoutfit.jpg'
+  },
+  {
+    name: 'Superman Costume',
+    type: 'outfit',
+    category: 'halloween',
+    price: 999,
+    quantity: 98,
+    description:
+      'Our ducks may not be superheroes, but you can dress yours up like Superman with this new costume!',
+    imageUrl: '/supermanoutfit.jpeg'
+  },
+  {
+    name: 'Vampire Costume',
+    type: 'outfit',
+    category: 'halloween',
+    price: 2999,
+    quantity: 22,
+    description:
+      'We guarantee that, even with this costume, your rubber duck friend has no interest in sucking your blood.',
+    imageUrl: '/vampireoutfit.jpg'
+  },
+  {
+    name: 'Vault Boy Outfit',
+    type: 'outfit',
     category: 'gamer',
-    price: 100,
+    price: 2999,
+    quantity: 36,
+    description:
+      'Fallout 76 may have been a letdown, but we promise you that this costume is not.',
+    imageUrl: '/vaultboyoutfit.png'
+  },
+  {
+    name: 'Business Suit',
+    type: 'outfit',
+    category: 'business/casual',
+    price: 3000,
+    quantity: 37,
+    description:
+      'This stylish suit will help establish your duck as the credible economic savant that they are!',
+    imageUrl: '/businessoutfit.jpg'
+  },
+  {
+    name: 'Witch Outfit',
+    type: 'outfit',
+    category: 'halloween',
+    price: 999,
     quantity: 82,
     description:
-      'est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+      "Some say that this outfit can grant a rubber duck magical powers. (Spoilers: It can't)",
+    imageUrl: '/witchoutfit.jpeg'
   },
   {
     name: 'quam a odio in',
@@ -2284,15 +2268,14 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
   },
   {
-    name: 'nunc rhoncus dui vel sem',
-    size: 'small',
+    name: 'Artist Smock',
     type: 'outfit',
     category: 'misc',
     price: 100,
     quantity: 8,
     description:
-      'egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
+      'A sensible smock for your artistically inclined feathered friend!',
+    imageUrl: '/artistoutfit.jpg'
   },
   {
     name: 'at diam nam',
@@ -2348,15 +2331,14 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
   },
   {
-    name: 'mollis molestie lorem quisque',
-    size: 'small',
+    name: 'Cowgirl Outfit',
     type: 'outfit',
     category: 'misc',
-    price: 100,
+    price: 4000,
     quantity: 100,
     description:
-      'viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra',
-    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+      'Giddy up, pardner, with this cowgirl design straight from the heart of the wild west!',
+    imageUrl: '/cowgirloutfit.jpeg'
   },
   {
     name: 'ipsum primis in faucibus orci',
@@ -2505,13 +2487,14 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
   },
   {
-    name: 'sollicitudin mi sit',
+    name: 'Pretty Princess Dress',
     type: 'outfit',
-    price: 100,
+    category: 'medieval',
+    price: 2500,
     quantity: 67,
     description:
-      'lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at',
-    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+      'Your duck will be the prettiest belle at the ball with this cute pink dress!',
+    imageUrl: '/princessoutfit.jpg'
   },
   {
     name: 'nulla ut erat id mauris',
@@ -3237,7 +3220,6 @@ async function seed() {
       return OrderProduct.create(item)
     })
   )
-
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
   console.log(`seeded ${orders.length} orders`)
