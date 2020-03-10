@@ -58,9 +58,7 @@ class ProductBox extends React.Component {
                   </span>
                 )}
                 {quantity < 6 && (
-                  <span className="warning">
-                    Out of stock, check back soon!
-                  </span>
+                  <span className="warning">Low on stock, buy soon!</span>
                 )}
                 {quantity > 6 && <span className="in-stock"> In stock</span>}
               </div>

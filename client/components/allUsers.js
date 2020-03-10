@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchAllUsers} from '../store'
+import SingleUserBox from './singleUserBox'
 
 class AllUsers extends React.Component {
   componentDidMount() {
@@ -10,13 +11,9 @@ class AllUsers extends React.Component {
     if (this.props.isAdmin) {
       if (this.props.users.length) {
         return (
-          <div>
+          <div className="all-users">
             {this.props.users.map(user => (
-              <div key={user.id}>
-                <h3>{user.username}</h3>
-                Email:
-                {user.email}
-              </div>
+              <SingleUserBox key={user.id} {...user} />
             ))}
           </div>
         )

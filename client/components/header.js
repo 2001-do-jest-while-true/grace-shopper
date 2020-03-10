@@ -16,7 +16,9 @@ const Header = props => {
     <div id="header">
       <div id="header-top">
         <div id="logo-div">
-          <h1>What the Duck</h1>
+          <Link to="/home">
+            <img src="duck.png" />
+          </Link>
         </div>
         <div id="header-buttons">
           {props.isLoggedIn ? (
