@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import AllProducts from './allProducts'
 import AllUsers from './allUsers'
 
@@ -61,4 +62,4 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(AdminUser)
+export default withRouter(connect(mapState)(AdminUser))
