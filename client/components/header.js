@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout, deleteCart} from '../store'
+import {logout, deleteCart, fetchCart} from '../store'
 import Navbar from './navbar'
 import {Login} from './auth-form'
 
 const Header = props => {
-  const handleLogin = () => {
-    props.deleteCart()
-    props.loginClickHandler()
+  const handleLogin = async () => {
+    window.localStorage.setItem('merged', false)
+    await props.loginClickHandler()
   }
 
   return (
@@ -24,7 +24,7 @@ const Header = props => {
               Log Out
             </button>
           ) : (
-            <button type="button" onClick={handleLogin}>
+            <button type="button" onClick={props.loginClickHandler}>
               Log In
             </button>
           )}
@@ -38,7 +38,7 @@ const Header = props => {
         <Navbar />
       </div>
       {props.login &&
-        !props.isLoggedIn && <Login loginClickHandler={handleLogin} />}
+        !props.isLoggedIn && <Login loginClickHandler={() => handleLogin()} />}
     </div>
   )
 }
@@ -48,7 +48,8 @@ const Header = props => {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    orderId: state.cart.orderId
   }
 }
 
@@ -59,9 +60,15 @@ const mapDispatch = dispatch => {
     },
 
     async handleLogout() {
-      await dispatch(logout())
       await dispatch(deleteCart())
-    }
+      await dispatch(logout())
+      console.log('logging out')
+      window.localStorage.setItem('cart', JSON.stringify({}))
+      window.localStorage.setItem('merged', false)
+      console.log(window.localStorage)
+    },
+
+    fetchCart: orderId => dispatch(fetchCart(orderId))
   }
 }
 

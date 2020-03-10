@@ -19,7 +19,6 @@ class ProductBox extends React.Component {
   handleDelete() {
     this.setState({deleted: true})
     this.props.deleteProductThunk(this.props.product.id)
-    this.handleAdd = this.handleAdd.bind(this)
   }
 
   handleChange() {
@@ -31,11 +30,10 @@ class ProductBox extends React.Component {
   handleAdd(productId) {
     if (this.props.isLoggedIn) {
       this.props.addToCartThunk(this.props.orderId, {
-        productId,
-        quantity: +this.state.orderQuantity
+        [productId]: +this.state.orderQuantity
       })
     } else {
-      this.props.addToCart(productId, +this.state.orderQuantity)
+      this.props.addToCart({[productId]: +this.state.orderQuantity})
     }
   }
 
@@ -44,13 +42,15 @@ class ProductBox extends React.Component {
     return (
       <div>
         {!this.state.deleted && (
-          <div id="product-box-container">
-            <img src={imageUrl} />
-            <div id="product-box-info">
+          <div className="product-box-container">
+            <div className="product-box-image-div">
+              <img src={imageUrl} />
+            </div>
+            <div className="product-box-info">
               <Link to={`/products/${id}`}>
                 <h2>{name}</h2>
               </Link>
-              <div id="inventory-box">
+              <div className="inventory-box">
                 <p>Price: {Dinero({amount: price}).toFormat('$0.00')}</p>
                 {quantity === 0 && (
                   <span className="warning">
@@ -64,12 +64,12 @@ class ProductBox extends React.Component {
                 )}
                 {quantity > 6 && <span className="in-stock"> In stock</span>}
               </div>
-              <div id="select-qty-add-to-cart">
+              <div className="select-qty-add-to-cart">
                 <label htmlFor="qty">Qty: </label>
                 <select
                   value={this.state.orderQuantity}
                   name="quantity"
-                  id="select-item-quantity"
+                  className="select-item-quantity"
                   onChange={this.handleChange}
                 >
                   <option value={1}>1</option>
@@ -79,7 +79,7 @@ class ProductBox extends React.Component {
                   <option value={5}>5</option>
                 </select>
                 <button
-                  id="add-to-cart"
+                  className="add-to-cart"
                   type="button"
                   onClick={() => this.handleAdd(id)}
                 >
