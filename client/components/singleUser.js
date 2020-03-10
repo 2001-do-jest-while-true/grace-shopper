@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchSingleUser, updateSingleUser, deleteSingleUser} from '../store'
 import {Link, Redirect} from 'react-router-dom'
 
+
 class SingleUser extends React.Component {
   constructor(props) {
     super(props)
@@ -11,6 +12,7 @@ class SingleUser extends React.Component {
     }
     this.handleAdminOnClick = this.handleAdminOnClick.bind(this)
     this.handleDeleteOnClick = this.handleDeleteOnClick.bind(this)
+
   }
 
   componentDidMount() {
@@ -22,6 +24,7 @@ class SingleUser extends React.Component {
       isAdmin: !this.props.singleUser.isAdmin
     })
   }
+
 
   handleDeleteOnClick() {
     this.setState({deletedUser: true})
@@ -81,9 +84,12 @@ class SingleUser extends React.Component {
               </div>
             </div>
             <div className="single-user-deletebtn">
+
               <button type="button" onClick={this.handleDeleteOnClick}>
                 Delete User
               </button>
+              <button type="button">Delete User</button>
+
             </div>
           </div>
         )
@@ -103,6 +109,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchSingleUser: id => dispatch(fetchSingleUser(id)),
+
   updateSingleUser: (id, user) => dispatch(updateSingleUser(id, user)),
   deleteSingleUser: id => dispatch(deleteSingleUser(id))
 })

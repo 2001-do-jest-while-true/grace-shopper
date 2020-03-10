@@ -255,4 +255,24 @@ form div {
 .product-box-image-div {
   display: flex;
   justify-content: center;
+  height: 250px;
+  width: 400px;
+}
+
+.product-box-image-div > img {
+  max-height: 250px;
+  max-width: 250px;
+  object-fit: contain;
+}
+
+.cart-img-div > img {
+  max-height: 250px;
+  max-width: 250px;
+  object-fit: contain;
+}
+
+.single-product-pane > img {
+  max-height: 300px;
+  max-width: 300px;
+  object-fit: contain;
 }

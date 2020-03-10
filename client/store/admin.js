@@ -5,6 +5,7 @@ const GET_ALL_USERS = 'GET_ALL_USERS'
 const GET_USER = 'GET_USER'
 const UPDATED_USER = 'UPDATED_USER'
 const DELETED_USER = 'DELETED_USER'
+
 // Initial State
 const initialState = {users: [], user: {}}
 /******************************************** */
@@ -13,6 +14,7 @@ const getAllUsers = users => ({type: GET_ALL_USERS, users})
 const getUser = user => ({type: GET_USER, user})
 const updateUser = user => ({type: UPDATED_USER, user})
 const deleteUser = id => ({type: DELETED_USER, id})
+
 /******************************************** */
 // THUNK CREATOR
 export const fetchAllUsers = () => async dispatch => {
@@ -41,6 +43,7 @@ export const updateSingleUser = (userId, user) => async dispatch => {
   }
 }
 
+
 export const deleteSingleUser = userId => async dispatch => {
   try {
     await axios.delete(`api/users/${userId}`)
@@ -49,6 +52,7 @@ export const deleteSingleUser = userId => async dispatch => {
     console.error(error)
   }
 }
+
 /******************************************** */
 // REDUCER
 export default function(state = initialState, action) {
@@ -59,6 +63,7 @@ export default function(state = initialState, action) {
       return {...state, user: action.user}
     case UPDATED_USER:
       return {...state, user: action.user}
+
     case DELETED_USER:
       return {
         ...state,
