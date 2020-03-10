@@ -71,31 +71,34 @@ class SingleProduct extends React.Component {
               </p>
             </div>
             <div className="single-product-cart-div">
-              <select
-                name="qty"
-                value={this.state.addQuantity}
-                onChange={this.handleQty}
-              >
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>c
-                <option value={4}>4</option>
-                <option value={5}>5</option>
-              </select>
-              <button
-                type="button"
-                className="cart-button"
-                onClick={() => this.handleAdd(product.id)}
-              >
-                Add to Cart
-              </button>
-              {this.props.isAdmin && (
-                <div>
-                  <button type="button" onClick={this.toggleDisplayEdit}>
-                    Edit Product
-                  </button>
-                </div>
-              )}
+              <div className="add-to-cart-div">
+                <h3>Purchase:</h3>
+                <select
+                  name="qty"
+                  value={this.state.addQuantity}
+                  onChange={this.handleQty}
+                >
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>c
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                </select>
+                <button
+                  type="button"
+                  className="cart-button"
+                  onClick={() => this.handleAdd(product.id)}
+                >
+                  Add to Cart
+                </button>
+                {this.props.isAdmin && (
+                  <div>
+                    <button type="button" onClick={this.toggleDisplayEdit}>
+                      Edit Product
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           <div className="single-product-description">

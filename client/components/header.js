@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout, deleteCart, fetchCart} from '../store'
 import Navbar from './navbar'
 import {Login} from './auth-form'
+import {useHistory} from 'react-router-dom'
 
 const Header = props => {
   const handleLogin = async () => {
@@ -17,7 +18,7 @@ const Header = props => {
       <div id="header-top">
         <div id="logo-div">
           <Link to="/home">
-            <img src="duck.png" />
+            <img src="/duck.png" />
           </Link>
         </div>
         <div id="header-buttons">
@@ -31,9 +32,7 @@ const Header = props => {
             </button>
           )}
           {!props.isLoggedIn ? (
-            <button type="button">
-              <Link to="/signup">Sign up</Link>
-            </button>
+            <SignupButton />
           ) : (
             <div id="dropdown-container">
               <button type="button" id="dropdown-btn">
@@ -49,7 +48,7 @@ const Header = props => {
             </div>
           )}
           <Link to="/cart">
-            <img src="cart.svg" />
+            <img src="/cart.svg" />
           </Link>
         </div>
       </div>
@@ -59,6 +58,19 @@ const Header = props => {
       {props.login &&
         !props.isLoggedIn && <Login loginClickHandler={() => handleLogin()} />}
     </div>
+  )
+}
+
+// A small functional component that directs the user to the signup page
+const SignupButton = () => {
+  const history = useHistory()
+
+  const handleSignup = () => history.push('/signup')
+
+  return (
+    <button type="button" onClick={handleSignup}>
+      Sign up
+    </button>
   )
 }
 

@@ -38,7 +38,6 @@ const SingleUserBox = props => {
   )
 }
 
-
 const mapDispatchToProps = dispatch => ({
   deleteSingleUser: userId => dispatch(deleteSingleUser(userId))
 })
