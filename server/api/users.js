@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order} = require('../db/models')
+const {User, Order, ShippingAddress} = require('../db/models')
 
 module.exports = router
 
@@ -29,15 +29,8 @@ router.get('/', adminsOnly, async (req, res, next) => {
 router.get('/:userId', adminsOnly, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId, {
-      include: [{model: Order}],
-      attributes: [
-        'username',
-        'isAdmin',
-        'imageUrl',
-        'shippingAddress',
-        'billingAddress',
-        'email'
-      ]
+      include: [{model: Order}, {model: ShippingAddress}],
+      attributes: ['username', 'isAdmin', 'imageUrl', 'billingAddress', 'email']
     })
     if (!user) res.sendStatus(404)
     else res.json(user)
@@ -46,9 +39,21 @@ router.get('/:userId', adminsOnly, async (req, res, next) => {
   }
 })
 
+router.put('/:userId', adminsOnly, async (req, res, next) => {
+  try {
+    const foundUser = await User.findByPk(req.params.userId, {
+      include: [{model: Order}, {model: ShippingAddress}]
+    })
+    const updatedUser = await foundUser.update(req.body)
+    res.json(updatedUser)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/signup', async (req, res, next) => {
   try {
-    console.log('This is the req.body', req.body)
+    //console.log('This is the req.body', req.body)
     const addUser = await User.create(req.body)
     res.status(200).json(addUser)
   } catch (error) {

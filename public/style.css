@@ -44,15 +44,6 @@ form div {
   width: 20%;
 }
 
-.single-user-main {
-  display: flex;
-  flex-direction: column;
-}
-
-.single-user-pane {
-  display: flex;
-}
-
 #header {
   display: flex;
   flex-direction: column;
@@ -168,6 +159,56 @@ form div {
   flex-grow: 1;
   background-color: #ebf5df;
   height: 84vh;
+}
+
+.single-user-box {
+  margin: 2vh 20vw;
+  height: fit-content;
+  background-color: #dd9f23;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.single-user-box-details {
+  display: flex;
+  align-items: center;
+  width: 30vw;
+  color: #383b53;
+}
+
+.single-user-img-box {
+  margin: 0px 30px;
+  height: fit-content;
+  width: fit-content;
+}
+
+.single-user-img-box img {
+  height: 100px;
+  width: 100px;
+  background-color: white;
+}
+
+.single-user-info-box {
+  margin: 0px 30px;
+}
+
+.no-admin-priv {
+  color: #ebf5df;
+}
+
+.single-user-box-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.single-user-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.single-user-pane {
+  display: flex;
 }
 
 #confirmation-container {
