@@ -210,4 +210,12 @@ form div {
 .product-box-image-div {
   display: flex;
   justify-content: center;
+  height: 250px;
+  width: 400px;
+}
+
+.product-box-image-div > img {
+  max-height: 250px;
+  max-width: 250px;
+  object-fit: contain;
 }
