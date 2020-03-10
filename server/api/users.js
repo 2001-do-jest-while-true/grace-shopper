@@ -22,7 +22,7 @@ const adminsOnly = (req, res, next) => {
 
 const isYouOnly = (req, res, next) => {
   if (req.params.userId === req.user.id) {
-    const notMeErro = new Error('Not the right User')
+    const notMeError = new Error('Not the right User')
     notMeError.status = 401
     return next(notMeError)
   }
