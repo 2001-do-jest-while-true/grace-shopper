@@ -389,7 +389,7 @@ form div {
 #order-history-container {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: #b4b8ab;
 }
 
 #search-bar-container {

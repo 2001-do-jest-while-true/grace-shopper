@@ -25,7 +25,6 @@ class OrderHistory extends React.Component {
   }
 
   render() {
-    console.log('FILTER', this.state.filter)
     return (
       <div id="order-history-container">
         <div id="search-bar-container">
@@ -36,7 +35,7 @@ class OrderHistory extends React.Component {
           </div>
         </div>
         <div id="order-filter-container">
-          <p>{this.props.orders.length} orders placed in</p>
+          <p> Orders placed in </p>
           <select
             name="filter"
             value={this.state.filter}
