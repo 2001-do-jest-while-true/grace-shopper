@@ -3,6 +3,7 @@ import axios from 'axios'
 const initialState = {
   orderId: 0,
   cart: {},
+  pastOrders: {},
   loaded: false
 }
 
@@ -14,7 +15,7 @@ const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const DELETE_CART = 'DELETE_CART'
 const CHANGE_CART_QUANTITY = 'CHANGE_CART_QUANTITY'
 const SET_CART = 'SET_CART'
-
+const GET_PAST_ORDERS = 'GET_PAST_ORDERS'
 // ACTION CREATORS
 
 const initializeCart = orderId => ({
@@ -53,6 +54,11 @@ export const deleteCart = () => ({
   type: DELETE_CART
 })
 
+export const getPastOrders = pastOrders => ({
+  type: GET_PAST_ORDERS,
+  pastOrders
+})
+
 // THUNK CREATORS
 export const initializeCartThunk = userId => async dispatch => {
   try {
@@ -73,6 +79,16 @@ export const fetchCart = orderId => async dispatch => {
     dispatch(getCart(data))
   } catch (error) {
     console.error(error)
+  }
+}
+
+export const fetchPastOrders = userId => async dispatch => {
+  try {
+    const {data} = await axios.get(`/${userId}/past-orders`)
+    dispatch(getPastOrders(data))
+  } catch (err) {
+    console.error(err)
+    console.error(err.stack)
   }
 }
 
@@ -131,7 +147,12 @@ export default function(state = initialState, action) {
       })
       return {...state, cart: newCart, loaded: true}
     }
-
+    case GET_PAST_ORDERS:
+      let userHistory = {}
+      action.pastOrders.forEach(order => {
+        pastOders[order.productId] = order.quantity
+      })
+      return {state, pastOrders: userHistory}
     case SET_CART:
       return {...state, cart: action.cartObj}
 
