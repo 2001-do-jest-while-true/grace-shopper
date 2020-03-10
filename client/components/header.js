@@ -12,7 +12,7 @@ const Header = props => {
     props.deleteCart()
     props.loginClickHandler()
   }
-
+  console.log(props.user)
   return (
     <div id="header">
       <div id="header-top">
@@ -30,7 +30,7 @@ const Header = props => {
             </button>
           )}
           {props.isLoggedIn ? (
-            <Link to="/editaccount">Edit Account</Link>
+            <Link to={`/users/${props.user.id}/editaccount`}>Edit Account</Link>
           ) : null}
           <Link to="/signup">Sign up</Link>
           <Link to="/cart">
@@ -52,7 +52,8 @@ const Header = props => {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user
   }
 }
 

@@ -45,10 +45,18 @@ router.get('/:userId', adminsOnly, async (req, res, next) => {
     next(error)
   }
 })
+router.put('/:userId/editaccount', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.userId)
+    const editedUser = await user.update(req.body)
+    res.status(200).json(editedUser)
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.post('/signup', async (req, res, next) => {
   try {
-    console.log('This is the req.body', req.body)
     const addUser = await User.create(req.body)
     res.status(200).json(addUser)
   } catch (error) {

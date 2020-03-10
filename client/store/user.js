@@ -7,6 +7,7 @@ import history from '../history'
 const GET_LOGGED_IN = 'GET_LOGGED_IN'
 const LOG_OUT = 'LOG_OUT'
 const ADD_USER = 'ADD_USER'
+const EDIT_USER = 'EDIT_USER'
 
 /**
  * INITIAL STATE
@@ -20,9 +21,21 @@ const initialState = {}
 const getLoggedIn = user => ({type: GET_LOGGED_IN, user})
 const logOutUser = () => ({type: LOG_OUT, user: {}})
 const addUser = user => ({type: ADD_USER, user})
+const editUser = user => ({
+  type: EDIT_USER,
+  user
+})
 /**
  * THUNK CREATORS
  */
+export const editUserThunk = userId => async dispatch => {
+  try {
+    const {data} = await axios.put(`/api/users/${userId}/editaccount`)
+    dispatch(editUser(data))
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 export const addUserThunk = user => async dispatch => {
   try {
@@ -79,6 +92,8 @@ export default function(state = initialState, action) {
     case LOG_OUT:
       return action.user
     case ADD_USER:
+      return action.user
+    case EDIT_USER:
       return action.user
     default:
       return state
