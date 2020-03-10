@@ -59,6 +59,7 @@ export const initializeCartThunk = userId => async dispatch => {
     if (!userId) dispatch(initializeCart(0))
     else {
       const {data} = await axios.get(`/api/cart?id=${userId}`)
+      // Protecting cart route
       dispatch(initializeCart(data))
     }
   } catch (err) {

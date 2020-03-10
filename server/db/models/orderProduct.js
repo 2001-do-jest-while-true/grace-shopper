@@ -9,6 +9,7 @@ const OrderProduct = db.define('order_product', {
       min: 0
     }
   }
+  // SARAH: Historical cost
 })
 
 module.exports = OrderProduct

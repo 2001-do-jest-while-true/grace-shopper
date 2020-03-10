@@ -7,6 +7,14 @@ router.get('/', async (req, res, next) => {
   try {
     let userId
     let user
+    // SARAH: With this logic, I believe you can also do a find or create on order, where the userId is userId, and status = 'active'
+
+    // Order.findOrCreate({
+    // where: {
+    //     userId,
+    //     status: 'active'
+    //   }
+    // })
 
     if (req.query.id) {
       userId = req.query.id
@@ -48,22 +56,26 @@ router.post('/', async (req, res, next) => {
       const prodId = item[0]
       const qty = item[1]
       const product = await Product.findOne({where: {id: prodId}})
-
+      // SARAH: I believe you are also allowed to add the array of IDs
+      // order.addProduct(productId, { through: { quantity: qty }})
       order.addProduct(product, {through: {quantity: qty}})
     })
 
     // Update order so that it is no longer the active cart
     const updated = await order.update({status: 'inactive'})
-
+    // SARAH: Do you not want to send something back?
     res.sendStatus(201)
   } catch (error) {
     next(error)
   }
 })
 
+// a PUT route on the orderId is fine
+// What is the difference between this route and the other one?
 router.put('/update/:orderId', async (req, res, next) => {
   try {
     if (+req.params.orderId) {
+      // SARAH: remove console.log statements
       console.log('req.body', req.body)
       const {productId, quantity} = req.body
 
@@ -88,7 +100,8 @@ router.put('/update/:orderId', async (req, res, next) => {
 router.put('/:orderId', async (req, res, next) => {
   try {
     const productArr = Object.entries(req.body)
-
+    // Promise.each
+    // map over this -> Promise.all
     productArr.forEach(async ([prodId, quantity]) => {
       const [orderProduct] = await OrderProduct.findOrCreate({
         where: {
@@ -108,7 +121,15 @@ router.put('/:orderId', async (req, res, next) => {
   }
 })
 
-router.delete('/:orderId/:productId', async (req, res, next) => {
+// /cart/:orderId
+
+// /orders/:orderId -> GET /orders/?
+// /users/:userId/cart
+// -> req.user will always have their own orderId
+// req.user.getOrder({ where: { status: 'active' } })
+
+// May prefer this to be a PUT on the /:orderId with a req.body that includes the productId.
+router.delete('/:orderId/products/:productId', async (req, res, next) => {
   try {
     await OrderProduct.destroy({
       where: {

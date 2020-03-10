@@ -3,6 +3,7 @@ const {User, Order} = require('../db/models')
 
 module.exports = router
 
+// Do you want to protect this route?
 router.get('/', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId, {

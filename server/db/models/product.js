@@ -8,6 +8,8 @@ const SML = 'small',
   XL = 'x-large'
 
 // types
+// SARAH: I do like the action constants
+// store this in a separate file and module.export them so that you are importing variables instead of dealing with just strings
 const YLW_DK = 'yellow-duck'
 const PRP_DK = 'purple-duck'
 const RED_DK = 'red-duck'

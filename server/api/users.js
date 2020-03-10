@@ -3,7 +3,9 @@ const {User, Order, ShippingAddress} = require('../db/models')
 
 module.exports = router
 
+// having a separate gatekeeping middleware file so that you don't need to repeat yourself and you will know where all of these exist
 const adminsOnly = (req, res, next) => {
+  // SARAH: If !req.user as well - you may also want to throw a 401
   if (!req.user.isAdmin) {
     const notAllowedError = new Error('This is illegal!')
     notAllowedError.status = 401
@@ -39,6 +41,9 @@ router.get('/:userId', adminsOnly, async (req, res, next) => {
   }
 })
 
+// SARAH: could check if req.user is the same user as req.params.userId, removing the isAdmin from the req.body
+
+// SARAH: What about users editing their own profile?
 router.put('/:userId', adminsOnly, async (req, res, next) => {
   try {
     const foundUser = await User.findByPk(req.params.userId, {

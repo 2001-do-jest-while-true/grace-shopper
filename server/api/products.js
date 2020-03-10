@@ -12,10 +12,13 @@ const adminsOnly = (req, res, next) => {
   next()
 }
 
+// SARAH: Optionally looking into router.param
+// https://expressjs.com/en/5x/api.html#router.param
+
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll()
-    products ? res.status(200).json(products) : res.sendStatus(500)
+    products ? res.status(200).json(products) : res.sendStatus(500) // 500 isn't very clear; it's saying that we may have done something wrong. Would prefer a 404 to say there are no products found.
   } catch (error) {
     next(error)
   }
