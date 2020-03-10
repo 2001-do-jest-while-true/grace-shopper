@@ -8,9 +8,10 @@ import allUsers from './components/allUsers'
 import Cart from './components/cart'
 import SingleUser from './components/singleUser'
 import {AddProduct, EditProduct} from './components/updateProduct'
+import OrderConfirmation from './components/orderConfirmation'
+import OrderHistory from './components/orderHistory'
 import AdminUser from './components/adminUser'
 import UserSignup from './components/UserSignup'
-import OrderConfirmation from './components/orderConfirmation'
 import UserHome from './components/user-home'
 
 /**
@@ -26,6 +27,16 @@ class Routes extends Component {
         <Route exact path="/signup" component={UserSignup} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
+        <Route
+          exact
+          path="/orders/:userId/past-orders"
+          component={OrderHistory}
+        />
+        <Route
+          exact
+          path="/cart"
+          render={() => <Cart orderId={this.props.orderId} />}
+        />
         <Route exact path="/cart" component={Cart} />
         <Route path="/cart/checkout" component={OrderConfirmation} />
         {isLoggedIn && (
