@@ -1,3 +1,11 @@
+html,
+body,
+#app,
+#main {
+  height: 100%;
+  min-height: 100%;
+}
+
 body {
   font-family: sans-serif;
   background-color: #b4b8ab;
@@ -205,6 +213,8 @@ form div {
 
 #cart-container {
   display: flex;
+  min-height: 100%;
+  overflow: visible;
 }
 
 #cart-items-div {

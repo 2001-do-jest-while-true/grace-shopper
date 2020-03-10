@@ -52,7 +52,11 @@ class CartItem extends React.Component {
         productId: prodId,
         quantity: +cartQty
       }
-      this.props.updateQtyThunk(this.props.orderId, product)
+      this.props.updateQtyThunk(
+        this.props.loggedIn.id,
+        this.props.orderId,
+        product
+      )
     } else {
       this.props.changeCartQuantity(prodId, +cartQty)
     }
@@ -65,7 +69,11 @@ class CartItem extends React.Component {
     const prodId = this.props.product.id
 
     if (this.props.isLoggedIn) {
-      this.props.deleteFromCartThunk(this.props.orderId, prodId)
+      this.props.deleteFromCartThunk(
+        this.props.loggedIn.id,
+        this.props.orderId,
+        prodId
+      )
     } else {
       this.props.deleteFromCart(prodId)
     }
@@ -119,6 +127,7 @@ class CartItem extends React.Component {
 
 const mapState = state => ({
   isLoggedIn: !!state.user.id,
+  loggedIn: state.user,
   products: state.product.allProducts,
   orderId: state.cart.orderId,
   cart: state.cart.cart
@@ -127,14 +136,14 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   deleteFromCart: productId => dispatch(deleteFromCart(productId)),
 
-  deleteFromCartThunk: (orderId, productId) =>
-    dispatch(deleteFromCartThunk(orderId, productId)),
+  deleteFromCartThunk: (userId, orderId, productId) =>
+    dispatch(deleteFromCartThunk(userId, orderId, productId)),
 
   changeCartQuantity: (productId, quantity) =>
     dispatch(changeCartQuantity(productId, quantity)),
 
-  updateQtyThunk: (orderId, product) =>
-    dispatch(updateQtyThunk(orderId, product))
+  updateQtyThunk: (userId, orderId, product) =>
+    dispatch(updateQtyThunk(userId, orderId, product))
 })
 
 export default connect(mapState, mapDispatch)(CartItem)

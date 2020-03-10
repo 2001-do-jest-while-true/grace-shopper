@@ -30,13 +30,18 @@ class Cart extends React.Component {
 
     if (+this.props.loggedIn.id && !merged) {
       const localCart = JSON.parse(window.localStorage.getItem('cart'))
-      await this.props.addToCartThunk(this.props.orderId, localCart)
+      await this.props.addToCartThunk(
+        this.props.loggedIn.id,
+        this.props.orderId,
+        localCart
+      )
 
       window.localStorage.setItem('cart', JSON.stringify({}))
       window.localStorage.setItem('merged', true)
     }
 
-    if (this.props.loggedIn.id) await this.props.fetchCart(this.props.orderId)
+    if (this.props.loggedIn.id)
+      await this.props.fetchCart(this.props.loggedIn.id, this.props.orderId)
   }
 
   addToOrderTotal(amount) {
@@ -115,9 +120,10 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   loadInitialData: () => dispatch(me()),
   storeCart: cart => dispatch(storeCart(cart)),
-  fetchCart: orderId => dispatch(fetchCart(orderId)),
+  fetchCart: (userId, orderId) => dispatch(fetchCart(userId, orderId)),
   initializeCartThunk: userId => dispatch(initializeCartThunk(userId)),
-  addToCartThunk: (orderId, cart) => dispatch(addToCartThunk(orderId, cart))
+  addToCartThunk: (userId, orderId, cart) =>
+    dispatch(addToCartThunk(userId, orderId, cart))
 })
 
 export default connect(mapState, mapDispatch)(Cart)

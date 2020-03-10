@@ -1,16 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const {Product, Order} = require('../db/models')
-
-//MIDDLEWARE FOR ADMIN-ACCESS-CONTROL
-const adminsOnly = (req, res, next) => {
-  if (!req.user.isAdmin) {
-    const err = new Error('Not authorized!!!')
-    err.status(401)
-    next(err)
-  }
-  next()
-}
+const {adminsOnly} = require('./access')
 
 router.get('/', async (req, res, next) => {
   try {

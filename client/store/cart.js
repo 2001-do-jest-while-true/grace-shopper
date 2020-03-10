@@ -58,7 +58,7 @@ export const initializeCartThunk = userId => async dispatch => {
   try {
     if (!userId) dispatch(initializeCart(0))
     else {
-      const {data} = await axios.get(`/api/cart?id=${userId}`)
+      const {data} = await axios.get(`/api/cart/users/${userId}`)
       dispatch(initializeCart(data))
     }
   } catch (err) {
@@ -67,9 +67,11 @@ export const initializeCartThunk = userId => async dispatch => {
   }
 }
 
-export const fetchCart = orderId => async dispatch => {
+export const fetchCart = (userId, orderId) => async dispatch => {
   try {
-    const {data} = await axios.get(`/api/cart/${orderId}`)
+    const {data} = await axios.get(
+      `/api/cart/users/${userId}/orders/${orderId}`
+    )
     dispatch(getCart(data))
   } catch (error) {
     console.error(error)
@@ -85,9 +87,16 @@ export const storeCart = cart => async dispatch => {
   }
 }
 
-export const addToCartThunk = (orderId, newProducts) => async dispatch => {
+export const addToCartThunk = (
+  userId,
+  orderId,
+  newProducts
+) => async dispatch => {
   try {
-    const res = await axios.put(`/api/cart/${orderId}`, newProducts)
+    const res = await axios.put(
+      `/api/cart/users/${userId}/orders/${orderId}`,
+      newProducts
+    )
     dispatch(addToCart(newProducts))
   } catch (error) {
     console.error(error)
@@ -95,13 +104,14 @@ export const addToCartThunk = (orderId, newProducts) => async dispatch => {
 }
 
 export const updateQtyThunk = (
+  userId,
   orderId,
   productWithQuantity
 ) => async dispatch => {
   try {
     const {productId, quantity} = productWithQuantity
     const res = await axios.put(
-      `/api/cart/update/${orderId}`,
+      `/api/cart/update/users/${userId}/orders/${orderId}`,
       productWithQuantity
     )
     dispatch(changeCartQuantity(productId, quantity))
@@ -110,9 +120,15 @@ export const updateQtyThunk = (
   }
 }
 
-export const deleteFromCartThunk = (orderId, productId) => async dispatch => {
+export const deleteFromCartThunk = (
+  userId,
+  orderId,
+  productId
+) => async dispatch => {
   try {
-    const res = await axios.delete(`/api/cart/${orderId}/${productId}`)
+    const res = await axios.delete(
+      `/api/cart/users/${userId}/orders/${orderId}/${productId}`
+    )
     dispatch(deleteFromCart(productId))
   } catch (error) {
     console.error(error)
