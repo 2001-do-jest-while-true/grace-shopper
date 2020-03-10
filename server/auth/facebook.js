@@ -13,9 +13,13 @@ if (!process.env.FACEBOOK_CLIENT_ID || !process.env.FACEBOOK_CLIENT_SECRET) {
     callbackURL: process.env.FACEBOOK_CALLBACK
   }
 
-  const strategy = new FacebookStrategy(
-    facebookConfig,
-    (token, refreshToken, profile, done) => {
+  passport.use(
+    new FacebookStrategy(facebookConfig, function(
+      accessToken,
+      refreshToken,
+      profile,
+      done
+    ) {
       const facebookId = profile.id
       const email = profile.emails[0].value
       const imgUrl = profile.photos[0].value
@@ -29,13 +33,11 @@ if (!process.env.FACEBOOK_CLIENT_ID || !process.env.FACEBOOK_CLIENT_SECRET) {
       })
         .then(([user]) => done(null, user))
         .catch(done)
-    }
+    })
   )
 
-  passport.use(strategy)
-
   router.get(
-    '/',
+    '/auth/facebook',
     passport.authenticate('facebook', {scope: ['email', 'profile']})
   )
 

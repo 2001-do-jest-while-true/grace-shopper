@@ -69,9 +69,6 @@ form div {
 
 #header-buttons > button {
   width: 40%;
-}
-
-#header-buttons > button {
   height: 30px;
 }
 
@@ -228,6 +225,37 @@ form div {
   width: 70%;
   padding: 20px;
   min-height: 200px;
+}
+
+#dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+#dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: lightgrey;
+  min-width: 100px;
+  z-index: 1;
+}
+
+#dropdown-content a {
+  color: black;
+  font: 4px;
+  text-decoration: none;
+  display: block;
+  padding: 2px;
+}
+
+#dropdown-content a:hover {
+  background-color: white;
+}
+#dropdown-container:hover #dropdown-content {
+  display: block;
+}
+#dropdown-container:hover #dropdown-btn {
+  background-color: grey;
 }
 
 #all-products-div {

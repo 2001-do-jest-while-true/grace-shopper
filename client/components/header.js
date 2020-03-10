@@ -30,7 +30,22 @@ const Header = props => {
               Log In
             </button>
           )}
-          <Link to="/signup">Sign up</Link>
+          {!props.isLoggedIn ? (
+            <button type="button">
+              <Link to="/signup">Sign up</Link>
+            </button>
+          ) : (
+            <div id="dropdown-container">
+              <button type="button" id="dropdown-btn">
+                {' '}
+                Account ▾{' '}
+              </button>
+              <div id="dropdown-content">
+                <a href={`/${props.userId}/past-orders`}>Order History</a>
+                <a href={`/${props.userId}/account`}>Account</a>
+              </div>
+            </div>
+          )}
           <Link to="/cart">
             <img src="cart.svg" />
           </Link>
@@ -51,6 +66,7 @@ const Header = props => {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
+    userId: state.user.id,
     orderId: state.cart.orderId
   }
 }
@@ -83,26 +99,3 @@ Header.propTypes = {
   handleLogout: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
-
-// {/* <div>
-// <h1>What The Duck</h1>
-// <nav>
-//   {isLoggedIn ? (
-//     <div>
-//       {/* The navbar will show these links after you log in */}
-//       <Link to="/home">Home</Link>
-//       <a href="#" onClick={handleClick}>
-//         Logout
-//       </a>
-//     </div>
-//   ) : (
-//     <div>
-//       {/* The navbar will show these links before you log in */}
-//       <Link to="/login">Login</Link>
-//       <Link to="/signup">Sign Up</Link>
-//     </div>
-//   )}
-// </nav>
-// <hr />
-// </div>
-// ) */}
