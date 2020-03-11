@@ -19,7 +19,6 @@ class UserSignup extends React.Component {
   }
 
   handleChange(e) {
-    console.log(e.target.name, e.target.value)
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -85,8 +84,8 @@ class UserSignup extends React.Component {
             />
           </div>
           <div className="signup-upload-wrapper">
+            <button className="signup-upload-btn">Upload your picture</button>
             <input className="signup-upload" type="file" name="imageUrl" />
-            UPLOAD PROFILE PICTURE
           </div>
 
           <div>
