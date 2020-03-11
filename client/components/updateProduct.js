@@ -43,9 +43,6 @@ class UpdateProduct extends React.Component {
   }
 
   render() {
-    console.log('STATE PRICE', this.state.price)
-    console.log('DINERO TO UNIT', typeof Dinero(this.state.price).toUnit())
-    console.log('DINER TO OBJ', Dinero(this.state.price).toObject())
     return (
       <div id="updateProduct-outer-continer">
         <div id="name-box">

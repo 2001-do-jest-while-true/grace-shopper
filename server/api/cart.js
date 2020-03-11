@@ -90,7 +90,6 @@ router.put(
   async (req, res, next) => {
     try {
       if (+req.params.orderId) {
-        console.log('req.body', req.body)
         const {productId, quantity} = req.body
 
         const orderProduct = await OrderProduct.findOne({
