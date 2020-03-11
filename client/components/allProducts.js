@@ -4,6 +4,7 @@ import ProductBox from './productBox'
 import Filters from './filters'
 import {AddProduct} from './updateProduct'
 import {fetchAllProducts} from '../store'
+import Loader from 'react-loader-spinner'
 
 class AllProducts extends React.Component {
   constructor() {
@@ -69,7 +70,9 @@ class AllProducts extends React.Component {
                 )
               }
             })
-          : !this.state.displayAddProd && <p>empty products</p>}
+          : !this.state.displayAddProd && (
+              <Loader type="ThreeDots" color="Cyan" width={80} height={80} />
+            )}
       </div>
     )
   }

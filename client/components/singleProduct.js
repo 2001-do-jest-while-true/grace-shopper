@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct, addToCartThunk, addToCart} from '../store'
 import {EditProduct} from './updateProduct'
+import Loader from 'react-loader-spinner'
 
 class SingleProduct extends React.Component {
   constructor() {
@@ -28,7 +29,7 @@ class SingleProduct extends React.Component {
 
   handleAdd(productId) {
     if (this.props.isLoggedIn) {
-      this.props.addToCartThunk(this.props.orderId, {
+      this.props.addToCartThunk(this.props.loggedIn.id, this.props.orderId, {
         [productId]: +this.state.addQty
       })
     } else {
@@ -108,13 +109,14 @@ class SingleProduct extends React.Component {
         </div>
       )
     } else {
-      return <div>Loading...</div>
+      return <Loader type="ThreeDots" color="Cyan" width={80} height={80} />
     }
   }
 }
 
 const mapStateToProps = state => ({
   isLoggedIn: !!state.user.id,
+  loggedIn: state.user,
   isAdmin: state.user.isAdmin,
   singleProduct: state.product,
   orderId: state.cart.orderId
@@ -122,8 +124,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
-  addToCartThunk: (orderId, product) =>
-    dispatch(addToCartThunk(orderId, product)),
+  addToCartThunk: (userId, orderId, product) =>
+    dispatch(addToCartThunk(userId, orderId, product)),
   addToCart: (id, quantity) => dispatch(addToCart(id, quantity))
 })
 

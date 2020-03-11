@@ -1,11 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {
-  initializeCartThunk,
-  fetchCart,
-  setCart,
-  addToCartThunk
-} from './store/cart'
+import {initializeCartThunk, fetchCart, setCart} from './store/cart'
 import {fetchAllProducts, me} from './store'
 import {Header} from './components'
 import Routes from './routes'
@@ -26,7 +21,8 @@ class App extends React.Component {
     await this.props.loadInitialData()
     await this.props.fetchAllProducts()
     await this.props.initializeCartThunk(this.props.loggedIn.id)
-    if (this.props.orderId) await this.props.fetchCart(this.props.orderId)
+    if (this.props.orderId)
+      await this.props.fetchCart(this.props.loggedIn.id, this.props.orderId)
     else this.props.setCart(JSON.parse(window.localStorage.getItem('cart')))
 
     window.addEventListener('beforeunload', async event => {
@@ -43,19 +39,6 @@ class App extends React.Component {
     })
   }
 
-  // // Takes an array of 2 carts objects and merges them together (combining similar values)
-  // mergeCarts(carts) {
-  //   const newCart = carts.reduce((newObj, obj) => {
-  //     const entries = Object.entries(obj)
-  //     entries.forEach(([key, val]) => {
-  //       newObj[key] = (newObj[key] || 0) + val
-  //     })
-  //     return newObj
-  //   }, {})
-
-  //   return newCart
-  // }
-
   async handleMerge() {}
 
   async handleChecks() {
@@ -70,7 +53,7 @@ class App extends React.Component {
     this.handleChecks()
 
     return (
-      <div>
+      <div id="main">
         <Header
           login={this.state.login}
           loginClickHandler={this.loginClickHandler}
@@ -97,11 +80,9 @@ const mapState = state => {
 
 const mapDispatch = dispatch => ({
   initializeCartThunk: userId => dispatch(initializeCartThunk(userId)),
-  fetchCart: orderId => dispatch(fetchCart(orderId)),
+  fetchCart: (userId, orderId) => dispatch(fetchCart(userId, orderId)),
   fetchAllProducts: () => dispatch(fetchAllProducts()),
   setCart: cartObj => dispatch(setCart(cartObj)),
-  addToCartThunk: (orderId, guestCart) =>
-    dispatch(addToCartThunk(orderId, guestCart)),
   loadInitialData: () => dispatch(me())
 })
 

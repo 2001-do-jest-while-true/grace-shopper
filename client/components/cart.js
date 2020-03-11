@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-//import {Link} from 'react-router-dom'
+import Loader from 'react-loader-spinner'
 import CartItem from './cartItem'
 
 import {
@@ -24,20 +24,24 @@ class Cart extends React.Component {
   }
 
   async componentDidMount() {
-    //this.props.fetchCart(this.props.orderId)
     const merged = JSON.parse(window.localStorage.getItem('merged'))
     await this.props.loadInitialData()
     await this.props.initializeCartThunk(this.props.loggedIn.id)
 
     if (+this.props.loggedIn.id && !merged) {
       const localCart = JSON.parse(window.localStorage.getItem('cart'))
-      await this.props.addToCartThunk(this.props.orderId, localCart)
+      await this.props.addToCartThunk(
+        this.props.loggedIn.id,
+        this.props.orderId,
+        localCart
+      )
 
       window.localStorage.setItem('cart', JSON.stringify({}))
       window.localStorage.setItem('merged', true)
     }
 
-    if (this.props.loggedIn.id) await this.props.fetchCart(this.props.orderId)
+    if (this.props.loggedIn.id)
+      await this.props.fetchCart(this.props.loggedIn.id, this.props.orderId)
   }
 
   addToOrderTotal(amount) {
@@ -99,7 +103,7 @@ class Cart extends React.Component {
     } else {
       return (
         <div>
-          Loading... If loading for more than 5 seconds, please click refresh.
+          <Loader type="ThreeDots" color="Cyan" width={80} height={80} />
         </div>
       )
     }
@@ -116,9 +120,10 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   loadInitialData: () => dispatch(me()),
   storeCart: cart => dispatch(storeCart(cart)),
-  fetchCart: orderId => dispatch(fetchCart(orderId)),
+  fetchCart: (userId, orderId) => dispatch(fetchCart(userId, orderId)),
   initializeCartThunk: userId => dispatch(initializeCartThunk(userId)),
-  addToCartThunk: (orderId, cart) => dispatch(addToCartThunk(orderId, cart))
+  addToCartThunk: (userId, orderId, cart) =>
+    dispatch(addToCartThunk(userId, orderId, cart))
 })
 
 export default connect(mapState, mapDispatch)(Cart)

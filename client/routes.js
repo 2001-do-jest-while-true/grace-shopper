@@ -67,7 +67,9 @@ class Routes extends Component {
         <Route
           exact
           path="/cart"
-          render={() => <Cart orderId={this.props.orderId} />}
+          render={routeProps => (
+            <Cart {...routeProps} orderId={this.props.orderId} />
+          )}
         />
         <Route exact path="/cart" component={Cart} />
         {/* <Route exact path="/users" component={allUsers} />
@@ -80,7 +82,6 @@ class Routes extends Component {
             <Route path="/home">{isAdmin ? <AdminUser /> : <UserHome />}</Route>
             <Route exact path="/users" component={allUsers} />
             <Route path="/users/:userId" component={SingleUser} />
-            <Route exact path="/cart" component={Cart} />
             <Route exact path="/add-product" component={AddProduct} />
             <Route
               path="/products/:productId/edit-product"
