@@ -43,7 +43,6 @@ export const updateSingleUser = (userId, user) => async dispatch => {
   }
 }
 
-
 export const deleteSingleUser = userId => async dispatch => {
   try {
     await axios.delete(`api/users/${userId}`)
