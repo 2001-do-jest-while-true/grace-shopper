@@ -1654,15 +1654,14 @@ const products = [
     imageUrl: '/skeletonoutfit.jpg'
   },
   {
-    name: 'habitasse platea dictumst morbi',
+    name: 'Batman Duck',
     size: 'small',
     type: 'preset',
-    category: 'summer',
-    price: 100,
+    category: 'misc',
+    price: 1500,
     quantity: 81,
-    description:
-      'tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum',
-    imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
+    description: 'I am vengeance, I am the night, I am Batduck',
+    imageUrl: '/batmanduck.jpeg'
   },
   {
     name: "Runner's Jersey",
@@ -1867,13 +1866,12 @@ const products = [
     imageUrl: '/leprechaunoutfit.jpg'
   },
   {
-    name: 'ipsum dolor sit amet',
+    name: 'Boxing Duck',
     type: 'preset',
-    price: 100,
+    price: 1500,
     quantity: 68,
-    description:
-      'curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel',
-    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+    description: 'Float like a butterfly, quack like a duck.',
+    imageUrl: '/boxingduck.jpeg'
   },
   {
     name: 'Mermaid Costume',
@@ -1939,14 +1937,13 @@ const products = [
     imageUrl: '/nurseoutfit.jpg'
   },
   {
-    name: 'tincidunt eu felis fusce posuere',
+    name: 'Mr. T Duck',
     size: 'small',
     type: 'preset',
-    price: 100,
+    price: 1500,
     quantity: 85,
-    description:
-      'hac habitasse platea dictumst maecenas ut massa quis augue luctus',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
+    description: 'I pitty the duck who dont squeeze me',
+    imageUrl: '/mrtduck.jpg'
   },
   {
     name: 'Luau Dress',
@@ -2050,14 +2047,13 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
   },
   {
-    name: 'tortor sollicitudin mi',
+    name: 'Spider-Duck',
     type: 'preset',
-    category: 'halloween',
-    price: 100,
+    category: 'misc',
+    price: 2000,
     quantity: 65,
-    description:
-      'odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+    description: 'Coming from your friendly neighborhood Spider-Duck!',
+    imageUrl: '/spiderduck.jpg'
   },
   {
     name: 'convallis eget eleifend',
@@ -2393,35 +2389,34 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
   },
   {
-    name: 'nulla integer pede',
+    name: 'Ryu Duck',
     size: 'large',
     type: 'preset',
-    category: 'xmas',
-    price: 100,
+    category: 'misc',
+    price: 2000,
     quantity: 78,
-    description:
-      'magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+    description: 'HADUCKEN!!!',
+    imageUrl: '/Ryuduck.jpg'
   },
   {
-    name: 'non mi integer ac',
+    name: 'Leon Duck',
     size: 'medium',
-    type: 'misc',
-    price: 100,
+    type: 'preset',
+    category: 'gamer',
+    price: 2000,
     quantity: 98,
-    description:
-      'eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+    description: 'Eliminate the zom-ducks',
+    imageUrl: '/Leonresevil.jpg'
   },
   {
-    name: 'nam ultrices libero',
+    name: 'Sunglasses',
     size: 'medium',
-    type: 'purple-duck',
-    price: 100,
+    type: 'accessory',
+    price: 200,
     quantity: 25,
     description:
-      'donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+      "Whether it's sunny or giving your duck an edge, these sunglasses are a must have.",
+    imageUrl: '/sunglasses.jpg'
   },
   {
     name: 'leo odio porttitor',
@@ -2476,15 +2471,14 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
   },
   {
-    name: 'odio consequat varius',
+    name: 'Master Chief Duck',
     size: 'small',
     type: 'preset',
     category: 'gamer',
-    price: 100,
+    price: 2000,
     quantity: 87,
-    description:
-      'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+    description: 'Sir, finishing this fight',
+    imageUrl: '/masterchief.png'
   },
   {
     name: 'Pretty Princess Dress',
@@ -2540,15 +2534,14 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
   },
   {
-    name: 'odio donec vitae nisi',
+    name: 'Shark Duck',
     size: 'large',
     type: 'preset',
-    category: 'halloween',
-    price: 100,
+    category: 'summer',
+    price: 1800,
     quantity: 49,
-    description:
-      'vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+    description: 'Ducky shark, doo doo doo doo doo doo...',
+    imageUrl: '/sharkduck.jpg'
   },
   {
     name: 'congue diam id',
@@ -3170,7 +3163,6 @@ async function seed() {
   //console.log('these are the magic methods on user', magMethodsUser);
   users.map(async user => {
     const newUser = await User.create(user)
-    //console.log('Here is the newUser', newUser)
     const newShippingAddress = await ShippingAddress.create(
       shippingAddresses[newUser.id - 1]
     )
@@ -3178,11 +3170,6 @@ async function seed() {
     return newUser
   })
 
-  // await Promise.all(
-  //   shippingAddresses.map(address => {
-  //     return ShippingAddress.create(address)
-  //   })
-  // )
   await Promise.all(
     products.map(product => {
       return Product.create(product)
