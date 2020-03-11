@@ -38,8 +38,9 @@ export const editProductThunk = (productId, product) => async dispatch => {
   try {
     const {data} = await axios.put(`/api/products/${productId}`, product)
     dispatch(editProduct(data))
+    history.push('/home')
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -49,7 +50,7 @@ export const deleteProductThunk = productId => dispatch => {
     dispatch(deleteProduct(productId))
     history.push('/home')
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 

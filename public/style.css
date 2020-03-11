@@ -570,6 +570,118 @@ form div {
   display: flex;
 }
 
+.signup-div {
+  position: flex;
+  left: 30px;
+  margin-top: 70px;
+  margin-left: 20%;
+  height: 100%;
+  width: 60%;
+  background-color: white;
+  font-size: 1em;
+  text-align: center;
+  border-radius: 5px;
+}
+
+/* .signup-div > div {
+display: flex;
+justify-content: space-evenly;
+} */
+
+.signup-label {
+  margin: 10px;
+  margin-top: 30px;
+  padding: 3px;
+}
+
+.signup-upload-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.signup-upload-btn {
+  border: 2px solid #231f20;
+  color: #b4b8ab;
+  background-color: #231f20;
+  padding: 8px 20px;
+  font-size: 13px;
+}
+
+.signup-upload-wrapper input[type='file'] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.signup-upload-wrapper input[type='file'] :hover {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+  background-color: #b4b8ab;
+  color: #231f20;
+}
+
+.signup-input {
+  flex: 1;
+  padding: 0.5em;
+  border: 0;
+  color: gray;
+  font-size: 1rem;
+  justify-content: center;
+  border-bottom: solid 2px #383b53;
+}
+
+.signup-submit {
+  padding: 1em;
+  width: 100%;
+  height: 50px;
+  background-color: #dd9f23;
+  border: none;
+  transition: all 0.4s;
+  font-size: 1em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
+  cursor: pointer;
+  color: #383b53;
+}
+
+.signup-submit:hover {
+  background-color: #383b53;
+  color: #dd9f23;
+}
+
+.signup-delete {
+  padding: 1em;
+  width: 100%;
+  height: 50px;
+  background-color: #383b53;
+  border: none;
+  transition: all 0.4s;
+  font-size: 1em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
+  cursor: pointer;
+  color: #dd9f23;
+}
+
+.signup-delete:hover {
+  background-color: #dd9f23;
+  color: #383b53;
+}
+
+.edit-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
 #duck-container {
   display: flex;
   justify-content: center;
