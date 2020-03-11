@@ -42,25 +42,25 @@ class SingleUser extends React.Component {
             <div className="single-user-details">
               <h1>User Info</h1>
               <div className="single-user-pane">
+                <div className="single-user-img">
+                  <img src={user.imageUrl} />
+                </div>
                 <div className="single-user-info">
                   <p>Username: {user.username}</p>
                   <p>Email: {user.email}</p>
                   <p>Admin: {JSON.stringify(user.isAdmin)}</p>
                 </div>
-                <div className="single-user-img">
-                  <img src={user.imageUrl} />
-                </div>
               </div>
               <div>
-                <button type="button" onClick={this.handleAdminOnClick}>
+                <button
+                  type="button"
+                  className="admin-button"
+                  onClick={this.handleAdminOnClick}
+                >
                   {user.isAdmin
                     ? 'Remove Administrator Privledges'
                     : 'Make Administrator'}
                 </button>
-              </div>
-              <div className="single-user-billing">
-                <h2>Billing Address</h2>
-                <p>{user.billingAddress}</p>
               </div>
               <div className="single-user-shipping">
                 <h2>Shipping Addresses</h2>
@@ -68,7 +68,8 @@ class SingleUser extends React.Component {
                   user.shipping_addresses.map(address => {
                     return (
                       <div key={++shippingCounter} className="shipping-address">
-                        <h3>{address.fullName}</h3>
+                        <h3>Shipping Address #{shippingCounter}</h3>
+                        <h4>{address.fullName}</h4>
                         <div>{address.address1}</div>
                         {address.address2 && <div>{address.address2}</div>}
                         <div>{address.city}</div>
