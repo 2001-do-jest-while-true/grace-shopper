@@ -13,7 +13,6 @@ const Header = props => {
     window.localStorage.setItem('merged', false)
     await props.loginClickHandler()
   }
-  console.log(props.user)
   return (
     <div id="header">
       <div id="header-top">
