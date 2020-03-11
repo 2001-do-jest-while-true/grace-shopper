@@ -10,6 +10,7 @@ class UserSignup extends React.Component {
     //this.handleChange = this.handleChange.bind(this)
     this.validateEmail = this.validateEmail.bind(this)
     this.validateImageUrl = this.validateImageUrl.bind(this)
+    this.validatePassword = this.validatePassword.bind(this)
   }
 
   handleSubmit(e) {
@@ -43,6 +44,10 @@ class UserSignup extends React.Component {
     return imageUrl.match(/\.(jpeg|jpg|gif|png)$/) !== null
   }
 
+  validatePassword(password) {
+    
+  }
+
   render() {
     return (
       <div className="signup-form">
@@ -64,6 +69,12 @@ class UserSignup extends React.Component {
             className="signup-input"
             type="password"
             name="password"
+            required
+          />
+          <input
+            className="signup-input"
+            type="password"
+            name="confirmpassword"
             required
           />
           <button className="signup-submit" type="submit">

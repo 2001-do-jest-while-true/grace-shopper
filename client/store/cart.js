@@ -14,7 +14,7 @@ const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const DELETE_CART = 'DELETE_CART'
 const CHANGE_CART_QUANTITY = 'CHANGE_CART_QUANTITY'
 const SET_CART = 'SET_CART'
-
+const GET_PAST_ORDERS = 'GET_PAST_ORDERS'
 // ACTION CREATORS
 
 const initializeCart = orderId => ({
@@ -131,7 +131,6 @@ export default function(state = initialState, action) {
       })
       return {...state, cart: newCart, loaded: true}
     }
-
     case SET_CART:
       return {...state, cart: action.cartObj}
 

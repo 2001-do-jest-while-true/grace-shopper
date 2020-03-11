@@ -1,17 +1,39 @@
 import React from 'react'
-import {connect} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {deleteUserThunk, editUserThunk} from '../store/user'
 
 class UserEditAccount extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
+  }
+  handleDelete() {
+    this.props.deleteUserThunk(this.props.user.id)
+  }
+  handleSubmit(e) {
+    e.preventDefault()
+    console.log(this.props.user)
+    const updateUser = {
+      username: e.target.username.value,
+      imageUrl: e.target.imageUrl.value,
+      email: e.target.email.value,
+      password: e.target.password.value
+    }
+    console.log(updateUser)
+    this.props.editUserThunk(this.props.user.id, updateUser)
+  }
   render() {
-    console.log(this.props)
     return (
       <div>
         Edit User Account Page
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label>Username: </label>
           <input type="text" name="username" />
           <label>Email: </label>
           <input type="text" name="email" />
+          <label>Profile Picture</label>
+          <input className="signup-input" type="file" name="imageUrl" />
           <label>Password: </label>
           <input type="password" name="password" />
           <label>Confirm Password: </label>
@@ -21,16 +43,22 @@ class UserEditAccount extends React.Component {
           <label>Billing Address: </label>
           <input type="text" name="billingAddress" />
           <br />
+
           <input type="submit" value="Submit Change" />
         </form>
+        <button onClick={this.handleDelete}>Delete</button>
       </div>
     )
   }
 }
 
-// const mapState = state => ({
-//   user: state.user
-// })
-// // const mapDispatch = dispatch => ({})
+const mapState = state => ({
+  user: state.user
+})
 
-// export default connect(mapState, mapDispatch)(UserEditAccount)
+const mapDispatch = dispatch => ({
+  editUserThunk: (userId, user) => dispatch(editUserThunk(userId, user)),
+  deleteUserThunk: userId => dispatch(deleteUserThunk(userId))
+})
+
+export default connect(mapState, mapDispatch)(UserEditAccount)

@@ -8,6 +8,7 @@ const GET_LOGGED_IN = 'GET_LOGGED_IN'
 const LOG_OUT = 'LOG_OUT'
 const ADD_USER = 'ADD_USER'
 const EDIT_USER = 'EDIT_USER'
+const DELETE_USER = 'DELETE_USER'
 
 /**
  * INITIAL STATE
@@ -25,12 +26,16 @@ const editUser = user => ({
   type: EDIT_USER,
   user
 })
+const deleteUser = user => ({
+  type: DELETE_USER,
+  user
+})
 /**
  * THUNK CREATORS
  */
-export const editUserThunk = userId => async dispatch => {
+export const editUserThunk = (userId, user) => async dispatch => {
   try {
-    const {data} = await axios.put(`/api/users/${userId}/editaccount`)
+    const {data} = await axios.put(`/api/users/${userId}/account`, user)
     dispatch(editUser(data))
   } catch (error) {
     console.error(error)
@@ -42,6 +47,16 @@ export const addUserThunk = user => async dispatch => {
     const {data} = await axios.post('/api/users/signup', user)
 
     dispatch(addUser(data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const deleteUserThunk = userId => async dispatch => {
+  try {
+    axios.delete(`/api/users/${userId}/account`)
+    dispatch(deleteUser(userId))
+    history.push('/home')
   } catch (error) {
     console.error(error)
   }

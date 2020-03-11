@@ -17,6 +17,8 @@ let cartFlag = false
 //IMPORT CART COMPONENT HERE
 import AdminUser from './components/adminUser'
 import UserSignup from './components/UserSignup'
+import OrderConfirmation from './components/orderConfirmation'
+import OrderHistory from './components/orderHistory'
 
 /**
  * COMPONENT
@@ -52,6 +54,21 @@ class Routes extends Component {
         <Route exact path="/signup" component={UserSignup} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:productId" component={SingleProduct} />
+        <Route
+          exact
+          path="/orders/:userId/past-orders"
+          component={OrderHistory}
+        />
+        <Route
+          exact
+          path="/users/:userId/account"
+          component={UserEditAccount}
+        />
+        <Route
+          exact
+          path="/cart"
+          render={() => <Cart orderId={this.props.orderId} />}
+        />
         <Route exact path="/cart" component={Cart} />
         {/* <Route exact path="/users" component={allUsers} />
         <Route path="/users/:userId" component={SingleUser} /> */}
@@ -68,11 +85,6 @@ class Routes extends Component {
             <Route
               path="/products/:productId/edit-product"
               component={EditProduct}
-            />
-            <Route
-              exact
-              path="/users/:userId/editaccount"
-              component={UserEditAccount}
             />
           </Switch>
         )}

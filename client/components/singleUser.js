@@ -84,7 +84,6 @@ class SingleUser extends React.Component {
               <button type="button" onClick={this.handleDeleteOnClick}>
                 Delete User
               </button>
-              <button type="button">Delete User</button>
             </div>
           </div>
         )
@@ -104,7 +103,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchSingleUser: id => dispatch(fetchSingleUser(id)),
-
   updateSingleUser: (id, user) => dispatch(updateSingleUser(id, user)),
   deleteSingleUser: id => dispatch(deleteSingleUser(id))
 })
