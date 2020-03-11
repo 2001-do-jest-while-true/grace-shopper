@@ -25,8 +25,22 @@ const isYouOnly = (req, res, next) => {
   next()
 }
 
+// We realize this might be insecure, but this feature
+// was added last minute and we did not have time to secure
+// it further
+
+const duckAccess = (req, res, next) => {
+  if (!req.query.duck) {
+    const notDuckError = new Error('Not a valid route')
+    notUserError.status = 401
+    return next(notDuckError)
+  }
+  next()
+}
+
 module.exports = {
   isAUser,
   adminsOnly,
-  isYouOnly
+  isYouOnly,
+  duckAccess
 }

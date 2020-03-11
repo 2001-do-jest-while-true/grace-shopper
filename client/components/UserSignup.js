@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addUserThunk, me} from '../store/user'
+import {addUserThunk} from '../store/user'
 
 class UserSignup extends React.Component {
   constructor() {
@@ -77,8 +77,7 @@ class UserSignup extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addUserThunk: user => dispatch(addUserThunk(user)),
-  initializeData: () => dispatch(me())
+  addUserThunk: user => dispatch(addUserThunk(user))
 })
 
 export default connect(null, mapDispatchToProps)(UserSignup)

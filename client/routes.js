@@ -13,6 +13,7 @@ import OrderHistory from './components/orderHistory'
 import AdminUser from './components/adminUser'
 import UserSignup from './components/UserSignup'
 import UserHome from './components/user-home'
+import BuildADuck from './components/buildADuck'
 
 /**
  * COMPONENT
@@ -41,6 +42,7 @@ class Routes extends Component {
         />
         <Route exact path="/cart" component={Cart} />
         <Route path="/cart/checkout" component={OrderConfirmation} />
+        <Route path="/build" component={BuildADuck} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
