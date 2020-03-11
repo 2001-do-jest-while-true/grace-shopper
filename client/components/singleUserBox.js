@@ -18,7 +18,8 @@ const SingleUserBox = props => {
           <Link to={`/users/${props.id}`}>
             <h3>{props.username}</h3>
           </Link>
-          <p>Email:{props.email}</p>
+          <p>Email:</p>
+          <div>{props.email}</div>
           {props.isAdmin ? (
             <p className="admin-priv">Administrator privleges</p>
           ) : (
