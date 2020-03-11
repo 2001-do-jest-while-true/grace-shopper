@@ -557,3 +557,21 @@ form div {
   align-items: center;
   display: flex;
 }
+
+#duck-container {
+  display: flex;
+  justify-content: center;
+}
+
+#duck-form {
+  margin: 50px;
+  width: 50%;
+  background-color: #ebf5df;
+  border: 1px solid #231f20;
+  padding: 50px;
+}
+
+#duck-form input,
+#duck-form select {
+  margin-left: 10px;
+}

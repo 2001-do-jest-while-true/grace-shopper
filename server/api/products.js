@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const {Product, Order} = require('../db/models')
-const {adminsOnly} = require('./access')
+const {adminsOnly, duckAccess} = require('./access')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -13,6 +13,21 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', adminsOnly, async (req, res, next) => {
+  try {
+    const product = req.body
+    const newProduct = await Product.create(product)
+    if (newProduct) res.json(newProduct)
+    else {
+      const err = new Error('Error creating product')
+      err.status(500)
+      next(err)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/duck', duckAccess, async (req, res, next) => {
   try {
     const product = req.body
     const newProduct = await Product.create(product)

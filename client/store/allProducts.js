@@ -39,6 +39,15 @@ export const addProductThunk = product => async dispatch => {
   }
 }
 
+export const addDuckThunk = product => async dispatch => {
+  try {
+    const {data} = await axios.post('/api/products/duck?duck=true', product)
+    dispatch(addProduct(data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_PRODUCTS:

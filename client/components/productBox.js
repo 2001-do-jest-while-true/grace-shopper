@@ -57,10 +57,11 @@ class ProductBox extends React.Component {
                     Out of stock, check back soon!
                   </span>
                 )}
-                {quantity < 6 && (
-                  <span className="warning">Low on stock, buy soon!</span>
-                )}
-                {quantity > 6 && <span className="in-stock"> In stock</span>}
+                {quantity < 6 &&
+                  quantity > 0 && (
+                    <span className="warning">Low on stock, buy soon!</span>
+                  )}
+                {quantity > 5 && <span className="in-stock"> In stock</span>}
               </div>
               <div className="select-qty-add-to-cart">
                 <label htmlFor="qty">Qty: </label>
