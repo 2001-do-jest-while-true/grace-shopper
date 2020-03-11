@@ -1,3 +1,11 @@
+html,
+body,
+#app,
+#main {
+  height: 100%;
+  min-height: 100%;
+}
+
 body {
   font-family: sans-serif;
   background-color: #b4b8ab;
@@ -140,6 +148,13 @@ form div {
 
 #navbar a {
   color: white;
+  padding: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+#navbar a:hover {
+  background-color: #383b53;
 }
 
 #login-div {
@@ -198,6 +213,8 @@ form div {
 
 #cart-container {
   display: flex;
+  min-height: 100%;
+  overflow: visible;
 }
 
 #cart-items-div {
@@ -212,7 +229,7 @@ form div {
   flex-grow: 1;
   background-color: #383b53;
   color: white;
-  height: 84vh;
+  min-height: 100%;
 }
 
 #checkout-btn {

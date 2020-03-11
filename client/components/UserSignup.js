@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addUserThunk} from '../store/user'
+import {addUserThunk, me} from '../store/user'
 
 class UserSignup extends React.Component {
   constructor() {
@@ -28,6 +28,7 @@ class UserSignup extends React.Component {
         password: e.target.password.value
       }
       this.props.addUserThunk(newUser)
+      this.props.history.push('/home')
     } else {
       // eslint-disable-next-line no-alert
       alert('User not added') //remove/change this later
@@ -76,7 +77,8 @@ class UserSignup extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addUserThunk: user => dispatch(addUserThunk(user))
+  addUserThunk: user => dispatch(addUserThunk(user)),
+  initializeData: () => dispatch(me())
 })
 
 export default connect(null, mapDispatchToProps)(UserSignup)

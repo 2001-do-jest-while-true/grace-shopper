@@ -1,14 +1,14 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {Link, useRouteMatch} from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = props => {
   return (
     <div id="navbar">
-      <NavLink to="/home">Home</NavLink>
-      <NavLink to="">Build a Duck</NavLink>
-      <NavLink to="/products?type=outfit">Outfits</NavLink>
-      <NavLink to="/products?type=accessory">Accessories</NavLink>
-      <NavLink to="/products?type=preset">Presets</NavLink>
+      <Link to="/home">Home</Link>
+      <Link to="">Build a Duck</Link>
+      <Link to="/products?type=outfit">Outfits</Link>
+      <Link to="/products?type=accessory">Accessories</Link>
+      <Link to="/products?type=preset">Presets</Link>
     </div>
   )
 }

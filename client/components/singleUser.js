@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleUser, updateSingleUser, deleteSingleUser} from '../store'
 import {Link, Redirect} from 'react-router-dom'
+import Loader from 'react-loader-spinner'
 
 class SingleUser extends React.Component {
   constructor(props) {
@@ -89,7 +90,7 @@ class SingleUser extends React.Component {
           </div>
         )
       } else {
-        return <div>Loading...</div>
+        return <Loader type="ThreeDots" color="Cyan" width={80} height={80} />
       }
     } else {
       return <div>Not authorized!</div>
