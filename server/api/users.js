@@ -30,6 +30,27 @@ router.get('/:userId', isAUser, adminsOnly, async (req, res, next) => {
     next(error)
   }
 })
+router.put('/:userId/account', isAUser, isYouOnly, async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.userId, {
+      attributes: {exclude: ['isAdmin']}
+    })
+    const editedUser = await user.update(req.body)
+    res.status(200).json(editedUser)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/:userId/account', isYouOnly, async (req, res, next) => {
+  try {
+    const foundUser = await User.findByPk(req.params.userId)
+    await foundUser.destroy()
+    res.send(200)
+  } catch (error) {
+    next(error)
+  }
+})
 
 //could check if req.user is the same user as req.params.userId, removing the isAdmin from the req.body
 

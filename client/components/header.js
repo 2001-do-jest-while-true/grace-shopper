@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout, deleteCart} from '../store'
 import Navbar from './navbar'
 import {Login} from './auth-form'
+import UserEditAccount from './userEditAccount'
 import {useHistory} from 'react-router-dom'
 
 const Header = props => {
@@ -12,7 +13,7 @@ const Header = props => {
     window.localStorage.setItem('merged', false)
     await props.loginClickHandler()
   }
-
+  console.log(props.user)
   return (
     <div id="header">
       <div id="header-top">
@@ -43,7 +44,7 @@ const Header = props => {
                 <a href={`/orders/${props.userId}/past-orders`}>
                   Order History
                 </a>
-                <a href={`/${props.userId}/account`}>Account</a>
+                <a href={`/users/${props.userId}/account`}>Account</a>
               </div>
             </div>
           )}
