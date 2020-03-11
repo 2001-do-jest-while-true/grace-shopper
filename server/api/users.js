@@ -57,10 +57,13 @@ router.delete('/:userId', adminsOnly, async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   try {
-    //console.log('This is the req.body', req.body)
-    const addUser = await User.create(req.body)
-    res.status(200).json(addUser)
-  } catch (error) {
-    next(error)
+    const user = await User.create(req.body)
+    req.login(user, err => (err ? next(err) : res.json(user)))
+  } catch (err) {
+    if (err.name === 'SequelizeUniqueConstraintError') {
+      res.status(401).send('User already exists')
+    } else {
+      next(err)
+    }
   }
 })
