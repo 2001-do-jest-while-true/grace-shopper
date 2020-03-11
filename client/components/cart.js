@@ -24,12 +24,14 @@ class Cart extends React.Component {
   }
 
   async componentDidMount() {
-    const merged = JSON.parse(window.localStorage.getItem('merged'))
+    const merged = JSON.parse(window.localStorage.getItem('merged') || false)
+
     await this.props.loadInitialData()
     await this.props.initializeCartThunk(this.props.loggedIn.id)
 
     if (+this.props.loggedIn.id && !merged) {
-      const localCart = JSON.parse(window.localStorage.getItem('cart'))
+      let localCart = JSON.parse(window.localStorage.getItem('cart') || {})
+
       await this.props.addToCartThunk(
         this.props.loggedIn.id,
         this.props.orderId,
@@ -65,13 +67,13 @@ class Cart extends React.Component {
 
     if ((+this.props.loggedIn.id && merged) || !this.props.loggedIn.id) {
       if (
-        Object.keys(this.props.cart).length &&
+        Object.keys(this.props.cart || {}).length &&
         this.props.allProducts.length
       ) {
         return (
           <div id="cart-container">
             <div id="cart-items-div">
-              {Object.keys(this.props.cart).map(prodId => (
+              {Object.keys(this.props.cart || {}).map(prodId => (
                 <CartItem
                   key={prodId}
                   product={this.props.allProducts.find(
