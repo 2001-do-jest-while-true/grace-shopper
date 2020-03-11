@@ -1733,15 +1733,14 @@ const products = [
     imageUrl: '/sailoroutfit.jpg'
   },
   {
-    name: 'sed interdum venenatis turpis',
+    name: 'Beret',
     size: 'small',
     type: 'accessory',
     category: 'misc',
     price: 100,
     quantity: 63,
-    description:
-      'odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+    description: 'Beret (outfit not included)',
+    imageUrl: '/beret.png'
   },
   {
     name: 'Tuxedo',
@@ -1805,14 +1804,14 @@ const products = [
     imageUrl: '/donutoutfit.jpg'
   },
   {
-    name: 'donec posuere metus',
+    name: 'Sheild',
     type: 'accessory',
-    category: 'gamer',
+    category: 'medieval',
     price: 100,
     quantity: 25,
     description:
-      'nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum',
-    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+      'Get ready for any battle with this shield for your duck. Helmet not included',
+    imageUrl: '/sheild.jpg'
   },
   {
     name: 'Dragon Costume',
@@ -1915,15 +1914,14 @@ const products = [
     imageUrl: '/ninjaoutfit.jpg'
   },
   {
-    name: 'risus praesent lectus',
-    size: 'x-large',
+    name: 'crown',
+    size: 'medium',
     type: 'accessory',
     category: 'medieval',
     price: 100,
     quantity: 62,
-    description:
-      'faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+    description: 'For duck royalty',
+    imageUrl: '/crown.png'
   },
   {
     name: 'Nurse Outfit',
@@ -2119,15 +2117,14 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
   },
   {
-    name: 'ligula vehicula consequat morbi',
+    name: 'Cowboy hat',
     size: 'medium',
     type: 'accessory',
     category: 'halloween',
     price: 100,
     quantity: 82,
-    description:
-      'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+    description: 'Cowboy hat - Bandana and laso sold seperately',
+    imageUrl: '/cowboyhat.jpg'
   },
   {
     name: 'sit amet consectetuer adipiscing elit',
@@ -2236,13 +2233,12 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
   },
   {
-    name: 'pellentesque ultrices phasellus id',
+    name: 'Bunny Ears',
     size: 'small',
-    type: 'misc',
+    type: 'accessory',
     price: 100,
-    description:
-      'penatibus et magnis dis parturient montes nascetur ridiculus mus etiam',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+    description: 'Bunny ears',
+    imageUrl: '/bunnyears.jpg'
   },
   {
     name: 'amet cursus id',
@@ -2461,14 +2457,13 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
   },
   {
-    name: 'turpis integer aliquet massa id',
-    size: 'large',
+    name: 'Bandana',
+    size: 'medium',
     type: 'accessory',
     price: 100,
     quantity: 73,
-    description:
-      'consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+    description: 'Bandana',
+    imageUrl: '/bandana.jpg'
   },
   {
     name: 'Master Chief Duck',
@@ -2491,15 +2486,14 @@ const products = [
     imageUrl: '/princessoutfit.jpg'
   },
   {
-    name: 'nulla ut erat id mauris',
+    name: 'Devil outfit',
     size: 'large',
-    type: 'purple-duck',
-    category: 'summer',
-    price: 100,
+    type: 'outfit',
+    category: 'halloween',
+    price: 3000,
     quantity: 47,
-    description:
-      'curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi',
-    imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
+    description: 'Devil outfit',
+    imageUrl: '/devil.png'
   },
   {
     name: 'eleifend quam a odio',
@@ -2544,15 +2538,14 @@ const products = [
     imageUrl: '/sharkduck.jpg'
   },
   {
-    name: 'congue diam id',
+    name: 'Mario Duck',
     size: 'x-large',
-    type: 'red-duck',
+    type: 'preset',
     category: 'gamer',
-    price: 100,
+    price: 2000,
     quantity: 59,
-    description:
-      'orci eget orci vehicula condimentum curabitur in libero ut massa volutpat',
-    imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
+    description: "It's me Mario",
+    imageUrl: '/mario.png'
   },
   {
     name: 'donec posuere metus vitae ipsum',
@@ -2621,7 +2614,7 @@ const products = [
   {
     name: 'aliquam convallis nunc proin',
     size: 'small',
-    category: 'misc',
+    type: 'red-duck',
     price: 100,
     quantity: 57,
     description:
@@ -2629,15 +2622,14 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/5fa2dd/ffffff'
   },
   {
-    name: 'felis fusce posuere felis',
+    name: 'Spyro Duck',
     size: 'medium',
-    type: 'misc',
+    type: 'preset',
     category: 'gamer',
-    price: 100,
+    price: 3000,
     quantity: 15,
-    description:
-      'felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+    description: 'Mess with the duck dragon, you get the horns!',
+    imageUrl: '/spyroduck.jpg'
   },
   {
     name: 'amet justo morbi',
