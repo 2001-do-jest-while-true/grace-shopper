@@ -227,40 +227,60 @@ form div {
   background-color: cornsilk;
 }
 
-.single-user-box {
-  margin: 2vh 20vw;
-  height: fit-content;
-  background-color: #dd9f23;
+.all-users {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.single-user-box {
+  margin: 3px;
+  width: 200px;
+  padding: 5px;
+  background-color: #231f20;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 .single-user-box-details {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  width: 30vw;
+  word-break: break-word;
+  background-color: #dd9f23;
+  width: 98%;
+  height: 90%;
+}
+
+.single-user-info-box a {
+  color: #383b53;
+  width: 100%;
+}
+
+.single-user-info-box a:visited {
   color: #383b53;
 }
 
-.single-user-img-box {
-  margin: 0px 30px;
-  height: fit-content;
-  width: fit-content;
-}
-
 .single-user-img-box img {
-  height: 100px;
-  width: 100px;
+  height: 180px;
+  width: 180px;
   background-color: white;
 }
 
-.single-user-info-box {
-  margin: 0px 30px;
+.single-user-box-buttons button,
+.single-user-box-buttons {
+  width: 100%;
+}
+
+.admin-priv {
+  color: red;
+  background-color: #231f20;
 }
 
 .no-admin-priv {
   color: #ebf5df;
+  background-color: #383b53;
 }
 
 .single-user-box-buttons {
@@ -273,8 +293,87 @@ form div {
   flex-direction: column;
 }
 
+.single-user-main > a,
+.single-user-deletebtn button,
+.admin-button {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  border: black 1px solid;
+  padding: 3px 5px;
+  background: white;
+  text-align: center;
+}
+.single-user-main > a:hover,
+.single-user-deletebtn button:hover,
+.admin-button:hover {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  border: black 1px solid;
+  padding: 3px 5px;
+  background: #231f20;
+  text-align: center;
+}
+
+.single-user-details {
+  padding: 10px;
+  border: black 2px solid;
+}
+
+.single-user-details h1 {
+  background-color: #dd9f23;
+  margin: auto;
+  height: 45px;
+  padding-top: 8px;
+  margin-bottom: 5px;
+  font-size: 35px;
+}
+
 .single-user-pane {
   display: flex;
+  font-size: 25px;
+}
+
+.admin-button {
+  width: 180px;
+  font-size: 15px;
+}
+
+.single-user-img img {
+  height: 180px;
+  width: 180px;
+  background-color: white;
+}
+
+.single-user-info {
+  margin-left: 30px;
+}
+
+.single-user-shipping h2 {
+  font-size: 30px;
+  color: white;
+  background-color: #231f20;
+  margin: 5px 0px;
+}
+.shipping-address {
+  border: black 1px solid;
+  padding: 15px;
+}
+
+.shipping-address h3 {
+  font-size: 30px;
+  margin: auto;
+}
+
+.shipping-address h4 {
+  margin: auto;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.single-user-deletebtn button {
+  width: 100%;
 }
 
 #confirmation-container {
