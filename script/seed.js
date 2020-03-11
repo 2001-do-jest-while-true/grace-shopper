@@ -1654,15 +1654,14 @@ const products = [
     imageUrl: '/skeletonoutfit.jpg'
   },
   {
-    name: 'habitasse platea dictumst morbi',
+    name: 'Batman Duck',
     size: 'small',
     type: 'preset',
-    category: 'summer',
-    price: 100,
+    category: 'misc',
+    price: 1500,
     quantity: 81,
-    description:
-      'tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum',
-    imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
+    description: 'I am vengeance, I am the night, I am Batduck',
+    imageUrl: '/batmanduck.jpeg'
   },
   {
     name: "Runner's Jersey",
@@ -1734,15 +1733,14 @@ const products = [
     imageUrl: '/sailoroutfit.jpg'
   },
   {
-    name: 'sed interdum venenatis turpis',
+    name: 'Beret',
     size: 'small',
     type: 'accessory',
     category: 'misc',
     price: 100,
     quantity: 63,
-    description:
-      'odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+    description: 'Beret (outfit not included)',
+    imageUrl: '/beret.png'
   },
   {
     name: 'Tuxedo',
@@ -1806,14 +1804,14 @@ const products = [
     imageUrl: '/donutoutfit.jpg'
   },
   {
-    name: 'donec posuere metus',
+    name: 'Sheild',
     type: 'accessory',
-    category: 'gamer',
+    category: 'medieval',
     price: 100,
     quantity: 25,
     description:
-      'nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum',
-    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+      'Get ready for any battle with this shield for your duck. Helmet not included',
+    imageUrl: '/sheild.jpg'
   },
   {
     name: 'Dragon Costume',
@@ -1867,13 +1865,12 @@ const products = [
     imageUrl: '/leprechaunoutfit.jpg'
   },
   {
-    name: 'ipsum dolor sit amet',
+    name: 'Boxing Duck',
     type: 'preset',
-    price: 100,
+    price: 1500,
     quantity: 68,
-    description:
-      'curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel',
-    imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
+    description: 'Float like a butterfly, quack like a duck.',
+    imageUrl: '/boxingduck.jpeg'
   },
   {
     name: 'Mermaid Costume',
@@ -1917,15 +1914,14 @@ const products = [
     imageUrl: '/ninjaoutfit.jpg'
   },
   {
-    name: 'risus praesent lectus',
-    size: 'x-large',
+    name: 'crown',
+    size: 'medium',
     type: 'accessory',
     category: 'medieval',
     price: 100,
     quantity: 62,
-    description:
-      'faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
+    description: 'For duck royalty',
+    imageUrl: '/crown.png'
   },
   {
     name: 'Nurse Outfit',
@@ -1939,14 +1935,13 @@ const products = [
     imageUrl: '/nurseoutfit.jpg'
   },
   {
-    name: 'tincidunt eu felis fusce posuere',
+    name: 'Mr. T Duck',
     size: 'small',
     type: 'preset',
-    price: 100,
+    price: 1500,
     quantity: 85,
-    description:
-      'hac habitasse platea dictumst maecenas ut massa quis augue luctus',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
+    description: 'I pitty the duck who dont squeeze me',
+    imageUrl: '/mrtduck.jpg'
   },
   {
     name: 'Luau Dress',
@@ -2050,14 +2045,13 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
   },
   {
-    name: 'tortor sollicitudin mi',
+    name: 'Spider-Duck',
     type: 'preset',
-    category: 'halloween',
-    price: 100,
+    category: 'misc',
+    price: 2000,
     quantity: 65,
-    description:
-      'odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+    description: 'Coming from your friendly neighborhood Spider-Duck!',
+    imageUrl: '/spiderduck.jpg'
   },
   {
     name: 'convallis eget eleifend',
@@ -2123,15 +2117,14 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
   },
   {
-    name: 'ligula vehicula consequat morbi',
+    name: 'Cowboy hat',
     size: 'medium',
     type: 'accessory',
     category: 'halloween',
     price: 100,
     quantity: 82,
-    description:
-      'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+    description: 'Cowboy hat - Bandana and laso sold seperately',
+    imageUrl: '/cowboyhat.jpg'
   },
   {
     name: 'sit amet consectetuer adipiscing elit',
@@ -2240,13 +2233,12 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff'
   },
   {
-    name: 'pellentesque ultrices phasellus id',
+    name: 'Bunny Ears',
     size: 'small',
-    type: 'misc',
+    type: 'accessory',
     price: 100,
-    description:
-      'penatibus et magnis dis parturient montes nascetur ridiculus mus etiam',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+    description: 'Bunny ears',
+    imageUrl: '/bunnyears.jpg'
   },
   {
     name: 'amet cursus id',
@@ -2393,35 +2385,34 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
   },
   {
-    name: 'nulla integer pede',
+    name: 'Ryu Duck',
     size: 'large',
     type: 'preset',
-    category: 'xmas',
-    price: 100,
+    category: 'misc',
+    price: 2000,
     quantity: 78,
-    description:
-      'magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+    description: 'HADUCKEN!!!',
+    imageUrl: '/Ryuduck.jpg'
   },
   {
-    name: 'non mi integer ac',
+    name: 'Leon Duck',
     size: 'medium',
-    type: 'misc',
-    price: 100,
+    type: 'preset',
+    category: 'gamer',
+    price: 2000,
     quantity: 98,
-    description:
-      'eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
+    description: 'Eliminate the zom-ducks',
+    imageUrl: '/Leonresevil.jpg'
   },
   {
-    name: 'nam ultrices libero',
+    name: 'Sunglasses',
     size: 'medium',
-    type: 'purple-duck',
-    price: 100,
+    type: 'accessory',
+    price: 200,
     quantity: 25,
     description:
-      'donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+      "Whether it's sunny or giving your duck an edge, these sunglasses are a must have.",
+    imageUrl: '/sunglasses.jpg'
   },
   {
     name: 'leo odio porttitor',
@@ -2466,25 +2457,23 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
   },
   {
-    name: 'turpis integer aliquet massa id',
-    size: 'large',
+    name: 'Bandana',
+    size: 'medium',
     type: 'accessory',
     price: 100,
     quantity: 73,
-    description:
-      'consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+    description: 'Bandana',
+    imageUrl: '/bandana.jpg'
   },
   {
-    name: 'odio consequat varius',
+    name: 'Master Chief Duck',
     size: 'small',
     type: 'preset',
     category: 'gamer',
-    price: 100,
+    price: 2000,
     quantity: 87,
-    description:
-      'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet',
-    imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
+    description: 'Sir, finishing this fight',
+    imageUrl: '/masterchief.png'
   },
   {
     name: 'Pretty Princess Dress',
@@ -2497,15 +2486,14 @@ const products = [
     imageUrl: '/princessoutfit.jpg'
   },
   {
-    name: 'nulla ut erat id mauris',
+    name: 'Devil outfit',
     size: 'large',
-    type: 'purple-duck',
-    category: 'summer',
-    price: 100,
+    type: 'outfit',
+    category: 'halloween',
+    price: 3000,
     quantity: 47,
-    description:
-      'curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi',
-    imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
+    description: 'Devil outfit',
+    imageUrl: '/devil.png'
   },
   {
     name: 'eleifend quam a odio',
@@ -2540,26 +2528,24 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
   },
   {
-    name: 'odio donec vitae nisi',
+    name: 'Shark Duck',
     size: 'large',
     type: 'preset',
-    category: 'halloween',
-    price: 100,
+    category: 'summer',
+    price: 1800,
     quantity: 49,
-    description:
-      'vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+    description: 'Ducky shark, doo doo doo doo doo doo...',
+    imageUrl: '/sharkduck.jpg'
   },
   {
-    name: 'congue diam id',
+    name: 'Mario Duck',
     size: 'x-large',
-    type: 'red-duck',
+    type: 'preset',
     category: 'gamer',
-    price: 100,
+    price: 2000,
     quantity: 59,
-    description:
-      'orci eget orci vehicula condimentum curabitur in libero ut massa volutpat',
-    imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
+    description: "It's me Mario",
+    imageUrl: '/mario.png'
   },
   {
     name: 'donec posuere metus vitae ipsum',
@@ -2628,7 +2614,7 @@ const products = [
   {
     name: 'aliquam convallis nunc proin',
     size: 'small',
-    category: 'misc',
+    type: 'red-duck',
     price: 100,
     quantity: 57,
     description:
@@ -2636,15 +2622,14 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/5fa2dd/ffffff'
   },
   {
-    name: 'felis fusce posuere felis',
+    name: 'Spyro Duck',
     size: 'medium',
-    type: 'misc',
+    type: 'preset',
     category: 'gamer',
-    price: 100,
+    price: 3000,
     quantity: 15,
-    description:
-      'felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut',
-    imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
+    description: 'Mess with the duck dragon, you get the horns!',
+    imageUrl: '/spyroduck.jpg'
   },
   {
     name: 'amet justo morbi',
@@ -3170,7 +3155,6 @@ async function seed() {
   //console.log('these are the magic methods on user', magMethodsUser);
   users.map(async user => {
     const newUser = await User.create(user)
-    //console.log('Here is the newUser', newUser)
     const newShippingAddress = await ShippingAddress.create(
       shippingAddresses[newUser.id - 1]
     )
@@ -3178,11 +3162,6 @@ async function seed() {
     return newUser
   })
 
-  // await Promise.all(
-  //   shippingAddresses.map(address => {
-  //     return ShippingAddress.create(address)
-  //   })
-  // )
   await Promise.all(
     products.map(product => {
       return Product.create(product)

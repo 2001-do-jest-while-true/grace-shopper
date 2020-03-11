@@ -30,6 +30,7 @@ class UserEditAccount extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault()
+
     const validImageUrl = this.validateImageUrl(e.target.imageUrl.value)
     const validEmail = this.validateEmail(e.target.email.value)
     const confirmBothPassword = this.validatePassword(
@@ -47,6 +48,7 @@ class UserEditAccount extends React.Component {
       }
       this.props.editUserThunk(this.props.user.id, updateUser)
     }
+
   }
 
   validateEmail(email) {

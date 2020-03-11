@@ -4,6 +4,7 @@ import ProductBox from './productBox'
 import Filters from './filters'
 import {AddProduct} from './updateProduct'
 import {fetchAllProducts} from '../store'
+import Loader from 'react-loader-spinner'
 
 class AllProducts extends React.Component {
   constructor() {
@@ -49,11 +50,12 @@ class AllProducts extends React.Component {
 
     return (
       <div id="all-products-div">
-        {this.props.isAdmin && (
-          <button type="button" onClick={this.toggleDisplayAddProd}>
-            Add Product
-          </button>
-        )}
+        {this.props.isAdmin &&
+          !this.state.displayAddProd && (
+            <button type="button" onClick={this.toggleDisplayAddProd}>
+              Add Product
+            </button>
+          )}
         {this.state.displayAddProd ? (
           <AddProduct resetDisplay={this.toggleDisplayAddProd} />
         ) : (
@@ -69,7 +71,9 @@ class AllProducts extends React.Component {
                 )
               }
             })
-          : !this.state.displayAddProd && <p>empty products</p>}
+          : !this.state.displayAddProd && (
+              <Loader type="ThreeDots" color="Cyan" width={80} height={80} />
+            )}
       </div>
     )
   }

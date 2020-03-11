@@ -46,6 +46,7 @@ class UserSignup extends React.Component {
         password: e.target.password.value
       }
       this.props.addUserThunk(newUser)
+      this.props.history.push('/home')
     } else {
       // eslint-disable-next-line no-alert
       alert('User not added') //remove/change this later

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout, deleteCart, fetchCart} from '../store'
+import {logout, deleteCart} from '../store'
 import Navbar from './navbar'
 import {Login} from './auth-form'
 import UserEditAccount from './userEditAccount'
@@ -13,7 +13,6 @@ const Header = props => {
     window.localStorage.setItem('merged', false)
     await props.loginClickHandler()
   }
-  console.log(props.user)
   return (
     <div id="header">
       <div id="header-top">
@@ -98,9 +97,7 @@ const mapDispatch = dispatch => {
 
       window.localStorage.setItem('cart', JSON.stringify({}))
       window.localStorage.setItem('merged', false)
-    },
-
-    fetchCart: orderId => dispatch(fetchCart(orderId))
+    }
   }
 }
 

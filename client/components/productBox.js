@@ -29,7 +29,7 @@ class ProductBox extends React.Component {
 
   handleAdd(productId) {
     if (this.props.isLoggedIn) {
-      this.props.addToCartThunk(this.props.orderId, {
+      this.props.addToCartThunk(this.props.loggedIn.id, this.props.orderId, {
         [productId]: +this.state.orderQuantity
       })
     } else {
@@ -57,10 +57,11 @@ class ProductBox extends React.Component {
                     Out of stock, check back soon!
                   </span>
                 )}
-                {quantity < 6 && (
-                  <span className="warning">Low on stock, buy soon!</span>
-                )}
-                {quantity > 6 && <span className="in-stock"> In stock</span>}
+                {quantity < 6 &&
+                  quantity > 0 && (
+                    <span className="warning">Low on stock, buy soon!</span>
+                  )}
+                {quantity > 5 && <span className="in-stock"> In stock</span>}
               </div>
               <div className="select-qty-add-to-cart">
                 <label htmlFor="qty">Qty: </label>
@@ -100,6 +101,7 @@ class ProductBox extends React.Component {
 const mapState = state => ({
   cart: state.cart,
   isAdmin: state.user.isAdmin,
+  loggedIn: state.user,
   isLoggedIn: !!state.user.id,
   orderId: state.cart.orderId
 })
@@ -107,8 +109,8 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   addToCart: (id, quantity) => dispatch(addToCart(id, quantity)),
   deleteProductThunk: id => dispatch(deleteProductThunk(id)),
-  addToCartThunk: (orderId, product) =>
-    dispatch(addToCartThunk(orderId, product))
+  addToCartThunk: (userId, orderId, product) =>
+    dispatch(addToCartThunk(userId, orderId, product))
 })
 
 export default connect(mapState, mapDispatch)(ProductBox)

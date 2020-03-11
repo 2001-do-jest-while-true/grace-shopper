@@ -17,8 +17,11 @@ let cartFlag = false
 //IMPORT CART COMPONENT HERE
 import AdminUser from './components/adminUser'
 import UserSignup from './components/UserSignup'
+import BuildADuck from './components/buildADuck'
+
 import OrderConfirmation from './components/orderConfirmation'
 import OrderHistory from './components/orderHistory'
+
 
 /**
  * COMPONENT
@@ -67,12 +70,13 @@ class Routes extends Component {
         <Route
           exact
           path="/cart"
-          render={() => <Cart orderId={this.props.orderId} />}
+          render={routeProps => (
+            <Cart {...routeProps} orderId={this.props.orderId} />
+          )}
         />
-        <Route exact path="/cart" component={Cart} />
-        {/* <Route exact path="/users" component={allUsers} />
-        <Route path="/users/:userId" component={SingleUser} /> */}
 
+        <Route path="/cart/checkout" component={OrderConfirmation} />
+        <Route path="/build" component={BuildADuck} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -80,7 +84,6 @@ class Routes extends Component {
             <Route path="/home">{isAdmin ? <AdminUser /> : <UserHome />}</Route>
             <Route exact path="/users" component={allUsers} />
             <Route path="/users/:userId" component={SingleUser} />
-            <Route exact path="/cart" component={Cart} />
             <Route exact path="/add-product" component={AddProduct} />
             <Route
               path="/products/:productId/edit-product"

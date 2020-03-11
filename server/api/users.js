@@ -1,33 +1,8 @@
 const router = require('express').Router()
 const {User, Order, ShippingAddress} = require('../db/models')
+const {isAUser, adminsOnly, isYouOnly} = require('./access')
 
 module.exports = router
-
-const isAUser = (req, res, next) => {
-  if (!req.user) {
-    const notUserError = new Error('Not a User')
-    notUserError.status = 401
-    return next(notUserError)
-  }
-  next()
-}
-const adminsOnly = (req, res, next) => {
-  if (!req.user.isAdmin) {
-    const notAdminError = new Error('Not an Admin')
-    notAdminError.status = 401
-    return next(notAdminError)
-  }
-  next()
-}
-
-const isYouOnly = (req, res, next) => {
-  if (+req.params.userId !== req.user.id) {
-    const notMeError = new Error('Not the right User')
-    notMeError.status = 401
-    return next(notMeError)
-  }
-  next()
-}
 
 router.get('/', isAUser, adminsOnly, async (req, res, next) => {
   try {
@@ -91,7 +66,7 @@ router.put('/:userId', isAUser, adminsOnly, async (req, res, next) => {
   }
 })
 
-router.delete('/:userId', adminsOnly, async (req, res, next) => {
+router.delete('/:userId', isAUser, adminsOnly, async (req, res, next) => {
   try {
     const foundUser = await User.findByPk(req.params.userId)
     await foundUser.destroy()
@@ -103,10 +78,13 @@ router.delete('/:userId', adminsOnly, async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   try {
-    //console.log('This is the req.body', req.body)
-    const addUser = await User.create(req.body)
-    res.status(200).json(addUser)
-  } catch (error) {
-    next(error)
+    const user = await User.create(req.body)
+    req.login(user, err => (err ? next(err) : res.json(user)))
+  } catch (err) {
+    if (err.name === 'SequelizeUniqueConstraintError') {
+      res.status(401).send('User already exists')
+    } else {
+      next(err)
+    }
   }
 })

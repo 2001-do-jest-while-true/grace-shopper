@@ -45,7 +45,6 @@ export const editUserThunk = (userId, user) => async dispatch => {
 export const addUserThunk = user => async dispatch => {
   try {
     const {data} = await axios.post('/api/users/signup', user)
-
     dispatch(addUser(data))
   } catch (error) {
     console.error(error)
