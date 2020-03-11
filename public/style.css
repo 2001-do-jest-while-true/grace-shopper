@@ -113,7 +113,7 @@ form div {
 }
 
 #header-buttons > button:hover {
-  background-color: #383b53;
+  background-color: #151518;
 }
 
 #header-buttons img {
@@ -300,21 +300,21 @@ form div {
 #dropdown-content {
   display: none;
   position: absolute;
-  background-color: lightgrey;
+  background-color: white;
   min-width: 100px;
   z-index: 1;
 }
 
 #dropdown-content a {
   color: black;
-  font: 4px;
+  font-size: 11px;
   text-decoration: none;
   display: block;
   padding: 2px;
 }
 
 #dropdown-content a:hover {
-  background-color: white;
+  background-color: lightgray;
 }
 #dropdown-container:hover #dropdown-content {
   display: block;
@@ -330,6 +330,18 @@ form div {
   width: 100%;
 }
 
+#all-products-div > button {
+  margin-left: 800px;
+  margin-bottom: 10px;
+}
+
+#dropdown-btn {
+  width: 120px;
+  background-color: #231f20;
+  color: white;
+  border: 2px solid white;
+  height: 30px;
+}
 .product-box-container {
   border: 1px solid gray;
   background-color: #ebf5df;
