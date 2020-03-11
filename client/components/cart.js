@@ -37,7 +37,7 @@ class Cart extends React.Component {
       window.localStorage.setItem('merged', true)
     }
 
-    // if (this.props.loggedIn.id) await this.props.fetchCart(this.props.orderId)
+    if (this.props.loggedIn.id) await this.props.fetchCart(this.props.orderId)
   }
 
   addToOrderTotal(amount) {
