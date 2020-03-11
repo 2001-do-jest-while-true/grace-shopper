@@ -66,7 +66,7 @@ router.put('/:userId', isAUser, adminsOnly, async (req, res, next) => {
   }
 })
 
-router.delete('/:userId', adminsOnly, async (req, res, next) => {
+router.delete('/:userId', isAUser, adminsOnly, async (req, res, next) => {
   try {
     const foundUser = await User.findByPk(req.params.userId)
     await foundUser.destroy()
