@@ -12,26 +12,15 @@ class BuildADuck extends React.Component {
       type: 'yellow-duck',
       price: 5000,
       outfit: 'Santa Outfit',
-      accessory: 'sed interdum venenatis turpis'
+      accessory: 'Beret'
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange() {
-    let cost = 0
-
-    if (event.target.name === 'outfit' || event.target.name === 'accessory') {
-      const product = this.props.products.find(
-        product => product.name === event.target.value
-      )
-      cost = product.price
-    }
-
-    const newPrice = this.state.price + cost
     this.setState({
-      [event.target.name]: event.target.value,
-      price: newPrice
+      [event.target.name]: event.target.value
     })
   }
 
@@ -66,7 +55,7 @@ class BuildADuck extends React.Component {
       type: 'yellow-duck',
       price: 5000,
       outfit: 'Santa Outfit',
-      accessory: 'sed interdum venenatis turpis'
+      accessory: 'Beret'
     })
   }
 
@@ -85,6 +74,7 @@ class BuildADuck extends React.Component {
 
           <label htmlFor="name">Name Your Duck:</label>
           <input
+            value={this.state.name}
             type="text"
             name="name"
             placeholder="Name your duck!"

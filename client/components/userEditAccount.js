@@ -13,14 +13,14 @@ class UserEditAccount extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault()
-    console.log(this.props.user)
+
     const updateUser = {
       username: e.target.username.value,
       imageUrl: e.target.imageUrl.value,
       email: e.target.email.value,
       password: e.target.password.value
     }
-    console.log(updateUser)
+
     this.props.editUserThunk(this.props.user.id, updateUser)
   }
   render() {
